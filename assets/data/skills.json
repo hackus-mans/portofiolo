@@ -1,0 +1,8 @@
+[
+  { "title": "Réseaux", "description": "TCP/IP, adressage, routage, DNS, DHCP, VLAN et diagnostic réseau." },
+  { "title": "Systèmes", "description": "Bases Linux, Windows, administration, services et bonnes pratiques de configuration." },
+  { "title": "Sécurité", "description": "Sensibilisation, analyse, supervision, protection des systèmes et bonnes pratiques." },
+  { "title": "Cloud", "description": "Notions de cloud, services en ligne, hébergement et sécurité des environnements modernes." },
+  { "title": "Développement", "description": "HTML, CSS, JavaScript, scripts simples et structuration de projets web." },
+  { "title": "Documentation", "description": "Rédaction de notes techniques, comptes rendus, procédures et guides pratiques." }
+]

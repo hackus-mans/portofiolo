@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackus Mans | Portfolio Tech</title>
+  <meta name="description" content="Portfolio professionnel de Hackus Mans : projets, compétences, articles et parcours tech.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="hero" id="accueil">
+    <nav class="navbar">
+      <a href="#accueil" class="brand">Hackus<span>Mans</span></a>
+      <div class="nav-links">
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#articles">Articles</a>
+        <a href="#contact">Contact</a>
+        <a class="admin-link" href="admin/">Admin</a>
+      </div>
+    </nav>
+    <section class="hero-content">
+      <div>
+        <p class="eyebrow">Portfolio professionnel</p>
+        <h1 id="profile-name">Hackus Mans</h1>
+        <h2 id="profile-title">Passionné par la technologie, les réseaux et les systèmes</h2>
+        <p id="profile-bio" class="hero-text">Je présente ici mes projets, mes compétences, mes articles et mon évolution dans le domaine de la tech.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projets">Voir mes projets</a>
+          <a class="btn secondary" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="terminal-header"><span></span><span></span><span></span></div>
+        <pre><code>$ profile
+tech_portfolio
+
+$ domains
+networking | systems | cloud | security
+
+$ status
+learning_and_building</code></pre>
+      </div>
+    </section>
+  </header>
+  <main>
+    <section id="apropos" class="section"><p class="section-label">À propos</p><h2>Un profil orienté pratique et progression</h2><p id="about-text" class="section-text">Ce portfolio présente mes réalisations, mes notes techniques et les compétences que je développe.</p></section>
+    <section id="competences" class="section alt"><p class="section-label">Compétences</p><h2>Domaines techniques</h2><div id="skills-list" class="grid cards"></div></section>
+    <section id="projets" class="section"><p class="section-label">Projets</p><h2>Réalisations</h2><div id="projects-list" class="grid projects"></div></section>
+    <section id="articles" class="section alt"><p class="section-label">Articles</p><h2>Partage de connaissances</h2><div id="articles-list" class="grid cards"></div></section>
+    <section id="certifications" class="section"><p class="section-label">Certifications</p><h2>Formations et certifications</h2><div id="certifications-list" class="badges"></div></section>
+    <section id="contact" class="section contact"><p class="section-label">Contact</p><h2>Me contacter</h2><p>Disponible pour échanger sur les projets tech, les réseaux, les systèmes et les opportunités.</p><div class="contact-links" id="contact-links"></div></section>
+  </main>
+  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,5 +1,7 @@
-[
-  { "title": "Cisco Networking", "status": "En apprentissage" },
-  { "title": "CompTIA Security+", "status": "Objectif" },
-  { "title": "Linux Administration", "status": "En pratique" }
-]
+{
+  "items": [
+    { "title": "Cisco Networking", "status": "En apprentissage" },
+    { "title": "CompTIA Security+", "status": "Objectif" },
+    { "title": "Linux Administration", "status": "En pratique" }
+  ]
+}

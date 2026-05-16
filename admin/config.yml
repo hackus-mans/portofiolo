@@ -1,0 +1,77 @@
+backend:
+  name: github
+  repo: hackus-mans/obsidian-Hackus-mans
+  branch: main
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: settings
+    label: Paramètres du site
+    files:
+      - label: Profil
+        name: profile
+        file: assets/data/profile.json
+        format: json
+        fields:
+          - { label: Nom, name: name, widget: string }
+          - { label: Titre, name: title, widget: string }
+          - { label: Bio courte, name: bio, widget: text }
+          - { label: Texte à propos, name: about, widget: text }
+          - { label: Chemin du CV, name: cv, widget: string, required: false }
+          - label: Contacts
+            name: contacts
+            widget: list
+            fields:
+              - { label: Libellé, name: label, widget: string }
+              - { label: Lien, name: url, widget: string }
+      - label: Compétences
+        name: skills
+        file: assets/data/skills.json
+        format: json
+        fields:
+          - label: Liste des compétences
+            name: items
+            widget: list
+            fields:
+              - { label: Titre, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+      - label: Certifications
+        name: certifications
+        file: assets/data/certifications.json
+        format: json
+        fields:
+          - label: Liste des certifications
+            name: items
+            widget: list
+            fields:
+              - { label: Titre, name: title, widget: string }
+              - { label: Statut, name: status, widget: string }
+  - name: projects
+    label: Projets
+    file: assets/data/projects.json
+    format: json
+    fields:
+      - label: Liste des projets
+        name: items
+        widget: list
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Catégorie, name: category, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Outils, name: tools, widget: list, field: { label: Outil, name: tool, widget: string } }
+          - { label: Lien, name: url, widget: string, required: false }
+  - name: articles
+    label: Articles
+    file: assets/data/articles.json
+    format: json
+    fields:
+      - label: Liste des articles
+        name: items
+        widget: list
+        fields:
+          - { label: Titre, name: title, widget: string }
+          - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+          - { label: Résumé, name: summary, widget: text }
+          - { label: Lien, name: url, widget: string, required: false }

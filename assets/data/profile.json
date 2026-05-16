@@ -1,0 +1,11 @@
+{
+  "name": "Hackus Mans",
+  "title": "Passionné par la technologie, les réseaux et les systèmes",
+  "bio": "Je présente ici mes projets, mes compétences, mes articles et mon évolution dans le domaine de la tech.",
+  "about": "Ce portfolio présente mes réalisations, mes notes techniques et les compétences que je développe progressivement.",
+  "cv": "assets/cv/cv.pdf",
+  "contacts": [
+    { "label": "GitHub", "url": "https://github.com/hackus-mans" },
+    { "label": "Email", "url": "mailto:nakyendoujos@gmail.com" }
+  ]
+}

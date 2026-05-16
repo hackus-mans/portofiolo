@@ -1,10 +1,10 @@
 backend:
   name: github
-  repo: hackus-mans/obsidian-Hackus-mans
+  repo: hackus-mans/portofiolo
   branch: main
 
 media_folder: assets/uploads
-public_folder: /assets/uploads
+public_folder: /portofiolo/assets/uploads
 
 collections:
   - name: settings
@@ -48,30 +48,41 @@ collections:
             fields:
               - { label: Titre, name: title, widget: string }
               - { label: Statut, name: status, widget: string }
+
   - name: projects
     label: Projets
-    file: assets/data/projects.json
-    format: json
-    fields:
+    files:
       - label: Liste des projets
-        name: items
-        widget: list
+        name: projects
+        file: assets/data/projects.json
+        format: json
         fields:
-          - { label: Titre, name: title, widget: string }
-          - { label: Catégorie, name: category, widget: string }
-          - { label: Description, name: description, widget: text }
-          - { label: Outils, name: tools, widget: list, field: { label: Outil, name: tool, widget: string } }
-          - { label: Lien, name: url, widget: string, required: false }
+          - label: Projets
+            name: items
+            widget: list
+            fields:
+              - { label: Titre, name: title, widget: string }
+              - { label: Catégorie, name: category, widget: string }
+              - { label: Description, name: description, widget: text }
+              - label: Outils
+                name: tools
+                widget: list
+                field: { label: Outil, name: tool, widget: string }
+              - { label: Lien, name: url, widget: string, required: false }
+
   - name: articles
     label: Articles
-    file: assets/data/articles.json
-    format: json
-    fields:
+    files:
       - label: Liste des articles
-        name: items
-        widget: list
+        name: articles
+        file: assets/data/articles.json
+        format: json
         fields:
-          - { label: Titre, name: title, widget: string }
-          - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
-          - { label: Résumé, name: summary, widget: text }
-          - { label: Lien, name: url, widget: string, required: false }
+          - label: Articles
+            name: items
+            widget: list
+            fields:
+              - { label: Titre, name: title, widget: string }
+              - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+              - { label: Résumé, name: summary, widget: text }
+              - { label: Lien, name: url, widget: string, required: false }

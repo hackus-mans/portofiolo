@@ -8,10 +8,21 @@
       "status": "En cours",
       "description": "Création d'un portfolio professionnel modifiable depuis une interface d'administration Git-based.",
       "objective": "Présenter les réalisations, compétences, certifications et articles dans un espace public professionnel.",
-      "stack": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-      "skills": ["Front-end", "GitHub Pages", "Documentation"],
-      "github": "#",
-      "demo": "#"
+      "problem": "Avoir un espace public sérieux pour montrer les preuves techniques, les projets et la progression.",
+      "stack": ["HTML", "CSS", "JavaScript", "GitHub Pages", "Sveltia CMS"],
+      "features": ["Site public", "Interface admin", "Gestion JSON", "Déploiement GitHub Pages"],
+      "difficulties": ["Organisation des contenus", "Séparation entre site public et admin", "Affichage dynamique des données"],
+      "results": ["Site public fonctionnel", "Gestion des certifications", "Structure des réalisations prête"],
+      "skills": ["Front-end", "GitHub Pages", "Documentation", "Architecture statique"],
+      "screenshots": [],
+      "architectureImage": "",
+      "resources": [
+        {"label": "Dépôt GitHub", "url": "#", "type": "GitHub"}
+      ],
+      "codeSnippets": [
+        {"title": "Exemple de rendu dynamique", "language": "javascript", "code": "fetch('assets/data/realisations.json')\n  .then(response => response.json())\n  .then(data => console.log(data.items));"}
+      ],
+      "documentation": "# Présentation du projet\n\nCe projet consiste à construire un portfolio cybersécurité modifiable depuis une interface d'administration.\n\n## Objectif\n\nL'objectif est de disposer d'un site public professionnel pour présenter les projets, les certifications, les compétences et les articles.\n\n## Fonctionnement\n\n- Le site public lit les données depuis des fichiers JSON.\n- L'administration permet de modifier les contenus sans toucher au code.\n- GitHub Pages publie automatiquement les modifications.\n\n## Ce que j'ai appris\n\n- Structurer un portfolio technique.\n- Organiser les données d'un site statique.\n- Documenter un projet de manière claire."
     },
     {
       "type": "writeup",
@@ -21,10 +32,17 @@
       "status": "Modèle",
       "description": "Modèle de fiche pour documenter la résolution d'un challenge CTF ou d'un lab pratique.",
       "objective": "Structurer l'analyse, la reconnaissance, la vulnérabilité, l'exploitation et les leçons apprises.",
+      "problem": "Documenter clairement la démarche suivie pendant la résolution d'un challenge.",
       "stack": ["Analyse", "Reconnaissance", "Exploitation"],
+      "features": ["Présentation du challenge", "Analyse", "Exploitation", "Leçons apprises"],
+      "difficulties": [],
+      "results": [],
       "skills": ["Méthodologie", "Rédaction technique"],
-      "github": "#",
-      "demo": "#"
+      "screenshots": [],
+      "architectureImage": "",
+      "resources": [],
+      "codeSnippets": [],
+      "documentation": "# Présentation du challenge\n\nDécrire ici le challenge, la plateforme et l'objectif.\n\n## Analyse\n\nDécrire les premières observations.\n\n## Reconnaissance\n\nLister les commandes ou tests utilisés.\n\n## Vulnérabilité\n\nPrésenter la faille identifiée.\n\n## Exploitation\n\nExpliquer comment la faille a été exploitée.\n\n## Ce que j'ai appris\n\nRésumer les notions retenues."
     },
     {
       "type": "lab",
@@ -34,10 +52,17 @@
       "status": "À documenter",
       "description": "Environnement de test pour comprendre les services réseau et les échanges entre machines.",
       "objective": "Observer le fonctionnement d'un réseau local et documenter les échanges réseau.",
+      "problem": "Comprendre concrètement comment les machines communiquent sur un réseau local.",
       "stack": ["TCP/IP", "Linux", "Documentation"],
+      "features": ["Machines de test", "Analyse réseau", "Documentation des échanges"],
+      "difficulties": [],
+      "results": [],
       "skills": ["Réseaux", "Diagnostic", "Documentation"],
-      "github": "#",
-      "demo": "#"
+      "screenshots": [],
+      "architectureImage": "",
+      "resources": [],
+      "codeSnippets": [],
+      "documentation": "# Objectif du lab\n\nCe lab sert à comprendre les échanges entre plusieurs machines dans un réseau local.\n\n## Environnement\n\n- Machine Linux\n- Réseau local\n- Outils de diagnostic\n\n## Tests réalisés\n\nDécrire ici les tests effectués.\n\n## Résultats\n\nPrésenter les observations et les conclusions."
     }
   ]
 }

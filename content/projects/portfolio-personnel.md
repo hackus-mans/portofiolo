@@ -35,3 +35,5 @@ fetch('assets/data/realisations.json')
 - Structurer un portfolio technique.
 - Organiser les contenus d'un site statique.
 - Documenter un projet de manière claire.
+
+![](/portofiolo/assets/uploads/20260517-140505.png)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réalisations | Hackus Mans</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/realisations.css">
+</head>
+<body>
+<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a class="active" href="realisations.html">Réalisations</a><a href="articles.html">Articles</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
+<main class="page-shell">
+  <section class="page-hero">
+    <p class="eyebrow">Réalisations</p>
+    <h1>Projets, writeups et labs</h1>
+    <p class="section-text">Cette page regroupe les preuves concrètes : ce que je construis, ce que je résous et les environnements que je mets en place.</p>
+  </section>
+
+  <section class="realisation-tabs">
+    <button class="real-tab active" data-filter="project">Projets</button>
+    <button class="real-tab" data-filter="writeup">Writeups</button>
+    <button class="real-tab" data-filter="lab">Labs</button>
+  </section>
+
+  <section>
+    <div id="realisations-list" class="realisation-grid"></div>
+  </section>
+</main>
+<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/app.js"></script>
+</body></html>

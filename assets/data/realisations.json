@@ -1,30 +1,6 @@
 {
   "items": [
     {
-      "type": "project",
-      "title": "Portfolio personnel GitHub Pages",
-      "category": "Web / Branding personnel",
-      "level": "Intermédiaire",
-      "status": "En cours",
-      "description": "Création d'un portfolio professionnel modifiable depuis une interface d'administration Git-based.",
-      "objective": "Présenter les réalisations, compétences, certifications et articles dans un espace public professionnel.",
-      "problem": "Avoir un espace public sérieux pour montrer les preuves techniques, les projets et la progression.",
-      "stack": ["HTML", "CSS", "JavaScript", "GitHub Pages", "Sveltia CMS"],
-      "features": ["Site public", "Interface admin", "Gestion JSON", "Déploiement GitHub Pages"],
-      "difficulties": ["Organisation des contenus", "Séparation entre site public et admin", "Affichage dynamique des données"],
-      "results": ["Site public fonctionnel", "Gestion des certifications", "Structure des réalisations prête"],
-      "skills": ["Front-end", "GitHub Pages", "Documentation", "Architecture statique"],
-      "screenshots": [],
-      "architectureImage": "",
-      "resources": [
-        {"label": "Dépôt GitHub", "url": "#", "type": "GitHub"}
-      ],
-      "codeSnippets": [
-        {"title": "Exemple de rendu dynamique", "language": "javascript", "code": "fetch('assets/data/realisations.json')\n  .then(response => response.json())\n  .then(data => console.log(data.items));"}
-      ],
-      "documentation": "# Présentation du projet\n\nCe projet consiste à construire un portfolio cybersécurité modifiable depuis une interface d'administration.\n\n## Objectif\n\nL'objectif est de disposer d'un site public professionnel pour présenter les projets, les certifications, les compétences et les articles.\n\n## Fonctionnement\n\n- Le site public lit les données depuis des fichiers JSON.\n- L'administration permet de modifier les contenus sans toucher au code.\n- GitHub Pages publie automatiquement les modifications.\n\n## Ce que j'ai appris\n\n- Structurer un portfolio technique.\n- Organiser les données d'un site statique.\n- Documenter un projet de manière claire."
-    },
-    {
       "type": "writeup",
       "title": "Template Writeup CTF",
       "category": "CTF Writeup",

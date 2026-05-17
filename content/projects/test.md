@@ -20,5 +20,6 @@ Donc aujourd'hui nous allons parlé de
 
 ```python
 print (bonjour)
+print (hello word)
 ```
 

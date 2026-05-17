@@ -1,7 +1,26 @@
 {
   "items": [
-    { "title": "Cisco Networking", "status": "En apprentissage" },
-    { "title": "CompTIA Security+", "status": "Objectif" },
-    { "title": "Linux Administration", "status": "En pratique" }
+    {
+      "type": "certification",
+      "title": "CompTIA Security+",
+      "issuer": "CompTIA",
+      "status": "Objectif",
+      "date": "2026",
+      "image": "assets/uploads/certification-placeholder.svg",
+      "credentialUrl": "#",
+      "description": "Certification ciblée pour valider les bases en cybersécurité, gestion des risques, sécurité réseau et bonnes pratiques de protection.",
+      "skills": ["Cybersécurité", "Réseaux", "Gestion des risques"]
+    },
+    {
+      "type": "badge",
+      "title": "Cisco Networking Basics",
+      "issuer": "Cisco Networking Academy",
+      "status": "En apprentissage",
+      "date": "2026",
+      "image": "assets/uploads/badge-placeholder.svg",
+      "credentialUrl": "#",
+      "description": "Badge ou attestation liée aux fondamentaux réseaux : adressage, protocoles, connectivité et compréhension des infrastructures.",
+      "skills": ["TCP/IP", "Réseaux", "Infrastructure"]
+    }
   ]
 }

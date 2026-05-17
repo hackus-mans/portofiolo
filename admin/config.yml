@@ -37,17 +37,39 @@ collections:
             fields:
               - { label: Titre, name: title, widget: string }
               - { label: Description, name: description, widget: text }
-      - label: Certifications
+      - label: Certifications et badges
         name: certifications
         file: assets/data/certifications.json
         format: json
         fields:
-          - label: Liste des certifications
+          - label: Liste des éléments
             name: items
             widget: list
             fields:
-              - { label: Titre, name: title, widget: string }
-              - { label: Statut, name: status, widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options:
+                  - { label: Vraie certification, value: certification }
+                  - { label: Badge, value: badge }
+              - { label: Nom de la certification ou du badge, name: title, widget: string }
+              - { label: Organisme émetteur, name: issuer, widget: string }
+              - label: Statut
+                name: status
+                widget: select
+                options:
+                  - Obtenue
+                  - En préparation
+                  - En apprentissage
+                  - Objectif
+              - { label: Date ou année, name: date, widget: string, required: false }
+              - { label: Image de la preuve, name: image, widget: image, required: false }
+              - { label: Lien de vérification, name: credentialUrl, widget: string, required: false }
+              - { label: Description, name: description, widget: text }
+              - label: Compétences liées
+                name: skills
+                widget: list
+                field: { label: Compétence, name: skill, widget: string }
 
   - name: projects
     label: Projets

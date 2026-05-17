@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "type": "project",
+      "title": "Portfolio personnel GitHub Pages",
+      "category": "Web / Branding personnel",
+      "level": "Intermédiaire",
+      "status": "En cours",
+      "description": "Création d'un portfolio professionnel modifiable depuis une interface d'administration Git-based.",
+      "objective": "Présenter les réalisations, compétences, certifications et articles dans un espace public professionnel.",
+      "stack": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+      "skills": ["Front-end", "GitHub Pages", "Documentation"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "type": "writeup",
+      "title": "Template Writeup CTF",
+      "category": "CTF Writeup",
+      "level": "À définir",
+      "status": "Modèle",
+      "description": "Modèle de fiche pour documenter la résolution d'un challenge CTF ou d'un lab pratique.",
+      "objective": "Structurer l'analyse, la reconnaissance, la vulnérabilité, l'exploitation et les leçons apprises.",
+      "stack": ["Analyse", "Reconnaissance", "Exploitation"],
+      "skills": ["Méthodologie", "Rédaction technique"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "type": "lab",
+      "title": "Lab réseau local",
+      "category": "Home Lab",
+      "level": "Débutant",
+      "status": "À documenter",
+      "description": "Environnement de test pour comprendre les services réseau et les échanges entre machines.",
+      "objective": "Observer le fonctionnement d'un réseau local et documenter les échanges réseau.",
+      "stack": ["TCP/IP", "Linux", "Documentation"],
+      "skills": ["Réseaux", "Diagnostic", "Documentation"],
+      "github": "#",
+      "demo": "#"
+    }
+  ]
+}

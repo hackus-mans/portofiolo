@@ -71,26 +71,102 @@ collections:
                 widget: list
                 field: { label: Compétence, name: skill, widget: string }
 
-  - name: projects
-    label: Projets
+  - name: realisations
+    label: Réalisations
     files:
-      - label: Liste des projets
-        name: projects
-        file: assets/data/projects.json
+      - label: Projets, Writeups et Labs
+        name: realisations
+        file: assets/data/realisations.json
         format: json
         fields:
-          - label: Projets
+          - label: Liste des réalisations
             name: items
             widget: list
+            summary: "{{fields.title}} — {{fields.type}}"
             fields:
+              - label: Type
+                name: type
+                widget: select
+                options:
+                  - { label: Projet, value: project }
+                  - { label: Writeup, value: writeup }
+                  - { label: Lab, value: lab }
               - { label: Titre, name: title, widget: string }
-              - { label: Catégorie, name: category, widget: string }
-              - { label: Description, name: description, widget: text }
-              - label: Outils
-                name: tools
+              - { label: Catégorie, name: category, widget: string, hint: "Exemple : Offensive Security, Defensive Security, AI + Cybersecurity, Home Lab, CTF Web" }
+              - label: Niveau
+                name: level
+                widget: select
+                options:
+                  - Débutant
+                  - Intermédiaire
+                  - Avancé
+                  - À définir
+              - label: Statut
+                name: status
+                widget: select
+                options:
+                  - En cours
+                  - Terminé
+                  - En amélioration
+                  - À documenter
+                  - Modèle
+              - { label: Description courte, name: description, widget: text }
+              - { label: Objectif, name: objective, widget: text }
+              - { label: Problème traité, name: problem, widget: text, required: false }
+              - label: Stack technique / Outils
+                name: stack
                 widget: list
+                required: false
                 field: { label: Outil, name: tool, widget: string }
-              - { label: Lien, name: url, widget: string, required: false }
+              - label: Fonctionnalités principales
+                name: features
+                widget: list
+                required: false
+                field: { label: Fonctionnalité, name: feature, widget: string }
+              - label: Difficultés rencontrées
+                name: difficulties
+                widget: list
+                required: false
+                field: { label: Difficulté, name: difficulty, widget: string }
+              - label: Résultats obtenus
+                name: results
+                widget: list
+                required: false
+                field: { label: Résultat, name: result, widget: string }
+              - label: Compétences démontrées
+                name: skills
+                widget: list
+                required: false
+                field: { label: Compétence, name: skill, widget: string }
+              - label: Captures d’écran
+                name: screenshots
+                widget: list
+                required: false
+                field: { label: Image, name: image, widget: image }
+              - { label: Schéma ou architecture, name: architectureImage, widget: image, required: false }
+              - label: Ressources
+                name: resources
+                widget: list
+                required: false
+                fields:
+                  - { label: Libellé, name: label, widget: string }
+                  - { label: URL, name: url, widget: string }
+                  - { label: Type, name: type, widget: string, required: false, hint: "GitHub, Rapport PDF, Démo, Documentation, Fichier" }
+              - label: Blocs de code
+                name: codeSnippets
+                widget: list
+                required: false
+                fields:
+                  - { label: Titre du code, name: title, widget: string }
+                  - { label: Langage, name: language, widget: string, required: false, hint: "python, bash, javascript, powershell, etc." }
+                  - { label: Code, name: code, widget: code, default_language: bash }
+              - { label: Lien GitHub, name: github, widget: string, required: false }
+              - { label: Lien démo ou rapport, name: demo, widget: string, required: false }
+              - label: Documentation complète
+                name: documentation
+                widget: markdown
+                required: false
+                hint: "Écris ici comme dans Obsidian : titres, listes, explications, commandes, notes, étapes, conclusion."
 
   - name: articles
     label: Articles

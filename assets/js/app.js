@@ -1,12 +1,17 @@
-async function loadJSON(path){const res=await fetch(path);if(!res.ok){throw new Error('Impossible de charger '+path)}return res.json()}
-function el(tag,cls,html){const node=document.createElement(tag);if(cls)node.className=cls;if(html)node.innerHTML=html;return node}
-function safe(text){return String(text||'')}
-function list(data){return Array.isArray(data)?data:(data.items||[])}
-async function render(){document.getElementById('year').textContent=new Date().getFullYear();
-try{const profile=await loadJSON('assets/data/profile.json');document.getElementById('profile-name').textContent=safe(profile.name);document.getElementById('profile-title').textContent=safe(profile.title);document.getElementById('profile-bio').textContent=safe(profile.bio);document.getElementById('about-text').textContent=safe(profile.about);document.getElementById('cv-link').href=safe(profile.cv||'#');const links=document.getElementById('contact-links');links.innerHTML='';(profile.contacts||[]).forEach(c=>{const a=el('a','',safe(c.label));a.href=safe(c.url);links.appendChild(a)})}catch(e){console.warn(e)}
-try{const skills=list(await loadJSON('assets/data/skills.json'));const box=document.getElementById('skills-list');box.innerHTML='';skills.forEach(s=>box.appendChild(el('article','card',`<h3>${safe(s.title)}</h3><p>${safe(s.description)}</p>`)))}catch(e){console.warn(e)}
-try{const projects=list(await loadJSON('assets/data/projects.json'));const box=document.getElementById('projects-list');box.innerHTML='';projects.forEach(p=>{const tools=(p.tools||[]).map(t=>`<span class="tag">${safe(t)}</span>`).join('');box.appendChild(el('article','project-card',`<p class="section-label">${safe(p.category)}</p><h3>${safe(p.title)}</h3><p>${safe(p.description)}</p><div class="tags">${tools}</div><a class="btn secondary" href="${safe(p.url||'#')}" style="display:inline-block;margin-top:18px">Voir le projet</a>`))})}catch(e){console.warn(e)}
-try{const articles=list(await loadJSON('assets/data/articles.json'));const box=document.getElementById('articles-list');box.innerHTML='';articles.forEach(a=>box.appendChild(el('article','card',`<p class="section-label">${safe(a.date)}</p><h3>${safe(a.title)}</h3><p>${safe(a.summary)}</p><a href="${safe(a.url||'#')}">Lire</a>`)))}catch(e){console.warn(e)}
-try{const certs=list(await loadJSON('assets/data/certifications.json'));const box=document.getElementById('certifications-list');box.innerHTML='';certs.forEach(c=>box.appendChild(el('span','badge',`${safe(c.title)} — ${safe(c.status)}`)))}catch(e){console.warn(e)}
+const pageMap={"#apropos":"apropos.html","#competences":"competences.html","#projets":"projets.html","#articles":"articles.html","#certifications":"certifications.html","#contact":"contact.html"};
+if(pageMap[location.hash]){location.replace(pageMap[location.hash]);}
+async function loadJSON(path){const res=await fetch(path,{cache:'no-store'});if(!res.ok){throw new Error('Chargement impossible: '+path)}return res.json()}
+function byId(id){return document.getElementById(id)}
+function setText(id,value){const n=byId(id);if(n)n.textContent=String(value||'')}
+function setHref(id,value){const n=byId(id);if(n)n.href=String(value||'#')}
+function make(tag,cls,html){const n=document.createElement(tag);if(cls)n.className=cls;if(html)n.innerHTML=html;return n}
+function safe(v){return String(v||'')}
+function items(data){return Array.isArray(data)?data:(data.items||[])}
+async function render(){setText('year',new Date().getFullYear());
+try{const p=await loadJSON('assets/data/profile.json');setText('profile-name',p.name);setText('profile-title',p.title);setText('profile-bio',p.bio);setText('about-text',p.about);setHref('cv-link',p.cv);const box=byId('contact-links');if(box){box.innerHTML='';(p.contacts||[]).forEach(c=>{const a=make('a','contact-chip',safe(c.label));a.href=safe(c.url);box.appendChild(a)})}}catch(e){console.warn(e)}
+try{const data=items(await loadJSON('assets/data/skills.json'));const box=byId('skills-list');if(box){box.innerHTML='';data.forEach(s=>box.appendChild(make('article','card cyber-card',`<span class="card-kicker">Domaine</span><h3>${safe(s.title)}</h3><p>${safe(s.description)}</p>`)))}}catch(e){console.warn(e)}
+try{const data=items(await loadJSON('assets/data/projects.json'));const box=byId('projects-list');if(box){box.innerHTML='';data.forEach(p=>{const tags=(p.tools||[]).map(t=>`<span class="tag">${safe(t)}</span>`).join('');box.appendChild(make('article','project-card cyber-card',`<span class="card-kicker">${safe(p.category)}</span><h3>${safe(p.title)}</h3><p>${safe(p.description)}</p><div class="tags">${tags}</div><a class="btn secondary" href="${safe(p.url||'#')}">Voir le projet</a>`))})}}catch(e){console.warn(e)}
+try{const data=items(await loadJSON('assets/data/articles.json'));const box=byId('articles-list');if(box){box.innerHTML='';data.forEach(a=>box.appendChild(make('article','card cyber-card',`<span class="card-kicker">${safe(a.date)}</span><h3>${safe(a.title)}</h3><p>${safe(a.summary)}</p><a class="inline-link" href="${safe(a.url||'#')}">Lire l'article</a>`)))}}catch(e){console.warn(e)}
+try{const data=items(await loadJSON('assets/data/certifications.json'));const box=byId('certifications-list');if(box){box.innerHTML='';data.forEach(c=>box.appendChild(make('span','badge',`${safe(c.title)} — ${safe(c.status)}`)))}}catch(e){console.warn(e)}
 }
 render();

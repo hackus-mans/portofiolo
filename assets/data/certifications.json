@@ -14,6 +14,23 @@
         "File Upload Vulnerability",
         "Reverse Shell"
       ]
+    },
+    {
+      "type": "badge",
+      "title": "Fortinet FortiGate 7.6 Operator",
+      "issuer": "Fortinet",
+      "status": "Obtenue",
+      "date": "July 23, 2025",
+      "image": "/portofiolo/assets/uploads/pasted-image-1779015967567.png",
+      "credentialUrl": "",
+      "description": "Le badge d’examen Opérateur FortiGate 7.6 reconnaît l’expertise dans les fonctionnalités communes de la mise en œuvre et de l’utilisation d’un appareil FortiGate",
+      "skills": [
+        "Antivirus",
+        "Filtrage Web",
+        "SSL Inspection",
+        "VPN",
+        "Portail Captif"
+      ]
     }
   ]
 }

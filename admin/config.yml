@@ -99,7 +99,7 @@ collections:
       - label: Documentation du projet
         name: body
         widget: markdown
-        hint: "Écris ici ton projet comme dans Obsidian. Le site récupère automatiquement le titre depuis le premier # Titre. Tu peux mettre des titres, paragraphes, listes, images et blocs de code."
+        hint: "Écris ici ton projet comme dans Obsidian. Le site affiche le titre du fichier comme titre principal."
 
   - name: writeup_publication
     label: Publication Writeups Obsidian
@@ -109,13 +109,17 @@ collections:
         file: content/writeups/publication-control.json
         format: json
         fields:
-          - label: Notes autorisées à apparaître sur le site
+          - label: Notes détectées automatiquement depuis Obsidian
             name: items
             widget: list
-            summary: "{{fields.title}} — {{fields.publish}}"
+            summary: "{{fields.sectionLabel}} / {{fields.platform}} / {{fields.category}} — {{fields.title}} — {{fields.publish}}"
             fields:
-              - { label: Titre affiché dans l’admin, name: title, widget: string }
-              - { label: Chemin dans Pratique, name: obsidianPath, widget: string, hint: "Exemple : Challenges/Root me/Cryptographie/Hash DCC.md ou LABs/Tryhackme/Ninja skills.md" }
+              - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
+              - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
+              - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier Pratique." }
+              - { label: Sous-section détectée, name: sectionLabel, widget: string, required: false }
+              - { label: Plateforme détectée, name: platform, widget: string, required: false }
+              - { label: Catégorie détectée, name: category, widget: string, required: false }
               - { label: Publier sur le site, name: publish, widget: boolean, default: false }
               - { label: Note interne, name: note, widget: text, required: false }
 

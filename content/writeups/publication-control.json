@@ -60,6 +60,17 @@
       "note": ""
     },
     {
+      "title": "ok",
+      "publicTitle": "",
+      "obsidianPath": "Challenges/test/ok.md",
+      "sectionLabel": "Challenges",
+      "platform": "test",
+      "category": "Général",
+      "skills": [],
+      "publish": false,
+      "note": ""
+    },
+    {
       "title": "SQL Injection   Challenge 1",
       "publicTitle": "",
       "obsidianPath": "LABs/Autres/SQL Injection - Challenge 1.md",

@@ -41,6 +41,14 @@
       "published": 2
     },
     {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "test",
+      "category": "Général",
+      "total": 1,
+      "published": 0
+    },
+    {
       "section": "machine-lab",
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",

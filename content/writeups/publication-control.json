@@ -2,6 +2,7 @@
   "items": [
     {
       "title": "EVEN RSA CAN BE BROKEN",
+      "publicTitle": "",
       "obsidianPath": "Challenges/Pico Ctf/Cryptographie/EVEN RSA CAN BE BROKEN.md",
       "sectionLabel": "Challenges",
       "platform": "Pico Ctf",
@@ -11,6 +12,7 @@
     },
     {
       "title": "Hash DCC",
+      "publicTitle": "",
       "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC.md",
       "sectionLabel": "Challenges",
       "platform": "Root me",
@@ -20,6 +22,7 @@
     },
     {
       "title": "Hash DCC2",
+      "publicTitle": "",
       "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC2.md",
       "sectionLabel": "Challenges",
       "platform": "Root me",
@@ -29,6 +32,7 @@
     },
     {
       "title": "Sans titre",
+      "publicTitle": "",
       "obsidianPath": "Challenges/Root me/Cryptographie/Sans titre.md",
       "sectionLabel": "Challenges",
       "platform": "Root me",
@@ -38,6 +42,7 @@
     },
     {
       "title": "Directory transversal",
+      "publicTitle": "",
       "obsidianPath": "Challenges/Root me/Web exploitation/Directory transversal.md",
       "sectionLabel": "Challenges",
       "platform": "Root me",
@@ -46,7 +51,8 @@
       "note": ""
     },
     {
-      "title": "Etape 1 : accédé au site web en question",
+      "title": "Local file Inclusion",
+      "publicTitle": "",
       "obsidianPath": "Challenges/Root me/Web exploitation/Local file Inclusion.md",
       "sectionLabel": "Challenges",
       "platform": "Root me",
@@ -55,7 +61,8 @@
       "note": ""
     },
     {
-      "title": "Bypassé l'authentification",
+      "title": "SQL Injection   Challenge 1",
+      "publicTitle": "",
       "obsidianPath": "LABs/Autres/SQL Injection - Challenge 1.md",
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",
@@ -65,6 +72,7 @@
     },
     {
       "title": "Breaking RSA",
+      "publicTitle": "",
       "obsidianPath": "LABs/Tryhackme/Breaking RSA.md",
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
@@ -74,6 +82,7 @@
     },
     {
       "title": "Ninja skills",
+      "publicTitle": "",
       "obsidianPath": "LABs/Tryhackme/Ninja skills.md",
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
@@ -82,7 +91,8 @@
       "note": ""
     },
     {
-      "title": "Introduction to SQL Injection: Part 1",
+      "title": "SQL Injection Lab",
+      "publicTitle": "",
       "obsidianPath": "LABs/Tryhackme/SQL Injection Lab.md",
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
@@ -92,6 +102,7 @@
     },
     {
       "title": "10.150.150.11 Exploitation",
+      "publicTitle": "",
       "obsidianPath": "LABs/pwntilldawn/10.150.150.11 Exploitation.md",
       "sectionLabel": "Machine/Lab",
       "platform": "pwntilldawn",

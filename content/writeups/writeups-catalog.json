@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "Pico Ctf",
+      "category": "Cryptographie",
+      "total": 1,
+      "published": 0
+    },
+    {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Cryptographie",
+      "total": 3,
+      "published": 2
+    },
+    {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Web exploitation",
+      "total": 2,
+      "published": 2
+    },
+    {
+      "section": "machine-lab",
+      "sectionLabel": "Machine/Lab",
+      "platform": "Autres",
+      "category": "Général",
+      "total": 1,
+      "published": 1
+    },
+    {
+      "section": "machine-lab",
+      "sectionLabel": "Machine/Lab",
+      "platform": "pwntilldawn",
+      "category": "Général",
+      "total": 1,
+      "published": 1
+    },
+    {
+      "section": "machine-lab",
+      "sectionLabel": "Machine/Lab",
+      "platform": "Tryhackme",
+      "category": "Général",
+      "total": 3,
+      "published": 2
+    }
+  ]
+}

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Réalisations | Hackus Mans</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/realisations.css">
-  <link rel="stylesheet" href="assets/css/markdown-colors.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=16">
+  <link rel="stylesheet" href="assets/css/realisations.css?v=16">
+  <link rel="stylesheet" href="assets/css/markdown-colors.css?v=16">
 </head>
 <body>
 <header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a class="active" href="realisations.html">Réalisations</a><a href="articles.html">Articles</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
@@ -22,20 +22,13 @@
     <button class="real-tab" data-filter="writeup">Writeups</button>
   </section>
 
-  <section id="writeup-controls" class="writeup-controls" hidden>
-    <div>
-      <p class="eyebrow">Sous-section</p>
-      <div id="writeup-section-tabs" class="sub-tabs"></div>
-    </div>
-    <div>
-      <p class="eyebrow">Plateforme</p>
-      <div id="writeup-platform-tabs" class="sub-tabs"></div>
-    </div>
-    <div>
-      <p class="eyebrow">Catégorie</p>
-      <div id="writeup-category-tabs" class="sub-tabs"></div>
-    </div>
+  <section class="real-search-panel">
+    <label for="realisation-search">Rechercher</label>
+    <input id="realisation-search" type="search" placeholder="Rechercher un projet, challenge, plateforme, catégorie, compétence...">
+    <button id="realisation-search-clear" type="button">Effacer</button>
   </section>
+
+  <section id="writeup-controls" class="writeup-controls" hidden></section>
 
   <section>
     <div id="realisations-list" class="realisation-grid"></div>
@@ -43,5 +36,5 @@
 
   <section id="realisation-detail" class="realisation-detail" hidden></section>
 </main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/app.js"></script><script src="assets/js/writeups-enhancer.js"></script><script src="assets/js/markdown-colors.js"></script>
+<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/app.js?v=16"></script><script src="assets/js/writeups-enhancer.js?v=16"></script><script src="assets/js/markdown-colors.js?v=16"></script>
 </body></html>

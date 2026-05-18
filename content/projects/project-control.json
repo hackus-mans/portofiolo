@@ -10,6 +10,17 @@
       "skills": [],
       "publish": false,
       "note": ""
+    },
+    {
+      "title": "test2",
+      "publicTitle": "",
+      "obsidianPath": "test2.md",
+      "category": "Projet",
+      "status": "À documenter",
+      "tools": [],
+      "skills": [],
+      "publish": false,
+      "note": ""
     }
   ]
 }

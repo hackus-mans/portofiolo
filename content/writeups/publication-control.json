@@ -36,17 +36,6 @@
       "note": ""
     },
     {
-      "title": "Sans titre",
-      "publicTitle": "",
-      "obsidianPath": "Challenges/Root me/Cryptographie/Sans titre.md",
-      "sectionLabel": "Challenges",
-      "platform": "Root me",
-      "category": "Cryptographie",
-      "skills": [],
-      "publish": false,
-      "note": ""
-    },
-    {
       "title": "Directory transversal",
       "publicTitle": "",
       "obsidianPath": "Challenges/Root me/Web exploitation/Directory transversal.md",

@@ -8,7 +8,7 @@
       "platform": "Pico Ctf",
       "category": "Cryptographie",
       "skills": [],
-      "publish": true,
+      "publish": false,
       "note": ""
     },
     {
@@ -18,7 +18,9 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie",
-      "skills": [],
+      "skills": [
+        "Password Cracking"
+      ],
       "publish": true,
       "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
     },
@@ -62,7 +64,9 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Web exploitation",
-      "skills": [],
+      "skills": [
+        "LFI vulnerability"
+      ],
       "publish": true,
       "note": ""
     },
@@ -73,7 +77,9 @@
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",
       "category": "Général",
-      "skills": [],
+      "skills": [
+        "SQL injection"
+      ],
       "publish": true,
       "note": ""
     },

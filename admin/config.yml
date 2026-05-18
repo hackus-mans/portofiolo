@@ -73,71 +73,65 @@ collections:
 
   - name: project_publication
     label: Publication Projets Obsidian
-    files:
-      - label: Choisir les projets à publier
-        name: project_control
-        file: content/projects/project-control.json
-        format: json
-        fields:
-          - label: Projets détectés automatiquement depuis Obsidian
-            name: items
-            widget: list
-            summary: "{{fields.title}} — {{fields.publish}}"
-            fields:
-              - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
-              - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
-              - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier PROJET." }
-              - { label: Catégorie, name: category, widget: string, required: false }
-              - label: Statut
-                name: status
-                widget: select
-                required: false
-                options:
-                  - En cours
-                  - Terminé
-                  - En amélioration
-                  - À documenter
-              - label: Outils utilisés
-                name: tools
-                widget: list
-                required: false
-                field: { label: Outil, name: tool, widget: string }
-              - label: Compétences acquises
-                name: skills
-                widget: list
-                required: false
-                hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
-                field: { label: Compétence, name: skill, widget: string }
-              - { label: Publier sur le site, name: publish, widget: boolean, default: false }
-              - { label: Note interne, name: note, widget: text, required: false }
+    label_singular: Projet à valider
+    folder: content/projects-control
+    create: false
+    extension: json
+    format: json
+    identifier_field: title
+    summary: "{{title}} — {{publish}}"
+    fields:
+      - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
+      - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
+      - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier PROJET." }
+      - { label: Catégorie, name: category, widget: string, required: false }
+      - label: Statut
+        name: status
+        widget: select
+        required: false
+        options:
+          - En cours
+          - Terminé
+          - En amélioration
+          - À documenter
+      - label: Outils utilisés
+        name: tools
+        widget: list
+        required: false
+        field: { label: Outil, name: tool, widget: string }
+      - label: Compétences acquises
+        name: skills
+        widget: list
+        required: false
+        hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
+        field: { label: Compétence, name: skill, widget: string }
+      - { label: Publier sur le site, name: publish, widget: boolean, default: false }
+      - { label: Note interne, name: note, widget: text, required: false }
 
   - name: writeup_publication
     label: Publication Writeups Obsidian
-    files:
-      - label: Choisir les writeups à publier
-        name: publication_control
-        file: content/writeups/publication-control.json
-        format: json
-        fields:
-          - label: Notes détectées automatiquement depuis Obsidian
-            name: items
-            widget: list
-            summary: "{{fields.sectionLabel}} / {{fields.platform}} / {{fields.category}} — {{fields.title}} — {{fields.publish}}"
-            fields:
-              - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
-              - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
-              - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier Pratique." }
-              - { label: Sous-section détectée, name: sectionLabel, widget: string, required: false }
-              - { label: Plateforme détectée, name: platform, widget: string, required: false }
-              - { label: Catégorie détectée, name: category, widget: string, required: false }
-              - label: Compétences acquises
-                name: skills
-                widget: list
-                required: false
-                hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
-                field: { label: Compétence, name: skill, widget: string }
-              - { label: Publier sur le site, name: publish, widget: boolean, default: false }
-              - { label: Note interne, name: note, widget: text, required: false }
+    label_singular: Writeup à valider
+    folder: content/writeups-control
+    create: false
+    extension: json
+    format: json
+    identifier_field: title
+    summary: "{{sectionLabel}} / {{platform}} / {{category}} — {{title}} — {{publish}}"
+    fields:
+      - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
+      - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
+      - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier Pratique." }
+      - { label: Sous-section détectée, name: sectionLabel, widget: string, required: false }
+      - { label: Plateforme détectée, name: platform, widget: string, required: false }
+      - { label: Catégorie détectée, name: category, widget: string, required: false }
+      - label: Compétences acquises
+        name: skills
+        widget: list
+        required: false
+        hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
+        field: { label: Compétence, name: skill, widget: string }
+      - { label: Publier sur le site, name: publish, widget: boolean, default: false }
+      - { label: Note interne, name: note, widget: text, required: false }
 
   - name: articles
     label: Articles

@@ -84,7 +84,7 @@
     {
       "title": "10.150.150.11 Exploitation",
       "obsidianPath": "LABs/pwntilldawn/10.150.150.11 Exploitation.md",
-      "publish": false,
+      "publish": true,
       "note": "",
       "category": "Général",
       "platform": "pwntilldawn",

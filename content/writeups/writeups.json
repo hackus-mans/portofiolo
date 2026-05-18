@@ -62,6 +62,20 @@
     },
     {
       "type": "writeup",
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "test",
+      "category": "Général",
+      "title": "ok",
+      "status": "Publié",
+      "difficulty": "À définir",
+      "skills": [],
+      "tags": [],
+      "description": "Documentation publiée depuis Obsidian.",
+      "path": "/portofiolo/content/writeups/challenges/test/general/ok.md"
+    },
+    {
+      "type": "writeup",
       "section": "machine-lab",
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",

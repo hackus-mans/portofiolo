@@ -3,6 +3,14 @@
     {
       "section": "challenge",
       "sectionLabel": "Challenges",
+      "platform": "CTF français",
+      "category": "Général",
+      "total": 1,
+      "published": 0
+    },
+    {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
       "platform": "Pico Ctf",
       "category": "Cryptographie",
       "total": 1,
@@ -46,7 +54,7 @@
       "platform": "test",
       "category": "Général",
       "total": 1,
-      "published": 0
+      "published": 1
     },
     {
       "section": "machine-lab",

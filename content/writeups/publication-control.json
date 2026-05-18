@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "title": "Hash DCC",
+      "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC.md",
+      "publish": true,
+      "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
+    }
+  ]
+}

@@ -1,6 +1,17 @@
 {
   "items": [
     {
+      "title": "momo",
+      "publicTitle": "",
+      "obsidianPath": "momo.md",
+      "category": "Projet",
+      "status": "À documenter",
+      "tools": [],
+      "skills": [],
+      "publish": false,
+      "note": ""
+    },
+    {
       "title": "test",
       "publicTitle": "",
       "obsidianPath": "test.md",

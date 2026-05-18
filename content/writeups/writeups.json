@@ -4,6 +4,19 @@
       "type": "writeup",
       "section": "challenge",
       "sectionLabel": "Challenges",
+      "platform": "Pico Ctf",
+      "category": "Cryptographie",
+      "title": "EVEN RSA CAN BE BROKEN",
+      "status": "Publié",
+      "difficulty": "À définir",
+      "tags": [],
+      "description": "Documentation publiée depuis Obsidian.",
+      "path": "/portofiolo/content/writeups/challenges/pico-ctf/cryptographie/even-rsa-can-be-broken.md"
+    },
+    {
+      "type": "writeup",
+      "section": "challenge",
+      "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie",
       "title": "Hash DCC",
@@ -90,19 +103,6 @@
       "tags": [],
       "description": "vous pouvez trouvé cet lab. [ici](https://tryhackme.com/room/sqlilab)",
       "path": "/portofiolo/content/writeups/machine-lab/tryhackme/general/sql-injection-lab.md"
-    },
-    {
-      "type": "writeup",
-      "section": "machine-lab",
-      "sectionLabel": "Machine/Lab",
-      "platform": "pwntilldawn",
-      "category": "Général",
-      "title": "10.150.150.11 Exploitation",
-      "status": "Publié",
-      "difficulty": "À définir",
-      "tags": [],
-      "description": "Documentation publiée depuis Obsidian.",
-      "path": "/portofiolo/content/writeups/machine-lab/pwntilldawn/general/10.150.150.11-exploitation.md"
     }
   ]
 }

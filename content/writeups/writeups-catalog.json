@@ -6,6 +6,14 @@
       "platform": "Pico Ctf",
       "category": "Cryptographie",
       "total": 1,
+      "published": 1
+    },
+    {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "Pico Ctf",
+      "category": "Général",
+      "total": 0,
       "published": 0
     },
     {
@@ -15,6 +23,14 @@
       "category": "Cryptographie",
       "total": 3,
       "published": 2
+    },
+    {
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Général",
+      "total": 0,
+      "published": 0
     },
     {
       "section": "challenge",
@@ -38,7 +54,7 @@
       "platform": "pwntilldawn",
       "category": "Général",
       "total": 1,
-      "published": 1
+      "published": 0
     },
     {
       "section": "machine-lab",

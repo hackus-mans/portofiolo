@@ -4,6 +4,7 @@ platform: Root me
 category: Cryptographie
 status: Publié
 difficulty: À définir
+skills:
 tags:
 ---
 

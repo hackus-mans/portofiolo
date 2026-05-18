@@ -7,6 +7,7 @@
       "sectionLabel": "Challenges",
       "platform": "Pico Ctf",
       "category": "Cryptographie",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -17,6 +18,7 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie",
+      "skills": [],
       "publish": true,
       "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
     },
@@ -27,6 +29,7 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -37,6 +40,7 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie",
+      "skills": [],
       "publish": false,
       "note": ""
     },
@@ -47,6 +51,7 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Web exploitation",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -57,6 +62,7 @@
       "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Web exploitation",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -67,6 +73,7 @@
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",
       "category": "Général",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -77,6 +84,7 @@
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
       "category": "Général",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -87,6 +95,7 @@
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
       "category": "Général",
+      "skills": [],
       "publish": false,
       "note": ""
     },
@@ -97,6 +106,7 @@
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
       "category": "Général",
+      "skills": [],
       "publish": true,
       "note": ""
     },
@@ -107,6 +117,7 @@
       "sectionLabel": "Machine/Lab",
       "platform": "pwntilldawn",
       "category": "Général",
+      "skills": [],
       "publish": false,
       "note": ""
     }

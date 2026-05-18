@@ -103,20 +103,6 @@
       "tags": [],
       "description": "Le challenge ==Breacking RSA== est un challenge qui consiste a cassé le RSA mal implémenté en utilisant l’algorithme de factorisation de Fermat.",
       "path": "/portofiolo/content/writeups/machine-lab/tryhackme/general/breaking-rsa.md"
-    },
-    {
-      "type": "writeup",
-      "section": "machine-lab",
-      "sectionLabel": "Machine/Lab",
-      "platform": "Tryhackme",
-      "category": "Général",
-      "title": "SQL Injection Lab",
-      "status": "Publié",
-      "difficulty": "À définir",
-      "skills": [],
-      "tags": [],
-      "description": "vous pouvez trouvé cet lab. [ici](https://tryhackme.com/room/sqlilab)",
-      "path": "/portofiolo/content/writeups/machine-lab/tryhackme/general/sql-injection-lab.md"
     }
   ]
 }

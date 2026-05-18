@@ -101,10 +101,28 @@ collections:
         widget: markdown
         hint: "Écris ici ton projet comme dans Obsidian. Le site récupère automatiquement le titre depuis le premier # Titre. Tu peux mettre des titres, paragraphes, listes, images et blocs de code."
 
-  - name: realisations
-    label: Writeups et Labs
+  - name: writeup_publication
+    label: Publication Writeups Obsidian
     files:
-      - label: Writeups et Labs
+      - label: Choisir les writeups à publier
+        name: publication_control
+        file: content/writeups/publication-control.json
+        format: json
+        fields:
+          - label: Notes autorisées à apparaître sur le site
+            name: items
+            widget: list
+            summary: "{{fields.title}} — {{fields.publish}}"
+            fields:
+              - { label: Titre affiché dans l’admin, name: title, widget: string }
+              - { label: Chemin dans Pratique, name: obsidianPath, widget: string, hint: "Exemple : Challenges/Root me/Cryptographie/Hash DCC.md ou LABs/Tryhackme/Ninja skills.md" }
+              - { label: Publier sur le site, name: publish, widget: boolean, default: false }
+              - { label: Note interne, name: note, widget: text, required: false }
+
+  - name: realisations
+    label: Writeups et Labs manuels
+    files:
+      - label: Writeups et Labs manuels
         name: realisations
         file: assets/data/realisations.json
         format: json

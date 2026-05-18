@@ -1,10 +1,103 @@
 {
   "items": [
     {
+      "title": "EVEN RSA CAN BE BROKEN",
+      "obsidianPath": "Challenges/Pico Ctf/Cryptographie/EVEN RSA CAN BE BROKEN.md",
+      "sectionLabel": "Challenges",
+      "platform": "Pico Ctf",
+      "category": "Cryptographie",
+      "publish": false,
+      "note": ""
+    },
+    {
       "title": "Hash DCC",
       "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC.md",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Cryptographie",
       "publish": true,
       "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
+    },
+    {
+      "title": "Hash DCC2",
+      "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC2.md",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Cryptographie",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Sans titre",
+      "obsidianPath": "Challenges/Root me/Cryptographie/Sans titre.md",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Cryptographie",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Directory transversal",
+      "obsidianPath": "Challenges/Root me/Web exploitation/Directory transversal.md",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Web exploitation",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Etape 1 : accédé au site web en question",
+      "obsidianPath": "Challenges/Root me/Web exploitation/Local file Inclusion.md",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Web exploitation",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Bypassé l'authentification",
+      "obsidianPath": "LABs/Autres/SQL Injection - Challenge 1.md",
+      "sectionLabel": "Machine/Lab",
+      "platform": "Autres",
+      "category": "Général",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Breaking RSA",
+      "obsidianPath": "LABs/Tryhackme/Breaking RSA.md",
+      "sectionLabel": "Machine/Lab",
+      "platform": "Tryhackme",
+      "category": "Général",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Ninja skills",
+      "obsidianPath": "LABs/Tryhackme/Ninja skills.md",
+      "sectionLabel": "Machine/Lab",
+      "platform": "Tryhackme",
+      "category": "Général",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "Introduction to SQL Injection: Part 1",
+      "obsidianPath": "LABs/Tryhackme/SQL Injection Lab.md",
+      "sectionLabel": "Machine/Lab",
+      "platform": "Tryhackme",
+      "category": "Général",
+      "publish": false,
+      "note": ""
+    },
+    {
+      "title": "10.150.150.11 Exploitation",
+      "obsidianPath": "LABs/pwntilldawn/10.150.150.11 Exploitation.md",
+      "sectionLabel": "Machine/Lab",
+      "platform": "pwntilldawn",
+      "category": "Général",
+      "publish": false,
+      "note": ""
     }
   ]
 }

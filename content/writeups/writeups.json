@@ -1,3 +1,17 @@
 {
-  "items": []
+  "items": [
+    {
+      "type": "writeup",
+      "section": "challenge",
+      "sectionLabel": "Challenges",
+      "platform": "Root me",
+      "category": "Cryptographie",
+      "title": "Hash DCC",
+      "status": "Publié",
+      "difficulty": "À définir",
+      "tags": [],
+      "description": "Dans ce challenge i nous ait demandé de trouvé le mot de passe de l'utilisateur Adminitrator depuis les informations sorties par l'outil secretsdump de la suite Impacket",
+      "path": "/portofiolo/content/writeups/challenges/root-me/cryptographie/hash-dcc.md"
+    }
+  ]
 }

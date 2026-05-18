@@ -6,6 +6,7 @@ category: Cryptographie
 status: Publié
 difficulty: À définir
 skills:
+  - Password Cracking
 tags:
 ---
 

@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "title": "test",
+      "publicTitle": "",
+      "obsidianPath": "test.md",
+      "category": "Projet",
+      "status": "À documenter",
+      "tools": [],
+      "skills": [],
+      "publish": false,
+      "note": ""
+    }
+  ]
+}

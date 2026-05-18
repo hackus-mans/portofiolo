@@ -4,26 +4,14 @@
       "type": "writeup",
       "section": "challenge",
       "sectionLabel": "Challenges",
-      "platform": "Pico Ctf",
-      "category": "Cryptographie",
-      "title": "EVEN RSA CAN BE BROKEN",
-      "status": "Publié",
-      "difficulty": "À définir",
-      "skills": [],
-      "tags": [],
-      "description": "Documentation publiée depuis Obsidian.",
-      "path": "/portofiolo/content/writeups/challenges/pico-ctf/cryptographie/even-rsa-can-be-broken.md"
-    },
-    {
-      "type": "writeup",
-      "section": "challenge",
-      "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie",
       "title": "Hash DCC",
       "status": "Publié",
       "difficulty": "À définir",
-      "skills": [],
+      "skills": [
+        "Password Cracking"
+      ],
       "tags": [],
       "description": "Dans ce challenge i nous ait demandé de trouvé le mot de passe de l'utilisateur Adminitrator depuis les informations sorties par l'outil secretsdump de la suite Impacket",
       "path": "/portofiolo/content/writeups/challenges/root-me/cryptographie/hash-dcc.md"
@@ -65,7 +53,9 @@
       "title": "Local file Inclusion",
       "status": "Publié",
       "difficulty": "À définir",
-      "skills": [],
+      "skills": [
+        "LFI vulnerability"
+      ],
       "tags": [],
       "description": "Dans cet challenge , nous devons accédé au répertoire admin dans le but de récupéré le flag.",
       "path": "/portofiolo/content/writeups/challenges/root-me/web-exploitation/local-file-inclusion.md"
@@ -79,7 +69,9 @@
       "title": "SQL Injection   Challenge 1",
       "status": "Publié",
       "difficulty": "À définir",
-      "skills": [],
+      "skills": [
+        "SQL injection"
+      ],
       "tags": [],
       "description": "Vous pouvez trouvé le lab a partir du lien suivant : [Course](https://courses.redteamleaders.com/courses/60f2eb1e-7511-4358-9a9e-3f0ab3e5a77c/take)",
       "path": "/portofiolo/content/writeups/machine-lab/autres/general/sql-injection---challenge-1.md"

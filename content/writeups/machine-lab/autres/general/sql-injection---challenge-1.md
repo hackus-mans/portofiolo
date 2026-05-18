@@ -5,6 +5,7 @@ category: Général
 status: Publié
 difficulty: À définir
 skills:
+  - SQL injection
 tags:
 ---
 

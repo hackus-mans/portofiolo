@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'content/writeups/publication-control.json'
+      - 'content/projects/project-control.json'
   workflow_dispatch:
 
 jobs:

@@ -7,7 +7,7 @@
       "sectionLabel": "Challenges",
       "platform": "Pico Ctf",
       "category": "Cryptographie",
-      "publish": false,
+      "publish": true,
       "note": ""
     },
     {
@@ -107,7 +107,7 @@
       "sectionLabel": "Machine/Lab",
       "platform": "pwntilldawn",
       "category": "Général",
-      "publish": true,
+      "publish": false,
       "note": ""
     }
   ]

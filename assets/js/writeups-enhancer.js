@@ -17,8 +17,8 @@
   async function loadJSON(path){ const r = await fetch(path, {cache:'no-store'}); if(!r.ok) throw new Error(path); return r.json(); }
   async function loadText(path){ const r = await fetch(path, {cache:'no-store'}); if(!r.ok) throw new Error(path); return r.text(); }
   function uniq(arr){ return [...new Set(arr.filter(Boolean))]; }
-  function titleize(v){ return safe(v).replace(/[-_]+/g,' ').trim(); }
   function escapeHtml(v){ return safe(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function countLabel(n){ return n > 1 ? `${n} éléments` : `${n} élément`; }
 
   function parseSimpleYaml(yaml){
     const obj = {};
@@ -148,29 +148,88 @@
     return `<article class="real-card" data-index="${index}" data-type="${safe(item.type)}"><div class="real-card-head"><span class="card-kicker">${kicker}</span><div class="real-meta"><span>${status}</span></div></div><h3>${safe(item.title)}</h3><p>${safe(item.description)}</p><div class="tags">${tags}</div><div class="real-actions"><button class="btn primary real-open" type="button">Lire la documentation</button></div></article>`;
   }
 
-  function setButtons(container, values, current, onClick){
-    if(!container) return;
-    container.innerHTML = values.map(v => `<button class="sub-tab ${v === current ? 'active' : ''}" type="button" data-value="${safe(v)}">${safe(v)}</button>`).join('');
-    container.querySelectorAll('.sub-tab').forEach(btn => btn.addEventListener('click', () => onClick(btn.dataset.value)));
+  function branchButton(label, count, active, disabled, level, value){
+    return `<button class="branch-card ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}" type="button" data-level="${level}" data-value="${safe(label)}" ${disabled ? 'disabled' : ''}><span>${safe(label)}</span><small>${countLabel(count)}</small></button>`;
+  }
+
+  function countBy(list, key){
+    const map = new Map();
+    list.forEach(item => map.set(item[key], (map.get(item[key]) || 0) + 1));
+    return map;
   }
 
   function refreshWriteupControls(){
     const controls = byId('writeup-controls');
-    if(controls) controls.hidden = state.mode !== 'writeup';
+    if(!controls) return;
+    controls.hidden = state.mode !== 'writeup';
     if(state.mode !== 'writeup') return;
 
-    const sections = uniq(state.writeups.map(w => w.sectionLabel));
-    if(!state.writeupSection || !sections.includes(state.writeupSection)) state.writeupSection = sections[0] || '';
+    const allSections = ['Challenges', 'Machine/Lab'];
+    const sectionCounts = countBy(state.writeups, 'sectionLabel');
+    const availableSections = allSections.filter(s => (sectionCounts.get(s) || 0) > 0);
 
-    const platforms = uniq(state.writeups.filter(w => w.sectionLabel === state.writeupSection).map(w => w.platform));
+    if(!state.writeupSection || !availableSections.includes(state.writeupSection)) state.writeupSection = availableSections[0] || 'Challenges';
+
+    const platformSource = state.writeups.filter(w => w.sectionLabel === state.writeupSection);
+    const platforms = uniq(platformSource.map(w => w.platform));
     if(!state.writeupPlatform || !platforms.includes(state.writeupPlatform)) state.writeupPlatform = platforms[0] || '';
 
-    const categories = uniq(state.writeups.filter(w => w.sectionLabel === state.writeupSection && w.platform === state.writeupPlatform).map(w => w.category));
+    const categorySource = platformSource.filter(w => w.platform === state.writeupPlatform);
+    const categories = uniq(categorySource.map(w => w.category));
     if(!state.writeupCategory || !categories.includes(state.writeupCategory)) state.writeupCategory = categories[0] || '';
 
-    setButtons(byId('writeup-section-tabs'), sections, state.writeupSection, v => { state.writeupSection = v; state.writeupPlatform = ''; state.writeupCategory = ''; renderList(); });
-    setButtons(byId('writeup-platform-tabs'), platforms, state.writeupPlatform, v => { state.writeupPlatform = v; state.writeupCategory = ''; renderList(); });
-    setButtons(byId('writeup-category-tabs'), categories, state.writeupCategory, v => { state.writeupCategory = v; renderList(); });
+    const platformCounts = countBy(platformSource, 'platform');
+    const categoryCounts = countBy(categorySource, 'category');
+
+    controls.innerHTML = `
+      <div class="writeup-browser-head">
+        <div>
+          <p class="eyebrow">Navigation Writeups</p>
+          <h2>Choisis une branche</h2>
+        </div>
+        <div class="writeup-breadcrumb">Writeups <span>/</span> ${safe(state.writeupSection || '—')} ${state.writeupPlatform ? `<span>/</span> ${safe(state.writeupPlatform)}` : ''} ${state.writeupCategory ? `<span>/</span> ${safe(state.writeupCategory)}` : ''}</div>
+      </div>
+      <div class="writeup-browser-grid">
+        <section class="browser-level">
+          <div class="level-title"><span>01</span><h3>Sous-section</h3></div>
+          <div class="branch-list">
+            ${allSections.map(s => branchButton(s, sectionCounts.get(s) || 0, s === state.writeupSection, (sectionCounts.get(s) || 0) === 0, 'section', s)).join('')}
+          </div>
+        </section>
+        <section class="browser-level ${platforms.length ? '' : 'empty'}">
+          <div class="level-title"><span>02</span><h3>Plateforme</h3></div>
+          <div class="branch-list">
+            ${platforms.length ? platforms.map(p => branchButton(p, platformCounts.get(p) || 0, p === state.writeupPlatform, false, 'platform', p)).join('') : '<p class="level-empty">Aucune plateforme publiée ici.</p>'}
+          </div>
+        </section>
+        <section class="browser-level ${categories.length ? '' : 'empty'}">
+          <div class="level-title"><span>03</span><h3>Catégorie</h3></div>
+          <div class="branch-list">
+            ${categories.length ? categories.map(c => branchButton(c, categoryCounts.get(c) || 0, c === state.writeupCategory, false, 'category', c)).join('') : '<p class="level-empty">Aucune catégorie publiée ici.</p>'}
+          </div>
+        </section>
+      </div>
+    `;
+
+    controls.querySelectorAll('.branch-card').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const level = btn.dataset.level;
+        const value = btn.dataset.value;
+        if(level === 'section'){
+          state.writeupSection = value;
+          state.writeupPlatform = '';
+          state.writeupCategory = '';
+        }
+        if(level === 'platform'){
+          state.writeupPlatform = value;
+          state.writeupCategory = '';
+        }
+        if(level === 'category'){
+          state.writeupCategory = value;
+        }
+        renderList();
+      });
+    });
   }
 
   function currentItems(){
@@ -184,7 +243,7 @@
     refreshWriteupControls();
     const data = currentItems();
     if(!data.length){
-      box.innerHTML = `<div class="real-empty">${state.mode === 'writeup' ? 'Aucun writeup publié dans cette sélection. Ajoute publish: true dans la note Obsidian pour l’afficher ici.' : 'Aucun projet disponible pour le moment.'}</div>`;
+      box.innerHTML = `<div class="real-empty">${state.mode === 'writeup' ? 'Aucun writeup publié dans cette branche. Va dans Sveltia CMS > Publication Writeups Obsidian, puis coche les notes à publier.' : 'Aucun projet disponible pour le moment.'}</div>`;
       return;
     }
     box.innerHTML = data.map(card).join('');

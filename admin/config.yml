@@ -4,7 +4,7 @@ backend:
   branch: main
 
 media_folder: assets/uploads
-public_folder: /portofiolo/assets/uploads
+public_folder: /assets/uploads
 
 collections:
   - name: settings
@@ -17,6 +17,7 @@ collections:
         fields:
           - { label: Nom, name: name, widget: string }
           - { label: Titre, name: title, widget: string }
+          - { label: Photo de profil, name: image, widget: image, required: false, hint: "Ajoute ici ta photo. Elle sera affichée sur la page d’accueil dans la vitrine profil." }
           - { label: Bio courte, name: bio, widget: text }
           - { label: Texte à propos, name: about, widget: text }
           - { label: Chemin du CV, name: cv, widget: string, required: false }

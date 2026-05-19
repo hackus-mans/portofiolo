@@ -1,6 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900" role="img" aria-label="Portrait Hackus Mans">
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="900" viewBox="0 0 720 900" role="img" aria-label="Portrait professionnel Hackus Mans">
   <defs>
-    <clipPath id="r"><rect width="720" height="900" rx="42" ry="42"/></clipPath>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#02120f"/><stop offset="0.52" stop-color="#071525"/><stop offset="1" stop-color="#02070d"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="20%" r="70%"><stop offset="0" stop-color="#00f5c8" stop-opacity="0.25"/><stop offset="0.52" stop-color="#2b8cff" stop-opacity="0.10"/><stop offset="1" stop-color="#02070d" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#5dd8ff" stroke-opacity="0.12" stroke-width="1"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="30" stdDeviation="24" flood-color="#000" flood-opacity="0.45"/></filter>
   </defs>
-  <image width="720" height="900" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA...TRUNCATED..." clip-path="url(#r)"/>
+  <rect width="720" height="900" rx="42" fill="url(#bg)"/>
+  <rect width="720" height="900" rx="42" fill="url(#grid)"/>
+  <rect width="720" height="900" rx="42" fill="url(#glow)"/>
+  <circle cx="360" cy="255" r="210" fill="none" stroke="#00f5c8" stroke-opacity="0.22" stroke-width="2"/>
+  <circle cx="360" cy="255" r="285" fill="none" stroke="#2b8cff" stroke-opacity="0.14" stroke-width="2"/>
+  <g filter="url(#shadow)">
+    <path d="M178 800c12-118 67-192 165-206h34c98 14 153 88 165 206z" fill="#14243a"/>
+    <path d="M215 800l55-198h180l55 198z" fill="#eef7ff"/>
+    <path d="M330 800l-20-198h100l-20 198z" fill="#963584"/>
+    <path d="M276 615l52 80 32-80z" fill="#dfe9f5"/>
+    <path d="M444 615l-52 80-32-80z" fill="#dfe9f5"/>
+    <ellipse cx="360" cy="335" rx="135" ry="155" fill="#6b3a25"/>
+    <path d="M238 312c10-100 66-155 139-162 78-7 139 38 152 132 6 44-4 78-18 105-7-78-36-115-78-133-37-16-88-17-128 3-38 19-60 56-67 108-8-16-9-33 0-53z" fill="#10161f"/>
+    <path d="M235 248c40-95 127-125 210-96 42 15 76 46 93 92-54-49-137-59-198-39-45 15-76 37-105 43z" fill="#121821"/>
+    <rect x="250" y="315" width="120" height="42" rx="14" fill="none" stroke="#00f5c8" stroke-width="9" opacity="0.9"/>
+    <rect x="350" y="315" width="120" height="42" rx="14" fill="none" stroke="#00f5c8" stroke-width="9" opacity="0.9"/>
+    <path d="M370 336h-20" stroke="#00f5c8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M300 455c35 30 86 30 120 0" stroke="#2a1711" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.55"/>
+  </g>
+  <rect x="18" y="18" width="684" height="864" rx="34" fill="none" stroke="#00f5c8" stroke-opacity="0.38" stroke-width="2"/>
+  <rect x="36" y="36" width="648" height="828" rx="28" fill="none" stroke="#2b8cff" stroke-opacity="0.22" stroke-width="1"/>
+  <text x="52" y="70" fill="#00f5c8" font-family="monospace" font-size="20" font-weight="700">// HACKUS-MANS</text>
+  <text x="52" y="830" fill="#c8d4e3" font-family="monospace" font-size="18" font-weight="700">NETWORK • SYSTEMS • SECURITY</text>
 </svg>

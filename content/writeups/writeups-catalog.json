@@ -5,7 +5,7 @@
       "sectionLabel": "Challenges",
       "platform": "CTF français",
       "category": "Général",
-      "total": 1,
+      "total": 2,
       "published": 0
     },
     {
@@ -47,14 +47,6 @@
       "category": "Web exploitation",
       "total": 2,
       "published": 2
-    },
-    {
-      "section": "challenge",
-      "sectionLabel": "Challenges",
-      "platform": "test",
-      "category": "Général",
-      "total": 1,
-      "published": 1
     },
     {
       "section": "machine-lab",

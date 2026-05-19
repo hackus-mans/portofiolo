@@ -12,6 +12,17 @@
       "note": ""
     },
     {
+      "title": "modeste",
+      "publicTitle": "",
+      "obsidianPath": "Challenges/CTF français/modeste.md",
+      "sectionLabel": "Challenges",
+      "platform": "CTF français",
+      "category": "Général",
+      "skills": [],
+      "publish": false,
+      "note": ""
+    },
+    {
       "title": "EVEN RSA CAN BE BROKEN",
       "publicTitle": "",
       "obsidianPath": "Challenges/Pico Ctf/Cryptographie/EVEN RSA CAN BE BROKEN.md",
@@ -67,17 +78,6 @@
       "skills": [
         "LFI vulnerability"
       ],
-      "publish": true,
-      "note": ""
-    },
-    {
-      "title": "ok",
-      "publicTitle": "",
-      "obsidianPath": "Challenges/test/ok.md",
-      "sectionLabel": "Challenges",
-      "platform": "test",
-      "category": "Général",
-      "skills": [],
       "publish": true,
       "note": ""
     },

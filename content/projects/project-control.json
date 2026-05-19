@@ -1,37 +1,3 @@
 {
-  "items": [
-    {
-      "title": "momo",
-      "publicTitle": "",
-      "obsidianPath": "momo.md",
-      "category": "Projet",
-      "status": "À documenter",
-      "tools": [],
-      "skills": [],
-      "publish": true,
-      "note": ""
-    },
-    {
-      "title": "test",
-      "publicTitle": "",
-      "obsidianPath": "test.md",
-      "category": "Projet",
-      "status": "À documenter",
-      "tools": [],
-      "skills": [],
-      "publish": true,
-      "note": ""
-    },
-    {
-      "title": "test2",
-      "publicTitle": "",
-      "obsidianPath": "test2.md",
-      "category": "Projet",
-      "status": "À documenter",
-      "tools": [],
-      "skills": [],
-      "publish": true,
-      "note": ""
-    }
-  ]
+  "items": []
 }

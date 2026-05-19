@@ -1,10 +1,12 @@
 (function(){
   const ID='hm-admin-search-panel';
   const STYLE='hm-admin-search-style';
+  const BASE=location.hostname.includes('github.io')?'/portofiolo/':'/';
   const state={items:[],query:'',type:'all',status:'all'};
   function n(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()}
   function e(v){return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-  async function json(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(path);return r.json()}
+  function asset(p){return BASE+p.replace(/^\/+/, '')}
+  async function json(path){const r=await fetch(asset(path),{cache:'no-store'});if(!r.ok)throw new Error(path);return r.json()}
   function style(){
     if(document.getElementById(STYLE))return;
     const s=document.createElement('style');s.id=STYLE;s.textContent=`
@@ -15,7 +17,7 @@
   }
   async function load(){
     const out=[];
-    for(const src of [{t:'project',l:'Projet',p:'/portofiolo/content/projects/project-control.json'},{t:'writeup',l:'Writeup',p:'/portofiolo/content/writeups/publication-control.json'}]){
+    for(const src of [{t:'project',l:'Projet',p:'content/projects/project-control.json'},{t:'writeup',l:'Writeup',p:'content/writeups/publication-control.json'}]){
       try{const d=await json(src.p);(Array.isArray(d.items)?d.items:[]).forEach(x=>out.push({...x,_type:src.t,_label:src.l,_published:!!x.publish,_s:n([x.title,x.publicTitle,x.obsidianPath,x.sectionLabel,x.platform,x.category,x.status,x.note,(x.skills||[]).join(' '),(x.tools||[]).join(' ')].join(' '))}))}catch(err){}
     }
     state.items=out;
@@ -23,12 +25,12 @@
   function filtered(){return state.items.filter(x=>{if(state.type!=='all'&&x._type!==state.type)return false;if(state.status==='published'&&!x._published)return false;if(state.status==='unpublished'&&x._published)return false;if(state.query&&!x._s.includes(n(state.query)))return false;return true})}
   function render(){
     const r=document.querySelector('#'+ID+' .results');const c=document.querySelector('#'+ID+' .count');if(!r)return;const data=filtered();if(c)c.textContent=data.length+' résultat(s)';
-    if(!data.length){r.innerHTML='<div class="empty">Aucun résultat.</div>';return}
+    if(!data.length){r.innerHTML='<div class="empty">Aucun résultat. Clique sur Actualiser ou vérifie que la synchronisation GitHub est terminée.</div>';return}
     r.innerHTML=data.slice(0,80).map((x,i)=>`<div class="item"><strong>${e(x.publicTitle||x.title||'Sans titre')}</strong><div class="path">${e(x.obsidianPath||'')}</div><div class="badges"><span class="badge">${e(x._label)}</span>${x._published?'<span class="badge ok">Publié</span>':'<span class="badge wait">Non publié</span>'}${x.platform?`<span class="badge">${e(x.platform)}</span>`:''}${x.category?`<span class="badge">${e(x.category)}</span>`:''}</div><button class="copy" data-i="${i}" type="button">Copier chemin</button></div>`).join('')+(data.length>80?'<div class="empty">Affiche 80 premiers résultats. Affine ta recherche.</div>':'');
     r.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{const x=data[Number(b.dataset.i)];try{await navigator.clipboard.writeText(x.obsidianPath||x.title||'');b.textContent='Copié'}catch(err){b.textContent=x.obsidianPath||x.title||''}})
   }
   function create(){
-    style();if(document.getElementById(ID))return;const p=document.createElement('div');p.id=ID;p.innerHTML=`<div class="head"><div class="title"><small>Filtre publication</small>Projets & Writeups</div><div class="tools"><button id="hm-reload">Actualiser</button><button id="hm-min">Réduire</button></div></div><div class="body"><div class="grid"><input id="hm-q" type="search" placeholder="Nom, chemin, plateforme, compétence..."><select id="hm-type"><option value="all">Tout</option><option value="project">Projets</option><option value="writeup">Writeups</option></select><select id="hm-status"><option value="all">Tous</option><option value="published">Publiés</option><option value="unpublished">Non publiés</option></select></div><div class="hint"><span class="count">0 résultat</span>. Ouvre la section Sveltia puis utilise le chemin copié pour retrouver l’entrée.</div><div class="results"><div class="empty">Chargement...</div></div></div>`;document.body.appendChild(p);
+    style();if(document.getElementById(ID))return;const p=document.createElement('div');p.id=ID;p.innerHTML=`<div class="head"><div class="title"><small>Filtre publication</small>Projets & Writeups</div><div class="tools"><button id="hm-reload">Actualiser</button><button id="hm-min">Réduire</button></div></div><div class="body"><div class="grid"><input id="hm-q" type="search" placeholder="Nom, chemin, plateforme, compétence..."><select id="hm-type"><option value="all">Tout</option><option value="project">Projets</option><option value="writeup">Writeups</option></select><select id="hm-status"><option value="all">Tous</option><option value="published">Publiés</option><option value="unpublished">Non publiés</option></select></div><div class="hint"><span class="count">0 résultat</span>. Ce panneau lit les validations depuis le dépôt et fonctionne sur GitHub Pages ou domaine personnalisé.</div><div class="results"><div class="empty">Chargement...</div></div></div>`;document.body.appendChild(p);
     document.getElementById('hm-q').oninput=ev=>{state.query=ev.target.value;render()};document.getElementById('hm-type').onchange=ev=>{state.type=ev.target.value;render()};document.getElementById('hm-status').onchange=ev=>{state.status=ev.target.value;render()};document.getElementById('hm-reload').onclick=async()=>{await load();render()};document.getElementById('hm-min').onclick=()=>{p.classList.toggle('min');document.getElementById('hm-min').textContent=p.classList.contains('min')?'Afficher':'Réduire'};
   }
   window.addEventListener('load',async()=>{setTimeout(async()=>{create();await load();render()},1300)});

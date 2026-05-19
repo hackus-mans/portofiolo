@@ -21,11 +21,12 @@
   function esc(v){return safe(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
   function normalize(v){return safe(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
   function slugify(v){return normalize(v).replace(/[^a-z0-9._-]+/g,'-').replace(/^-+|-+$/g,'')||'file'}
+  function slugFile(name){const n=safe(name).split('|')[0].trim().replace(/^\/+/, ''); if(n.includes('/')) return n.split('/').map(slugify).join('/'); const ext=(n.match(/\.[A-Za-z0-9]+$/)||[''])[0]; const base=ext?n.slice(0,-ext.length):n; return slugify(base)+ext.toLowerCase();}
   function asList(v){return Array.isArray(v)?v.filter(Boolean):safe(v)?[safe(v)]:[]}
 
   function parseYaml(yaml){const obj={};let cur=null;safe(yaml).split('\n').forEach(line=>{const s=line.trim();if(!s)return;if(s.startsWith('- ')&&cur){obj[cur]=obj[cur]||[];if(Array.isArray(obj[cur]))obj[cur].push(s.slice(2).trim().replace(/^['"]|['"]$/g,''));return}const m=s.match(/^([A-Za-z0-9_-]+):\s*(.*)$/);if(m){cur=m[1];const v=m[2].trim().replace(/^['"]|['"]$/g,'');obj[cur]=v?v:[]}});return obj}
   function splitFM(md){const text=safe(md);if(!text.startsWith('---'))return{meta:{},body:text};const end=text.indexOf('\n---',3);if(end===-1)return{meta:{},body:text};return{meta:parseYaml(text.slice(3,end).trim()),body:text.slice(end+4).trim()}}
-  function firstPara(body){const clean=safe(body).replace(/^#\s+.*$/m,'').trim();const parts=clean.split(/\n\s*\n/).map(p=>p.trim()).filter(p=>p&&!p.startsWith('#')&&!p.startsWith('```')&&!p.startsWith('!['));return parts[0]||'Documentation publiée depuis Obsidian.'}
+  function firstPara(body){const clean=safe(body).replace(/^#\s+.*$/m,'').trim();const parts=clean.split(/\n\s*\n/).map(p=>p.trim()).filter(p=>p&&!p.startsWith('#')&&!p.startsWith('```')&&!p.startsWith('![')&&!p.startsWith('![['));return parts[0]||'Documentation publiée depuis Obsidian.'}
 
   async function loadProjects(){
     try{
@@ -48,19 +49,31 @@
   function itemText(item){return normalize([item.title,item.description,item.category,item.platform,item.sectionLabel,item.status,item.difficulty,...asList(item.skills),...asList(item.tags),...asList(item.stack)].join(' '))}
   function matchSearch(item){const q=normalize(state.search);return !q||itemText(item).includes(q)}
 
+  function mediaSrc(url){
+    let u=safe(url).split('|')[0].trim();
+    if(!u) return '';
+    if(/^(https?:|data:|blob:)/i.test(u)) return u;
+    if(u.startsWith('/portofiolo/')) return assetPath(u);
+    if(u.startsWith('/content/')) return assetPath(u);
+    if(u.startsWith('content/')) return assetPath(u);
+    if(u.startsWith('/assets/')) return assetPath(u);
+    if(u.startsWith('assets/')) return assetPath(u);
+    return assetPath('content/writeups/media/'+slugFile(u));
+  }
   function mediaHtml(alt,url){
-    const src=assetPath(url);
+    const src=mediaSrc(url);
     const clean=safe(src).split('?')[0].split('#')[0].toLowerCase();
-    const caption=esc(alt||safe(url).split('/').pop()||'Pièce jointe');
-    if(/\.(png|jpe?g|gif|webp|svg)$/i.test(clean)) return `<figure class="doc-media"><img src="${esc(src)}" alt="${caption}" loading="lazy"><figcaption>${caption}</figcaption></figure>`;
-    if(/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(clean)) return `<figure class="doc-media"><audio controls src="${esc(src)}"></audio><figcaption>${caption}</figcaption></figure>`;
-    if(/\.(mp4|webm|mov|mkv)$/i.test(clean)) return `<figure class="doc-media"><video controls src="${esc(src)}"></video><figcaption>${caption}</figcaption></figure>`;
-    if(/\.pdf$/i.test(clean)) return `<p><a class="doc-attachment" href="${esc(src)}" target="_blank" rel="noopener">Ouvrir le PDF : ${caption}</a></p>`;
-    return `<p><a class="doc-attachment" href="${esc(src)}" target="_blank" rel="noopener">Ouvrir la pièce jointe : ${caption}</a></p>`;
+    const caption=esc(alt||safe(url).split('/').pop().split('|')[0]||'Pièce jointe');
+    const srcEsc=esc(src);
+    if(/\.(png|jpe?g|gif|webp|svg)$/i.test(clean)) return `<figure class="doc-media"><img src="${srcEsc}" alt="${caption}" loading="lazy" onerror="this.onerror=null;this.src=this.src.replace('/portofiolo/','/');"><figcaption>${caption}</figcaption></figure>`;
+    if(/\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(clean)) return `<figure class="doc-media"><audio controls src="${srcEsc}"></audio><figcaption>${caption}</figcaption></figure>`;
+    if(/\.(mp4|webm|mov|mkv)$/i.test(clean)) return `<figure class="doc-media"><video controls src="${srcEsc}"></video><figcaption>${caption}</figcaption></figure>`;
+    if(/\.pdf$/i.test(clean)) return `<p><a class="doc-attachment" href="${srcEsc}" target="_blank" rel="noopener">Ouvrir le PDF : ${caption}</a></p>`;
+    return `<p><a class="doc-attachment" href="${srcEsc}" target="_blank" rel="noopener">Ouvrir la pièce jointe : ${caption}</a></p>`;
   }
   function linkHref(url){return /^(https?:|mailto:|tel:|#)/i.test(safe(url))?safe(url):assetPath(url)}
 
-  function mdToHtml(md){let text=safe(md);const codes=[];text=text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g,(_,lang,code)=>{const token=`@@CODE${codes.length}@@`;codes.push(`<pre><code>${esc(code)}</code></pre>`);return token});text=esc(text);text=text.replace(/^### (.*)$/gm,'<h4>$1</h4>').replace(/^## (.*)$/gm,'<h3>$1</h3>').replace(/^# (.*)$/gm,'<h2>$1</h2>');text=text.replace(/!\[(.*?)\]\((.*?)\)/g,(_,alt,url)=>mediaHtml(alt,url));text=text.replace(/\[(.*?)\]\((.*?)\)/g,(_,label,url)=>`<a href="${esc(linkHref(url))}" target="_blank" rel="noopener">${label}</a>`);text=text.replace(/^\- (.*)$/gm,'<li>$1</li>');text=text.replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`);text=text.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean).map(b=>/^<(h\d|ul|pre|figure|p><a|img|video|audio)/.test(b)?b:`<p>${b.replace(/\n/g,'<br>')}</p>`).join('\n');codes.forEach((h,i)=>text=text.replace(`@@CODE${i}@@`,h));return text}
+  function mdToHtml(md){let text=safe(md);const codes=[];text=text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g,(_,lang,code)=>{const token=`@@CODE${codes.length}@@`;codes.push(`<pre><code>${esc(code)}</code></pre>`);return token});text=esc(text);text=text.replace(/^### (.*)$/gm,'<h4>$1</h4>').replace(/^## (.*)$/gm,'<h3>$1</h3>').replace(/^# (.*)$/gm,'<h2>$1</h2>');text=text.replace(/!\[\[([^\]]+)\]\]/g,(_,ref)=>mediaHtml(ref,ref));text=text.replace(/!\[(.*?)\]\((.*?)\)/g,(_,alt,url)=>mediaHtml(alt,url));text=text.replace(/\[(.*?)\]\((.*?)\)/g,(_,label,url)=>`<a href="${esc(linkHref(url))}" target="_blank" rel="noopener">${label}</a>`);text=text.replace(/^\- (.*)$/gm,'<li>$1</li>');text=text.replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`);text=text.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean).map(b=>/^<(h\d|ul|pre|figure|p><a|img|video|audio)/.test(b)?b:`<p>${b.replace(/\n/g,'<br>')}</p>`).join('\n');codes.forEach((h,i)=>text=text.replace(`@@CODE${i}@@`,h));return text}
   function closeReader(){const m=byId('realisation-reader');if(m)m.remove();document.body.classList.remove('modal-open')}
   async function openItem(item){let body=item.documentation||'';try{if(item.type==='writeup'&&item.path){const text=await loadText(item.path);body=splitFM(text).body}if(item.type==='project'&&item.path&&!body){const text=await loadText(item.path);body=splitFM(text).body}}catch(e){body=`# ${safe(item.title)}\n\nImpossible de charger le fichier complet pour le moment. Vérifie le déploiement ou le chemin du fichier.\n\n${safe(item.description)}`}
     closeReader();const skills=asList(item.skills).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const tags=asList(item.tags||item.stack).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const modal=document.createElement('div');modal.className='realisation-reader';modal.id='realisation-reader';modal.innerHTML=`<div class="real-reader-backdrop" data-close-reader="true"></div><section class="real-reader-panel pro-reader" role="dialog" aria-modal="true"><header class="real-reader-header pro-reader-head"><div><span class="card-kicker">${safe(item.sectionLabel||item.type)} • ${safe(item.platform||item.category)}</span><h2>${safe(item.title)}</h2><p>${safe(item.description)}</p></div><button class="real-reader-close" type="button" data-close-reader="true">Fermer</button></header><div class="real-reader-layout"><aside class="real-reader-sidebar"><p class="sidebar-title">Informations</p><div class="real-meta"><span>${safe(item.sectionLabel||'Projet')}</span><span>${safe(item.platform||item.status||'Publié')}</span><span>${safe(item.category||item.difficulty||'À définir')}</span></div>${skills?`<h4>Compétences acquises</h4><div class="tags">${skills}</div>`:''}${tags?`<h4>Tags / outils</h4><div class="tags">${tags}</div>`:''}</aside><article class="real-reader-document markdown-body obsidian-doc pro-doc">${mdToHtml(body)}</article></div></section>`;document.body.appendChild(modal);document.body.classList.add('modal-open');modal.querySelectorAll('[data-close-reader="true"]').forEach(b=>b.addEventListener('click',closeReader));setTimeout(()=>document.dispatchEvent(new Event('DOMContentLoaded')),10)}

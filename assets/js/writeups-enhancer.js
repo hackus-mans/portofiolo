@@ -1,10 +1,23 @@
 (function(){
   const state={mode:'project',writeupSection:'',writeupPlatform:'',writeupCategory:'',projects:[],writeups:[],catalog:[],search:''};
+  const IS_GITHUB_PAGES=location.hostname.includes('github.io');
 
   function safe(v){return String(v||'')}
   function byId(id){return document.getElementById(id)}
-  async function loadJSON(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(path);return r.json()}
-  async function loadText(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(path);return r.text()}
+  function assetPath(path){
+    let p=safe(path);
+    if(!p) return p;
+    if(/^https?:\/\//i.test(p)) return p;
+    if(IS_GITHUB_PAGES){
+      if(p.startsWith('/portofiolo/')) return p;
+      if(p.startsWith('/')) return '/portofiolo'+p;
+      return p;
+    }
+    if(p.startsWith('/portofiolo/')) return p.replace('/portofiolo/','/');
+    return p;
+  }
+  async function loadJSON(path){const r=await fetch(assetPath(path),{cache:'no-store'});if(!r.ok)throw new Error(path);return r.json()}
+  async function loadText(path){const r=await fetch(assetPath(path),{cache:'no-store'});if(!r.ok)throw new Error(path);return r.text()}
   function esc(v){return safe(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
   function normalize(v){return safe(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
   function slugify(v){return normalize(v).replace(/[^a-z0-9._-]+/g,'-').replace(/^-+|-+$/g,'')||'file'}
@@ -50,7 +63,15 @@
 
   function mdToHtml(md){let text=safe(md);const codes=[];text=text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g,(_,lang,code)=>{const token=`@@CODE${codes.length}@@`;codes.push(`<pre><code>${esc(code)}</code></pre>`);return token});text=esc(text);text=text.replace(/^### (.*)$/gm,'<h4>$1</h4>').replace(/^## (.*)$/gm,'<h3>$1</h3>').replace(/^# (.*)$/gm,'<h2>$1</h2>');text=text.replace(/!\[(.*?)\]\((.*?)\)/g,'<figure class="doc-media"><img src="$2" alt="$1"><figcaption>$1</figcaption></figure>');text=text.replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2">$1</a>');text=text.replace(/^\- (.*)$/gm,'<li>$1</li>');text=text.replace(/(<li>.*<\/li>\n?)+/g,m=>`<ul>${m}</ul>`);text=text.split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean).map(b=>/^<(h\d|ul|pre|figure|img)/.test(b)?b:`<p>${b.replace(/\n/g,'<br>')}</p>`).join('\n');codes.forEach((h,i)=>text=text.replace(`@@CODE${i}@@`,h));return text}
   function closeReader(){const m=byId('realisation-reader');if(m)m.remove();document.body.classList.remove('modal-open')}
-  async function openItem(item){let body=item.documentation||'';if(item.type==='writeup'&&item.path){const text=await loadText(item.path);body=splitFM(text).body}if(item.type==='project'&&item.path&&!body){try{const text=await loadText(item.path);body=splitFM(text).body}catch(e){}}closeReader();const skills=asList(item.skills).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const tags=asList(item.tags||item.stack).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const modal=document.createElement('div');modal.className='realisation-reader';modal.id='realisation-reader';modal.innerHTML=`<div class="real-reader-backdrop" data-close-reader="true"></div><section class="real-reader-panel pro-reader" role="dialog" aria-modal="true"><header class="real-reader-header pro-reader-head"><div><span class="card-kicker">${safe(item.sectionLabel||item.type)} • ${safe(item.platform||item.category)}</span><h2>${safe(item.title)}</h2><p>${safe(item.description)}</p></div><button class="real-reader-close" type="button" data-close-reader="true">Fermer</button></header><div class="real-reader-layout"><aside class="real-reader-sidebar"><p class="sidebar-title">Informations</p><div class="real-meta"><span>${safe(item.sectionLabel||'Projet')}</span><span>${safe(item.platform||item.status||'Publié')}</span><span>${safe(item.category||item.difficulty||'À définir')}</span></div>${skills?`<h4>Compétences acquises</h4><div class="tags">${skills}</div>`:''}${tags?`<h4>Tags / outils</h4><div class="tags">${tags}</div>`:''}</aside><article class="real-reader-document markdown-body obsidian-doc pro-doc">${mdToHtml(body)}</article></div></section>`;document.body.appendChild(modal);document.body.classList.add('modal-open');modal.querySelectorAll('[data-close-reader="true"]').forEach(b=>b.addEventListener('click',closeReader));setTimeout(()=>document.dispatchEvent(new Event('DOMContentLoaded')),10)}
+  async function openItem(item){
+    let body=item.documentation||'';
+    try{
+      if(item.type==='writeup'&&item.path){const text=await loadText(item.path);body=splitFM(text).body}
+      if(item.type==='project'&&item.path&&!body){const text=await loadText(item.path);body=splitFM(text).body}
+    }catch(e){
+      body=`# ${safe(item.title)}\n\nImpossible de charger le fichier complet pour le moment. Vérifie le déploiement ou le chemin du fichier.\n\n${safe(item.description)}`;
+    }
+    closeReader();const skills=asList(item.skills).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const tags=asList(item.tags||item.stack).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const modal=document.createElement('div');modal.className='realisation-reader';modal.id='realisation-reader';modal.innerHTML=`<div class="real-reader-backdrop" data-close-reader="true"></div><section class="real-reader-panel pro-reader" role="dialog" aria-modal="true"><header class="real-reader-header pro-reader-head"><div><span class="card-kicker">${safe(item.sectionLabel||item.type)} • ${safe(item.platform||item.category)}</span><h2>${safe(item.title)}</h2><p>${safe(item.description)}</p></div><button class="real-reader-close" type="button" data-close-reader="true">Fermer</button></header><div class="real-reader-layout"><aside class="real-reader-sidebar"><p class="sidebar-title">Informations</p><div class="real-meta"><span>${safe(item.sectionLabel||'Projet')}</span><span>${safe(item.platform||item.status||'Publié')}</span><span>${safe(item.category||item.difficulty||'À définir')}</span></div>${skills?`<h4>Compétences acquises</h4><div class="tags">${skills}</div>`:''}${tags?`<h4>Tags / outils</h4><div class="tags">${tags}</div>`:''}</aside><article class="real-reader-document markdown-body obsidian-doc pro-doc">${mdToHtml(body)}</article></div></section>`;document.body.appendChild(modal);document.body.classList.add('modal-open');modal.querySelectorAll('[data-close-reader="true"]').forEach(b=>b.addEventListener('click',closeReader));setTimeout(()=>document.dispatchEvent(new Event('DOMContentLoaded')),10)}
 
   function card(item,i){const skills=asList(item.skills).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const tags=asList(item.stack||item.tags).map(t=>`<span class="tag">${safe(t)}</span>`).join('');const kicker=item.type==='writeup'?`${safe(item.sectionLabel)} • ${safe(item.platform)} • ${safe(item.category)}`:`Projet • ${safe(item.category)}`;const status=item.type==='writeup'?safe(item.difficulty||item.status||'Publié'):safe(item.status||'À documenter');const label=item.type==='writeup'?'Lire le writeup':'Lire le projet';return `<article class="real-card" data-index="${i}"><div class="real-card-head"><span class="card-kicker">${kicker}</span><div class="real-meta"><span>${status}</span></div></div><h3>${safe(item.title)}</h3><p>${safe(item.description)}</p>${skills?`<div class="tags">${skills}</div>`:''}${tags?`<div class="tags">${tags}</div>`:''}<div class="real-actions"><button class="btn primary real-open" type="button">${label}</button></div></article>`}
   function branch(label,active,level){return `<button class="branch-card ${active?'active':''}" type="button" data-level="${level}" data-value="${safe(label)}"><span>${safe(label)}</span></button>`}

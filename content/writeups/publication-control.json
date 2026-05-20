@@ -1,6 +1,17 @@
 {
   "items": [
     {
+      "title": "elisée",
+      "publicTitle": "",
+      "obsidianPath": "Challenges/CTF français/elisée.md",
+      "sectionLabel": "Challenges",
+      "platform": "CTF français",
+      "category": "Général",
+      "skills": [],
+      "publish": false,
+      "note": ""
+    },
+    {
       "title": "joseph",
       "publicTitle": "",
       "obsidianPath": "Challenges/CTF français/joseph.md",

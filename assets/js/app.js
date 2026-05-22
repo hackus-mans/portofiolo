@@ -1,6 +1,15 @@
 const pageMap={"#apropos":"apropos.html","#competences":"competences.html","#projets":"realisations.html","#realisations":"realisations.html","#articles":"articles.html","#certifications":"certifications.html","#contact":"contact.html"};
 if(pageMap[location.hash]) location.replace(pageMap[location.hash]);
 
+(function injectMobileFix(){
+  if(document.querySelector('link[data-mobile-fix]')) return;
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href='assets/css/mobile-fix.css?v=342';
+  link.dataset.mobileFix='true';
+  document.head.appendChild(link);
+})();
+
 const IS_GITHUB_PAGES=location.hostname.includes('github.io');
 function safe(v){return String(v||'').trim()}
 function byId(id){return document.getElementById(id)}

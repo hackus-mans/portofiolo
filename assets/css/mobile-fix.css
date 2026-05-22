@@ -1,0 +1,96 @@
+/* Correctifs mobiles globaux — téléphone/tablette */
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:hidden}
+img,video,canvas,svg{max-width:100%;height:auto}
+pre,code{max-width:100%;white-space:pre-wrap;word-break:break-word}
+
+@media(max-width:760px){
+  body{font-size:15px;line-height:1.55}
+  .site-header{position:sticky;top:0;z-index:999;background:rgba(7,9,13,.92)!important}
+  .navbar{width:100%;padding:12px 14px!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:10px!important}
+  .brand{font-size:20px!important;white-space:nowrap}
+  .nav-links{width:100%!important;display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;gap:6px!important;padding:4px!important;border-radius:16px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{flex:0 0 auto!important;font-size:12px!important;padding:9px 11px!important;white-space:nowrap!important}
+  .page-shell,.home-shell{width:100%!important;max-width:100%!important;padding:24px 14px 58px!important}
+  .page-hero{padding:20px 0 18px!important;margin-bottom:22px!important}
+  .page-hero h1,.hero-clean h1,h1{font-size:clamp(31px,10vw,42px)!important;line-height:1.04!important;letter-spacing:-1.5px!important;word-break:normal!important;overflow-wrap:break-word!important}
+  .page-hero h1{margin-top:16px!important}
+  .hero-clean h2,.section-heading h2,h2{font-size:clamp(22px,7vw,30px)!important;line-height:1.15!important;letter-spacing:-.8px!important}
+  .hero-text,.section-text,.section-heading p{font-size:15px!important;line-height:1.68!important}
+  .editorial-hero,.hero-profile-layout,.hero-clean{display:grid!important;grid-template-columns:1fr!important;gap:24px!important;padding:24px 0 14px!important}
+  .editorial-copy,.hero-left{max-width:100%!important}
+  .hero-actions{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;width:100%!important}
+  .hero-actions .btn,.btn{width:100%;min-height:44px;padding:11px 13px!important;font-size:14px!important}
+  .profile-showcase{width:100%!important;max-width:360px!important;margin:0 auto!important;border-radius:22px!important;padding:8px!important}
+  .profile-photo-stage{height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:3/4!important;border-radius:18px!important;padding:6px!important}
+  .profile-photo-stage img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;border-radius:14px!important}
+  .signature-strip{width:100%!important;border-radius:18px!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important;margin:20px 0 28px!important}
+  .signature-strip span{font-size:12px!important;text-align:center!important;padding:9px 8px!important;background:rgba(255,255,255,.035);border-radius:12px!important}
+  .feature-board,.home-metrics,.focus-grid,.grid,.quick-grid,.cert-grid,.auto-skill-grid,.realisation-grid{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .feature-card,.card,.project-card,.quick-card,.content-panel,.cert-card,.real-card,.auto-skill-card,.mission-card,.route-card{width:100%!important;padding:16px!important;border-radius:17px!important;transform:none!important}
+  .feature-card-large{grid-row:auto!important;min-height:0!important;padding:18px!important}
+  .feature-card span{margin-bottom:14px!important}
+  .feature-card h3,.card h3,.project-card h3,.quick-card h3,.real-card h3,.cert-content h3{font-size:20px!important;line-height:1.18!important}
+  .feature-card p,.card p,.project-card p,.quick-card p,.content-panel p,.real-card p,.cert-content p{font-size:14px!important;line-height:1.62!important}
+  .realisation-tabs,.cert-tabs{width:100%!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:6px!important;padding:5px!important;border-radius:16px!important;margin:0 0 16px!important}
+  .cert-tabs{grid-template-columns:1fr!important}
+  .real-tab,.tab-btn{width:100%!important;text-align:center!important;padding:10px 8px!important;font-size:13px!important}
+  .real-search-panel{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;padding:12px!important;border-radius:16px!important;margin:0 0 16px!important}
+  .real-search-panel label{font-size:10px!important}
+  .real-search-panel input,.real-search-panel button{width:100%!important;height:42px!important;border-radius:12px!important;font-size:14px!important}
+  .writeup-controls{padding:14px!important;border-radius:18px!important;margin:0 0 18px!important}
+  .writeup-browser-head{display:grid!important;grid-template-columns:1fr!important;gap:12px!important;margin-bottom:14px!important;padding-bottom:14px!important}
+  .writeup-browser-head h2{font-size:22px!important}
+  .writeup-breadcrumb{width:100%!important;border-radius:14px!important;padding:9px 10px!important;font-size:12px!important;overflow:hidden;text-overflow:ellipsis}
+  .browser-level{padding:12px!important;border-radius:15px!important}
+  .level-title{gap:9px!important;margin-bottom:10px!important}
+  .level-title span{width:30px!important;height:30px!important;border-radius:9px!important;font-size:11px!important}
+  .level-title h3{font-size:16px!important}
+  .branch-list,.branch-list-large{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+  .branch-card{min-height:44px!important;padding:11px 12px!important;border-radius:12px!important;font-size:14px!important}
+  .real-card-head{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+  .real-meta{gap:6px!important;margin:8px 0!important}
+  .real-meta span,.tag,.badge{font-size:11px!important;padding:6px 8px!important}
+  .real-actions{display:grid!important;grid-template-columns:1fr!important;gap:8px!important;margin-top:14px!important}
+  .cert-card{display:grid!important;grid-template-columns:1fr!important;gap:14px!important}
+  .cert-image{min-height:170px!important;border-radius:14px!important}
+  .cert-image img{max-height:210px!important;object-fit:contain!important}
+}
+
+@media(max-width:760px){
+  .realisation-reader{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;padding:0!important;overflow:hidden!important;background:#05080d!important;z-index:999999!important}
+  .real-reader-panel{width:100vw!important;height:100dvh!important;max-width:none!important;border-radius:0!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;background:#05080d!important}
+  .real-reader-header{flex:0 0 auto!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:start!important;gap:10px!important;padding:12px 14px!important;max-height:34dvh!important;overflow:auto!important}
+  .real-reader-header h2{font-size:22px!important;line-height:1.13!important;margin:4px 0!important;letter-spacing:-.6px!important}
+  .real-reader-header p{font-size:13px!important;line-height:1.45!important;max-width:100%!important}
+  .real-reader-close{width:auto!important;min-height:38px!important;padding:9px 12px!important;font-size:12px!important;border-radius:999px!important;position:sticky!important;top:0!important;align-self:start!important}
+  .real-reader-layout{flex:1 1 auto!important;min-height:0!important;display:block!important;overflow:hidden!important}
+  .real-reader-sidebar{display:none!important}
+  .real-reader-document{height:100%!important;overflow:auto!important;padding:18px 14px 78px!important;background:#05080d!important;font-size:15px!important;line-height:1.7!important;-webkit-overflow-scrolling:touch!important}
+  .obsidian-doc{font-size:15px!important}
+  .obsidian-doc h2,.markdown-body h2{font-size:25px!important;line-height:1.16!important;margin:8px 0 18px!important;padding-bottom:10px!important}
+  .obsidian-doc h3,.markdown-body h3{font-size:20px!important;line-height:1.2!important;margin:26px 0 12px!important}
+  .obsidian-doc h4,.markdown-body h4{font-size:17px!important;line-height:1.25!important;margin:22px 0 10px!important}
+  .markdown-body p,.markdown-body li{font-size:15px!important;line-height:1.72!important}
+  .markdown-body ul,.markdown-body ol{padding-left:20px!important}
+  .markdown-body pre{width:100%!important;max-width:100%!important;overflow:auto!important;white-space:pre!important;word-break:normal!important;font-size:12px!important;line-height:1.5!important;padding:12px!important;border-radius:13px!important}
+  .markdown-body pre code{white-space:pre!important;word-break:normal!important}
+  .markdown-body code:not(pre code){white-space:normal!important;word-break:break-word!important;font-size:.92em!important}
+  .markdown-body figure,.doc-media{margin:18px 0!important;width:100%!important}
+  .markdown-body img,.doc-media img{width:100%!important;max-width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;margin:16px 0!important;border-radius:12px!important;display:block!important;background:#fff!important}
+  .doc-media figcaption{font-size:11px!important;line-height:1.35!important;margin-top:6px!important;word-break:break-word!important}
+  .markdown-body table{display:block!important;width:100%!important;overflow-x:auto!important;border-collapse:collapse!important}
+}
+
+@media(max-width:420px){
+  .page-shell,.home-shell{padding-left:12px!important;padding-right:12px!important}
+  .nav-links a{font-size:11.5px!important;padding:8px 10px!important}
+  .page-hero h1,.hero-clean h1,h1{font-size:32px!important}
+  .hero-clean h2,.section-heading h2,h2{font-size:23px!important}
+  .profile-showcase{max-width:330px!important}
+  .signature-strip{grid-template-columns:1fr!important}
+  .feature-card,.card,.project-card,.quick-card,.content-panel,.cert-card,.real-card{padding:14px!important}
+  .real-reader-header{grid-template-columns:1fr!important;max-height:38dvh!important}
+  .real-reader-close{justify-self:end!important}
+}

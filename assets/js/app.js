@@ -1,11 +1,21 @@
 const pageMap={"#apropos":"apropos.html","#competences":"competences.html","#projets":"realisations.html","#realisations":"realisations.html","#articles":"articles.html","#certifications":"certifications.html","#contact":"contact.html"};
 if(pageMap[location.hash]) location.replace(pageMap[location.hash]);
 
+(function injectFavicon(){
+  if(document.querySelector('link[data-hackus-favicon]')) return;
+  const icon=document.createElement('link');
+  icon.rel='icon';
+  icon.type='image/svg+xml';
+  icon.href='assets/favicon.svg?v=344';
+  icon.dataset.hackusFavicon='true';
+  document.head.appendChild(icon);
+})();
+
 (function injectMobileFix(){
   if(document.querySelector('link[data-mobile-fix]')) return;
   const link=document.createElement('link');
   link.rel='stylesheet';
-  link.href='assets/css/mobile-fix.css?v=342';
+  link.href='assets/css/mobile-fix.css?v=344';
   link.dataset.mobileFix='true';
   document.head.appendChild(link);
 })();

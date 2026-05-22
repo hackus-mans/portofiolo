@@ -10,7 +10,7 @@ skills:
 tags:
 ---
 
-Dans ce challenge i nous ait demandé de trouvé le mot de passe de l'utilisateur Adminitrator depuis les informations sorties par l'outil secretsdump de la suite Impacket
+Dans ce challenge il nous ait demandé de trouvé le mot de passe de l'utilisateur Adminitrator depuis les informations sorties par l'outil secretsdump de la suite Impacket
 
 
 Lorsque nous téléchargeons le fichier fournie , nous avons ceci 

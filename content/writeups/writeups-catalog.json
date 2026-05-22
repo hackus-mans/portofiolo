@@ -3,14 +3,6 @@
     {
       "section": "challenge",
       "sectionLabel": "Challenges",
-      "platform": "CTF français",
-      "category": "Général",
-      "total": 3,
-      "published": 3
-    },
-    {
-      "section": "challenge",
-      "sectionLabel": "Challenges",
       "platform": "Pico Ctf",
       "category": "Cryptographie",
       "total": 1,

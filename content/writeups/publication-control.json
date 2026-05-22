@@ -1,39 +1,6 @@
 {
   "items": [
     {
-      "title": "elisée",
-      "publicTitle": "",
-      "obsidianPath": "Challenges/CTF français/elisée.md",
-      "sectionLabel": "Challenges",
-      "platform": "CTF français",
-      "category": "Général",
-      "skills": [],
-      "publish": true,
-      "note": ""
-    },
-    {
-      "title": "joseph",
-      "publicTitle": "",
-      "obsidianPath": "Challenges/CTF français/joseph.md",
-      "sectionLabel": "Challenges",
-      "platform": "CTF français",
-      "category": "Général",
-      "skills": [],
-      "publish": true,
-      "note": ""
-    },
-    {
-      "title": "modeste",
-      "publicTitle": "",
-      "obsidianPath": "Challenges/CTF français/modeste.md",
-      "sectionLabel": "Challenges",
-      "platform": "CTF français",
-      "category": "Général",
-      "skills": [],
-      "publish": true,
-      "note": ""
-    },
-    {
       "title": "EVEN RSA CAN BE BROKEN",
       "publicTitle": "",
       "obsidianPath": "Challenges/Pico Ctf/Cryptographie/EVEN RSA CAN BE BROKEN.md",

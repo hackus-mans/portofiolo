@@ -1,0 +1,107 @@
+/* Réalisations — onglets horizontaux défilables */
+.realisation-tabs{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  gap:8px!important;
+  padding:6px!important;
+  border-radius:18px!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.realisation-tabs::-webkit-scrollbar{display:none!important}
+.realisation-tabs .real-tab{
+  flex:0 0 auto!important;
+  min-width:max-content!important;
+  white-space:nowrap!important;
+}
+.writeup-controls{
+  overflow:hidden!important;
+}
+.writeup-step-stack{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:16px!important;
+}
+.browser-level{
+  width:100%!important;
+  overflow:hidden!important;
+}
+.browser-level .level-title{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin-bottom:12px!important;
+}
+.branch-list,
+.branch-list-large{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:10px!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:2px 2px 10px!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.branch-list::-webkit-scrollbar,
+.branch-list-large::-webkit-scrollbar{display:none!important}
+.branch-card{
+  flex:0 0 auto!important;
+  min-width:180px!important;
+  max-width:260px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.writeup-browser-head{
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+}
+.writeup-breadcrumb{
+  flex:0 0 auto!important;
+  max-width:48%!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.ready-level{display:none!important}
+.real-empty:empty{display:none!important}
+@media(max-width:760px){
+  .realisation-tabs{
+    display:flex!important;
+    border-radius:16px!important;
+  }
+  .realisation-tabs .real-tab{
+    min-width:135px!important;
+  }
+  .writeup-controls{
+    padding:14px!important;
+    border-radius:18px!important;
+  }
+  .writeup-browser-head{
+    display:block!important;
+  }
+  .writeup-breadcrumb{
+    max-width:100%!important;
+    margin-top:10px!important;
+  }
+  .browser-level{
+    padding:12px!important;
+  }
+  .branch-card{
+    min-width:150px!important;
+    max-width:220px!important;
+  }
+}
+@media(max-width:420px){
+  .branch-card{min-width:135px!important;max-width:190px!important}
+  .realisation-tabs .real-tab{min-width:120px!important}
+}

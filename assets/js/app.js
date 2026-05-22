@@ -6,7 +6,7 @@ if(pageMap[location.hash]) location.replace(pageMap[location.hash]);
   const icon=document.createElement('link');
   icon.rel='icon';
   icon.type='image/svg+xml';
-  icon.href='assets/favicon.svg?v=344';
+  icon.href='assets/favicon.svg?v=349';
   icon.dataset.hackusFavicon='true';
   document.head.appendChild(icon);
 })();
@@ -15,8 +15,18 @@ if(pageMap[location.hash]) location.replace(pageMap[location.hash]);
   if(document.querySelector('link[data-mobile-fix]')) return;
   const link=document.createElement('link');
   link.rel='stylesheet';
-  link.href='assets/css/mobile-fix.css?v=344';
+  link.href='assets/css/mobile-fix.css?v=349';
   link.dataset.mobileFix='true';
+  document.head.appendChild(link);
+})();
+
+(function injectRealisationsTabs(){
+  if(!location.pathname.includes('realisations')) return;
+  if(document.querySelector('link[data-realisations-tabs]')) return;
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href='assets/css/realisations-scroll-tabs.css?v=349';
+  link.dataset.realisationsTabs='true';
   document.head.appendChild(link);
 })();
 

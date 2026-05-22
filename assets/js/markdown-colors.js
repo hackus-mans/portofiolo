@@ -26,6 +26,21 @@
     return styles.join(';');
   }
 
+  function protectHtmlTags(html, transform){
+    const protectedParts = [];
+    const token = i => '%%HTML_PROTECTED_' + i + '%%';
+    html = String(html || '').replace(/<[^>]+>/g, function(match){
+      const index = protectedParts.length;
+      protectedParts.push(match);
+      return token(index);
+    });
+    html = transform(html);
+    protectedParts.forEach(function(part, index){
+      html = html.replace(token(index), part);
+    });
+    return html;
+  }
+
   function convertObsidianHtml(html){
     html = html.replace(/&lt;font\s+color=["']([^"']+)["']\s*&gt;([\s\S]*?)&lt;\s*\/font\s*&gt;/gi, function(_, color, text){
       const safeColor = cleanColor(color);
@@ -49,14 +64,16 @@
   }
 
   function convertBasicMarkdown(html){
-    html = html.replace(/==([^=]+)==/g, '<span class="md-highlight">$1</span>');
-    html = html.replace(/~~([^~]+)~~/g, '<s>$1</s>');
-    html = html.replace(/`([^`\n]+)`/g, '<code class="md-inline-code">$1</code>');
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
-    html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-    html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
-    return html;
+    return protectHtmlTags(html, function(text){
+      text = text.replace(/==([^=]+)==/g, '<span class="md-highlight">$1</span>');
+      text = text.replace(/~~([^~]+)~~/g, '<s>$1</s>');
+      text = text.replace(/`([^`\n]+)`/g, '<code class="md-inline-code">$1</code>');
+      text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      text = text.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+      text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      text = text.replace(/(^|[\s(])_([^_\n]+)_([\s).,!?:;]|$)/g, '$1<em>$2</em>$3');
+      return text;
+    });
   }
 
   function applyMarkdownColors(){

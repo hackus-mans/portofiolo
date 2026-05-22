@@ -31,6 +31,20 @@
         "VPN",
         "Portail Captif"
       ]
+    },
+    {
+      "type": "badge",
+      "title": "Pre Security",
+      "issuer": "TryHackMe",
+      "status": "Obtenue",
+      "date": "2026",
+      "image": "/assets/uploads/pasted-image-1779484246307.png",
+      "credentialUrl": "https://tryhackme.com/certificate/THM-13KIK7HMPS",
+      "description": "Ce parcours apprend comment la technologie fonctionne de A à Z, sans avoir besoin d’expérience préalable. Des bases de l’informatique et vos premières lignes de code au réseau, au web, en passant par les cyberattaques et défenses, c’est ici que commence un parcours en cybersécurité.",
+      "skills": [
+        "General Cyber",
+        "Security analysis"
+      ]
     }
   ]
 }

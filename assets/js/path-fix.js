@@ -23,6 +23,12 @@
       const next=fix(current);
       if(next&&next!==current)el.setAttribute('data-image',next);
     });
+    if(!document.getElementById('public-clean-style')){
+      const style=document.createElement('style');
+      style.id='public-clean-style';
+      style.textContent='.ready-level,.real-empty{display:none!important}';
+      document.head.appendChild(style);
+    }
   }
   document.addEventListener('DOMContentLoaded',()=>setTimeout(apply,900));
   window.addEventListener('load',()=>setTimeout(apply,1200));

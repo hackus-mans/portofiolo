@@ -1,33 +1,37 @@
 const pageMap={"#apropos":"apropos.html","#competences":"competences.html","#projets":"realisations.html","#realisations":"realisations.html","#articles":"articles.html","#certifications":"certifications.html","#contact":"contact.html"};
 if(pageMap[location.hash]) location.replace(pageMap[location.hash]);
 
+function injectStyleOnce(selector, href){
+  if(document.querySelector(selector)) return;
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href=href;
+  const key=selector.match(/\[data-([^\]]+)/);
+  if(key) link.dataset[key[1].replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]='true';
+  document.head.appendChild(link);
+}
+
 (function injectFavicon(){
   if(document.querySelector('link[data-hackus-favicon]')) return;
   const icon=document.createElement('link');
   icon.rel='icon';
   icon.type='image/svg+xml';
-  icon.href='assets/favicon.svg?v=349';
+  icon.href='assets/favicon.svg?v=351';
   icon.dataset.hackusFavicon='true';
   document.head.appendChild(icon);
 })();
 
 (function injectMobileFix(){
-  if(document.querySelector('link[data-mobile-fix]')) return;
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href='assets/css/mobile-fix.css?v=349';
-  link.dataset.mobileFix='true';
-  document.head.appendChild(link);
+  injectStyleOnce('link[data-mobile-fix]','assets/css/mobile-fix.css?v=351');
+})();
+
+(function injectGlobalPolish(){
+  injectStyleOnce('link[data-interface-wow]','assets/css/interface-wow.css?v=351');
 })();
 
 (function injectRealisationsTabs(){
   if(!location.pathname.includes('realisations')) return;
-  if(document.querySelector('link[data-realisations-tabs]')) return;
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href='assets/css/realisations-scroll-tabs.css?v=349';
-  link.dataset.realisationsTabs='true';
-  document.head.appendChild(link);
+  injectStyleOnce('link[data-realisations-tabs]','assets/css/realisations-scroll-tabs.css?v=351');
 })();
 
 const IS_GITHUB_PAGES=location.hostname.includes('github.io');

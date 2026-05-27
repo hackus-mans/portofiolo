@@ -1,0 +1,96 @@
+/* Réalisations Stable — correction finale PC + mobile */
+.realisation-tabs{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow:visible!important;
+  gap:12px!important;
+  padding:0!important;
+  margin:0 0 18px!important;
+  background:transparent!important;
+  border:0!important;
+}
+.realisation-tabs .real-tab{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  min-height:50px!important;
+  padding:0 14px!important;
+  border-radius:18px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  color:#dbeafe!important;
+  background:linear-gradient(180deg,rgba(19,31,48,.82),rgba(7,12,20,.94))!important;
+  border:1px solid rgba(219,233,255,.14)!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.20)!important;
+}
+.realisation-tabs .real-tab.active{
+  color:#041018!important;
+  background:linear-gradient(135deg,#2dd4bf,#60a5fa)!important;
+  border-color:transparent!important;
+}
+.realisation-tabs .real-tab:hover{
+  transform:translateY(-1px)!important;
+  border-color:rgba(45,212,191,.30)!important;
+}
+.real-search-panel{
+  margin:0 0 22px!important;
+}
+.real-card p{
+  color:#b7c4d6!important;
+}
+.real-card p:empty{display:none!important}
+.real-card .card-kicker,
+.real-card .real-meta span,
+.real-card .tag{
+  text-shadow:none!important;
+}
+.real-reader-sidebar .sidebar-title{
+  color:#2dd4bf!important;
+}
+.ready-level,
+.public-note,
+.technical-note{
+  display:none!important;
+}
+
+@media(max-width:760px){
+  .realisation-tabs{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+    margin-bottom:14px!important;
+  }
+  .realisation-tabs .real-tab{
+    min-height:44px!important;
+    border-radius:14px!important;
+    font-size:13px!important;
+    padding:0 8px!important;
+  }
+  .real-search-panel{
+    margin-bottom:16px!important;
+  }
+  .branch-list,
+  .branch-list-large{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    gap:8px!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  .branch-list::-webkit-scrollbar,
+  .branch-list-large::-webkit-scrollbar{display:none!important}
+  .branch-card{
+    flex:0 0 auto!important;
+    min-width:145px!important;
+    max-width:220px!important;
+  }
+}

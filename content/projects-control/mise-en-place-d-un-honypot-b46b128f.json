@@ -8,7 +8,7 @@
   "skills": [],
   "publish": true,
   "pdfEnabled": true,
-  "pdfAccess": "private",
+  "pdfAccess": "public",
   "pdfLabel": "Téléverser le PDF",
   "note": ""
 }

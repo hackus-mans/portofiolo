@@ -1,10 +1,28 @@
 {
   "items": [
-    { "title": "Réseaux", "description": "TCP/IP, adressage, routage, DNS, DHCP, VLAN et diagnostic réseau." },
-    { "title": "Systèmes", "description": "Bases Linux, Windows, administration, services et bonnes pratiques de configuration." },
-    { "title": "Sécurité", "description": "Sensibilisation, analyse, supervision, protection des systèmes et bonnes pratiques." },
-    { "title": "Cloud", "description": "Notions de cloud, services en ligne, hébergement et sécurité des environnements modernes." },
-    { "title": "Développement", "description": "HTML, CSS, JavaScript, scripts simples et structuration de projets web." },
-    { "title": "Documentation", "description": "Rédaction de notes techniques, comptes rendus, procédures et guides pratiques." }
+    {
+      "title": "Pentest Web",
+      "description": "Reconnaissance, exploitation contrôlée de failles web, SQL Injection, LFI, upload vulnérable et contournement d’authentification en laboratoire autorisé."
+    },
+    {
+      "title": "SOC & Blue Team",
+      "description": "Analyse de logs, détection d’événements suspects, investigation, supervision de sécurité et compréhension des alertes."
+    },
+    {
+      "title": "Sécurité réseau",
+      "description": "TCP/IP, services exposés, scan réseau, segmentation, filtrage, diagnostic et compréhension des attaques contre les infrastructures."
+    },
+    {
+      "title": "Linux & systèmes",
+      "description": "Administration Linux, services système, permissions, durcissement de base, configuration et surveillance d’environnements techniques."
+    },
+    {
+      "title": "Labs & CTF",
+      "description": "Pratique sur plateformes et environnements contrôlés, résolution de challenges, rédaction de writeups et capitalisation des apprentissages."
+    },
+    {
+      "title": "Documentation technique",
+      "description": "Rédaction de procédures, rapports de vulnérabilité, notes d’analyse, comptes rendus de lab et explication claire des démarches techniques."
+    }
   ]
 }

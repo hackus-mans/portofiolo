@@ -1,127 +1,106 @@
 const pageMap={"#apropos":"apropos.html","#competences":"competences.html","#projets":"realisations.html","#realisations":"realisations.html","#articles":"articles.html","#certifications":"certifications.html","#contact":"contact.html"};
 if(pageMap[location.hash]) location.replace(pageMap[location.hash]);
 
-function injectStyleOnce(selector, href){
-  if(document.querySelector(selector)) return;
-  const link=document.createElement('link');
-  link.rel='stylesheet';
-  link.href=href;
-  const key=selector.match(/\[data-([^\]]+)/);
-  if(key) link.dataset[key[1].replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]='true';
-  document.head.appendChild(link);
-}
-
-(function injectFavicon(){
-  if(document.querySelector('link[data-hackus-favicon]')) return;
-  const icon=document.createElement('link');
-  icon.rel='icon';
-  icon.type='image/svg+xml';
-  icon.href='assets/favicon.svg?v=351';
-  icon.dataset.hackusFavicon='true';
-  document.head.appendChild(icon);
-})();
-
-(function injectMobileFix(){
-  injectStyleOnce('link[data-mobile-fix]','assets/css/mobile-fix.css?v=351');
-})();
-
-(function injectGlobalPolish(){
-  injectStyleOnce('link[data-interface-wow]','assets/css/interface-wow.css?v=351');
-})();
-
-(function injectRealisationsTabs(){
-  if(!location.pathname.includes('realisations')) return;
-  injectStyleOnce('link[data-realisations-tabs]','assets/css/realisations-scroll-tabs.css?v=351');
-})();
-
 const IS_GITHUB_PAGES=location.hostname.includes('github.io');
+const LEGACY_BASE='/portofiolo';
+const SITE_BASE=(()=>{if(!IS_GITHUB_PAGES)return'';const first=(location.pathname.split('/').filter(Boolean)[0]||'').trim();return first&&!first.includes('.')?'/'+first:''})();
+
 function safe(v){return String(v||'').trim()}
 function byId(id){return document.getElementById(id)}
-function setText(id,value){const el=byId(id);if(el)el.textContent=safe(value)}
-function setHref(id,value){const el=byId(id);if(el)el.href=assetPath(value||'#')}
-function escapeHtml(v){return safe(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function make(tag,cls,html){const el=document.createElement(tag);if(cls)el.className=cls;if(html!==undefined)el.innerHTML=html;return el}
+function esc(v){return safe(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function items(data){return Array.isArray(data)?data:(data&&Array.isArray(data.items)?data.items:[])}
 function assetPath(path){
   const p=safe(path);
   if(!p||/^(https?:|data:|blob:|mailto:|tel:|#)/i.test(p))return p||'#';
   if(IS_GITHUB_PAGES){
-    if(p.startsWith('/portofiolo/'))return p;
-    if(p.startsWith('/'))return '/portofiolo'+p;
+    if(SITE_BASE&&p.startsWith(SITE_BASE+'/'))return p;
+    if(SITE_BASE&&p.startsWith(LEGACY_BASE+'/')&&SITE_BASE!==LEGACY_BASE)return SITE_BASE+p.slice(LEGACY_BASE.length);
+    if(p.startsWith(LEGACY_BASE+'/'))return p;
+    if(p.startsWith('/'))return (SITE_BASE||'')+p;
     return p;
   }
-  if(p.startsWith('/portofiolo/'))return p.replace('/portofiolo/','/');
+  if(p.startsWith(LEGACY_BASE+'/'))return p.replace(LEGACY_BASE+'/','/');
+  if(SITE_BASE&&p.startsWith(SITE_BASE+'/'))return p.slice(SITE_BASE.length)||'/';
   return p;
 }
-async function loadJSON(path){const res=await fetch(assetPath(path),{cache:'no-store'});if(!res.ok)throw new Error('Chargement impossible: '+path);return res.json()}
+async function loadJSON(path){const res=await fetch(assetPath(path),{cache:'no-store'});if(!res.ok)throw new Error(path);return res.json()}
+function setText(id,value){const el=byId(id);if(el)el.textContent=safe(value)}
+function setHref(id,value){const el=byId(id);if(el)el.href=assetPath(value||'#')}
+function extAttrs(url){return /^https?:/i.test(safe(url))?' target="_blank" rel="noopener"':''}
 
-function renderContacts(profile){
-  const box=byId('contact-links');
-  if(!box)return;
-  box.innerHTML='';
-  (profile.contacts||[]).forEach(contact=>{const a=make('a','contact-chip',escapeHtml(contact.label));a.href=assetPath(contact.url);box.appendChild(a)});
-}
 function renderProfile(profile){
   setText('profile-name',profile.name||'Hackus Mans');
   setText('profile-title',profile.title||'Portfolio cybersécurité');
   setText('profile-bio',profile.bio||'');
   setText('about-text',profile.about||profile.bio||'');
   setHref('cv-link',profile.cv||'#');
-  renderContacts(profile);
+  const contacts=byId('contact-links');
+  if(contacts){
+    contacts.innerHTML='';
+    (profile.contacts||[]).forEach(c=>{
+      const a=document.createElement('a');
+      a.className='contact-chip';
+      a.textContent=safe(c.label);
+      a.href=assetPath(c.url||'#');
+      if(/^https?:/i.test(a.href)){a.target='_blank';a.rel='noopener'}
+      contacts.appendChild(a);
+    });
+  }
 }
 function renderSkills(data){
-  const box=byId('skills-list');
-  if(!box)return;
-  box.innerHTML='';
-  items(data).forEach(skill=>box.appendChild(make('article','card cyber-card',`<span class="card-kicker">Domaine</span><h3>${escapeHtml(skill.title)}</h3><p>${escapeHtml(skill.description)}</p>`)));
+  const box=byId('skills-list'); if(!box)return;
+  box.innerHTML=items(data).map(s=>`<article class="card cyber-card"><span class="card-kicker">Domaine</span><h3>${esc(s.title)}</h3><p>${esc(s.description)}</p></article>`).join('');
 }
 function certCard(c){
-  const type=safe(c.type)==='badge'?'Badge':'Certification';
   const image=assetPath(c.image||'assets/uploads/certification-placeholder.svg');
-  const skills=(c.skills||[]).map(s=>`<span class="tag">${escapeHtml(s)}</span>`).join('');
-  return `<article class="cert-card" data-type="${escapeHtml(c.type||'certification')}" data-title="${escapeHtml(c.title)}" data-image="${escapeHtml(image)}"><button class="cert-image cert-open" type="button" aria-label="Afficher la preuve : ${escapeHtml(c.title)}"><img src="${escapeHtml(image)}" alt="${escapeHtml(c.title)}"><span class="zoom-hint">Agrandir</span></button><div class="cert-content"><span class="card-kicker">${type} • ${escapeHtml(c.status)}</span><h3>${escapeHtml(c.title)}</h3><p class="cert-issuer">${escapeHtml(c.issuer)} ${c.date?'— '+escapeHtml(c.date):''}</p><p>${escapeHtml(c.description)}</p><div class="tags">${skills}</div><button class="btn secondary cert-open" type="button">Voir la preuve</button></div></article>`;
+  const skills=(c.skills||[]).map(s=>`<span class="tag">${esc(s)}</span>`).join('');
+  const type=safe(c.type)==='badge'?'Badge':'Certification';
+  const url=safe(c.credentialUrl);
+  const verify=url?`<a class="inline-link cert-verify" href="${esc(assetPath(url))}"${extAttrs(url)}>Vérifier la preuve</a>`:'';
+  return `<article class="cert-card" data-type="${esc(c.type||'certification')}" data-title="${esc(c.title)}" data-image="${esc(image)}"><button class="cert-image cert-open" type="button" aria-label="Afficher la preuve : ${esc(c.title)}"><img src="${esc(image)}" alt="${esc(c.title)}"><span class="zoom-hint">Agrandir</span></button><div class="cert-content"><span class="card-kicker">${type} • ${esc(c.status)}</span><h3>${esc(c.title)}</h3><p class="cert-issuer">${esc(c.issuer)} ${c.date?'— '+esc(c.date):''}</p><p>${esc(c.description)}</p><div class="tags">${skills}</div>${verify}</div></article>`;
 }
-function forceCloseCertModal(){
+function closeCertModal(){
   const modal=byId('cert-modal');
-  if(modal){modal.classList.remove('open');modal.setAttribute('hidden','hidden');modal.style.display='none';const img=byId('cert-modal-img');if(img){img.removeAttribute('src');img.removeAttribute('alt')}}
+  if(modal){modal.classList.remove('open');modal.hidden=true;modal.style.display='none'}
   document.body.classList.remove('modal-open');
 }
-window.forceCloseCertModal=forceCloseCertModal;
-function buildCertModal(){
+function openCertModal(title,image){
   let modal=byId('cert-modal');
-  if(modal)return modal;
-  modal=make('div','cert-modal',`<button class="cert-modal-fixed-close" type="button" aria-label="Fermer">×</button><div class="cert-modal-backdrop"></div><div class="cert-modal-box"><div class="cert-modal-head"><h3 id="cert-modal-title"></h3><button class="cert-modal-close" type="button">Fermer</button></div><img id="cert-modal-img" src="" alt=""></div>`);
-  modal.id='cert-modal';modal.setAttribute('hidden','hidden');document.body.appendChild(modal);
-  modal.querySelector('.cert-modal-fixed-close').addEventListener('click',forceCloseCertModal);
-  modal.querySelector('.cert-modal-close').addEventListener('click',forceCloseCertModal);
-  modal.querySelector('.cert-modal-backdrop').addEventListener('click',forceCloseCertModal);
-  return modal;
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='cert-modal'; modal.className='cert-modal'; modal.hidden=true;
+    modal.innerHTML='<button class="cert-modal-fixed-close" type="button">×</button><div class="cert-modal-backdrop"></div><div class="cert-modal-box"><div class="cert-modal-head"><h3 id="cert-modal-title"></h3><button class="cert-modal-close" type="button">Fermer</button></div><img id="cert-modal-img" src="" alt=""></div>';
+    document.body.appendChild(modal);
+    modal.querySelector('.cert-modal-fixed-close').onclick=closeCertModal;
+    modal.querySelector('.cert-modal-close').onclick=closeCertModal;
+    modal.querySelector('.cert-modal-backdrop').onclick=closeCertModal;
+  }
+  setText('cert-modal-title',title);
+  const img=byId('cert-modal-img'); img.src=assetPath(image); img.alt=title;
+  modal.hidden=false; modal.style.display='flex'; modal.classList.add('open'); document.body.classList.add('modal-open');
 }
-function openCertModal(title,image){const modal=buildCertModal();setText('cert-modal-title',title);const img=byId('cert-modal-img');img.src=assetPath(image);img.alt=title;modal.removeAttribute('hidden');modal.style.display='flex';modal.classList.add('open');document.body.classList.add('modal-open')}
-document.addEventListener('click',event=>{const trigger=event.target.closest('.cert-open');if(!trigger)return;event.preventDefault();const card=trigger.closest('.cert-card');if(card)openCertModal(card.dataset.title,card.dataset.image)});
-document.addEventListener('keydown',event=>{if(event.key==='Escape')forceCloseCertModal()});
-function initCertTabs(){
-  const buttons=document.querySelectorAll('.tab-btn');
-  buttons.forEach(btn=>btn.addEventListener('click',()=>{const filter=btn.dataset.filter;buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.cert-card').forEach(card=>{card.style.display=(filter==='all'||card.dataset.type===filter)?'grid':'none'})}));
-}
+document.addEventListener('click',e=>{const trigger=e.target.closest('.cert-open');if(!trigger)return;e.preventDefault();const card=trigger.closest('.cert-card');if(card)openCertModal(card.dataset.title,card.dataset.image)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCertModal()});
+
 function renderCertifications(data){
-  const box=byId('certifications-list');
-  if(!box)return;
-  const certs=items(data);
-  box.innerHTML=certs.map(certCard).join('');
-  initCertTabs();
+  const box=byId('certifications-list'); if(!box)return;
+  box.innerHTML=items(data).map(certCard).join('');
+  document.querySelectorAll('.tab-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    const filter=btn.dataset.filter;
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cert-card').forEach(card=>{card.style.display=(filter==='all'||card.dataset.type===filter)?'grid':'none'});
+  }));
 }
 function renderArticles(data){
-  const box=byId('articles-list');
-  if(!box)return;
-  box.innerHTML='';
-  items(data).forEach(article=>box.appendChild(make('article','card cyber-card',`<span class="card-kicker">${escapeHtml(article.date)}</span><h3>${escapeHtml(article.title)}</h3><p>${escapeHtml(article.summary)}</p><a class="inline-link" href="${escapeHtml(assetPath(article.url||'#'))}">Lire l'article</a>`)));
+  const box=byId('articles-list'); if(!box)return;
+  box.innerHTML=items(data).map(a=>{const href=assetPath(a.url||'#');return `<article class="card cyber-card"><span class="card-kicker">${esc(a.date)}</span><h3>${esc(a.title)}</h3><p>${esc(a.summary)}</p><a class="inline-link" href="${esc(href)}"${extAttrs(href)}>Lire l'article</a></article>`}).join('');
 }
 async function render(){
   setText('year',new Date().getFullYear());
   try{renderProfile(await loadJSON('assets/data/profile.json'))}catch(e){console.warn(e)}
   try{renderSkills(await loadJSON('assets/data/skills.json'))}catch(e){console.warn(e)}
-  try{renderArticles(await loadJSON('assets/data/articles.json'))}catch(e){console.warn(e)}
   try{renderCertifications(await loadJSON('assets/data/certifications.json'))}catch(e){console.warn(e)}
+  try{renderArticles(await loadJSON('assets/data/articles.json'))}catch(e){console.warn(e)}
 }
 render();

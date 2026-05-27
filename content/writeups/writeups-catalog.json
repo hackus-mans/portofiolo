@@ -22,7 +22,7 @@
       "platform": "Root me",
       "category": "Cryptographie",
       "total": 2,
-      "published": 2
+      "published": 1
     },
     {
       "section": "challenge",
@@ -62,7 +62,7 @@
       "platform": "Tryhackme",
       "category": "Général",
       "total": 3,
-      "published": 1
+      "published": 0
     }
   ]
 }

@@ -21,7 +21,7 @@
       "skills": [
         "Password Cracking"
       ],
-      "publish": true,
+      "publish": false,
       "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
     },
     {
@@ -80,7 +80,7 @@
       "platform": "Tryhackme",
       "category": "Général",
       "skills": [],
-      "publish": true,
+      "publish": false,
       "note": ""
     },
     {

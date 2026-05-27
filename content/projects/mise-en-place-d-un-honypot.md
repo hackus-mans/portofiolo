@@ -37,7 +37,31 @@ Le projet touche particulièrement les domaines suivants :
 
 ### 1.3 Environnement cible
 
+L’environnement cible du projet HoneyShield est un réseau informatique dans lequel des services exposés peuvent être surveillés afin d’identifier les tentatives d’intrusion. Il peut s’agir d’un environnement de laboratoire, d’un réseau d’entreprise, d’un réseau universitaire ou d’une infrastructure de test dédiée à la cybersécurité.
+
+Dans le cadre de ce projet, l’environnement honeypot sera conçu de manière isolée afin d’éviter tout risque pour les systèmes réels. Cette séparation est essentielle, car un honeypot attire volontairement des activités suspectes ou malveillantes. Il doit donc être contrôlé, surveillé et limité dans ses interactions avec le reste du réseau.
+
+L’environnement cible peut comprendre :
+
+- **Une machine honeypot**, destinée à simuler des services vulnérables.
+- **Un réseau de test isolé**, permettant d’éviter la propagation d’une attaque vers des systèmes réels.
+- **Des services exposés**, tels que SSH, FTP, HTTP ou d’autres services fréquemment ciblés.
+- **Un système de collecte des logs**, permettant d’enregistrer les connexions, les commandes, les adresses IP et les activités suspectes.
+- **Un poste d’analyse**, utilisé pour consulter les données collectées et interpréter les attaques observées.
+
+Cette architecture permettra de créer un cadre sécurisé dans lequel les cyberattaques pourront être simulées, capturées et étudiées sans compromettre l’intégrité du système d’information principal.
+
 ### 1.4 Résumé de la solution proposée
+
+La solution HoneyShield consiste à mettre en place un environnement honeypot capable d’attirer les attaquants, d’enregistrer leurs actions et de fournir des informations utiles pour l’analyse de la menace. Le système sera configuré de manière à simuler des services accessibles depuis un réseau, tout en restant isolé des ressources critiques.
+
+Lorsqu’un attaquant tentera de se connecter au honeypot ou d’exploiter un service exposé, HoneyShield collectera automatiquement les informations liées à cette activité. Ces informations pourront inclure l’adresse IP de l’attaquant, la date et l’heure de la tentative, le service ciblé, les identifiants utilisés, les commandes exécutées ou encore les fichiers éventuellement déposés.
+
+Les données collectées seront ensuite analysées afin d’identifier les types d’attaques, les comportements récurrents, les techniques employées et les éventuelles vulnérabilités exploitées. Cette analyse permettra de produire une meilleure compréhension des menaces et de proposer des mesures de sécurité adaptées.
+
+En résumé, HoneyShield propose une approche proactive de la cybersécurité. Au lieu d’attendre qu’une attaque touche directement un système critique, le projet met en place un environnement contrôlé destiné à détecter et comprendre les attaques avant qu’elles ne causent des dommages réels.
+
+Cette solution présente donc un double intérêt : elle sert à la fois d’outil de détection et de plateforme d’apprentissage pour mieux comprendre les cyberattaques modernes
 
 ## <mark style="background:#ff4d4f">2. Contexte et justification du projet</mark>
 

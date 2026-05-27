@@ -1,0 +1,13 @@
+{
+  "title": "Hash DCC",
+  "publicTitle": "",
+  "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC.md",
+  "sectionLabel": "Challenges",
+  "platform": "Root me",
+  "category": "Cryptographie",
+  "skills": [
+    "Password Cracking"
+  ],
+  "publish": false,
+  "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
+}

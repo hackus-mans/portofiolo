@@ -7,5 +7,9 @@
   "tools": [],
   "skills": [],
   "publish": true,
+  "pdfEnabled": true,
+  "pdfAccess": "public",
+  "pdfFile": "/assets/uploads/Mise en place d'un honypot.pdf",
+  "pdfLabel": "",
   "note": ""
 }

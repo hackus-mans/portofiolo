@@ -7,7 +7,9 @@
       "category": "Projet",
       "status": "À documenter",
       "tools": [],
-      "skills": [],
+      "skills": [
+        "Honypot"
+      ],
       "publish": true,
       "note": ""
     }

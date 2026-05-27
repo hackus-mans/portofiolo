@@ -2,6 +2,7 @@
 title: Mise en place d'un honypot
 tools:
 skills:
+  - Honypot
 status: À documenter
 category: Projet
 ---
@@ -213,13 +214,67 @@ En résumé, les objectifs spécifiques du projet HoneyShield sont les suivants 
 
 ## <mark style="background:#ff4d4f">5. Intérêt du projet</mark>
 
+Le projet HoneyShield présente un intérêt important, car il permet de relier la théorie de la cybersécurité à une mise en pratique concrète. Il ne se limite pas à l’étude des concepts liés aux cyberattaques ou aux honeypots, mais propose la conception et le déploiement d’un environnement réel permettant d’observer, de collecter et d’analyser des comportements malveillants.
+
+L’intérêt du projet se situe à plusieurs niveaux. Il est d’abord pédagogique, parce qu’il permet de comprendre concrètement le fonctionnement des attaques et des mécanismes de détection. Il est également technique, car il mobilise plusieurs compétences liées à l’administration système, au réseau, à la supervision et à la gestion des logs. Il présente aussi un intérêt direct en cybersécurité, puisqu’il contribue à la détection et à l’analyse des menaces. Enfin, il peut être utile pour une organisation qui souhaite renforcer sa capacité de surveillance et d’anticipation face aux attaques informatiques.
+
 ### 5.1 Intérêt pédagogique
+
+Sur le plan pédagogique, HoneyShield constitue un excellent support d’apprentissage pour comprendre les mécanismes des cyberattaques et les méthodes de détection. En effet, la cybersécurité ne peut pas être maîtrisée uniquement à travers des notions théoriques. Elle nécessite également des mises en situation, des observations pratiques et des analyses concrètes.
+
+Grâce à HoneyShield, il devient possible d’observer comment un attaquant ou un outil automatisé interagit avec un système exposé. Les étudiants ou les apprenants peuvent ainsi comprendre les étapes d’une attaque, depuis la reconnaissance jusqu’aux tentatives d’accès non autorisé. Ils peuvent également analyser les traces laissées dans les journaux et comprendre comment ces informations peuvent être exploitées pour détecter une menace.
+
+Ce projet permet donc de développer une approche plus concrète de la cybersécurité. Au lieu de seulement expliquer ce qu’est un scan réseau, une attaque par force brute ou une connexion SSH suspecte, HoneyShield permet de voir ces événements apparaître dans un environnement réel ou simulé.
+
+Il favorise aussi l’apprentissage par la pratique. Les apprenants peuvent installer des outils, configurer des services, générer des événements, consulter les logs, interpréter les alertes et proposer des mesures de sécurité. Cette démarche renforce la compréhension et prépare mieux aux réalités du terrain.
+
+L’intérêt pédagogique de HoneyShield réside donc dans sa capacité à transformer des notions parfois abstraites en expériences concrètes, observables et exploitables.
 
 ### 5.2 Intérêt technique
 
+Sur le plan technique, HoneyShield permet de mobiliser plusieurs compétences indispensables dans le domaine de l’informatique et de la cybersécurité. La mise en œuvre du projet nécessite la maîtrise de l’administration système, de la configuration réseau, de la virtualisation, de l’installation de services, de la gestion des journaux et de la supervision.
+
+Le projet permet notamment de travailler sur un environnement Linux, qui est largement utilisé dans les infrastructures serveurs et les solutions de cybersécurité. Il permet aussi de comprendre comment installer, configurer et sécuriser des outils spécialisés comme Cowrie, Dionaea ou Wazuh.
+
+HoneyShield présente également un intérêt technique parce qu’il repose sur une architecture composée de plusieurs éléments interconnectés. Il faut définir les rôles des composants, organiser les flux de données, assurer la remontée des logs et vérifier que les informations collectées sont exploitables dans un tableau de bord.
+
+Ce projet permet donc de développer des compétences pratiques autour de plusieurs aspects techniques :
+
+- **L’installation et l’administration** d’un serveur Linux.
+- **La configuration réseau** d’un environnement isolé.
+- **Le déploiement** d’outils honeypot.
+- **La collecte et la centralisation** des journaux d’activité.
+- **L’intégration** d’une solution de supervision.
+- **La visualisation** des événements de sécurité.
+- **La vérification** du bon fonctionnement d’une architecture de détection.
+
+L’intérêt technique du projet réside donc dans sa dimension complète. HoneyShield ne consiste pas seulement à installer un outil, mais à concevoir une solution cohérente, fonctionnelle et sécurisée.
+
 ### 5.3 Intérêt en cybersécurité
 
+En cybersécurité, l’intérêt principal de HoneyShield est de permettre la détection, l’observation et l’analyse des comportements malveillants. Dans un contexte où les attaques sont de plus en plus automatisées et fréquentes, il devient nécessaire de disposer d’outils capables d’identifier rapidement les tentatives suspectes.
+
+HoneyShield permet de surveiller les interactions avec des services exposés et de collecter des informations utiles sur les attaques. Ces informations peuvent concerner les adresses IP suspectes, les ports ciblés, les identifiants utilisés, les mots de passe testés, les commandes exécutées ou encore les comportements automatisés.
+
+Ces données sont importantes, car elles permettent de mieux comprendre les méthodes utilisées par les attaquants. Une organisation peut ainsi identifier les services les plus ciblés, les types d’attaques les plus fréquents et les comportements qui doivent être considérés comme suspects.
+
+Le projet contribue également à renforcer la posture de sécurité. En observant les attaques dans un environnement contrôlé, il devient possible d’améliorer les règles de détection, de renforcer les configurations, de sensibiliser les utilisateurs et de préparer une meilleure réponse aux incidents.
+
+HoneyShield présente donc un intérêt direct pour la cybersécurité, car il permet de passer d’une simple logique de protection à une logique d’analyse et d’anticipation. Il aide à mieux connaître les menaces afin de mieux s’en protéger.
+
 ### 5.4 Intérêt pour une organisation
+
+Pour une organisation, HoneyShield peut représenter un outil complémentaire dans une stratégie de cybersécurité. Les entreprises, les institutions publiques, les universités ou les structures disposant de services numériques peuvent être confrontées à des tentatives d’intrusion, même lorsqu’elles ne pensent pas être des cibles prioritaires.
+
+L’intérêt de HoneyShield pour une organisation est qu’il permet de disposer d’un environnement contrôlé destiné à attirer les comportements suspects. Au lieu de laisser les attaquants interagir directement avec des systèmes sensibles, l’organisation peut observer certaines tentatives dans un espace isolé et surveillé.
+
+Les informations collectées peuvent aider les responsables informatiques à mieux comprendre les menaces qui visent leur infrastructure. Elles peuvent également permettre d’améliorer les politiques de sécurité, de renforcer les règles de filtrage, d’adapter les mécanismes de supervision et de mieux préparer les équipes à la gestion des incidents.
+
+HoneyShield peut aussi contribuer à la sensibilisation interne. Les résultats obtenus peuvent être utilisés pour montrer aux utilisateurs, aux étudiants ou aux équipes techniques que les attaques sont réelles, fréquentes et parfois automatisées. Cela permet de renforcer la culture de sécurité au sein de l’organisation.
+
+Enfin, le projet peut servir de base à une évolution vers des dispositifs plus avancés, comme l’intégration avec un SOC, un SIEM, des alertes automatiques ou des mécanismes d’analyse intelligente des comportements.
+
+Ainsi, pour une organisation, HoneyShield présente un intérêt à la fois stratégique, opérationnel et pédagogique. Il permet de mieux surveiller les menaces, de renforcer la sécurité globale et de développer une meilleure compréhension des risques cyber.
 
 -------------------------------------------------------------------------------
 

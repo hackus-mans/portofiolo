@@ -13,7 +13,27 @@ category: Projet
 
 ### 1.1 Présentation de HoneyShield
 
+HoneyShield est un projet de cybersécurité portant sur la conception et le déploiement d’un environnement honeypot destiné à la détection, à l’observation et à l’analyse des cyberattaques. Il s’agit d’une solution de sécurité offensive contrôlée, conçue pour attirer volontairement des attaquants ou des comportements malveillants dans un environnement surveillé, sans exposer directement les systèmes réels de l’organisation.
+
+Le principe de HoneyShield repose sur la mise en place de services volontairement exposés, simulant des machines, des applications ou des ports vulnérables. Ces éléments jouent le rôle de leurres numériques. Lorsqu’un attaquant tente d’interagir avec ces services, ses actions sont enregistrées, analysées et exploitées afin de mieux comprendre ses méthodes, ses outils, ses intentions et les techniques utilisées.
+
+Ce projet ne vise donc pas uniquement à bloquer les attaques, mais surtout à les observer dans un cadre maîtrisé. HoneyShield permet ainsi de transformer une tentative d’intrusion en source d’information utile pour renforcer la posture de sécurité d’un système d’information.
+
 ### 1.2 Domaine du projet
+
+Le projet HoneyShield s’inscrit dans le domaine de la cybersécurité, plus précisément dans les axes liés à la détection d’intrusion, à la surveillance réseau, à l’analyse des menaces et à la cyberdéfense proactive.
+
+Dans un contexte où les attaques informatiques deviennent de plus en plus fréquentes, automatisées et sophistiquées, les organisations ne peuvent plus se limiter à des mécanismes classiques de protection tels que les pare-feu, les antivirus ou les systèmes de contrôle d’accès. Ces solutions restent importantes, mais elles doivent être complétées par des outils capables d’identifier les comportements suspects, de collecter des informations sur les attaques et de faciliter la réponse aux incidents.
+
+HoneyShield se positionne donc comme un outil complémentaire aux solutions traditionnelles de sécurité. Il permet d’observer les cybermenaces dans un environnement isolé, de détecter les tentatives d’attaque à un stade précoce et de produire des informations exploitables pour améliorer les mécanismes de défense.
+
+Le projet touche particulièrement les domaines suivants :
+
+- **La sécurité des réseaux informatiques**, à travers la surveillance du trafic et des connexions suspectes.
+- **La détection d’intrusion**, grâce à l’identification des comportements anormaux ou malveillants.
+- **L’analyse des cyberattaques**, par l’étude des techniques utilisées par les attaquants.
+- **La supervision de la sécurité**, à travers la collecte et l’analyse des journaux d’activité.
+- **La réponse aux incidents**, en fournissant des informations utiles pour comprendre et traiter une menace.
 
 ### 1.3 Environnement cible
 

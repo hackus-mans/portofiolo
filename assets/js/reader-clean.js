@@ -1,5 +1,8 @@
 (function(){
   const isGithubPages=location.hostname.includes('github.io');
+  const owner='hackus-mans';
+  const repo='portofiolo';
+  const branch='main';
   const legacyBase='/portofiolo';
   const siteBase=(()=>{if(!isGithubPages)return'';const first=(location.pathname.split('/').filter(Boolean)[0]||'').trim();return first&&!first.includes('.')?'/'+first:''})();
   let cache=null;
@@ -19,6 +22,22 @@
     return p;
   }
   async function loadJSON(path){const res=await fetch(asset(path),{cache:'no-store'});if(!res.ok)throw new Error(path);return res.json()}
+  async function loadGithubFolder(folder){
+    const api='https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+folder+'?ref='+branch+'&cmsLive='+Date.now();
+    const res=await fetch(api,{cache:'no-store'});
+    if(!res.ok)return[];
+    const files=await res.json();
+    if(!Array.isArray(files))return[];
+    const jsonFiles=files.filter(f=>f.type==='file'&&f.name.toLowerCase().endsWith('.json'));
+    const rows=[];
+    for(const file of jsonFiles){
+      try{
+        const r=await fetch(file.download_url+'?cmsLive='+Date.now(),{cache:'no-store'});
+        if(r.ok)rows.push(await r.json());
+      }catch(e){}
+    }
+    return rows;
+  }
   function isYes(v){if(typeof v==='boolean')return v;return ['true','1','oui','yes','on','public','autorise','autorisé','active','actif'].includes(norm(v))}
   function isPublic(v){return ['public','autorise','autorisé','download','telechargement','téléchargement','public-telechargeable'].includes(norm(v||'private'))}
   function slug(v){return norm(v).replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'document'}
@@ -58,15 +77,31 @@
   async function loadControls(){
     if(cache)return cache;
     const all=[];
-    try{const p=await loadJSON('content/projects/project-control.json');(p.items||[]).forEach(x=>all.push({...x,_kind:'project'}))}catch(e){}
-    try{const w=await loadJSON('content/writeups/writeups.json');(w.items||[]).forEach(x=>all.push({...x,_kind:'writeup'}))}catch(e){}
+    try{const p=await loadJSON('content/projects/project-control.json');(p.items||[]).forEach(x=>all.push({...x,_kind:'project-list'}))}catch(e){}
+    try{const w=await loadJSON('content/writeups/writeups.json');(w.items||[]).forEach(x=>all.push({...x,_kind:'writeup-list'}))}catch(e){}
+    try{(await loadGithubFolder('content/projects-control')).forEach(x=>all.push({...x,_kind:'project-control'}))}catch(e){}
+    try{(await loadGithubFolder('content/writeups-control')).forEach(x=>all.push({...x,_kind:'writeup-control'}))}catch(e){}
     cache=all;
     return all;
   }
+  function scoreMatch(meta,title){
+    const t=norm(title).replace(/\.md$/,'');
+    const values=[meta.publicTitle,meta.title,meta.name,meta.obsidianPath].map(v=>norm(v).replace(/\.md$/,'')).filter(Boolean);
+    if(!t||!values.length)return 0;
+    if(values.some(v=>v===t))return 100;
+    if(values.some(v=>t.includes(v)||v.includes(t)))return 80;
+    const words=t.split(/[^a-z0-9]+/).filter(w=>w.length>3);
+    const hits=values.reduce((n,v)=>n+words.filter(w=>v.includes(w)).length,0);
+    return hits;
+  }
   function findMeta(list,title){
-    const t=norm(title);
-    if(!t)return null;
-    return list.find(x=>[x.publicTitle,x.title,x.name,x.obsidianPath].some(v=>{const n=norm(v).replace(/\.md$/,'');return n&&(n===t||t.includes(n)||n.includes(t));}));
+    let best=null,bestScore=0;
+    list.forEach(item=>{
+      const s=scoreMatch(item,title);
+      const weight=item._kind&&item._kind.includes('control')?20:0;
+      if(s+weight>bestScore){best=item;bestScore=s+weight;}
+    });
+    return bestScore>0?best:null;
   }
   function pdfAllowed(meta){
     if(!meta)return false;
@@ -120,9 +155,10 @@
     const sidebar=reader.querySelector('.real-reader-sidebar');
     if(!sidebar||sidebar.querySelector('.reader-download-box'))return;
     if(!pdfAllowed(meta))return;
+    const label=clean(meta.pdfLabel)||'Générer le PDF';
     const box=document.createElement('div');
     box.className='reader-download-box';
-    box.innerHTML='<button class="reader-pdf-btn" type="button">Générer le PDF</button>';
+    box.innerHTML='<button class="reader-pdf-btn" type="button">'+label+'</button>';
     sidebar.insertBefore(box,sidebar.firstChild.nextSibling);
     box.querySelector('button').addEventListener('click',async()=>{
       const btn=box.querySelector('button');

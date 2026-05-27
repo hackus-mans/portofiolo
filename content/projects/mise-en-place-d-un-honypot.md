@@ -9,34 +9,69 @@ category: Projet
 # HoneyShield : Conception et déploiement d’un environnement honeypot pour la détection et l’analyse des cyberattaques
 
 
+## <mark style="background:#ff4d4f">1. Présentation générale du projet</mark>
 
-## 1. Présentation générale du projet
+### 1.1 Présentation de HoneyShield
 
-## 2. Contexte du projet
+### 1.2 Domaine du projet
 
-## 3. Problématique
+### 1.3 Environnement cible
 
-## 4. Objectifs du projet
+### 1.4 Résumé de la solution proposée
+
+## <mark style="background:#ff4d4f">2. Contexte et justification du projet</mark>
+
+### 2.1 Contexte général de la cybersécurité
+
+### 2.2 Menaces actuelles sur les systèmes exposés
+
+### 2.3 Importance de la détection précoce des attaques
+
+### 2.4 Justification du choix d’un honeypot
+
+## <mark style="background:#ff4d4f">3. Problématique</mark>
+
+### 3.1 Problème principal identifié
+
+### 3.2 Questions techniques du projet
+
+### 3.3 Hypothèse de solution proposée
+
+## <mark style="background:#ff4d4f">4. Objectifs du projet</mark>
 
 ### 4.1 Objectif général
 
 ### 4.2 Objectifs spécifiques
 
-## 5. Intérêt du projet
+## <mark style="background:#ff4d4f">5. Intérêt du projet</mark>
 
-## 6. Notions théoriques sur les honeypots
+### 5.1 Intérêt pédagogique
+
+### 5.2 Intérêt technique
+
+### 5.3 Intérêt en cybersécurité
+
+### 5.4 Intérêt pour une organisation
+
+-------------------------------------------------------------------------------
+
+# Partie I : Cadre théorique
+
+## 6. Généralités sur les honeypots
 
 ### 6.1 Définition d’un honeypot
 
 ### 6.2 Rôle d’un honeypot en cybersécurité
 
-### 6.3 Types de honeypots
+### 6.3 Fonctionnement général d’un honeypot
 
-### 6.4 Avantages des honeypots
+### 6.4 Types de honeypots
 
-### 6.5 Limites des honeypots
+### 6.5 Avantages des honeypots
 
-## 7. Cyberattaques ciblées dans le projet
+### 6.6 Limites et risques des honeypots
+
+## 7. Cyberattaques ciblées par HoneyShield
 
 ### 7.1 Scan réseau
 
@@ -46,43 +81,55 @@ category: Projet
 
 ### 7.4 Exploitation de services exposés
 
-### 7.5 Comportements automatisés
+### 7.5 Comportements automatisés ou attaques par bots
 
-## 8. Technologies utilisées
+---
 
-### 8.1 Linux
+# Partie II : Conception de la solution HoneyShield
 
-### 8.2 Cowrie
+## 8. Présentation de l’architecture HoneyShield
 
-### 8.3 Dionaea
+### 8.1 Architecture générale de la solution
 
-### 8.4 Wazuh
+### 8.2 Architecture réseau
 
-### 8.5 Wazuh Indexer ou Elasticsearch
+### 8.3 Description des composants
 
-### 8.6 Wazuh Dashboard ou Kibana
+### 8.4 Flux de fonctionnement de HoneyShield
 
-### 8.7 Nmap
+### 8.5 Schéma de fonctionnement global
 
-## 9. Architecture de HoneyShield
+## 9. Technologies utilisées
 
-### 9.1 Architecture générale
+### 9.1 Linux
 
-### 9.2 Architecture réseau
+### 9.2 Cowrie
 
-### 9.3 Description des composants
+### 9.3 Dionaea
 
-### 9.4 Schéma de fonctionnement
+### 9.4 Wazuh
 
-## 10. Sécurisation de l’environnement
+### 9.5 Wazuh Indexer ou Elasticsearch
+
+### 9.6 Wazuh Dashboard ou Kibana
+
+### 9.7 Nmap
+
+## 10. Sécurisation de l’environnement HoneyShield
 
 ### 10.1 Isolation du honeypot
 
 ### 10.2 Limitation des accès
 
-### 10.3 Journalisation des activités
+### 10.3 Séparation entre environnement réel et environnement de test
 
-### 10.4 Précautions éthiques et légales
+### 10.4 Journalisation des activités
+
+### 10.5 Précautions éthiques et légales
+
+---
+
+# Partie III : Mise en œuvre de HoneyShield
 
 ## 11. Mise en place de l’infrastructure
 
@@ -96,37 +143,43 @@ category: Projet
 
 ### 11.5 Installation et configuration de Dionaea
 
-### 11.6 Centralisation des logs
+### 11.6 Installation et configuration de Wazuh
 
-### 11.7 Installation et configuration de Wazuh
+### 11.7 Centralisation des logs
 
 ### 11.8 Configuration du tableau de bord
 
 ### 11.9 Vérification du fonctionnement global
 
-## 12. Simulation contrôlée des attaques
+## 12. Collecte et remontée des données
 
-### 12.1 Cadre de test
+### 12.1 Logs générés par Cowrie
 
-### 12.2 Scan réseau avec Nmap
+### 12.2 Logs générés par Dionaea
 
-### 12.3 Simulation de connexions SSH suspectes
+### 12.3 Logs système
 
-### 12.4 Simulation d’attaque brute-force
+### 12.4 Événements remontés dans Wazuh
 
-### 12.5 Simulation d’exploitation de services
+### 12.5 Organisation des données collectées
 
-### 12.6 Observation des événements générés
+---
 
-## 13. Collecte des données
+# Partie IV : Simulation, analyse et résultats
 
-### 13.1 Logs Cowrie
+## 13. Simulation contrôlée des attaques
 
-### 13.2 Logs Dionaea
+### 13.1 Cadre de test
 
-### 13.3 Logs système
+### 13.2 Scan réseau avec Nmap
 
-### 13.4 Événements remontés dans Wazuh
+### 13.3 Simulation de connexions SSH suspectes
+
+### 13.4 Simulation d’attaque par force brute
+
+### 13.5 Simulation d’exploitation de services
+
+### 13.6 Observation des événements générés
 
 ## 14. Analyse des résultats
 
@@ -142,13 +195,41 @@ category: Projet
 
 ### 14.6 Analyse des comportements automatisés
 
-### 14.7 Visualisation des attaques
+### 14.7 Visualisation des attaques dans le tableau de bord
 
 ## 15. Résultats obtenus
 
+### 15.1 Types d’attaques détectées
+
+### 15.2 Données collectées
+
+### 15.3 Alertes générées
+
+### 15.4 Apport de HoneyShield dans la détection
+
+### 15.5 Interprétation générale des résultats
+
+---
+
+# Partie V : Bilan du projet
+
 ## 16. Difficultés rencontrées
 
+### 16.1 Difficultés techniques
+
+### 16.2 Difficultés liées à la configuration
+
+### 16.3 Difficultés liées à la collecte des logs
+
+### 16.4 Solutions apportées
+
 ## 17. Limites du projet
+
+### 17.1 Limites techniques
+
+### 17.2 Limites liées à l’environnement de test
+
+### 17.3 Limites liées aux attaques simulées
 
 ## 18. Améliorations possibles
 
@@ -162,20 +243,36 @@ category: Projet
 
 ### 18.5 Ajout d’autres honeypots
 
+### 18.6 Intégration avec un SOC ou un SIEM plus avancé
+
 ## 19. Compétences mises en avant
+
+### 19.1 Administration Linux
+
+### 19.2 Sécurité réseau
+
+### 19.3 Supervision et analyse des logs
+
+### 19.4 Détection d’intrusion
+
+### 19.5 Analyse des comportements malveillants
+
+### 19.6 Utilisation d’outils de cybersécurité
 
 ## 20. Conclusion générale
 
-## 21. Annexes
+---
 
-### 21.1 Commandes utilisées
+# Annexes
 
-### 21.2 Fichiers de configuration
+## Annexe 1 : Commandes utilisées
 
-### 21.3 Captures d’écran
+## Annexe 2 : Fichiers de configuration
 
-### 21.4 Exemples de logs
+## Annexe 3 : Captures d’écran
 
-### 21.5 Schéma réseau
+## Annexe 4 : Exemples de logs
 
-### 21.6 Références
+## Annexe 5 : Schéma réseau
+
+## Annexe 6 : Références

@@ -16,26 +16,11 @@
     if(siteBase&&u.startsWith(siteBase+'/'))return u.slice(siteBase.length)||'/';
     return u;
   }
-  function ensureNavigation(){
-    document.querySelectorAll('.nav-links').forEach(nav=>{
-      const admin=nav.querySelector('.admin-link');
-      if(admin)admin.remove();
-      const hasArticles=[...nav.querySelectorAll('a')].some(a=>a.getAttribute('href')==='articles.html');
-      if(!hasArticles){
-        const before=[...nav.querySelectorAll('a')].find(a=>a.getAttribute('href')==='certifications.html');
-        const link=document.createElement('a');
-        link.href='articles.html';
-        link.textContent='Articles';
-        if(location.pathname.endsWith('articles.html'))link.className='active';
-        nav.insertBefore(link,before||null);
-      }
-    });
-  }
   function injectCss(){
     if(document.getElementById('stable-public-fixes'))return;
     const style=document.createElement('style');
     style.id='stable-public-fixes';
-    style.textContent='.admin-link{display:none!important}.cert-verify{display:inline-flex;margin-top:12px;font-weight:900;color:var(--accent)}.doc-highlight{font-weight:800;color:var(--accent)}';
+    style.textContent='.cert-verify{display:inline-flex;margin-top:12px;font-weight:900;color:var(--accent)}.doc-highlight{font-weight:800;color:var(--accent)}';
     document.head.appendChild(style);
   }
   function apply(){
@@ -50,7 +35,6 @@
       const next=fix(current);
       if(next&&next!==current)el.setAttribute('data-image',next);
     });
-    ensureNavigation();
     injectCss();
   }
   document.addEventListener('DOMContentLoaded',()=>setTimeout(apply,300));

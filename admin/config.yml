@@ -17,17 +17,17 @@ collections:
         fields:
           - { label: Nom, name: name, widget: string }
           - { label: Titre, name: title, widget: string }
-          - { label: Photo de profil, name: image, widget: image, required: false, hint: "Ajoute ici ta photo. Elle sera affichée sur la page d’accueil." }
+          - { label: Photo de profil, name: image, widget: image, required: false, hint: "Ajoute ici ta photo. Elle sera affichée sur la page d’accueil dans la vitrine profil." }
           - { label: Bio courte, name: bio, widget: text }
           - { label: Texte à propos, name: about, widget: text }
-          - { label: Chemin du CV, name: cv, widget: string, required: false, hint: "Exemple : assets/cv/cv.pdf" }
+          - { label: Chemin du CV, name: cv, widget: string, required: false }
           - label: Contacts
             name: contacts
             widget: list
             fields:
               - { label: Libellé, name: label, widget: string }
               - { label: Lien, name: url, widget: string }
-      - label: Compétences principales
+      - label: Compétences
         name: skills
         file: assets/data/skills.json
         format: json
@@ -65,82 +65,13 @@ collections:
                   - Objectif
               - { label: Date ou année, name: date, widget: string, required: false }
               - { label: Image de la preuve, name: image, widget: image, required: false }
-              - { label: Lien de vérification, name: credentialUrl, widget: string, required: false, hint: "Le site affiche ce lien quand il est renseigné." }
+              - { label: Lien de vérification, name: credentialUrl, widget: string, required: false }
               - { label: Description, name: description, widget: text }
               - label: Compétences liées
                 name: skills
                 widget: list
-                required: false
                 field: { label: Compétence, name: skill, widget: string }
-      - label: Projets affichés sur le site
-        name: projects_site_source
-        file: content/projects/project-control.json
-        format: json
-        fields:
-          - label: Projets
-            name: items
-            widget: list
-            fields:
-              - { label: Titre source, name: title, widget: string, hint: "Titre lié au fichier Markdown. Évite de le modifier si le fichier existe déjà." }
-              - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Titre affiché sur le site. Peut être modifié sans casser le fichier Markdown." }
-              - { label: Chemin Obsidian / Markdown, name: obsidianPath, widget: string, required: false }
-              - { label: Catégorie, name: category, widget: string, required: false }
-              - label: Statut
-                name: status
-                widget: select
-                required: false
-                options:
-                  - En cours
-                  - Terminé
-                  - En amélioration
-                  - À documenter
-              - label: Outils utilisés
-                name: tools
-                widget: list
-                required: false
-                field: { label: Outil, name: tool, widget: string }
-              - label: Compétences acquises
-                name: skills
-                widget: list
-                required: false
-                hint: "Ces compétences remontent dans l’onglet Compétences démontrées."
-                field: { label: Compétence, name: skill, widget: string }
-              - { label: Publier sur le site, name: publish, widget: boolean, default: false }
-              - { label: Note interne, name: note, widget: text, required: false }
-      - label: Writeups affichés sur le site
-        name: writeups_site_source
-        file: content/writeups/writeups.json
-        format: json
-        fields:
-          - label: Writeups
-            name: items
-            widget: list
-            fields:
-              - { label: Type, name: type, widget: string, required: false }
-              - { label: Section technique, name: section, widget: string, required: false }
-              - label: Section affichée
-                name: sectionLabel
-                widget: select
-                options:
-                  - Challenges
-                  - Machine/Lab
-              - { label: Plateforme, name: platform, widget: string }
-              - { label: Catégorie, name: category, widget: string }
-              - { label: Titre, name: title, widget: string }
-              - { label: Statut, name: status, widget: string, required: false }
-              - { label: Difficulté, name: difficulty, widget: string, required: false }
-              - label: Compétences acquises
-                name: skills
-                widget: list
-                required: false
-                field: { label: Compétence, name: skill, widget: string }
-              - label: Tags
-                name: tags
-                widget: list
-                required: false
-                field: { label: Tag, name: tag, widget: string }
-              - { label: Description, name: description, widget: text, required: false }
-              - { label: Chemin du fichier Markdown, name: path, widget: string }
+
   - name: project_publication
     label: Publication Projets Obsidian
     label_singular: Projet à valider
@@ -152,7 +83,7 @@ collections:
     summary: "{{title}} — {{publish}}"
     fields:
       - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
-      - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Le site utilise ce titre seulement pour l’affichage." }
+      - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
       - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier PROJET." }
       - { label: Catégorie, name: category, widget: string, required: false }
       - label: Statut
@@ -177,6 +108,7 @@ collections:
         field: { label: Compétence, name: skill, widget: string }
       - { label: Publier sur le site, name: publish, widget: boolean, default: false }
       - { label: Note interne, name: note, widget: text, required: false }
+
   - name: writeup_publication
     label: Publication Writeups Obsidian
     label_singular: Writeup à valider
@@ -187,9 +119,9 @@ collections:
     identifier_field: title
     summary: "{{sectionLabel}} / {{platform}} / {{category}} — {{title}} — {{publish}}"
     fields:
-      - { label: Titre détecté, name: title, widget: string }
-      - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false }
-      - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string }
+      - { label: Titre détecté, name: title, widget: string, hint: "Titre automatiquement basé sur le nom du fichier Obsidian. À éviter de modifier." }
+      - { label: Titre public personnalisé, name: publicTitle, widget: string, required: false, hint: "Optionnel. Remplis seulement si tu veux afficher un titre différent sur le site." }
+      - { label: Chemin détecté automatiquement, name: obsidianPath, widget: string, hint: "Ne pas modifier. Ce chemin vient automatiquement du dossier Pratique." }
       - { label: Sous-section détectée, name: sectionLabel, widget: string, required: false }
       - { label: Plateforme détectée, name: platform, widget: string, required: false }
       - { label: Catégorie détectée, name: category, widget: string, required: false }
@@ -197,9 +129,11 @@ collections:
         name: skills
         widget: list
         required: false
+        hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
         field: { label: Compétence, name: skill, widget: string }
       - { label: Publier sur le site, name: publish, widget: boolean, default: false }
       - { label: Note interne, name: note, widget: text, required: false }
+
   - name: articles
     label: Articles
     files:

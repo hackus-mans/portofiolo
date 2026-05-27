@@ -41,10 +41,6 @@
 
   function buildReaderToc(panel){
     if(!panel || panel.dataset.tocReady === 'yes') return;
-    const kicker = panel.querySelector('.real-reader-header .card-kicker');
-    const isProject = kicker && kicker.textContent.toLowerCase().includes('projet');
-    if(!isProject) return;
-
     const doc = panel.querySelector('.real-reader-document');
     const sidebar = panel.querySelector('.real-reader-sidebar');
     if(!doc || !sidebar) return;
@@ -53,7 +49,7 @@
 
     const headings = Array.from(doc.querySelectorAll('h2,h3,h4')).filter(h => h.textContent.trim());
     if(!headings.length){
-      sidebar.innerHTML = '<p class="sidebar-title">Navigation</p><p class="toc-empty">Aucune section détectée.</p>';
+      sidebar.innerHTML = '<p class="sidebar-title">Table des matières</p><p class="toc-empty">Aucune section détectée.</p>';
       panel.dataset.tocReady = 'yes';
       return;
     }

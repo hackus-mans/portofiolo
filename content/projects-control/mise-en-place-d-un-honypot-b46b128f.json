@@ -5,7 +5,12 @@
   "category": "Projet",
   "status": "À documenter",
   "tools": [],
-  "skills": [],
+  "skills": [
+    "Honypot"
+  ],
   "publish": true,
+  "pdfEnabled": true,
+  "pdfAccess": "public",
+  "pdfLabel": "Téléverser le PDF",
   "note": ""
 }

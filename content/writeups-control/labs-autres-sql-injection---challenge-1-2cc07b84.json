@@ -8,6 +8,7 @@
   "skills": [
     "SQL injection"
   ],
-  "publish": true,
+  "publish": false,
+  "pdfLabel": "",
   "note": ""
 }

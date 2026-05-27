@@ -67,11 +67,55 @@ Cette solution présente donc un double intérêt : elle sert à la fois d’out
 
 ### 2.1 Contexte général de la cybersécurité
 
+Le développement rapide des technologies numériques a profondément transformé le fonctionnement des organisations. Aujourd’hui, les entreprises, les administrations, les établissements d’enseignement, les banques, les hôpitaux et de nombreuses autres structures dépendent fortement des systèmes informatiques pour gérer leurs activités quotidiennes.
+
+Les données, les applications, les serveurs, les réseaux et les services en ligne sont devenus des ressources stratégiques. Ils permettent de communiquer, de stocker des informations, de fournir des services, de gérer les utilisateurs et de soutenir les processus métier. Cette dépendance au numérique rend les systèmes d’information indispensables, mais elle les expose également à de nombreux risques.
+
+Dans ce contexte, la cybersécurité occupe une place essentielle. Elle vise à protéger les infrastructures informatiques contre les accès non autorisés, les pertes de données, les interruptions de service, les intrusions et les différentes formes d’attaques informatiques. Elle ne concerne plus uniquement les grandes entreprises, mais toutes les organisations qui utilisent des outils numériques.
+
+Cependant, malgré les efforts de protection mis en place, les systèmes informatiques restent exposés à des menaces constantes. Les attaquants cherchent en permanence à identifier des failles, à exploiter des erreurs de configuration ou à profiter de mots de passe faibles pour accéder aux ressources sensibles.
+
+La cybersécurité ne peut donc plus être limitée à une simple logique de protection passive. Elle doit également intégrer des mécanismes de surveillance, de détection et d’analyse afin de mieux comprendre les menaces et de réagir rapidement lorsqu’un comportement suspect est observé.
+
 ### 2.2 Menaces actuelles sur les systèmes exposés
+
+Les systèmes exposés sur un réseau ou sur Internet sont particulièrement ciblés par les cyberattaques. Lorsqu’un serveur, une application ou un service est accessible à distance, il devient automatiquement une cible potentielle pour des attaquants humains ou des programmes automatisés.
+
+Ces menaces peuvent prendre plusieurs formes. Les attaquants peuvent effectuer des scans de ports afin d’identifier les services actifs sur une machine. Ils peuvent ensuite tenter de découvrir les versions des logiciels utilisés, rechercher des vulnérabilités connues ou tester des identifiants faibles pour obtenir un accès non autorisé.
+
+Parmi les attaques les plus fréquentes contre les systèmes exposés, on retrouve les tentatives de connexion par force brute, les attaques contre les services SSH, FTP, HTTP ou les interfaces d’administration, l’exploitation de failles logicielles, les injections malveillantes, les dépôts de fichiers suspects ou encore les tentatives d’élévation de privilèges.
+
+Ces attaques ne sont pas toujours visibles immédiatement. Certaines tentatives peuvent sembler isolées ou sans impact direct, alors qu’elles constituent en réalité les premières étapes d’une attaque plus sérieuse. Un simple scan de ports peut précéder une tentative d’exploitation. Une tentative de connexion échouée peut annoncer une attaque par dictionnaire. Une activité inhabituelle dans les journaux système peut révéler une reconnaissance en cours.
+
+Le danger est donc que certaines menaces passent inaperçues lorsqu’elles ne sont pas correctement surveillées. Un système exposé sans mécanisme efficace de détection devient plus vulnérable, car l’organisation risque de découvrir l’attaque trop tard, parfois après la compromission du système.
 
 ### 2.3 Importance de la détection précoce des attaques
 
+La détection précoce des attaques est un élément essentiel de la cybersécurité moderne. Elle consiste à identifier rapidement les comportements suspects avant qu’ils ne provoquent des conséquences graves sur le système d’information.
+
+Lorsqu’une attaque est détectée à temps, il devient possible de réagir plus rapidement. L’administrateur peut bloquer une adresse IP suspecte, isoler une machine compromise, corriger une faille, renforcer une règle de sécurité ou analyser les journaux afin de comprendre l’origine de l’incident.
+
+À l’inverse, lorsqu’une attaque n’est pas détectée rapidement, l’attaquant peut disposer de plus de temps pour explorer le réseau, voler des informations, installer des outils malveillants, créer des accès persistants ou perturber le fonctionnement normal des services.
+
+La détection précoce permet donc de réduire les risques liés aux cyberattaques. Elle contribue à limiter les dégâts, à améliorer la réactivité des équipes de sécurité et à renforcer progressivement les mesures de protection.
+
+Dans le cadre du projet HoneyShield, cette logique est particulièrement importante. Le projet vise à mettre en place un environnement permettant d’observer les tentatives d’attaque, d’identifier les comportements suspects et de collecter des informations utiles pour mieux comprendre les menaces.
+
+Ainsi, le contexte du projet repose sur une réalité claire : les systèmes exposés sont constamment ciblés, les attaques peuvent commencer par des actions discrètes, et seule une surveillance efficace permet de détecter ces signaux faibles avant qu’ils ne deviennent de véritables incidents de sécurité.
+
 ### 2.4 Justification du choix d’un honeypot
+
+Le choix d’un honeypot dans le cadre du projet HoneyShield se justifie par le besoin de disposer d’un environnement capable d’attirer, d’observer et d’analyser les tentatives d’attaque sans exposer directement les systèmes réels d’une organisation.
+
+Dans un contexte où les systèmes exposés sont régulièrement ciblés par des scans réseau, des tentatives de connexion non autorisées, des attaques par force brute ou encore l’exploitation de services vulnérables, il devient nécessaire de mettre en place des mécanismes permettant de mieux comprendre le comportement des attaquants. Les solutions de sécurité classiques permettent souvent de bloquer ou de signaler certaines menaces, mais elles ne permettent pas toujours d’observer en détail les actions menées par un attaquant.
+
+Le honeypot apparaît alors comme une solution adaptée, car il joue le rôle d’un leurre volontairement placé dans un environnement contrôlé. Il donne l’apparence d’un système réel ou vulnérable afin d’attirer les attaquants et de collecter des informations sur leurs activités. Ces informations peuvent concerner les adresses IP utilisées, les ports ciblés, les identifiants testés, les commandes exécutées, les fichiers déposés ou encore les méthodes d’attaque employées.
+
+Dans le cas de HoneyShield, le honeypot n’est pas choisi uniquement comme un outil de détection. Il est également choisi comme un outil d’observation, d’apprentissage et d’analyse. Il permet de transformer une tentative d’intrusion en donnée exploitable pour mieux comprendre les menaces et améliorer les mécanismes de défense.
+
+Ce choix est également pertinent dans un cadre pédagogique et expérimental. Le honeypot permet de reproduire un environnement proche de la réalité tout en limitant les risques pour les systèmes sensibles. Il offre ainsi la possibilité d’étudier concrètement les comportements malveillants, de suivre les traces laissées par les attaquants et d’analyser les événements générés dans un système de supervision.
+
+Ainsi, le choix d’un honeypot pour HoneyShield se justifie par sa capacité à répondre à trois besoins essentiels : détecter précocement les activités suspectes, collecter des données utiles sur les attaques et fournir un cadre sécurisé pour l’analyse des cybermenaces. Cette approche correspond parfaitement à l’objectif du projet, qui est de concevoir et déployer un environnement permettant la détection et l’analyse des cyberattaques.
 
 ## <mark style="background:#ff4d4f">3. Problématique</mark>
 

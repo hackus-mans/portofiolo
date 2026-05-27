@@ -28,16 +28,32 @@
     nodes.forEach(node=>{let text=node.nodeValue;swaps.forEach(pair=>{text=text.split(pair[0]).join(pair[1])});node.nodeValue=text});
     document.querySelectorAll('.ready-level').forEach(el=>el.remove());
   }
+  function ensureNavigation(){
+    document.querySelectorAll('.nav-links').forEach(nav=>{
+      const admin=nav.querySelector('.admin-link');
+      if(admin)admin.remove();
+      const hasArticles=[...nav.querySelectorAll('a')].some(a=>a.getAttribute('href')==='articles.html');
+      if(!hasArticles){
+        const cert=[...nav.querySelectorAll('a')].find(a=>a.getAttribute('href')==='certifications.html');
+        const a=document.createElement('a');
+        a.href='articles.html';
+        a.textContent='Articles';
+        if(location.pathname.endsWith('articles.html'))a.className='active';
+        nav.insertBefore(a,cert||null);
+      }
+    });
+  }
   function injectStableCss(){
     if(document.getElementById('stable-real-tabs'))return;
     const style=document.createElement('style');
     style.id='stable-real-tabs';
-    style.textContent='.realisation-tabs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;overflow:visible!important;gap:10px!important;padding:0!important;background:transparent!important;border:0!important}.realisation-tabs .real-tab{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:48px!important;border-radius:16px!important}.realisation-tabs .real-tab.active{background:linear-gradient(135deg,#2dd4bf,#60a5fa)!important;color:#041018!important}.ready-level,.public-note,.technical-note{display:none!important}.cert-verify{display:inline-flex;margin-top:12px;font-weight:900;color:var(--accent)}.doc-highlight{font-weight:800;color:var(--accent)}@media(max-width:760px){.realisation-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.realisation-tabs .real-tab{min-height:44px!important;font-size:13px!important}.branch-list,.branch-list-large{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:8px!important}.branch-card{flex:0 0 auto!important;min-width:145px!important;max-width:220px!important}}';
+    style.textContent='.admin-link{display:none!important}.realisation-tabs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;width:100%!important;overflow:visible!important;gap:10px!important;padding:0!important;background:transparent!important;border:0!important}.realisation-tabs .real-tab{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:48px!important;border-radius:16px!important}.realisation-tabs .real-tab.active{background:linear-gradient(135deg,#2dd4bf,#60a5fa)!important;color:#041018!important}.ready-level,.public-note,.technical-note{display:none!important}.cert-verify{display:inline-flex;margin-top:12px;font-weight:900;color:var(--accent)}.doc-highlight{font-weight:800;color:var(--accent)}@media(max-width:760px){.realisation-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.realisation-tabs .real-tab{min-height:44px!important;font-size:13px!important}.branch-list,.branch-list-large{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:8px!important}.branch-card{flex:0 0 auto!important;min-width:145px!important;max-width:220px!important}}';
     document.head.appendChild(style);
   }
   function apply(){
     document.querySelectorAll('img[src],source[src],video[src],audio[src],a[href]').forEach(el=>{const attr=el.hasAttribute('href')?'href':'src';const current=el.getAttribute(attr);const next=fix(current);if(next&&next!==current)el.setAttribute(attr,next)});
     document.querySelectorAll('[data-image]').forEach(el=>{const current=el.getAttribute('data-image');const next=fix(current);if(next&&next!==current)el.setAttribute('data-image',next)});
+    ensureNavigation();
     injectStableCss();
     cleanCopy();
   }

@@ -29,6 +29,16 @@
     });
   }
 
+  function scrollInsideDocument(doc, target){
+    if(!doc || !target) return;
+    const docRect = doc.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+    const top = targetRect.top - docRect.top + doc.scrollTop - 18;
+    doc.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    target.classList.add('toc-focus');
+    setTimeout(() => target.classList.remove('toc-focus'), 1200);
+  }
+
   function buildReaderToc(panel){
     if(!panel || panel.dataset.tocReady === 'yes') return;
     const kicker = panel.querySelector('.real-reader-header .card-kicker');
@@ -49,23 +59,27 @@
     }
 
     const used = new Map();
-    const links = headings.map((heading, index) => {
+    const links = headings.map((heading) => {
       const level = Number(heading.tagName.replace('H',''));
       const base = slugify(heading.textContent);
       const count = used.get(base) || 0;
       used.set(base, count + 1);
       const id = count ? base + '-' + count : base;
       heading.id = heading.id || id;
+      heading.dataset.tocId = heading.id;
       heading.classList.add('toc-target');
-      return '<a class="toc-link toc-l' + level + '" href="#' + heading.id + '">' + heading.textContent.trim() + '</a>';
+      return '<button class="toc-link toc-l' + level + '" type="button" data-target="' + heading.id + '">' + heading.textContent.trim() + '</button>';
     }).join('');
 
     sidebar.innerHTML = '<p class="sidebar-title">Table des matières</p><nav class="reader-toc">' + links + '</nav>';
     sidebar.querySelectorAll('.toc-link').forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
-        const target = doc.querySelector(link.getAttribute('href'));
-        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        const id = link.dataset.target;
+        const target = headings.find(h => h.dataset.tocId === id || h.id === id);
+        sidebar.querySelectorAll('.toc-link').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        scrollInsideDocument(doc, target);
       });
     });
     panel.dataset.tocReady = 'yes';

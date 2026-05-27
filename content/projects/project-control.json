@@ -1,14 +1,14 @@
 {
   "items": [
     {
-      "title": "Mise en place d'un honypot",
+      "title": "Mise en place d'un honypotsd",
       "publicTitle": "",
-      "obsidianPath": "Mise en place d'un honypot.md",
+      "obsidianPath": "Mise en place d'un honypotsd.md",
       "category": "Projet",
       "status": "À documenter",
       "tools": [],
       "skills": [],
-      "publish": true,
+      "publish": false,
       "note": ""
     }
   ]

@@ -1,0 +1,57 @@
+/* Correctif ciblé : Projets + Writeups visibles sur téléphone */
+.realisation-tabs{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:100%!important;
+  max-width:100%!important;
+  overflow:visible!important;
+  gap:10px!important;
+  padding:0!important;
+}
+.realisation-tabs .real-tab{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  min-height:48px!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-align:center!important;
+}
+@media(max-width:760px){
+  .realisation-tabs{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+    margin:0 0 14px!important;
+    border-radius:16px!important;
+  }
+  .realisation-tabs .real-tab{
+    flex:none!important;
+    min-width:0!important;
+    max-width:none!important;
+    width:100%!important;
+    min-height:44px!important;
+    padding:0 10px!important;
+    font-size:13px!important;
+  }
+  .branch-list,
+  .branch-list-large{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    gap:8px!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  .branch-list::-webkit-scrollbar,
+  .branch-list-large::-webkit-scrollbar{display:none!important}
+  .branch-card{
+    flex:0 0 auto!important;
+    min-width:145px!important;
+    max-width:220px!important;
+  }
+}

@@ -107,6 +107,22 @@ collections:
         hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
         field: { label: Compétence, name: skill, widget: string }
       - { label: Publier sur le site, name: publish, widget: boolean, default: false }
+      - label: Autoriser le PDF
+        name: pdfEnabled
+        widget: boolean
+        default: false
+        required: false
+        hint: "Active cette option seulement si tu veux afficher le bouton de téléchargement PDF sur le site."
+      - label: Permission du PDF
+        name: pdfAccess
+        widget: select
+        required: false
+        default: private
+        options:
+          - { label: Privé, value: private }
+          - { label: Public téléchargeable, value: public }
+      - { label: Fichier PDF, name: pdfFile, widget: file, required: false, hint: "Ajoute ou choisis le PDF à proposer au téléchargement." }
+      - { label: Libellé du bouton PDF, name: pdfLabel, widget: string, required: false, default: "Télécharger le PDF" }
       - { label: Note interne, name: note, widget: text, required: false }
 
   - name: writeup_publication
@@ -132,6 +148,22 @@ collections:
         hint: "Ces compétences seront ajoutées automatiquement dans l’onglet Compétences."
         field: { label: Compétence, name: skill, widget: string }
       - { label: Publier sur le site, name: publish, widget: boolean, default: false }
+      - label: Autoriser le PDF
+        name: pdfEnabled
+        widget: boolean
+        default: false
+        required: false
+        hint: "Active cette option seulement si tu veux afficher le bouton de téléchargement PDF sur le site."
+      - label: Permission du PDF
+        name: pdfAccess
+        widget: select
+        required: false
+        default: private
+        options:
+          - { label: Privé, value: private }
+          - { label: Public téléchargeable, value: public }
+      - { label: Fichier PDF, name: pdfFile, widget: file, required: false, hint: "Ajoute ou choisis le PDF à proposer au téléchargement." }
+      - { label: Libellé du bouton PDF, name: pdfLabel, widget: string, required: false, default: "Télécharger le PDF" }
       - { label: Note interne, name: note, widget: text, required: false }
 
   - name: articles

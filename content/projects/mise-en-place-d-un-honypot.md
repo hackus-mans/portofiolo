@@ -2,7 +2,7 @@
 title: Mise en place d'un honypot
 tools:
 skills:
-status: En cours
+status: À documenter
 category: Projet
 ---
 
@@ -163,9 +163,53 @@ Cette hypothèse sera vérifiée à travers la mise en œuvre de HoneyShield, la
 
 ## <mark style="background:#ff4d4f">4. Objectifs du projet</mark>
 
+Les objectifs du projet HoneyShield permettent de préciser ce que le projet cherche à atteindre sur les plans technique, pédagogique et sécuritaire. Après avoir présenté le contexte et la problématique, il est nécessaire de définir clairement le but général du projet ainsi que les actions spécifiques à réaliser pour y parvenir.
+
+Le projet HoneyShield ne consiste pas seulement à installer un outil de cybersécurité. Il vise à concevoir un environnement complet permettant d’attirer des comportements suspects, de collecter les traces d’attaque, de centraliser les données et d’analyser les événements observés. Les objectifs définis ci-dessous orientent donc toute la démarche de conception, de mise en œuvre, de simulation et d’évaluation de la solution.
+
 ### 4.1 Objectif général
 
+L’objectif général du projet HoneyShield est de **concevoir et déployer un environnement honeypot sécurisé, isolé et supervisé, capable de détecter, collecter et analyser des tentatives de cyberattaques dans un cadre contrôlé**.
+
+Cet objectif vise à mettre en place une solution permettant d’observer les comportements malveillants sans exposer directement les systèmes réels d’une organisation. HoneyShield doit ainsi jouer le rôle d’un environnement d’observation et d’analyse, capable de fournir des informations utiles sur les attaques visant des services exposés.
+
+À travers cet objectif général, le projet cherche également à démontrer l’intérêt d’un honeypot dans une stratégie de cybersécurité proactive. Il ne s’agit pas uniquement de bloquer les attaques, mais de mieux comprendre leur déroulement, les techniques utilisées, les services ciblés et les traces laissées par les attaquants.
+
+Ainsi, HoneyShield doit permettre de passer d’une logique de sécurité passive à une logique plus active, fondée sur la surveillance, l’apprentissage et l’analyse des menaces.
+
 ### 4.2 Objectifs spécifiques
+
+Pour atteindre l’objectif général, plusieurs objectifs spécifiques sont définis. Ces objectifs correspondent aux différentes étapes nécessaires à la réalisation du projet HoneyShield.
+
+Le premier objectif spécifique est de **mettre en place une architecture honeypot isolée**. Cette isolation est essentielle afin de protéger les systèmes réels et d’éviter qu’une activité malveillante observée dans le honeypot puisse affecter l’environnement principal. Le projet devra donc prévoir une séparation claire entre l’environnement de test et les ressources sensibles.
+
+Le deuxième objectif spécifique est de **déployer des services attractifs pour les attaquants**. Ces services doivent permettre de simuler un système exposé et intéressant pour un attaquant. Ils peuvent inclure des services comme SSH ou d’autres services réseau souvent ciblés dans les attaques informatiques.
+
+Le troisième objectif spécifique est de **installer et configurer des outils honeypot adaptés**, notamment Cowrie et Dionaea. Cowrie permettra principalement d’observer les tentatives de connexion SSH suspectes, tandis que Dionaea pourra être utilisé pour capter certaines interactions avec des services vulnérables ou exposés.
+
+Le quatrième objectif spécifique est de **centraliser les journaux et les événements de sécurité**. Les informations générées par les honeypots doivent être collectées et organisées afin de faciliter leur analyse. Cette centralisation permettra d’avoir une meilleure visibilité sur les activités observées dans l’environnement HoneyShield.
+
+Le cinquième objectif spécifique est de **intégrer une solution de supervision**, notamment Wazuh, afin de suivre les événements générés par l’environnement. Cette solution permettra de visualiser les alertes, de consulter les logs, d’identifier les comportements suspects et d’améliorer l’exploitation des données collectées.
+
+Le sixième objectif spécifique est de **réaliser des simulations contrôlées d’attaques**. Ces simulations permettront de vérifier le bon fonctionnement de HoneyShield face à des scénarios comme le scan réseau, les tentatives de connexion SSH suspectes ou les attaques par force brute.
+
+Le septième objectif spécifique est de **analyser les données collectées** afin d’identifier les informations utiles : adresses IP suspectes, ports ciblés, identifiants utilisés, mots de passe testés, commandes exécutées ou comportements automatisés.
+
+Le huitième objectif spécifique est de **évaluer l’apport de HoneyShield dans la détection des attaques**. Cette évaluation permettra de déterminer dans quelle mesure l’environnement mis en place facilite l’observation, la détection et l’analyse des cybermenaces.
+
+Enfin, le dernier objectif spécifique est de **proposer des pistes d’amélioration** pour faire évoluer HoneyShield. Ces améliorations pourront concerner l’ajout d’autres honeypots, l’intégration de l’intelligence artificielle, la corrélation avancée des événements, la géolocalisation des adresses IP ou encore l’intégration dans un environnement SOC ou SIEM plus avancé.
+
+En résumé, les objectifs spécifiques du projet HoneyShield sont les suivants :
+
+- **Mettre en place** une architecture honeypot isolée et sécurisée.
+- **Déployer** des services exposés permettant d’attirer des comportements suspects.
+- **Installer et configurer** des outils honeypot tels que Cowrie et Dionaea.
+- **Centraliser** les journaux et les événements générés par l’environnement.
+- **Intégrer** une solution de supervision comme Wazuh.
+- **Réaliser** des simulations contrôlées d’attaques.
+- **Analyser** les données collectées lors des interactions avec le honeypot.
+- **Évaluer** l’apport de HoneyShield dans la détection et l’analyse des cyberattaques.
+- **Proposer** des pistes d’amélioration pour renforcer la solution.
 
 ## <mark style="background:#ff4d4f">5. Intérêt du projet</mark>
 

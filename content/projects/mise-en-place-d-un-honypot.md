@@ -8,16 +8,7 @@ category: Projet
 
 # HoneyShield : Conception et déploiement d’un environnement honeypot pour la détection et l’analyse des cyberattaques
 
----
 
-```table-of-contents
-title: Table des matières
-style: nestedList
-minLevel: 2
-maxLevel: 3
-```
-
----
 
 ## 1. Présentation générale du projet
 

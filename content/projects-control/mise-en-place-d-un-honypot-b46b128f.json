@@ -7,9 +7,5 @@
   "tools": [],
   "skills": [],
   "publish": true,
-  "pdfEnabled": true,
-  "pdfAccess": "public",
-  "pdfFile": "",
-  "pdfLabel": "Téléverser la version PDF",
   "note": ""
 }

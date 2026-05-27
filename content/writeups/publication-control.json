@@ -43,7 +43,7 @@
       "platform": "Root me",
       "category": "Web exploitation",
       "skills": [],
-      "publish": true,
+      "publish": false,
       "note": ""
     },
     {
@@ -56,7 +56,7 @@
       "skills": [
         "LFI vulnerability"
       ],
-      "publish": true,
+      "publish": false,
       "note": ""
     },
     {
@@ -69,7 +69,7 @@
       "skills": [
         "SQL injection"
       ],
-      "publish": true,
+      "publish": false,
       "note": ""
     },
     {

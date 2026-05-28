@@ -6,6 +6,9 @@
   "status": "À documenter",
   "tools": [],
   "skills": [],
-  "publish": false,
+  "publish": true,
+  "pdfEnabled": true,
+  "pdfAccess": "public",
+  "pdfLabel": "Téléchargé le PDF ici",
   "note": ""
 }

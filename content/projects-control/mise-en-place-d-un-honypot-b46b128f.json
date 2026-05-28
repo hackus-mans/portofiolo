@@ -11,6 +11,6 @@
   "publish": true,
   "pdfEnabled": true,
   "pdfAccess": "public",
-  "pdfLabel": "",
+  "pdfLabel": "Téléchargé la version PDF ici",
   "note": ""
 }

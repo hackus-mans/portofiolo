@@ -9,5 +9,8 @@
     "Honypot"
   ],
   "publish": true,
+  "pdfEnabled": true,
+  "pdfAccess": "public",
+  "pdfLabel": "",
   "note": ""
 }

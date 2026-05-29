@@ -1,0 +1,21 @@
+{
+  "type": "writeup",
+  "section": "machine-lab",
+  "sectionLabel": "Machine/Lab",
+  "platform": "Tryhackme",
+  "category": "Général",
+  "title": "SQL Injection Lab",
+  "publicTitle": "",
+  "status": "Publié",
+  "difficulty": "À définir",
+  "skills": [],
+  "tags": [],
+  "description": "vous pouvez trouvé cet lab. [ici](https://tryhackme.com/room/sqlilab)",
+  "obsidianPath": "LABs/Tryhackme/SQL Injection Lab.md",
+  "path": "/portofiolo/content/writeups/machines-labs/tryhackme/sql-injection-lab.md/sql-injection-lab.md",
+  "publish": false,
+  "pdfEnabled": false,
+  "pdfAccess": "private",
+  "pdfLabel": "Générer le PDF",
+  "note": ""
+}

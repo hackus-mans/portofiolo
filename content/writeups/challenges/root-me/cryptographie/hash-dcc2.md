@@ -1,14 +1,5 @@
----
-section: challenge
-platform: Root me
-category: Cryptographie
-status: Publié
-difficulty: À définir
-skills:
-tags:
----
 
-cet challenge a la même procédure que celle de Hash DCC
+cet challenge a la même procédure que celle de [[Hash DCC]]
 
 Dans ce challenge i nous ait demandé de trouvé le mot de passe de l'utilisateur Adminitrator depuis les informations sorties par l'outil secretsdump de la suite Impacket
 
@@ -111,7 +102,7 @@ donc ici nous avons la ligne qui parle du DCC de l'administrateur
 ROOTME.LOCAL/Administrator:$DCC2$10240#Administrator#23d97555681813db79b2ade4b4a6ff25
 ```
 
-pour la craqué nous allons utilisé John the ripper (vous pouvez également utilisé Hashcat ou des outils en ligne ) John the ripper & Hashcat for cracking
+pour la craqué nous allons utilisé John the ripper (vous pouvez également utilisé Hashcat ou des outils en ligne ) [[John the ripper & Hashcat for cracking]]
 
 
 donc pour faire le craquage nous allons procédé comme suit : 
@@ -125,7 +116,7 @@ Donc pour mettre le hash dans un format acceptable il faut juste mettre dans un 
 
 c'est a dis le nom de l'utilisateur (qui est Administrateur)  suivit du hash ( qui est ici $DCC2$10240#Administrator#23d97555681813db79b2ade4b4a6ff25 )
 
-![Pasted image 20260220145530](/portofiolo/content/writeups/media/pasted-image-20260220145530.png)
+![[Pasted image 20260220145530.png]]
 
 
 
@@ -134,7 +125,7 @@ c'est a dis le nom de l'utilisateur (qui est Administrateur)  suivit du hash ( q
 nth --file [le nom du fichier qui contient votre hash]
 ```
 
-![Pasted image 20260220145622](/portofiolo/content/writeups/media/pasted-image-20260220145622.png)
+![[Pasted image 20260220145622.png]]
 
 
 * Ensuite faire le craquage tous en utilisant le format que notre commande précédente nous a fournit :
@@ -145,4 +136,4 @@ john --format=mscash2 --wordlist=/usr/share/wordlists/rockyou.txt hash-dcc2.txt
 
 
 
-Après avoir effectué cette opération , vous obtiendrai le mot de passe que vous recherché
+Après avoir effectué cette opération , vous obtiendrai le mot de passe que vous recherché 

@@ -1,68 +1,39 @@
 {
   "items": [
     {
-      "section": "challenge",
       "sectionLabel": "Challenges",
       "platform": "Pico Ctf",
-      "category": "Cryptographie",
-      "total": 1,
-      "published": 0
+      "category": "Cryptographie"
     },
     {
-      "section": "challenge",
-      "sectionLabel": "Challenges",
-      "platform": "Pico Ctf",
-      "category": "Général",
-      "total": 0,
-      "published": 0
-    },
-    {
-      "section": "challenge",
       "sectionLabel": "Challenges",
       "platform": "Root me",
-      "category": "Cryptographie",
-      "total": 2,
-      "published": 1
+      "category": "Cryptographie"
     },
     {
-      "section": "challenge",
       "sectionLabel": "Challenges",
       "platform": "Root me",
-      "category": "Général",
-      "total": 0,
-      "published": 0
+      "category": "Web exploitation"
     },
     {
-      "section": "challenge",
-      "sectionLabel": "Challenges",
-      "platform": "Root me",
-      "category": "Web exploitation",
-      "total": 2,
-      "published": 0
-    },
-    {
-      "section": "machine-lab",
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",
-      "category": "Général",
-      "total": 1,
-      "published": 0
+      "category": "Général"
     },
     {
-      "section": "machine-lab",
-      "sectionLabel": "Machine/Lab",
-      "platform": "pwntilldawn",
-      "category": "Général",
-      "total": 1,
-      "published": 0
-    },
-    {
-      "section": "machine-lab",
       "sectionLabel": "Machine/Lab",
       "platform": "Tryhackme",
-      "category": "Général",
-      "total": 3,
-      "published": 0
+      "category": "Général"
+    },
+    {
+      "sectionLabel": "Machine/Lab",
+      "platform": "Tryhackme",
+      "category": "Pièce jointe"
+    },
+    {
+      "sectionLabel": "Machine/Lab",
+      "platform": "pwntilldawn",
+      "category": "Général"
     }
   ]
 }

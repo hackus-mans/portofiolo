@@ -1,0 +1,21 @@
+{
+  "type": "writeup",
+  "section": "machine-lab",
+  "sectionLabel": "Machine/Lab",
+  "platform": "Tryhackme",
+  "category": "Général",
+  "title": "Ninja skills",
+  "publicTitle": "",
+  "status": "Publié",
+  "difficulty": "À définir",
+  "skills": [],
+  "tags": [],
+  "description": "Documentation technique publiée depuis Obsidian.",
+  "obsidianPath": "LABs/Tryhackme/Ninja skills.md",
+  "path": "/portofiolo/content/writeups/machines-labs/tryhackme/ninja-skills.md/ninja-skills.md",
+  "publish": false,
+  "pdfEnabled": false,
+  "pdfAccess": "private",
+  "pdfLabel": "Générer le PDF",
+  "note": ""
+}

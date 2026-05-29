@@ -1,0 +1,21 @@
+{
+  "type": "writeup",
+  "section": "machine-lab",
+  "sectionLabel": "Machine/Lab",
+  "platform": "Tryhackme",
+  "category": "Général",
+  "title": "Breaking RSA",
+  "publicTitle": "",
+  "status": "Publié",
+  "difficulty": "À définir",
+  "skills": [],
+  "tags": [],
+  "description": "Le challenge ==Breacking RSA== est un challenge qui consiste a cassé le RSA mal implémenté en utilisant l’algorithme de factorisation de Fermat.",
+  "obsidianPath": "LABs/Tryhackme/Breaking RSA.md",
+  "path": "/portofiolo/content/writeups/machines-labs/tryhackme/breaking-rsa.md/breaking-rsa.md",
+  "publish": false,
+  "pdfEnabled": false,
+  "pdfAccess": "private",
+  "pdfLabel": "Générer le PDF",
+  "note": ""
+}

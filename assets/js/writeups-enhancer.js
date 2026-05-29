@@ -1,6 +1,9 @@
 (function(){
   const state={mode:'project',writeupSection:'',writeupPlatform:'',writeupCategory:'',projects:[],writeups:[],catalog:[],search:''};
   const IS_GITHUB_PAGES=location.hostname.includes('github.io');
+  const OWNER='hackus-mans';
+  const REPO='portofiolo';
+  const BRANCH='main';
   const LEGACY_BASE='/portofiolo';
   const SITE_BASE=(()=>{if(!IS_GITHUB_PAGES)return'';const first=(location.pathname.split('/').filter(Boolean)[0]||'').trim();return first&&!first.includes('.')?'/'+first:''})();
 
@@ -24,6 +27,18 @@
   }
   async function loadJSON(path){const r=await fetch(assetPath(path),{cache:'no-store'});if(!r.ok)throw new Error(path);return r.json()}
   async function loadText(path){const r=await fetch(assetPath(path),{cache:'no-store'});if(!r.ok)throw new Error(path);return r.text()}
+  async function loadGithubFolder(folder){
+    const api='https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+folder+'?ref='+BRANCH+'&cmsLive='+Date.now();
+    const res=await fetch(api,{cache:'no-store'});
+    if(!res.ok)return[];
+    const files=await res.json();
+    if(!Array.isArray(files))return[];
+    const rows=[];
+    for(const file of files.filter(f=>f.type==='file'&&String(f.name||'').toLowerCase().endsWith('.json'))){
+      try{const r=await fetch(file.download_url+'?cmsLive='+Date.now(),{cache:'no-store'});if(r.ok)rows.push(await r.json())}catch(e){}
+    }
+    return rows;
+  }
   function normalize(v){return clean(v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
   function slugify(v){return normalize(v).replace(/\.[a-z0-9]+$/i,'').replace(/[^a-z0-9._-]+/g,'-').replace(/^-+|-+$/g,'')||'file'}
   function slugFile(name){const n=clean(name).split('|')[0].trim().replace(/^\/+/, '');if(n.includes('/'))return n.split('/').map(slugify).join('/');const ext=(n.match(/\.[A-Za-z0-9]+$/)||[''])[0];const base=ext?n.slice(0,-ext.length):n;return slugify(base)+ext.toLowerCase()}
@@ -32,10 +47,36 @@
   function splitFM(md){const text=safe(md);if(!text.startsWith('---'))return{meta:{},body:text};const end=text.indexOf('\n---',3);if(end===-1)return{meta:{},body:text};return{meta:parseYaml(text.slice(3,end).trim()),body:text.slice(end+4).trim()}}
   function stripDecorations(text){return safe(text).replace(/<mark[^>]*>/gi,'').replace(/<\/mark>/gi,'').replace(/<font[^>]*>/gi,'').replace(/<\/font>/gi,'').replace(/!\[[^\]]*\]\([^)]+\)/g,'').replace(/!\[\[[^\]]+\]\]/g,'').trim()}
   function firstPara(body){const b=stripDecorations(body).replace(/^#\s+.*$/m,'').trim();const parts=b.split(/\n\s*\n/).map(p=>p.trim()).filter(p=>p&&!p.startsWith('#')&&!p.startsWith('```'));return parts[0]||'Documentation technique en cours de présentation.'}
-  function projectPathCandidates(item){const out=[];const add=p=>{p=clean(p);if(!p)return;if(p.startsWith('/'))p=p.slice(1);if(!p.startsWith('content/projects/'))p='content/projects/'+p;if(!p.endsWith('.md'))p=p.replace(/\/$/,'')+'.md';if(!out.includes(p))out.push(p)};if(item.path)add(item.path);if(item.obsidianPath)add(slugify(item.obsidianPath)+'.md');if(item.title)add(slugify(item.title)+'.md');if(item.publicTitle)add(slugify(item.publicTitle)+'.md');return out}
+  function uniqueBy(items,keyFn){const map=new Map();items.forEach(item=>{const k=keyFn(item);if(k&&!map.has(k))map.set(k,item)});return[...map.values()]}
+  function projectPathCandidates(item){const out=[];const add=p=>{p=clean(p);if(!p)return;if(p.startsWith('/'))p=p.slice(1);if(!p.startsWith('content/projects/'))p='content/projects/'+p;if(!p.endsWith('.md'))p=p.replace(/\/$/,'')+'.md';if(!out.includes(p))out.push(p)};if(item.path)add(item.path);if(item.obsidianPath)add(item.obsidianPath);if(item.title)add(slugify(item.title)+'.md');if(item.publicTitle)add(slugify(item.publicTitle)+'.md');return out}
   async function loadFirstText(candidates){for(const path of candidates){try{return{path,content:await loadText(path)}}catch(e){}}return{path:candidates[0]||'',content:''}}
-  async function loadProjects(){try{const control=await loadJSON('content/projects/project-control.json');const items=Array.isArray(control.items)?control.items.filter(i=>i.publish):[];return await Promise.all(items.map(async item=>{const loaded=await loadFirstText(projectPathCandidates(item));const parsed=splitFM(loaded.content);const skills=asList(item.skills).length?asList(item.skills):asList(parsed.meta.skills);const stack=asList(item.tools).length?asList(item.tools):asList(parsed.meta.tools);return{type:'project',title:clean(item.publicTitle||parsed.meta.title||item.title),category:clean(item.category||parsed.meta.category||'Projet'),level:clean(parsed.meta.level||'À définir'),status:clean(item.status||parsed.meta.status||'À documenter'),description:clean(item.description||firstPara(parsed.body)),stack,skills,github:clean(parsed.meta.github||'#'),demo:clean(parsed.meta.demo||'#'),documentation:parsed.body,path:loaded.path}}))}catch(e){return[]}}
-  async function loadWriteups(){try{const d=await loadJSON('content/writeups/writeups.json');return Array.isArray(d.items)?d.items.map(i=>({...i,type:'writeup'})):[]}catch(e){return[]}}
+  async function loadProjectRows(){
+    const rows=[];
+    try{const control=await loadJSON('content/projects/project-control.json');if(Array.isArray(control.items))rows.push(...control.items)}catch(e){}
+    try{rows.push(...await loadGithubFolder('content/projects-control'))}catch(e){}
+    return uniqueBy(rows,item=>normalize(item.publicTitle||item.title||item.obsidianPath||item.path));
+  }
+  async function loadProjects(){
+    try{
+      const rows=(await loadProjectRows()).filter(i=>i.publish===true||String(i.publish).toLowerCase()==='true');
+      return await Promise.all(rows.map(async item=>{
+        const loaded=await loadFirstText(projectPathCandidates(item));
+        const parsed=splitFM(loaded.content);
+        const skills=asList(item.skills).length?asList(item.skills):asList(parsed.meta.skills);
+        const stack=asList(item.tools).length?asList(item.tools):asList(parsed.meta.tools);
+        return {...item,type:'project',title:clean(item.publicTitle||parsed.meta.title||item.title),category:clean(item.category||parsed.meta.category||'Projet'),level:clean(parsed.meta.level||'À définir'),status:clean(item.status||parsed.meta.status||'À documenter'),description:clean(item.description||firstPara(parsed.body)),stack,skills,github:clean(parsed.meta.github||'#'),demo:clean(parsed.meta.demo||'#'),documentation:parsed.body,path:loaded.path}
+      }))
+    }catch(e){return[]}
+  }
+  async function loadWriteupRows(){
+    const rows=[];
+    try{const d=await loadJSON('content/writeups/writeups.json');if(Array.isArray(d.items))rows.push(...d.items)}catch(e){}
+    try{rows.push(...await loadGithubFolder('content/writeups-control'))}catch(e){}
+    return uniqueBy(rows,item=>normalize(item.publicTitle||item.title||item.obsidianPath||item.path));
+  }
+  async function loadWriteups(){
+    try{return (await loadWriteupRows()).filter(i=>i.publish!==false&&String(i.publish).toLowerCase()!=='false').map(i=>({...i,type:'writeup',title:clean(i.publicTitle||i.title),path:clean(i.path||i.obsidianPath)}))}catch(e){return[]}
+  }
   async function loadCatalog(){try{const d=await loadJSON('content/writeups/writeups-catalog.json');return Array.isArray(d.items)?d.items:[]}catch(e){return[]}}
   function itemText(item){return normalize([item.title,item.description,item.category,item.platform,item.sectionLabel,item.status,item.difficulty,...asList(item.skills),...asList(item.tags),...asList(item.stack)].join(' '))}
   function matchSearch(item){const q=normalize(state.search);return !q||itemText(item).includes(q)}

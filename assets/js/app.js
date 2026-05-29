@@ -23,18 +23,15 @@ function assetPath(path){
   if(SITE_BASE&&p.startsWith(SITE_BASE+'/'))return p.slice(SITE_BASE.length)||'/';
   return p;
 }
-function injectUiRefresh(){
-  const styles=[['mobileBeauty','assets/css/mobile-beauty.css?v=362'],['uiRefresh','assets/css/ui-refresh.css?v=362']];
-  styles.forEach(([key,href])=>{
-    if(document.querySelector('link[data-'+key+']'))return;
-    const link=document.createElement('link');
-    link.rel='stylesheet';
-    link.href=assetPath(href);
-    link.setAttribute('data-'+key,'true');
-    document.head.appendChild(link);
-  });
+function injectMobileBeauty(){
+  if(document.querySelector('link[data-mobile-beauty]'))return;
+  const link=document.createElement('link');
+  link.rel='stylesheet';
+  link.href=assetPath('assets/css/mobile-beauty.css?v=363');
+  link.dataset.mobileBeauty='true';
+  document.head.appendChild(link);
 }
-injectUiRefresh();
+injectMobileBeauty();
 async function loadJSON(path){const res=await fetch(assetPath(path),{cache:'no-store'});if(!res.ok)throw new Error(path);return res.json()}
 function setText(id,value){const el=byId(id);if(el)el.textContent=safe(value)}
 function setHref(id,value){const el=byId(id);if(el)el.href=assetPath(value||'#')}

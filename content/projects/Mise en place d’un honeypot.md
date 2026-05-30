@@ -1,547 +1,937 @@
 # HoneyShield : Conception et déploiement d’un environnement honeypot pour la détection et l’analyse des cyberattaques
 
+---
 
 ## <mark style="background:#ff4d4f">1. Présentation générale du projet</mark>
 
 ### 1.1 Présentation de HoneyShield
 
-HoneyShield est un projet de cybersécurité qui consiste à concevoir et déployer un environnement honeypot destiné à la détection et à l’analyse des activités malveillantes. Un honeypot est un système volontairement exposé ou simulé afin d’attirer les attaquants dans un cadre contrôlé.
+HoneyShield est un projet de cybersécurité portant sur la conception et le déploiement d’un environnement honeypot destiné à l’observation des activités suspectes dirigées contre des services exposés. Le projet consiste à mettre en place un système leurre contrôlé, capable de recevoir des interactions non légitimes et d’enregistrer les traces associées.
 
-L’objectif de HoneyShield n’est pas de protéger directement un système de production, mais de créer un environnement d’observation permettant de capturer les comportements suspects. Lorsqu’un attaquant interagit avec les services exposés, ses actions sont enregistrées afin d’être étudiées par la suite.
+L’objectif n’est pas de protéger directement un serveur de production, mais de disposer d’un environnement d’étude permettant d’analyser des comportements d’attaque dans un cadre maîtrisé. HoneyShield sert ainsi de support technique pour comprendre comment certains services exposés peuvent être découverts, sollicités ou attaqués par des utilisateurs malveillants ou des outils automatisés.
 
-Ce projet permet ainsi de mieux comprendre les méthodes utilisées par les attaquants, les services les plus ciblés, les types de tentatives d’intrusion et les traces laissées lors d’une attaque. HoneyShield transforme donc une tentative d’intrusion en source d’information utile pour renforcer la sécurité d’un système d’information.
+À travers ce projet, les interactions suspectes deviennent des données exploitables. Les informations collectées pourront ensuite servir à l’analyse des menaces, à l’amélioration des mécanismes de détection et à la sensibilisation aux risques liés aux systèmes exposés.
 
-### 1.2 Domaine du projet
+### 1.2 Domaine et périmètre du projet
 
-Le projet HoneyShield s’inscrit dans le domaine de la cybersécurité, plus précisément dans les domaines de la détection d’intrusion, de la surveillance réseau, de l’analyse des menaces et de la supervision de sécurité.
+Le projet s’inscrit dans le domaine de la cybersécurité, plus précisément dans les axes de la détection d’intrusion, de la supervision de sécurité, de l’analyse des journaux et de l’étude des comportements malveillants.
 
-Aujourd’hui, les organisations sont confrontées à des attaques de plus en plus fréquentes, automatisées et difficiles à détecter. Les solutions classiques comme les pare-feu, les antivirus ou les mécanismes de contrôle d’accès restent importantes, mais elles ne suffisent pas toujours à comprendre le comportement des attaquants.
+Le périmètre de HoneyShield est limité à un environnement de test contrôlé. Il ne s’agit pas de déployer une solution de sécurité complète pour remplacer un pare-feu, un antivirus ou un système de détection d’intrusion. Le projet vise plutôt à compléter ces approches par un dispositif d’observation technique.
 
-HoneyShield vient compléter ces mécanismes de défense en permettant d’observer les tentatives d’attaque dans un environnement séparé du système réel. Le projet touche donc plusieurs aspects importants de la cybersécurité :
+Le périmètre couvre principalement :
 
-- la sécurité des réseaux informatiques ;
-- la détection des comportements suspects ;
-- l’analyse des cyberattaques ;
-- la collecte et l’exploitation des journaux d’activité ;
-- la supervision des événements de sécurité ;
-- l’aide à la réponse aux incidents.
+- La mise en place d’une machine honeypot ;
+- L’exposition contrôlée de services réseau simulés ;
+- La collecte des journaux générés par les interactions ;
+- La centralisation des événements de sécurité ;
+- L’analyse des traces issues des scénarios de test ;
+- La visualisation des événements dans une plateforme de supervision.
+
+Ce cadrage permet de maintenir le projet dans une logique expérimentale, tout en conservant une orientation pratique et professionnelle.
 
 ### 1.3 Environnement cible
 
-L’environnement cible de HoneyShield est un réseau informatique contrôlé dans lequel des services exposés peuvent être surveillés afin de détecter des tentatives d’intrusion. Cet environnement peut être mis en place dans un laboratoire, une infrastructure de test, un réseau universitaire ou un environnement d’entreprise dédié à l’expérimentation.
-
-Pour limiter les risques, le honeypot doit être isolé des systèmes réels. Cette séparation est essentielle, car le rôle du honeypot est justement d’attirer des activités suspectes. Il ne doit donc pas permettre à un attaquant d’accéder aux ressources sensibles de l’organisation.
+L’environnement cible est un réseau de laboratoire ou une infrastructure de test séparée du système d’information réel. Ce choix permet d’observer des interactions suspectes sans exposer des ressources sensibles.
 
 L’environnement HoneyShield peut comprendre :
 
-- une machine honeypot destinée à simuler des services vulnérables ;
-- un réseau de test isolé ;
-- des services exposés comme SSH, FTP ou HTTP ;
-- un système de collecte des logs ;
-- un poste d’analyse pour consulter et interpréter les données collectées.
+- Une machine honeypot basée sur Linux ;
+- Des services simulés tels que SSH, Telnet, FTP, HTTP ou SMB ;
+- Une machine de test utilisée pour générer des scénarios contrôlés ;
+- Une solution de supervision chargée de centraliser les événements ;
+- Un poste d’administration permettant de consulter les alertes et les journaux.
 
-Cette architecture permet d’étudier les attaques dans un cadre sécurisé, sans compromettre le système d’information principal.
+La séparation entre l’environnement honeypot et les systèmes réels constitue une exigence essentielle. Le honeypot doit être accessible pour les tests, mais il ne doit pas permettre un accès direct aux machines sensibles ou au réseau de production.
 
 ### 1.4 Résumé de la solution proposée
 
-La solution HoneyShield repose sur la mise en place d’un honeypot capable d’attirer des attaquants, d’enregistrer leurs interactions et de fournir des données exploitables pour l’analyse de la menace.
+La solution proposée consiste à déployer un honeypot supervisé dans un environnement isolé. La machine HoneyShield expose des services leurres afin de recevoir des interactions suspectes. Les outils honeypot enregistrent les événements générés, puis les journaux sont transmis vers une plateforme de supervision.
 
-Lorsqu’une tentative d’accès ou d’exploitation est détectée, le système collecte plusieurs informations : l’adresse IP source, la date et l’heure de l’événement, le service ciblé, les identifiants utilisés, les commandes exécutées ou encore les fichiers éventuellement déposés.
+Les services simulés permettront d’observer différents scénarios : scan réseau, tentative de connexion SSH, attaque par force brute, interaction avec un service exposé ou comportement automatisé. Les traces collectées seront ensuite utilisées pour identifier les éléments techniques de l’activité observée : adresse IP source, port ciblé, identifiants testés, commandes saisies, fréquence des tentatives ou événement associé.
 
-Ces données sont ensuite centralisées et analysées afin d’identifier les comportements suspects, les attaques récurrentes et les méthodes employées. Grâce à cette approche, HoneyShield permet d’améliorer la compréhension des cybermenaces et de proposer des mesures de sécurité adaptées.
-
-En résumé, HoneyShield constitue une solution proactive. Au lieu d’attendre qu’une attaque touche directement un système sensible, il crée un espace contrôlé permettant d’observer les menaces avant qu’elles ne provoquent des dommages réels.
+La solution repose sur une architecture simple : un environnement honeypot pour l’exposition, une plateforme de supervision pour la collecte et l’analyse, puis un tableau de bord pour la visualisation des événements.
 
 ## <mark style="background:#ff4d4f">2. Contexte et justification du projet</mark>
 
 ### 2.1 Contexte général de la cybersécurité
 
-Le développement des technologies numériques a profondément transformé le fonctionnement des organisations. Les entreprises, les administrations, les établissements d’enseignement, les banques et les hôpitaux utilisent quotidiennement des systèmes informatiques pour gérer leurs activités, stocker des données et fournir des services.
+Les organisations utilisent de plus en plus de services numériques pour leurs activités quotidiennes : applications web, serveurs, accès distants, bases de données, plateformes collaboratives et services cloud. Cette dépendance renforce l’importance de la cybersécurité, car les systèmes connectés deviennent des points d’entrée potentiels pour des attaques.
 
-Cette dépendance au numérique rend les systèmes d’information indispensables, mais elle les expose également à de nombreux risques. Les données, les serveurs, les applications et les réseaux sont devenus des cibles importantes pour les cyberattaquants.
+Les infrastructures exposées sont régulièrement soumises à des scans automatisés, à des tentatives d’authentification par force brute et à des recherches de vulnérabilités connues. Ces activités ne provoquent pas toujours un incident immédiat, mais elles constituent souvent les premières étapes d’une intrusion.
 
-La cybersécurité occupe donc une place essentielle. Elle vise à protéger les infrastructures informatiques contre les accès non autorisés, les pertes de données, les interruptions de service et les intrusions.
+Dans ce contexte, la protection ne peut pas se limiter au blocage des attaques. Les administrateurs et analystes doivent également disposer de moyens pour observer les signaux faibles, comprendre les modes opératoires et exploiter les traces laissées par les interactions suspectes.
 
-Cependant, la protection seule ne suffit plus. Les attaquants cherchent constamment à exploiter les failles, les erreurs de configuration ou les mots de passe faibles. Il devient donc nécessaire d’ajouter des mécanismes de surveillance, de détection et d’analyse afin d’identifier rapidement les comportements suspects.
+### 2.2 Menaces sur les systèmes exposés
 
-### 2.2 Menaces actuelles sur les systèmes exposés
+Un système exposé sur un réseau peut être rapidement identifié par des outils automatisés. Les ports ouverts, les services accessibles et les versions logicielles utilisées sont des informations recherchées par les attaquants lors des phases de reconnaissance.
 
-Les systèmes accessibles sur un réseau ou sur Internet sont particulièrement exposés aux attaques. Dès qu’un service est ouvert à distance, il peut être ciblé par des attaquants humains ou par des outils automatisés.
+Les menaces les plus courantes dans ce type de contexte sont :
 
-Les menaces les plus fréquentes sont les scans de ports, les tentatives de connexion par force brute, les attaques contre les services SSH, FTP ou HTTP, l’exploitation de vulnérabilités connues, les dépôts de fichiers suspects ou encore les tentatives d’élévation de privilèges.
+- Les scans de ports ;
+- Les tentatives de connexion répétées ;
+- Les attaques par dictionnaire ou par force brute ;
+- Les requêtes suspectes vers des services web ;
+- Les tentatives d’accès à des services de fichiers ;
+- Les interactions automatisées provenant de scripts ou de bots.
 
-Ces actions peuvent sembler isolées, mais elles représentent souvent les premières étapes d’une attaque plus avancée. Un simple scan réseau peut annoncer une tentative d’exploitation. Une série d’échecs de connexion peut révéler une attaque par dictionnaire.
+Ces activités peuvent passer inaperçues lorsque les journaux ne sont pas centralisés ou lorsqu’aucune supervision n’est mise en place. Une détection tardive réduit la capacité à comprendre l’origine de l’activité, son déroulement et ses conséquences potentielles.
 
-Le principal danger est que ces signaux passent inaperçus lorsqu’ils ne sont pas correctement surveillés. Un système exposé sans outil de détection efficace risque de découvrir l’attaque trop tard, parfois après la compromission.
+### 2.3 Nécessité d’une détection précoce
 
-### 2.3 Importance de la détection précoce des attaques
+La détection précoce permet d’identifier une activité suspecte avant qu’elle ne devienne une compromission réelle. Elle facilite la réaction de l’administrateur, l’analyse des journaux et l’amélioration des règles de sécurité.
 
-La détection précoce est un élément essentiel de la cybersécurité moderne. Elle permet d’identifier les comportements suspects avant qu’ils n’entraînent des conséquences graves.
+Dans le cas des services exposés, les premiers signes d’une attaque peuvent être très simples : une série de connexions échouées, un scan de ports, une requête inhabituelle ou une tentative d’accès avec un identifiant par défaut. Ces événements doivent être collectés et interprétés pour produire une information utile.
 
-Lorsqu’une attaque est détectée rapidement, l’administrateur peut réagir plus efficacement : bloquer une adresse IP, isoler une machine, corriger une faille, renforcer une règle de sécurité ou analyser les journaux d’activité.
-
-À l’inverse, une détection tardive donne plus de temps à l’attaquant pour explorer le réseau, voler des informations, installer des outils malveillants ou créer des accès persistants.
-
-Dans le cadre de HoneyShield, la détection précoce est au cœur du projet. Le honeypot permet d’observer les premières traces d’une attaque, de collecter les informations nécessaires et de mieux comprendre les intentions de l’attaquant.
+HoneyShield répond à ce besoin en proposant un environnement dédié à l’observation de ces interactions. Il permet de suivre les premières étapes d’une activité malveillante dans un cadre contrôlé, sans utiliser les systèmes réels comme terrain d’analyse.
 
 ### 2.4 Justification du choix d’un honeypot
 
-Le choix d’un honeypot se justifie par le besoin d’observer les attaques dans un environnement sécurisé et séparé des systèmes réels.
+Le choix d’un honeypot se justifie par sa capacité à créer un point d’observation volontairement contrôlé. Contrairement à un serveur de production, le honeypot n’est pas destiné à fournir un service légitime. Toute interaction avec lui peut donc être considérée comme potentiellement anormale.
 
-Contrairement à certaines solutions de sécurité qui se limitent à bloquer ou signaler une menace, le honeypot permet d’étudier les actions de l’attaquant. Il simule un système attractif afin d’inciter l’attaquant à interagir avec lui, tout en enregistrant ses activités.
+Cette approche est adaptée au projet HoneyShield, car elle permet d’étudier des comportements malveillants sans exposer directement des ressources critiques. Le honeypot sert de leurre technique, tandis que la supervision permet de collecter et d’exploiter les événements générés.
 
-Dans le projet HoneyShield, le honeypot joue donc plusieurs rôles. Il sert d’outil de détection, de plateforme d’observation et de support d’analyse. Il permet de recueillir des informations sur les adresses IP suspectes, les services ciblés, les identifiants testés, les commandes exécutées et les méthodes d’attaque utilisées.
-
-Ce choix est également pertinent dans un cadre pédagogique, car il permet de reproduire des situations proches de la réalité tout en limitant les risques. Les attaques peuvent ainsi être observées, comprises et analysées dans un environnement contrôlé.
+Le choix d’un honeypot est également pertinent dans un cadre pédagogique. Il permet de relier les notions de cybersécurité à des observations concrètes : connexions suspectes, identifiants testés, ports ciblés, journaux produits et alertes générées.
 
 ## <mark style="background:#ff4d4f">3. Problématique</mark>
 
-La protection des systèmes informatiques ne repose pas uniquement sur la mise en place de barrières de sécurité. Elle nécessite aussi une capacité à observer et comprendre les comportements malveillants.
+### 3.1 Constats techniques
 
-Dans de nombreuses infrastructures, les attaques ne sont détectées qu’après l’apparition de conséquences visibles : compromission d’un compte, vol de données, modification de fichiers, ralentissement d’un service ou indisponibilité d’une application. Cette détection tardive limite la capacité des administrateurs à comprendre l’origine de l’attaque et les actions réellement effectuées.
+Les services exposés tels que SSH, FTP, HTTP, Telnet ou SMB sont régulièrement visés par des outils de reconnaissance et des tentatives d’accès automatisées. Lorsqu’une organisation ne dispose pas d’une bonne visibilité sur ces interactions, certaines activités suspectes peuvent rester invisibles jusqu’à l’apparition d’un incident.
 
-Face à cette situation, le projet HoneyShield cherche à répondre à la problématique suivante :
+Les journaux système contiennent souvent des informations utiles, mais celles-ci peuvent être dispersées, volumineuses ou difficiles à interpréter. Leur exploitation nécessite une collecte organisée, une centralisation et une analyse adaptée.
 
-**Comment concevoir et déployer un environnement honeypot capable d’attirer, de détecter et d’analyser des tentatives de cyberattaques dans un cadre contrôlé, sans mettre en danger les systèmes réels ?**
+### 3.2 Problème principal identifié
 
-### 3.1 Problème principal identifié
+Le problème principal est la difficulté à observer et analyser les comportements suspects visant des services exposés sans mettre en danger les systèmes réels.
 
-Le problème principal est la difficulté à détecter et analyser rapidement les comportements malveillants visant les systèmes exposés.
+Utiliser un système de production comme support d’observation serait risqué. Il faut donc disposer d’un environnement séparé, contrôlé et supervisé, capable de recevoir des interactions suspectes et de générer des données exploitables pour l’analyse.
 
-Lorsqu’un service est accessible sur un réseau, il peut être ciblé par des scans, des tentatives de connexion ou des attaques automatisées. Ces événements peuvent passer inaperçus si les journaux ne sont pas centralisés, surveillés ou correctement interprétés.
+### 3.3 Questions techniques du projet
 
-Les systèmes réels ne doivent pas servir directement de terrain d’observation, car cela pourrait mettre en danger l’organisation. Il est donc nécessaire de disposer d’un environnement sécurisé, isolé et contrôlé, capable de capter les tentatives d’attaque sans exposer les ressources critiques.
-
-
-### 3.2 Questions techniques du projet
-
-Pour répondre à cette problématique, plusieurs questions techniques se posent :
+La réalisation du projet soulève plusieurs questions techniques :
 
 - Comment concevoir une architecture honeypot isolée et sécurisée ?
-- Quels services exposer pour attirer les comportements suspects ?
-- Comment collecter les journaux générés par les interactions avec le honeypot ?
-- Comment centraliser les données issues des différents composants ?
-- Comment analyser les traces afin d’identifier les comportements malveillants ?
-- Comment visualiser les événements de sécurité dans un tableau de bord clair ?
-- Comment vérifier que HoneyShield détecte correctement les scans, les connexions suspectes et les tentatives d’attaque ?
+- Quels services exposer pour obtenir des interactions observables ?
+- Comment collecter les journaux générés par les outils honeypot ?
+- Comment centraliser les événements dans une plateforme de supervision ?
+- Comment analyser les traces afin d’identifier les comportements suspects ?
+- Comment vérifier que les scénarios de test produisent des événements exploitables ?
+- Comment présenter les résultats de manière claire dans un tableau de bord ?
 
-Ces questions orientent la conception, la mise en œuvre et l’évaluation du projet.
+Ces questions orientent la conception, la mise en œuvre et l’évaluation de HoneyShield.
 
+### 3.4 Hypothèse de solution
 
-### 3.3 Hypothèse de solution proposée
+L’hypothèse retenue est qu’un honeypot isolé, associé à une solution de supervision, peut fournir un environnement pertinent pour observer des interactions suspectes et produire des données utiles à l’analyse des menaces.
 
-L’hypothèse retenue est qu’un environnement honeypot bien conçu, isolé du système réel et associé à une solution de supervision, peut permettre de détecter et d’analyser efficacement des comportements malveillants.
-
-Dans cette approche, HoneyShield servira de leurre contrôlé. Il exposera certains services afin d’attirer les tentatives d’attaque, tout en enregistrant les actions effectuées par les attaquants ou les outils automatisés.
-
-L’utilisation d’outils comme Cowrie, Dionaea et Wazuh permettra de couvrir plusieurs besoins. Cowrie pourra observer les tentatives de connexion SSH, Dionaea pourra détecter certaines interactions avec des services exposés, tandis que Wazuh permettra de centraliser et visualiser les événements de sécurité.
-
-Cette hypothèse sera vérifiée à travers la mise en place de l’environnement, la simulation contrôlée de certaines attaques et l’analyse des résultats obtenus.
+Dans cette approche, Cowrie permet d’étudier les interactions SSH et Telnet, Dionaea élargit l’observation à d’autres services exposés, et Wazuh centralise les événements afin de faciliter leur exploitation. Cette hypothèse sera vérifiée à travers le déploiement de la solution et la simulation contrôlée de scénarios d’attaque.
 
 ## <mark style="background:#ff4d4f">4. Objectifs du projet</mark>
 
-
-Les objectifs du projet HoneyShield permettent de définir clairement les résultats attendus. Ils concernent à la fois la conception de l’environnement, le déploiement des outils, la collecte des données et l’analyse des attaques observées.
-
-HoneyShield ne se limite pas à l’installation d’un honeypot. Il s’agit de mettre en place une solution complète permettant de surveiller les interactions suspectes, de centraliser les journaux et d’exploiter les données collectées.
-
 ### 4.1 Objectif général
 
-L’objectif général du projet HoneyShield est de concevoir et déployer un environnement honeypot sécurisé, isolé et supervisé, capable de détecter, collecter et analyser des tentatives de cyberattaques dans un cadre contrôlé.
-
-Cet objectif vise à démontrer l’intérêt d’un honeypot dans une stratégie de cybersécurité proactive. Le projet doit permettre d’observer les comportements malveillants sans exposer les systèmes réels, tout en produisant des informations utiles pour améliorer la sécurité.
-
----
+L’objectif général du projet HoneyShield est de concevoir et déployer un environnement honeypot isolé et supervisé permettant d’observer des interactions suspectes, de collecter les journaux associés et de faciliter l’analyse des comportements malveillants dans un cadre contrôlé.
 
 ### 4.2 Objectifs spécifiques
 
-Pour atteindre cet objectif général, le projet poursuit les objectifs spécifiques suivants :
+Pour atteindre cet objectif général, le projet vise à :
 
-- mettre en place une architecture honeypot isolée ;
-- déployer des services exposés afin d’attirer des comportements suspects ;
-- installer et configurer des outils honeypot comme Cowrie et Dionaea ;
-- centraliser les journaux et les événements de sécurité ;
-- intégrer une solution de supervision comme Wazuh ;
-- réaliser des simulations contrôlées d’attaques ;
-- analyser les données collectées ;
-- identifier les adresses IP suspectes, les ports ciblés, les identifiants testés et les commandes exécutées ;
-- évaluer l’apport de HoneyShield dans la détection des attaques ;
-- proposer des pistes d’amélioration pour faire évoluer la solution.
+- Concevoir une architecture honeypot isolée ;
+- Définir les services leurres à exposer ;
+- Installer et configurer les outils honeypot retenus ;
+- Collecter les journaux générés par les interactions ;
+- Centraliser les événements dans une solution de supervision ;
+- Réaliser des simulations contrôlées ;
+- Identifier les informations utiles dans les journaux ;
+- Visualiser les événements dans un tableau de bord ;
+- Évaluer l’apport de l’environnement dans l’observation des attaques ;
+- Proposer des pistes d’amélioration.
 
-Ces objectifs permettent de structurer le projet depuis la conception jusqu’à l’évaluation finale.
+Ces objectifs structurent le projet depuis la conception jusqu’à l’analyse finale des résultats.
 
 ## <mark style="background:#ff4d4f">5. Intérêt du projet</mark>
 
-Le projet HoneyShield présente un intérêt important, car il permet de relier les notions théoriques de cybersécurité à une mise en pratique concrète.
-
-Il permet non seulement de comprendre le fonctionnement d’un honeypot, mais aussi d’observer des comportements suspects, de collecter des données et d’analyser les événements générés. Son intérêt se situe à plusieurs niveaux : pédagogique, technique, sécuritaire et organisationnel.
-
-
 ### 5.1 Intérêt pédagogique
 
-Sur le plan pédagogique, HoneyShield constitue un support d’apprentissage concret pour comprendre les cyberattaques et les mécanismes de détection.
+Le projet présente un intérêt pédagogique, car il permet de mettre en pratique des notions parfois abstraites de cybersécurité. Les apprenants peuvent observer des événements concrets : scan réseau, tentative de connexion, test d’identifiants, génération de logs et apparition d’alertes.
 
-Grâce à ce projet, il devient possible d’observer les différentes étapes d’une attaque, depuis la reconnaissance jusqu’aux tentatives d’accès non autorisé. Les apprenants peuvent également analyser les traces laissées dans les journaux et comprendre comment ces informations peuvent être utilisées pour détecter une menace.
-
-HoneyShield favorise donc l’apprentissage par la pratique. Il permet d’installer des outils, de configurer des services, de générer des événements, de consulter les logs et d’interpréter les alertes.
-
-Ce projet transforme ainsi des notions parfois théoriques en expériences concrètes et observables.
+HoneyShield constitue ainsi un support d’apprentissage pour comprendre le lien entre une activité réseau, une trace système et une analyse de sécurité. Il favorise l’apprentissage par la pratique et développe la capacité à interpréter des événements techniques.
 
 ### 5.2 Intérêt technique
 
-Sur le plan technique, HoneyShield mobilise plusieurs compétences importantes dans le domaine de l’informatique et de la cybersécurité.
+Sur le plan technique, le projet mobilise plusieurs compétences liées à l’administration système, à la configuration réseau, à la supervision et à la gestion des journaux.
 
-La mise en œuvre du projet nécessite des connaissances en administration Linux, en configuration réseau, en virtualisation, en gestion des services, en collecte des logs et en supervision.
+Il permet notamment de travailler sur :
 
-Le projet permet notamment de travailler sur :
+- L’installation d’un serveur Linux ;
+- La configuration d’un environnement isolé ;
+- Le déploiement de services simulés ;
+- La collecte de journaux techniques ;
+- L’intégration d’un agent de supervision ;
+- L’analyse d’événements dans un tableau de bord.
 
-- l’installation et l’administration d’un serveur Linux ;
-- la configuration d’un réseau isolé ;
-- le déploiement d’outils honeypot ;
-- la centralisation des journaux d’activité ;
-- l’intégration d’une solution de supervision ;
-- la visualisation des événements de sécurité ;
-- la vérification du bon fonctionnement de l’architecture.
-
-L’intérêt technique de HoneyShield réside donc dans sa dimension complète. Il ne s’agit pas seulement d’installer un outil, mais de concevoir une solution cohérente et fonctionnelle.
+Cet intérêt technique rend le projet utile pour renforcer les compétences pratiques nécessaires en cybersécurité opérationnelle.
 
 ### 5.3 Intérêt en cybersécurité
 
-En cybersécurité, HoneyShield permet d’améliorer la détection et l’analyse des comportements malveillants.
+En cybersécurité, HoneyShield permet d’étudier des comportements qui apparaissent fréquemment autour des services exposés. Les données collectées peuvent aider à comprendre les ports ciblés, les identifiants testés, les séquences d’actions et la fréquence des tentatives.
 
-Le honeypot collecte des informations utiles sur les attaques : adresses IP, ports ciblés, identifiants utilisés, mots de passe testés, commandes exécutées ou comportements automatisés.
-
-Ces données permettent de mieux comprendre les méthodes employées par les attaquants. Elles peuvent également aider à renforcer les règles de détection, améliorer les configurations de sécurité et préparer une meilleure réponse aux incidents.
-
-HoneyShield contribue ainsi à passer d’une sécurité uniquement défensive à une approche plus active, basée sur l’observation, l’analyse et l’anticipation des menaces.
+Le projet contribue également à une démarche de détection. Il ne se limite pas à constater qu’une attaque existe ; il cherche à produire des traces exploitables pour l’analyse, la corrélation et l’amélioration des mécanismes de sécurité.
 
 ### 5.4 Intérêt pour une organisation
 
-Pour une organisation, HoneyShield peut constituer un outil complémentaire dans une stratégie globale de cybersécurité.
+Pour une organisation, un honeypot peut servir d’outil complémentaire dans une stratégie de cybersécurité. Il peut aider les équipes techniques à mieux comprendre les activités suspectes qui visent leur environnement, tout en restant séparé des systèmes sensibles.
 
-Les entreprises, les universités, les administrations ou les structures disposant de services numériques sont régulièrement exposées à des tentatives d’intrusion. Même lorsqu’elles ne sont pas des cibles prioritaires, elles peuvent être visées par des attaques automatisées.
-
-HoneyShield permet de surveiller ces comportements dans un environnement isolé. Les informations collectées peuvent aider les responsables informatiques à mieux comprendre les menaces, adapter les règles de sécurité, renforcer la supervision et sensibiliser les utilisateurs.
-
-Le projet peut également servir de base pour une évolution vers des dispositifs plus avancés, comme l’intégration avec un SOC, un SIEM, des alertes automatiques ou des mécanismes d’analyse intelligente.
-
-Ainsi, HoneyShield présente un intérêt stratégique, opérationnel et pédagogique pour toute organisation souhaitant renforcer sa capacité de détection et d’analyse des cybermenaces.
+Les résultats issus de HoneyShield peuvent être utilisés pour renforcer les règles de sécurité, sensibiliser les utilisateurs, améliorer la supervision et préparer des procédures de réponse aux incidents.
 
 ---
-# Partie I : Cadre théorique
+
+# <mark style="background:rgba(205, 244, 105, 0.55)">Partie I : Cadre théorique</mark>
+
 
 ## <mark style="background:#ff4d4f">6. Généralités sur les honeypots</mark>
 
 ### 6.1 Définition d’un honeypot
 
-Un honeypot est un système informatique volontairement conçu pour attirer les attaquants dans un environnement contrôlé. Il peut prendre la forme d’un serveur, d’un service réseau, d’une application ou d’une machine simulée qui donne l’apparence d’une cible réelle ou vulnérable.
+Un honeypot est un système leurre conçu pour attirer des interactions suspectes dans un environnement contrôlé. Il peut simuler un serveur, un service réseau ou une application afin d’observer les comportements d’un attaquant ou d’un outil automatisé.
 
-Le principe du honeypot repose sur une idée simple : au lieu d’attendre qu’un attaquant cible directement un système sensible, on met en place un environnement leurre destiné à capter son attention. Lorsqu’un attaquant interagit avec ce système, ses actions sont enregistrées afin d’être analysées.
+Contrairement à un système de production, un honeypot n’a pas pour objectif de fournir un service légitime aux utilisateurs. Toute interaction avec ce système est donc considérée comme potentiellement anormale.
 
-Un honeypot ne sert donc pas principalement à fournir un service normal aux utilisateurs. Sa fonction principale est d’observer les comportements suspects. Toute interaction avec le honeypot est généralement considérée comme anormale, car ce système n’est pas censé être utilisé par des utilisateurs légitimes.
-
-Dans le cadre de la cybersécurité, un honeypot permet de collecter plusieurs types d’informations : les adresses IP sources, les ports ciblés, les identifiants testés, les mots de passe utilisés, les commandes exécutées, les fichiers déposés ou encore les méthodes employées par les attaquants.
-
-Ainsi, un honeypot peut être défini comme un outil de leurre, de détection et d’analyse permettant d’étudier les cyberattaques dans un cadre sécurisé.
+Les données collectées par un honeypot peuvent inclure les adresses IP sources, les ports ciblés, les identifiants testés, les commandes exécutées, les fichiers déposés ou les tentatives d’exploitation.
 
 ### 6.2 Rôle d’un honeypot en cybersécurité
 
-Le rôle principal d’un honeypot est d’aider à détecter et comprendre les activités malveillantes. Il permet de repérer des tentatives d’intrusion qui pourraient passer inaperçues dans un système classique.
+Le rôle d’un honeypot est de fournir un environnement d’observation capable de produire des informations sur des comportements malveillants. Il peut aider à repérer des activités qui précèdent une intrusion, comme un scan, une tentative de connexion ou une interaction avec un service vulnérable.
 
-En cybersécurité, les attaquants commencent souvent par rechercher des services accessibles, tester des mots de passe faibles, scanner des ports ou exploiter des failles connues. Un honeypot permet de capter ces premières actions et de les transformer en données exploitables.
+En cybersécurité, le honeypot joue trois rôles principaux :
 
-Le honeypot joue donc plusieurs rôles importants.
+- Un rôle de détection, car toute interaction avec lui peut être suspecte ;
+- Un rôle d’observation, car il permet de suivre les actions réalisées ;
+- Un rôle d’analyse, car les traces collectées peuvent être étudiées.
 
-Il sert d’abord d’outil de détection. Lorsqu’une connexion est établie avec le honeypot, cela peut indiquer une activité suspecte. Cette interaction peut révéler qu’un attaquant ou un outil automatisé explore le réseau.
-
-Il joue ensuite un rôle d’observation. Le honeypot permet de suivre les actions réalisées par l’attaquant : tentatives de connexion, commandes saisies, fichiers téléchargés, services ciblés ou comportements automatisés.
-
-Il joue également un rôle d’analyse. Les informations collectées permettent de mieux comprendre les techniques utilisées par les attaquants. Ces données peuvent ensuite aider à renforcer les règles de sécurité, améliorer la supervision ou préparer une réponse aux incidents.
-
-Enfin, le honeypot peut avoir un rôle pédagogique. Il permet aux étudiants, administrateurs et analystes de cybersécurité d’observer concrètement des attaques dans un environnement contrôlé, sans exposer directement les systèmes réels.
+Il ne remplace pas les solutions classiques de sécurité, mais il les complète en apportant une visibilité différente sur les activités hostiles.
 
 ### 6.3 Fonctionnement général d’un honeypot
 
-Le fonctionnement général d’un honeypot repose sur la mise en place d’un environnement qui imite un système réel ou vulnérable. Cet environnement est volontairement exposé afin d’attirer des interactions suspectes.
+Le fonctionnement d’un honeypot repose sur trois étapes principales.
 
-Dans un premier temps, le honeypot est installé sur une machine physique ou virtuelle. Il est ensuite configuré pour simuler certains services réseau, par exemple SSH, FTP, HTTP ou d’autres services fréquemment ciblés par les attaquants.
+D’abord, le système expose un ou plusieurs services simulés. Ces services peuvent ressembler à des services réels afin d’attirer les interactions suspectes.
 
-Dans un deuxième temps, le honeypot est placé dans un environnement contrôlé. Il doit être séparé des systèmes sensibles afin d’éviter qu’un attaquant puisse l’utiliser comme point d’entrée vers le réseau réel. Cette isolation est une règle essentielle dans la mise en place d’un honeypot.
+Ensuite, les interactions sont enregistrées. Le honeypot collecte les informations associées à l’activité observée : source de connexion, service sollicité, identifiants saisis, commandes exécutées ou fichiers transférés.
 
-Lorsqu’un attaquant tente d’interagir avec le honeypot, le système enregistre ses actions. Il peut collecter l’adresse IP de l’attaquant, l’heure de la connexion, le service ciblé, les identifiants utilisés, les mots de passe testés, les commandes exécutées ou les fichiers déposés.
+Enfin, les données sont analysées. Cette analyse peut être réalisée directement à partir des journaux ou à travers une solution de supervision capable de centraliser les événements.
 
-Dans un troisième temps, les données collectées sont analysées. Cette analyse peut être réalisée directement dans les journaux du honeypot ou à travers une solution de supervision comme Wazuh, Kibana ou un autre outil SIEM.
+Le fonctionnement peut être résumé ainsi :
 
-Le fonctionnement d’un honeypot peut donc être résumé en quatre étapes :
+| Étape | Description |
+|---|---|
+| Exposition | Le honeypot présente des services accessibles |
+| Interaction | Un attaquant ou un outil automatisé contacte le service |
+| Journalisation | Les actions sont enregistrées dans des logs |
+| Analyse | Les traces sont exploitées pour comprendre l’activité |
 
-- **Exposer** un service ou un système leurre.
-- **Attirer** les tentatives d’interaction suspectes.
-- **Collecter** les traces laissées par les attaquants.
-- **Analyser** les informations obtenues pour mieux comprendre les menaces.
+### 6.4 Types de honeypots selon le niveau d’interaction
 
-Dans le cadre de HoneyShield, ce fonctionnement sera appliqué à travers des outils comme Cowrie, Dionaea et Wazuh, afin de détecter, centraliser et analyser les événements générés par les interactions suspectes.
+Les honeypots peuvent être classés selon leur <font color="#4f6128">niveau d’interaction</font>, c’est-à-dire selon le degré de réalisme offert à l’attaquant. On distingue généralement les honeypots à <font color="#e36c09">faible interaction</font>, à <font color="#974806">moyenne interaction</font> et à <font color="#ff0000">forte interaction</font>.
 
-### 6.4 Types de honeypots
+| Type de honeypot | Principe | Avantages | Limites |
+|---|---|---|---|
+| Faible interaction | Simule des services ou réponses limitées | Simple à déployer, moins risqué | Données collectées limitées |
+| Moyenne interaction | Offre des interactions plus réalistes sans fournir un système complet | Bon équilibre entre sécurité et richesse des traces | Configuration plus complexe |
+| Forte interaction | Fournit un environnement très proche d’un vrai système | Observation détaillée des actions de l’attaquant | Risque élevé, besoin d’isolation stricte |
 
-Il existe plusieurs types de honeypots. Ils peuvent être classés selon leur <font color="#4f6128">niveau d’interaction</font>, <font color="#76923c">leur objectif</font> ou <font color="#9bbb59">l<font color="#9bbb59">eur domaine d’utilisation</font></font>.
+<font color="#e36c09">Un honeypot à faible interaction</font> est adapté lorsqu’on souhaite détecter des scans, des connexions suspectes ou des tentatives simples. Il est plus facile à mettre en place et limite les risques, mais il fournit moins de détails sur les actions de l’attaquant.
 
-<font color="#4f6128">Selon le niveau d’interaction</font>, on distingue principalement les honeypots à <font color="#e36c09">faible interaction</font>, les honeypots à <font color="#974806">moyenne interaction</font> et les honeypots à <font color="#ff0000">forte interaction</font>.
-
-<font color="#e36c09">Un honeypot à faible interaction</font> simule simplement certains services ou certaines réponses réseau. Il ne donne pas réellement accès à un système complet. Son objectif est surtout de détecter des scans, des connexions suspectes ou des tentatives simples d’exploitation. Ce type de honeypot est plus facile à installer et présente moins de risques, mais il fournit moins de détails sur les actions de l’attaquant.
 ![[Pasted image 20260529000306.png]]
 
-
-<font color="#974806">Un honeypot à moyenne interaction </font>offre davantage de possibilités d’interaction. Il peut simuler un service de manière plus réaliste et collecter plus d’informations sur le comportement de l’attaquant. Il représente un bon équilibre entre richesse des données collectées et maîtrise des risques.
+<font color="#974806">Un honeypot à moyenne interaction</font> offre davantage de réalisme sans donner accès à un système complet. Il permet de collecter des traces plus riches tout en conservant un meilleur contrôle sur l’environnement.
 
 ![[Pasted image 20260529000801.png]]
 
-<font color="#ff0000">Un honeypot à forte interaction</font> fournit un environnement beaucoup plus proche d’un vrai système. L’attaquant peut interagir avec plusieurs services et réaliser davantage d’actions. Ce type de honeypot permet de collecter des informations très riches, mais il présente aussi plus de risques, car l’attaquant peut tenter d’utiliser l’environnement compromis pour mener d’autres actions malveillantes.
+<font color="#ff0000">Un honeypot à forte interaction</font> fournit un environnement très proche d’un vrai système. Il permet une observation plus détaillée, mais il exige une isolation stricte, car l’attaquant peut tenter d’utiliser l’environnement compromis comme point de rebond.
 
 ![[Pasted image 20260529001101.png]]
 
-On peut aussi distinguer les <font color="#76923c">honeypots selon leur objectif</font>.
+Dans le cadre de HoneyShield, le modèle retenu correspond à un honeypot à faible interaction enrichi par certains mécanismes de moyenne interaction. Il ne fournit pas un véritable système complet à l’attaquant, mais il simule plusieurs services réseau afin de collecter des informations sur les tentatives de connexion, les identifiants testés, les commandes saisies et les interactions avec les services exposés.
 
-<font color="#4bacc6">Un honeypot de recherche</font> est utilisé pour étudier les comportements des attaquants, comprendre les nouvelles techniques d’attaque et collecter des données sur les menaces.
+### 6.5 Honeypot de recherche et honeypot de production
 
-<font color="#92cddc">Un honeypot de production</font> est utilisé dans une organisation pour détecter rapidement les activités suspectes dans un environnement réel ou proche du réel.
+Les honeypots peuvent également être distingués selon leur finalité.
 
-Il existe également des <font color="#4bacc6">honeypots spécialisés</font>. Certains sont conçus pour observer les attaques SSH, d’autres pour les malwares, les services web, les bases de données, les objets connectés ou les protocoles industriels.
+Un honeypot de recherche est utilisé pour comprendre les techniques employées par les attaquants. Il est souvent déployé dans un cadre académique, expérimental ou de veille. Son objectif principal est la collecte d’informations et l’étude des comportements.
 
-Le choix du type de honeypot dépend donc du niveau de détail recherché, du niveau de risque accepté et des objectifs du projet.
+Un honeypot de production est intégré dans une infrastructure opérationnelle afin de détecter rapidement des activités suspectes. Il doit être discret, bien isolé et correctement supervisé pour ne pas introduire de nouveaux risques dans l’environnement.
 
-Dans le cadre du projet HoneyShield, le type de honeypot mis en place correspond principalement à un honeypot à faible interaction, avec certains aspects proches d’un honeypot à moyenne interaction. En effet, l’objectif n’est pas de fournir un système complet à l’attaquant, mais de simuler des services exposés afin d’attirer des tentatives de connexion, des scans ou des attaques automatisées.
+HoneyShield se rapproche davantage d’un honeypot de recherche et d’apprentissage, car il vise à observer, analyser et comprendre des scénarios d’attaque dans un environnement de test contrôlé.
 
-L’utilisation de Cowrie permet d’observer les tentatives de connexion SSH, les identifiants testés et certaines commandes saisies par l’attaquant. Dionaea permet quant à lui de capter des interactions avec des services vulnérables ou exposés. Ces outils permettent donc de collecter des informations utiles tout en limitant les risques liés à une compromission réelle.
+### 6.6 Indicateurs observables dans un honeypot
 
-HoneyShield ne peut donc pas être considéré comme un honeypot à forte interaction, car il ne donne pas accès à une infrastructure complète ou à un système réel. Il s’agit plutôt d’un environnement contrôlé, isolé et supervisé, destiné à détecter et analyser les comportements suspects.
+Un honeypot permet de collecter plusieurs indicateurs utiles pour l’analyse de sécurité. Ces indicateurs facilitent l’identification des comportements, la comparaison des événements et la préparation des résultats.
 
-### 6.5 Avantages des honeypots
+Les indicateurs observables sont notamment :
 
-Les honeypots présentent plusieurs avantages importants en cybersécurité.
+- L’adresse IP source ;
+- L’horodatage de l’événement ;
+- Le port ciblé ;
+- Le protocole utilisé ;
+- Le service sollicité ;
+- Les identifiants testés ;
+- Les mots de passe saisis ;
+- Les commandes exécutées ;
+- Les fichiers téléchargés ou déposés ;
+- La fréquence des tentatives ;
+- La séquence d’actions.
 
-Le premier avantage est la détection des activités suspectes. Comme un honeypot n’est normalement pas utilisé par des utilisateurs légitimes, toute interaction avec lui peut être considérée comme potentiellement malveillante. Cela facilite l’identification des comportements anormaux.
+Ces éléments seront utiles dans la partie pratique pour interpréter les événements générés par les simulations.
 
-Le deuxième avantage est la collecte d’informations détaillées. Un honeypot permet d’enregistrer les actions réalisées par un attaquant : services ciblés, identifiants testés, mots de passe utilisés, commandes exécutées ou fichiers déposés. Ces informations peuvent être très utiles pour comprendre les méthodes d’attaque.
+### 6.7 Avantages des honeypots
 
-Le troisième avantage est l’amélioration de la connaissance des menaces. En observant les attaques, il devient possible d’identifier les tendances, les techniques les plus fréquentes et les comportements automatisés. Cette connaissance peut ensuite aider à renforcer les politiques de sécurité.
+Les honeypots présentent plusieurs avantages. Ils permettent d’obtenir des signaux généralement plus faciles à interpréter, car un service leurre n’est pas censé recevoir d’activité légitime.
 
-Le quatrième avantage est la réduction des faux positifs. Dans certains systèmes de détection classiques, de nombreuses alertes peuvent être générées par des activités normales. Dans le cas d’un honeypot, les interactions sont plus facilement considérées comme suspectes, car le système n’a pas vocation à être utilisé normalement.
+Ils offrent également une source de données utile pour comprendre les méthodes d’attaque. Les journaux peuvent révéler les services ciblés, les identifiants essayés, les commandes saisies ou les fichiers déposés.
 
-Le cinquième avantage est l’intérêt pédagogique. Les honeypots permettent de créer un environnement d’apprentissage réaliste dans lequel les étudiants ou les professionnels peuvent observer des attaques et analyser les traces laissées par les attaquants.
+Un autre avantage est leur intérêt pédagogique. Ils permettent d’observer directement des comportements suspects dans un environnement maîtrisé, ce qui facilite la compréhension des mécanismes d’attaque et de détection.
 
-Enfin, les honeypots peuvent contribuer à améliorer la réponse aux incidents. Les données collectées peuvent aider les équipes de sécurité à comprendre les comportements hostiles, à adapter les règles de détection et à renforcer les mécanismes de défense existants.
+Enfin, les honeypots peuvent contribuer à améliorer une stratégie de défense en fournissant des informations exploitables pour ajuster les règles de supervision, renforcer les configurations et sensibiliser les utilisateurs.
 
-### 6.6 Limites et risques des honeypots
+### 6.8 Limites et risques des honeypots
 
-Malgré leurs avantages, les honeypots présentent aussi certaines limites et certains risques.
+Malgré leur intérêt, les honeypots présentent plusieurs limites. Ils ne remplacent pas les mécanismes classiques de sécurité tels que les pare-feu, les systèmes de détection d’intrusion, les politiques de mots de passe ou les solutions de supervision. Leur rôle est complémentaire.
 
-La première limite est qu’un honeypot ne remplace pas les autres solutions de sécurité. Il ne doit pas être considéré comme une protection complète. Il vient plutôt compléter les pare-feu, les antivirus, les systèmes de détection d’intrusion, les solutions de supervision et les bonnes pratiques de sécurité.
+Un honeypot ne détecte que les attaques qui interagissent avec lui. Si un attaquant cible directement un autre système du réseau, le honeypot peut ne générer aucune alerte. Son efficacité dépend donc de son positionnement, de sa crédibilité et de sa capacité à attirer des interactions suspectes.
 
-La deuxième limite concerne le périmètre de détection. Un honeypot ne détecte que les attaques ou les interactions qui le ciblent directement. Si un attaquant ne touche pas le honeypot, celui-ci ne pourra pas observer son comportement.
+Le principal risque concerne la compromission de l’environnement. Si le honeypot est mal isolé, il peut être utilisé comme point de rebond vers d’autres systèmes. Pour cette raison, l’isolation réseau, la limitation des flux sortants, la supervision continue et la centralisation des journaux sont indispensables.
 
-La troisième limite est liée à la configuration. Un honeypot mal configuré peut être facilement identifié par un attaquant expérimenté. Si le leurre n’est pas crédible, l’attaquant peut l’éviter ou modifier son comportement.
+Enfin, l’utilisation d’un honeypot doit respecter un cadre légal et éthique. Il doit être utilisé pour observer et analyser des comportements dans un environnement autorisé, sans mener d’actions offensives contre des tiers.
 
-La quatrième limite concerne le risque de compromission. Si le honeypot est mal isolé, un attaquant peut tenter de l’utiliser comme point d’appui pour attaquer d’autres systèmes. C’est pourquoi l’isolation réseau, la limitation des accès et la surveillance permanente sont indispensables.
+## <mark style="background:#ff4d4f">7. Activités malveillantes observables par HoneyShield</mark>
 
-La cinquième limite concerne l’analyse des données. Un honeypot peut générer beaucoup de logs. Si ces données ne sont pas correctement organisées, centralisées et interprétées, elles peuvent devenir difficiles à exploiter.
+### 7.1 Introduction
 
-Enfin, l’utilisation d’un honeypot doit respecter un cadre éthique et légal. Il ne doit pas servir à piéger abusivement des utilisateurs légitimes ni à mener des actions offensives contre des tiers. Son rôle doit rester limité à l’observation, à la détection et à l’analyse dans un environnement contrôlé.
+HoneyShield ne vise pas à couvrir toutes les formes de cyberattaques. Le projet se concentre sur des activités techniques observables dans un environnement honeypot : scans réseau, tentatives d’authentification, connexions SSH suspectes, interactions avec des services exposés et comportements automatisés.
 
-Ainsi, les honeypots sont des outils puissants pour la cybersécurité, mais ils doivent être utilisés avec prudence. Leur efficacité dépend fortement de leur bonne configuration, de leur isolation et de leur intégration dans une stratégie globale de sécurité.
+Ces activités ont été retenues parce qu’elles peuvent être reproduites dans un laboratoire et générer des journaux exploitables.
 
-## 7. Cyberattaques ciblées par HoneyShield
+### 7.2 Scan réseau
 
-### 7.1 Scan réseau
+Le scan réseau consiste à rechercher les machines actives, les ports ouverts et les services disponibles. Il constitue souvent une phase de reconnaissance avant une tentative d’exploitation.
 
-### 7.2 Attaque par force brute
+Dans HoneyShield, le scan réseau permettra de vérifier la visibilité des services exposés et de produire des traces exploitables dans les journaux. Les informations observables peuvent concerner les ports interrogés, l’adresse IP source et la fréquence des requêtes.
 
-### 7.3 Connexion SSH suspecte
+### 7.3 Attaque par force brute
 
-### 7.4 Exploitation de services exposés
+L’attaque par force brute consiste à tester plusieurs combinaisons d’identifiants et de mots de passe pour obtenir un accès non autorisé. Elle est fréquente contre les services d’administration à distance comme SSH ou Telnet.
 
-### 7.5 Comportements automatisés ou attaques par bots
+Dans HoneyShield, ce scénario permettra d’observer les noms d’utilisateurs testés, les mots de passe saisis, le nombre de tentatives et le rythme de l’attaque.
 
----
+### 7.4 Connexion SSH suspecte
 
-# Partie II : Conception de la solution HoneyShield
+Une connexion SSH devient suspecte lorsqu’elle provient d’une source inconnue, utilise des identifiants faibles ou génère plusieurs échecs d’authentification. Après une connexion simulée, certaines commandes peuvent également révéler les intentions de l’attaquant.
 
-## 8. Présentation de l’architecture HoneyShield
+Cowrie sera utilisé pour observer ce type d’activité. Il permettra de collecter les identifiants testés, les sessions ouvertes et les commandes saisies dans l’environnement simulé.
 
-### 8.1 Architecture générale de la solution
+### 7.5 Interaction avec des services exposés
 
-### 8.2 Architecture réseau
+Les services exposés comme FTP, HTTP ou SMB peuvent recevoir des requêtes suspectes, des tentatives d’accès ou des interactions liées à la recherche de vulnérabilités.
 
-### 8.3 Description des composants
+Dans HoneyShield, Dionaea pourra compléter l’observation en simulant plusieurs services réseau. L’objectif est d’élargir la surface d’observation au-delà de SSH et Telnet, sans donner accès à un véritable serveur de production.
 
-### 8.4 Flux de fonctionnement de HoneyShield
+### 7.6 Comportements automatisés ou attaques par bots
 
-### 8.5 Schéma de fonctionnement global
+De nombreuses interactions malveillantes sont produites par des scripts ou des bots. Ces comportements se reconnaissent souvent par leur répétition, leur rapidité et la similarité des actions réalisées.
 
-## 9. Technologies utilisées
-
-### 9.1 Linux
-
-### 9.2 Cowrie
-
-### 9.3 Dionaea
-
-### 9.4 Wazuh
-
-### 9.5 Wazuh Indexer ou Elasticsearch
-
-### 9.6 Wazuh Dashboard ou Kibana
-
-### 9.7 Nmap
-
-## 10. Sécurisation de l’environnement HoneyShield
-
-### 10.1 Isolation du honeypot
-
-### 10.2 Limitation des accès
-
-### 10.3 Séparation entre environnement réel et environnement de test
-
-### 10.4 Journalisation des activités
-
-### 10.5 Précautions éthiques et légales
+Dans HoneyShield, ces activités pourront être identifiées à travers les tentatives répétées, les séquences de connexion, les ports ciblés et les identifiants fréquemment utilisés.
 
 ---
 
-# Partie III : Mise en œuvre de HoneyShield
+# <mark style="background:rgba(205, 244, 105, 0.55)">Partie II : Conception de la solution HoneyShield</mark>
 
-## 11. Mise en place de l’infrastructure
+## <mark style="background:#ff4d4f">8. Conception technique de HoneyShield</mark>
 
-### 11.1 Préparation de l’environnement
+### 8.1 Principe de conception retenu
 
-### 11.2 Installation du serveur Linux
+La conception de HoneyShield repose sur un environnement honeypot isolé, supervisé et organisé en plusieurs zones. Le principe est de séparer la partie exposée, qui reçoit les interactions suspectes, de la partie supervision, qui centralise et analyse les journaux.
 
-### 11.3 Configuration réseau
+Le modèle retenu correspond à un honeypot à faible interaction enrichi par certains mécanismes de moyenne interaction. Les services ne donnent pas accès à un système complet, mais ils permettent de collecter suffisamment de traces pour l’analyse.
 
-### 11.4 Installation et configuration de Cowrie
+### 8.2 Architecture générale
 
-### 11.5 Installation et configuration de Dionaea
+L’architecture générale comprend quatre éléments principaux :
 
-### 11.6 Installation et configuration de Wazuh
+- Une machine honeypot chargée d’exposer les services simulés ;
+- Des outils honeypot chargés d’enregistrer les interactions ;
+- Une plateforme Wazuh chargée de centraliser et traiter les événements ;
+- Un poste d’administration chargé de consulter les alertes et les journaux.
 
-### 11.7 Centralisation des logs
+| Élément | Rôle |
+|---|---|
+| Machine HoneyShield | Héberge les services simulés |
+| Cowrie | Simule SSH et Telnet |
+| Dionaea | Simule plusieurs services réseau |
+| Wazuh Agent | Transmet les journaux au serveur Wazuh |
+| Wazuh Manager | Centralise et analyse les événements |
+| Wazuh Indexer ou Elasticsearch | Stocke et indexe les données |
+| Wazuh Dashboard ou Kibana | Permet la visualisation |
+| Poste d’administration | Permet l’analyse des résultats |
+| Machine de test | Génère les scénarios contrôlés |
 
-### 11.8 Configuration du tableau de bord
+### 8.3 Organisation réseau et zones de sécurité
 
-### 11.9 Vérification du fonctionnement global
+L’environnement est organisé en trois zones :
 
-## 12. Collecte et remontée des données
+| Zone | Rôle | Exposition |
+|---|---|---|
+| Zone honeypot | Reçoit les interactions suspectes | Exposée aux tests |
+| Zone supervision | Centralise les journaux et alertes | Protégée |
+| Zone administration | Permet la consultation des résultats | Accès réservé |
 
-### 12.1 Logs générés par Cowrie
+La zone honeypot doit être séparée du réseau réel. Elle peut être placée dans un réseau de test, un VLAN dédié, une DMZ ou un segment isolé. Les flux sortants doivent être limités pour éviter tout rebond vers d’autres systèmes.
 
-### 12.2 Logs générés par Dionaea
+La zone supervision ne doit pas être exposée directement aux sources d’attaque. Elle reçoit uniquement les journaux transmis par le honeypot. La zone administration doit être réservée aux personnes autorisées.
 
-### 12.3 Logs système
+### 8.4 Services exposés
 
-### 12.4 Événements remontés dans Wazuh
+<mark style="background:#b1ffff">Dans HoneyShield, les services exposés retenus sont SSH, Telnet, FTP, HTTP et SMB. Ils sont simulés pour produire des journaux exploitables, sans fournir de véritables services de production.</mark>
 
-### 12.5 Organisation des données collectées
+Les services retenus pour HoneyShield sont les suivants :
+
+| Service | Port courant | Outil associé | Objectif d’observation |
+|---|---:|---|---|
+| SSH | 22 | Cowrie | Tentatives de connexion et force brute |
+| Telnet | 23 | Cowrie | Connexions faibles ou automatisées |
+| FTP | 21 | Dionaea | Tentatives d’accès à un service de fichiers |
+| HTTP | 80 | Dionaea ou service web leurre | Requêtes web suspectes |
+| SMB | 445 | Dionaea | Interactions liées aux partages réseau |
+
+Ces services sont choisis parce qu’ils correspondent à des surfaces d’attaque fréquemment recherchées lors des scans et des tentatives d’accès automatisées.
+
+### 8.5 Choix des composants techniques
+
+Linux est retenu comme système de base en raison de sa stabilité, de sa flexibilité et de sa compatibilité avec les outils de cybersécurité.
+
+Cowrie est utilisé pour simuler SSH et Telnet. Il permet de collecter les identifiants testés, les mots de passe saisis, les sessions ouvertes et les commandes exécutées dans l’environnement simulé.
+
+Dionaea complète Cowrie en simulant plusieurs services réseau. Il permet de capturer des interactions suspectes, notamment des tentatives d’exploitation, des connexions anormales ou des transferts de fichiers suspects.
+
+Wazuh Agent est installé sur la machine honeypot afin de surveiller les fichiers de journaux et de transmettre les événements vers Wazuh Manager.
+
+Wazuh Manager assure la centralisation et l’analyse des événements. Il applique des règles, génère des alertes et facilite l’exploitation des données collectées.
+
+Wazuh Indexer ou Elasticsearch assure le stockage et l’indexation des événements, ce qui permet les recherches et les filtres dans le tableau de bord.
+
+Wazuh Dashboard ou Kibana fournit l’interface de visualisation des alertes, des journaux et des statistiques.
+
+Nmap est utilisé comme outil de test pour vérifier l’exposition des services et générer des scénarios de scan contrôlés.
+
+### 8.6 Flux de fonctionnement
+
+Le fonctionnement de HoneyShield suit une chaîne simple :
+
+| Étape | Action | Composant concerné |
+|---|---|---|
+| 1 | Une machine de test contacte un service exposé | Honeypot |
+| 2 | L’interaction est reçue | Cowrie ou Dionaea |
+| 3 | L’événement est enregistré | Journaux locaux |
+| 4 | Le journal est collecté | Wazuh Agent |
+| 5 | L’événement est transmis | Wazuh Manager |
+| 6 | Les données sont indexées | Wazuh Indexer ou Elasticsearch |
+| 7 | Les alertes sont consultées | Wazuh Dashboard ou Kibana |
+| 8 | Les résultats sont interprétés | Analyste sécurité |
+
+Cette chaîne permet de suivre le cheminement complet d’un événement depuis son apparition jusqu’à son analyse.
+
+### 8.7 Mesures de sécurisation prévues
+
+La conception prévoit plusieurs mesures de sécurité :
+
+- Isoler la machine honeypot du réseau réel ;
+- Limiter les flux sortants du honeypot ;
+- Protéger l’accès au tableau de bord ;
+- Centraliser les journaux en dehors du honeypot ;
+- Utiliser des comptes d’administration protégés ;
+- Réaliser les tests uniquement dans un cadre autorisé.
+
+Ces mesures réduisent le risque que le honeypot soit utilisé comme point de rebond ou comme source d’attaque vers un système tiers.
+
+### 8.8 Schéma global de l’architecture
+
+```mermaid
+flowchart LR
+    A[Machine de test] --> B[Machine HoneyShield]
+    B --> C[Cowrie : SSH / Telnet]
+    B --> D[Dionaea : FTP / HTTP / SMB]
+    C --> E[Logs Cowrie]
+    D --> F[Logs Dionaea]
+    E --> G[Wazuh Agent]
+    F --> G
+    G --> H[Wazuh Manager]
+    H --> I[Wazuh Indexer ou Elasticsearch]
+    I --> J[Wazuh Dashboard ou Kibana]
+    K[Administrateur] --> J
+```
+
+### 8.9 Synthèse de la conception
+
+La conception retenue repose sur une architecture isolée, modulaire et supervisée. Le honeypot expose des services simulés, les outils spécialisés enregistrent les interactions, et Wazuh centralise les événements pour faciliter l’analyse.
+
+Cette conception prépare la phase de mise en œuvre, qui consistera à installer les composants, configurer les services, connecter le honeypot à la supervision et vérifier le fonctionnement global.
 
 ---
 
-# Partie IV : Simulation, analyse et résultats
+# <mark style="background:rgba(205, 244, 105, 0.55)">Partie III : Mise en œuvre de HoneyShield</mark>
 
-## 13. Simulation contrôlée des attaques
+## <mark style="background:#ff4d4f">9. Déploiement de l’environnement HoneyShield</mark>
 
-### 13.1 Cadre de test
+### 9.1 Préparation du laboratoire de virtualisation
 
-### 13.2 Scan réseau avec Nmap
+La première étape de la mise en œuvre de HoneyShield consiste à préparer l’environnement de virtualisation destiné à accueillir les différentes machines du projet. Cette phase est essentielle, car elle permet de définir l’infrastructure technique nécessaire au déploiement des composants du système, notamment le honeypot, la plateforme de supervision et les outils de test.
 
-### 13.3 Simulation de connexions SSH suspectes
+Le choix d’un environnement virtualisé permet de mettre en place une architecture isolée, flexible et maîtrisée. Cette approche facilite le déploiement des différentes machines tout en assurant une séparation avec l’environnement de production ou le réseau réel. Elle offre également un cadre adapté aux expérimentations et aux analyses de sécurité dans des conditions contrôlées.
 
-### 13.4 Simulation d’attaque par force brute
+Dans le cadre de HoneyShield, le laboratoire doit comporter trois machines virtuelles principales :
 
-### 13.5 Simulation d’exploitation de services
+|Machine virtuelle|Système prévu|Rôle dans le laboratoire|
+|---|---|---|
+|VM HoneyShield|Ubuntu Server|Héberger le honeypot, Cowrie, Dionaea et l’agent Wazuh|
+|VM Wazuh Server|Ubuntu Server|Centraliser, analyser et visualiser les événements|
+|VM Kali Linux|Kali Linux|Réaliser les scans et les simulations contrôlées|
 
-### 13.6 Observation des événements générés
+La machine **HoneyShield** représente la machine exposée du laboratoire. Elle sera utilisée pour installer les services honeypot et collecter les interactions suspectes.
 
-## 14. Analyse des résultats
+La machine **Wazuh Server** représente la plateforme de supervision. Elle recevra les journaux transmis par l’agent installé sur la machine HoneyShield et permettra de consulter les alertes dans un tableau de bord.
 
-### 14.1 Analyse des scans détectés
+La machine **Kali Linux** représente la machine de test. Elle servira à générer les scénarios contrôlés, notamment les scans réseau, les tentatives de connexion et les interactions avec les services exposés.
 
-### 14.2 Analyse des adresses IP suspectes
+Pour réaliser ce laboratoire, un hyperviseur doit être utilisé. Selon les ressources disponibles, il peut s’agir de VMware Workstation, VirtualBox ou VMware ESXi. Dans ce projet, l’utilisation d’un environnement virtualisé est retenue afin de mieux contrôler les machines et leurs communications.
 
-### 14.3 Analyse des identifiants utilisés
+Les ressources minimales recommandées pour les machines virtuelles sont les suivantes :
 
-### 14.4 Analyse des mots de passe testés
+| Machine virtuelle | Processeur | Mémoire RAM | Disque dur recommandé |
+| ----------------- | ---------- | ----------- | --------------------- |
+| VM HoneyShield    | 2 vCPU     | 2 Go à 4 Go | 30 Go                 |
+| VM Wazuh Server   | 2 à 4 vCPU | 4 Go à 8 Go | 50 Go ou plus         |
+| VM Kali Linux     | 2 vCPU     | 2 Go à 4 Go | 30 Go                 |
+|                   |            |             |                       |
 
-### 14.5 Analyse des commandes exécutées
+Ces ressources peuvent être adaptées selon la puissance de la machine physique utilisée. La machine Wazuh Server nécessite davantage de ressources, car elle assure la centralisation, l’indexation et la visualisation des événements.
 
-### 14.6 Analyse des comportements automatisés
+Avant de créer les machines virtuelles, il est nécessaire de préparer les fichiers d’installation suivants :
 
-### 14.7 Visualisation des attaques dans le tableau de bord
+- L’image ISO d’Ubuntu Server pour la machine HoneyShield ;
+    
+- L’image ISO d’Ubuntu Server pour la machine Wazuh Server ;
+    
+- L’image ISO de Kali Linux pour la machine de test ;
+    
+- Un espace disque suffisant pour stocker les machines virtuelles ;
+    
+- Une connexion Internet temporaire pour télécharger les paquets nécessaires.
+    
 
-## 15. Résultats obtenus
+Le réseau virtuel du laboratoire doit également être défini dès cette étape. L’objectif est de permettre aux machines virtuelles de communiquer entre elles tout en évitant une exposition directe du réseau réel. Selon l’hyperviseur utilisé, le réseau peut être configuré sous forme de LAN Segment, de réseau interne, de Host-Only Network ou de VLAN isolé.
 
-### 15.1 Types d’attaques détectées
+Le plan d’adressage prévu pour le laboratoire est le suivant :
 
-### 15.2 Données collectées
+| Équipement   | Adresse IP prévue | Rôle                                               |
+| ------------ | ----------------- | -------------------------------------------------- |
+| Kali Linux   | 192.168.163.135   | Machine de test                                    |
+| HoneyShield  | 192.168.163.145   | Machine honeypot                                   |
+| Wazuh Server | 192.168.163.155   | Plateforme de supervision                          |
+| Passerelle   | 192.168.163.1     | Accès réseau selon la configuration du laboratoire |
 
-### 15.3 Alertes générées
+À cette étape, les adresses IP ne sont pas encore configurées dans les machines. Elles sont simplement définies comme plan d’adressage prévisionnel. La configuration réelle des interfaces réseau sera effectuée dans la section suivante consacrée à la configuration réseau.
 
-### 15.4 Apport de HoneyShield dans la détection
+La préparation du laboratoire doit donc permettre de disposer d’un environnement clair avant l’installation des systèmes. Les machines à créer sont identifiées, leurs rôles sont définis, les ressources nécessaires sont précisées et le réseau virtuel à utiliser est prévu.
 
-### 15.5 Interprétation générale des résultats
+À la fin de cette étape, le laboratoire est prêt pour la création et l’installation des machines virtuelles. La suite du déploiement consistera à installer Ubuntu Server sur les machines HoneyShield et Wazuh Server, puis Kali Linux sur la machine de test.
+
+### 9.2 Création et installation des machines virtuelles
+
+Après la préparation du laboratoire de virtualisation, l’étape suivante consiste à créer et installer les différentes machines virtuelles nécessaires au projet HoneyShield. Cette étape permet de disposer des systèmes de base sur lesquels seront ensuite installés les outils du projet.
+
+Dans le cadre de ce travail, la création détaillée des machines virtuelles ne sera pas développée commande par commande, car elle dépend de l’hyperviseur utilisé par chaque utilisateur. Certains peuvent utiliser VMware Workstation, d’autres VirtualBox ou VMware ESXi. Les interfaces, les menus et les options peuvent donc varier selon l’environnement choisi.
+
+Pour cette raison, les utilisateurs devront suivre des vidéos YouTube adaptées à leur outil de virtualisation afin de créer correctement les machines virtuelles du laboratoire. Ces vidéos devront couvrir les opérations suivantes :
+
+- La Création d’une machine virtuelle Ubuntu Server ;
+    
+- L’Installation d’Ubuntu Server ;
+    
+- La Création d’une machine virtuelle Kali Linux ;
+    
+- L’Installation de Kali Linux ;
+    
+- La Configuration de base des ressources matérielles ;
+    
+- L’Ajout d’une carte réseau virtuelle ;
+    
+- Le Choix du mode réseau adapté au laboratoire.
+    
+
+Les vidéos recommandées devront permettre à l’utilisateur de mettre en place les trois machines nécessaires au projet :
+
+|Machine virtuelle|Système à installer|Rôle|
+|---|---|---|
+|VM HoneyShield|Ubuntu Server|Machine honeypot|
+|VM Wazuh Server|Ubuntu Server|Plateforme de supervision|
+|VM Kali Linux|Kali Linux|Machine de test|
+
+L’utilisateur devra veiller à respecter les ressources minimales prévues lors de la création des machines virtuelles. La machine HoneyShield doit disposer de ressources suffisantes pour exécuter les outils honeypot et l’agent Wazuh. La machine Wazuh Server doit disposer de ressources plus importantes, car elle assurera la centralisation, l’indexation et la visualisation des événements. La machine Kali Linux servira uniquement aux tests et aux simulations contrôlées.
+
+À la fin de cette étape, les trois machines virtuelles doivent être créées et installées. Les systèmes doivent démarrer correctement et permettre l’accès à une session utilisateur ou administrateur. Il n’est pas encore nécessaire de configurer les adresses IP définitives à ce niveau, car la configuration réseau sera traitée dans la section suivante.
+
+Les éléments attendus à la fin de cette étape sont les suivants :
+
+- Une Machine virtuelle HoneyShield fonctionnelle sous Ubuntu Server ;
+    
+- Une Machine virtuelle Wazuh Server fonctionnelle sous Ubuntu Server ;
+    
+- Une Machine virtuelle Kali Linux fonctionnelle ;
+    
+- Des Ressources matérielles correctement attribuées à chaque machine ;
+    
+- Un Accès administrateur disponible sur chaque système ;
+    
+- Des Machines prêtes pour la configuration réseau.
+    
+
+Cette étape constitue donc une phase préparatoire importante. Elle permet de disposer des systèmes nécessaires avant de passer à la configuration réseau, à l’installation des outils honeypot et à la mise en place de la supervision.
+
+#### <font color="#76923c"> Ressources vidéo recommandées pour la création des machines virtuelles</font>
+
+La création et l’installation des machines virtuelles peuvent varier selon l’hyperviseur utilisé. Pour faciliter cette étape, les utilisateurs sont invités à consulter des vidéos adaptées à leur environnement de travail. Les ressources suivantes sont proposées selon les cas.
+
+##### Cas 1 : Utilisateur francophone utilisant VMware Workstation
+
+|Besoin|Vidéo recommandée|
+|---|---|
+|Créer une machine virtuelle avec VMware Workstation|[Débuter avec VMware Workstation Pro - Épisode 1 : Créer une VM](https://www.youtube.com/watch?v=KCeX-65ohRA)|
+|Comprendre les réseaux VMware : NAT, Bridged, Host-only, LAN Segment|[VMware Workstation Pro - Épisode 2 : Réseau NAT, Bridged, Host-only, LAN Segment](https://www.youtube.com/watch?v=hj-deoZA4do)|
+|Installer Kali Linux avec VMware ou VirtualBox|[Tuto FR : Installation de Kali Linux avec VirtualBox ou VMware Workstation](https://www.youtube.com/watch?v=EuFkR8GtH6A)|
+
+##### Cas 2 : Utilisateur anglophone utilisant VMware Workstation
+
+|Besoin|Vidéo recommandée|
+|---|---|
+|Installer Ubuntu Server 24.04 sur VMware Workstation|[Install Ubuntu Server 24.04 on VMware Workstation step by step](https://www.youtube.com/watch?v=tgxBrcxRYic)|
+|Installer Ubuntu Server 22.04 sur VMware Workstation|[Install Ubuntu 22.04.5 LTS Server on VMware Workstation](https://www.youtube.com/watch?v=tkXQAeMYZwA)|
+|Installer et configurer Ubuntu Server sur VMware|[How to Install and Configure Ubuntu Server on VMware](https://www.youtube.com/watch?v=NdzSg_MvuoE)|
+|Installer Kali Linux sur VMware Workstation|[How to Install Kali Linux in VMware Workstation](https://www.youtube.com/watch?v=ZjAK_m5j8fA)|
+|Créer un réseau LAN dans VMware|[How to Create a LAN in VMware - Step by Step](https://www.youtube.com/watch?v=6fjjX6M9UV0)|
+
+##### Cas 3 : Utilisateur francophone utilisant VirtualBox
+
+|Besoin|Vidéo recommandée|
+|---|---|
+|Installer Ubuntu Server dans VirtualBox|[Installer un Serveur Linux dans VirtualBox - Ubuntu Server](https://www.youtube.com/watch?v=AZeQqf0W-10)|
+|Installer Kali Linux avec VirtualBox ou VMware|[Tuto FR : Installation de Kali Linux avec VirtualBox ou VMware Workstation](https://www.youtube.com/watch?v=EuFkR8GtH6A)|
+|Comprendre les modes réseau VirtualBox|[Types de réseaux VirtualBox : NAT, pont, host-only, etc.](https://www.it-connect.fr/comprendre-les-differents-types-de-reseaux-virtualbox/)|
+
+##### Cas 4 : Utilisateur anglophone utilisant VirtualBox
+
+|Besoin|Vidéo recommandée|
+|---|---|
+|Installer Ubuntu Server 22.04 dans VirtualBox|[Install Ubuntu Server 22.04 LTS in VirtualBox](https://www.youtube.com/watch?v=ElNalqvVaPw)|
+|Installer Ubuntu Server 22.04 étape par étape|[How to Install Ubuntu Server 22.04 LTS - Step by Step](https://www.youtube.com/watch?v=2ZAhNQEWtm4)|
+|Configurer un réseau Host-only avec Ubuntu et Kali dans VirtualBox|[Host Only Network on VirtualBox - Demo using Ubuntu and Kali Linux](https://www.youtube.com/watch?v=EmXeUlZnbwk)|
+|Activer NAT et Host-only Network sur Ubuntu Server dans VirtualBox|[How to enable NAT and host only network on Ubuntu Server in VirtualBox](https://www.youtube.com/watch?v=PEL0e51oeaE)|
+
+##### Cas 5 : Installation spécifique d’Ubuntu Server
+
+|Besoin|Vidéo recommandée|
+|---|---|
+|Installer Ubuntu Server 24.04 sur VMware Workstation|[Install Ubuntu Server 24.04 on VMware Workstation step by step](https://www.youtube.com/watch?v=tgxBrcxRYic)|
+|Installer Ubuntu Server 22.04.5 sur VMware Workstation|[Install Ubuntu 22.04.5 LTS Server on VMware Workstation](https://www.youtube.com/watch?v=tkXQAeMYZwA)|
+|Installer Ubuntu Server 22.04 dans VirtualBox|[Install Ubuntu Server 22.04 LTS in VirtualBox](https://www.youtube.com/watch?v=ElNalqvVaPw)|
+|Installer Ubuntu Server 22.04 étape par étape|[How to Install Ubuntu Server 22.04 LTS - Step by Step](https://www.youtube.com/watch?v=2ZAhNQEWtm4)|
+
+##### Recommandation pour HoneyShield
+
+Pour le projet HoneyShield, le parcours recommandé est le suivant :
+
+|Étape|Ressource conseillée|
+|---|---|
+|1|Créer les machines virtuelles avec VMware Workstation ou VirtualBox|
+|2|Installer Ubuntu Server pour la machine HoneyShield|
+|3|Installer Ubuntu Server pour la machine Wazuh Server|
+|4|Installer Kali Linux pour la machine de test|
+|5|Configurer un réseau isolé de type Host-only, LAN Segment ou réseau interne|
+|6|Vérifier que les trois machines peuvent communiquer entre elles avant de poursuivre|
+
+### 9.3 Configuration réseau des machines
+
+Après la création et l’installation des machines virtuelles, l’étape suivante consiste à configurer le réseau du laboratoire. Dans le cadre de ce projet, les machines virtuelles sont placées dans un réseau de type NAT.
+
+Le choix du réseau NAT se justifie par le besoin de permettre aux machines virtuelles d’accéder à Internet afin de télécharger les paquets nécessaires à l’installation des outils, notamment Cowrie, Dionaea, Wazuh Agent et leurs dépendances. Ce mode réseau permet également aux machines du laboratoire de communiquer entre elles lorsqu’elles sont placées sur le même réseau virtuel.
+
+Le laboratoire HoneyShield utilise le plan d’adressage suivant :
+
+|Machine|Adresse IP|Rôle|
+|---|--:|---|
+|Kali Linux|192.168.163.135|Machine de test|
+|HoneyShield|192.168.163.145|Machine honeypot|
+|Wazuh Server|192.168.163.155|Plateforme de supervision|
+
+La machine **HoneyShield** utilise l’adresse `192.168.163.145`. Elle hébergera les outils honeypot et recevra les interactions provenant de Kali Linux.
+
+La machine **Wazuh Server** utilise l’adresse `192.168.163.155`. Elle recevra les journaux transmis par l’agent Wazuh installé sur la machine HoneyShield.
+
+La machine **Kali Linux** utilise l’adresse `192.168.163.135`. Elle servira à réaliser les tests de connectivité, les scans réseau et les simulations contrôlées.
+
+Avant toute modification réseau, il est nécessaire d’identifier le nom de l’interface réseau sur chaque machine Ubuntu avec la commande suivante :
+
+```bash
+ip a
+```
+
+Le nom de l’interface peut varier selon l’environnement. Il peut par exemple être `ens33`, `ens160`, `enp0s3` ou `eth0`. Dans les exemples suivants, l’interface utilisée est `ens33`. Elle doit être remplacée par le nom réel de l’interface sur la machine.
+
+Il est également nécessaire d’identifier la passerelle NAT utilisée par le réseau virtuel. Cette information peut être obtenue avec la commande suivante :
+
+```bash
+ip route
+```
+
+La ligne contenant le mot `default` indique la passerelle utilisée par la machine. Selon la configuration de l’hyperviseur, cette passerelle peut être différente. Il faut donc utiliser la passerelle réellement affichée par la commande.
+
+Sur la machine **HoneyShield**, la configuration IP peut être définie dans le fichier Netplan :
+
+```bash
+sudo nano /etc/netplan/00-installer-config.yaml
+```
+
+Exemple de configuration pour HoneyShield :
+
+```yaml
+network:
+  version: 2
+  ethernets:
+    ens33:
+      dhcp4: no
+      addresses:
+        - 192.168.163.145/24
+      routes:
+        - to: default
+          via: ADRESSE_DE_LA_PASSERELLE_NAT
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 1.1.1.1
+```
+
+Dans cette configuration, `ADRESSE_DE_LA_PASSERELLE_NAT` doit être remplacée par l’adresse réelle de la passerelle affichée par la commande `ip route`.
+
+![[Pasted image 20260530155932.png]]
+
+Après modification du fichier, la configuration est appliquée avec la commande suivante :
+
+```bash
+sudo netplan apply
+```
+
+Sur la machine **Wazuh Server**, le fichier Netplan est également modifié :
+
+```bash
+sudo nano /etc/netplan/00-installer-config.yaml
+```
+
+Exemple de configuration pour Wazuh Server :
+
+```yaml
+network:
+  version: 2
+  ethernets:
+    ens33:
+      dhcp4: no
+      addresses:
+        - 192.168.163.155/24
+      routes:
+        - to: default
+          via: 192.168.163.2
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 1.1.1.1
+```
+
+La configuration est ensuite appliquée avec :
+
+```bash
+sudo netplan apply
+```
+
+Sur la machine **Kali Linux**, l’adresse IP peut être configurée à partir de l’interface graphique ou en ligne de commande. L’objectif est de lui attribuer l’adresse suivante :
+
+```text
+Adresse IP : 192.168.163.135
+Masque : 255.255.255.0
+Passerelle : passerelle NAT du réseau virtuel
+DNS : 8.8.8.8
+```
+
+Après configuration, chaque machine doit être vérifiée avec la commande suivante :
+
+```bash
+ip a
+```
+
+Depuis **Kali Linux**, la connectivité vers HoneyShield peut être testée avec :
+
+```bash
+ping 192.168.163.145
+```
+
+Depuis **Kali Linux**, la connectivité vers Wazuh Server peut être testée avec :
+
+```bash
+ping 192.168.163.155
+```
+
+Depuis **HoneyShield**, la connectivité vers Wazuh Server peut être testée avec :
+
+```bash
+ping 192.168.163.155
+```
+
+Depuis **Wazuh Server**, la connectivité vers HoneyShield peut être testée avec :
+
+```bash
+ping 192.168.163.145
+```
+
+Il est aussi important de vérifier l’accès Internet, car certaines installations nécessitent le téléchargement de paquets en ligne. Le test peut être effectué avec :
+
+```bash
+ping 8.8.8.8
+```
+
+Le bon fonctionnement de la résolution DNS peut être vérifié avec :
+
+```bash
+ping google.com
+```
+
+Si les machines communiquent entre elles et disposent d’un accès Internet, le réseau du laboratoire est fonctionnel. Dans le cas contraire, il faut vérifier les éléments suivants :
+
+- Le Mode réseau NAT sélectionné dans l’hyperviseur ;
+    
+- Le Fait que les trois machines soient placées sur le même réseau virtuel ;
+    
+- Le Nom réel de l’interface réseau ;
+    
+- L’Adresse IP configurée sur chaque machine ;
+    
+- Le Masque réseau utilisé ;
+    
+- L’Adresse de la passerelle NAT ;
+    
+- La Configuration DNS ;
+    
+- La Présence éventuelle d’un pare-feu bloquant les communications.
+    
+
+À la fin de cette étape, les résultats attendus sont les suivants :
+
+- La Machine HoneyShield possède l’adresse `192.168.163.145` ;
+    
+- La Machine Wazuh Server possède l’adresse `192.168.163.155` ;
+    
+- La Machine Kali Linux possède l’adresse `192.168.163.135` ;
+    
+- Les trois machines communiquent entre elles ;
+    
+- Les machines Ubuntu disposent d’un accès Internet pour l’installation des paquets ;
+    
+- Le laboratoire est prêt pour l’installation des outils honeypot.
+    
+
+Cette configuration réseau constitue une base importante pour la suite du projet. Elle permet de télécharger les outils nécessaires, de connecter HoneyShield à Wazuh Server et de préparer les simulations depuis Kali Linux.
+
+### 9.4 Installation et configuration de Cowrie
+
+### 9.5 Installation et configuration de Dionaea
+
+### 9.6 Installation et configuration de Wazuh Agent
+
+### 9.7 Connexion à Wazuh Manager
+
+### 9.8 Vérification des services exposés
+
+## <mark style="background:#ff4d4f">10. Centralisation et exploitation des journaux</mark>
+
+### 10.1 Journaux générés par Cowrie
+
+### 10.2 Journaux générés par Dionaea
+
+### 10.3 Journaux système Linux
+
+### 10.4 Remontée des événements vers Wazuh
+
+### 10.5 Consultation dans le tableau de bord
 
 ---
 
-# Partie V : Bilan du projet
+# <mark style="background:rgba(205, 244, 105, 0.55)">Partie IV : Simulation, analyse et résultats</mark>
 
-## 16. Difficultés rencontrées
+## <mark style="background:#ff4d4f">11. Simulation contrôlée des attaques</mark>
 
-### 16.1 Difficultés techniques
+### 11.1 Cadre de test
 
-### 16.2 Difficultés liées à la configuration
+### 11.2 Scan réseau avec Nmap
 
-### 16.3 Difficultés liées à la collecte des logs
+### 11.3 Simulation de connexions SSH suspectes
 
-### 16.4 Solutions apportées
+### 11.4 Simulation d’attaque par force brute
 
-## 17. Limites du projet
+### 11.5 Simulation d’interactions avec les services exposés
 
-### 17.1 Limites techniques
+### 11.6 Observation des événements générés
 
-### 17.2 Limites liées à l’environnement de test
+## <mark style="background:#ff4d4f">12. Analyse des résultats</mark>
 
-### 17.3 Limites liées aux attaques simulées
+### 12.1 Analyse des scans détectés
 
-## 18. Améliorations possibles
+### 12.2 Analyse des adresses IP suspectes
 
-### 18.1 Intégration de l’intelligence artificielle
+### 12.3 Analyse des identifiants utilisés
 
-### 18.2 Corrélation avancée des événements
+### 12.4 Analyse des mots de passe testés
 
-### 18.3 Géolocalisation des adresses IP
+### 12.5 Analyse des commandes exécutées
 
-### 18.4 Alertes automatiques
+### 12.6 Analyse des comportements automatisés
 
-### 18.5 Ajout d’autres honeypots
+### 12.7 Visualisation dans le tableau de bord
 
-### 18.6 Intégration avec un SOC ou un SIEM plus avancé
+## <mark style="background:#ff4d4f">13. Résultats obtenus</mark>
 
-## 19. Compétences mises en avant
+### 13.1 Types d’activités détectées
 
-### 19.1 Administration Linux
+### 13.2 Données collectées
 
-### 19.2 Sécurité réseau
+### 13.3 Alertes générées
 
-### 19.3 Supervision et analyse des logs
+### 13.4 Apport de HoneyShield dans la détection
 
-### 19.4 Détection d’intrusion
-
-### 19.5 Analyse des comportements malveillants
-
-### 19.6 Utilisation d’outils de cybersécurité
-
-## 20. Conclusion générale
+### 13.5 Interprétation générale des résultats
 
 ---
 
-# Annexes
+# <mark style="background:rgba(205, 244, 105, 0.55)">Partie V : Bilan du projet</mark>
+
+## <mark style="background:#ff4d4f">14. Difficultés rencontrées</mark>
+
+## <mark style="background:#ff4d4f">15. Limites du projet</mark>
+
+## <mark style="background:#ff4d4f">16. Améliorations possibles</mark>
+
+## <mark style="background:#ff4d4f">17. Compétences mises en avant</mark>
+
+## <mark style="background:#ff4d4f">18. Conclusion générale</mark>
+
+---
+
+# <mark style="background:rgba(205, 244, 105, 0.55)">Annexes</mark>
 
 ## Annexe 1 : Commandes utilisées
 

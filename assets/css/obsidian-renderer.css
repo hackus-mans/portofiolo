@@ -1,0 +1,33 @@
+/* Rendu Obsidian compatible : couleurs, callouts, tableaux, code, tâches */
+.obsidian-doc{font-feature-settings:'liga' 1,'calt' 1;line-height:1.72}
+.obsidian-doc h1,.obsidian-doc h2,.obsidian-doc h3,.obsidian-doc h4,.obsidian-doc h5,.obsidian-doc h6{scroll-margin-top:24px;letter-spacing:-.02em}
+.obsidian-doc mark,.doc-highlight{padding:.08em .28em;border-radius:.35em;background:#ff4d4f!important;color:#fff!important;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.obsidian-doc span[style*="background"]{border-radius:.35em;padding:.08em .28em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.obsidian-doc span[style*="color"]{font-weight:700}
+.obsidian-doc code{border:1px solid rgba(226,238,255,.12);background:rgba(15,23,42,.88);color:#d8f3ff;border-radius:7px;padding:.12em .42em;font-size:.92em}
+.obsidian-doc pre.obs-code,.obsidian-doc pre{position:relative;overflow:auto;border:1px solid rgba(226,238,255,.12);background:linear-gradient(180deg,rgba(2,8,15,.96),rgba(3,10,20,.96));border-radius:18px;padding:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);-webkit-overflow-scrolling:touch}
+.obsidian-doc pre code{display:block;border:0;background:transparent;color:#e6f7ff;padding:0;border-radius:0;font-size:13px;line-height:1.62;white-space:pre;tab-size:2}
+.obs-table-wrap{width:100%;overflow:auto;margin:18px 0;border:1px solid rgba(226,238,255,.12);border-radius:18px;background:rgba(255,255,255,.025);-webkit-overflow-scrolling:touch}
+.obs-table{width:100%;border-collapse:collapse;min-width:520px;font-size:14px}
+.obs-table th{background:rgba(45,212,191,.10);color:#dffff8;font-weight:900;text-transform:none;letter-spacing:.01em}
+.obs-table th,.obs-table td{padding:12px 13px;border-bottom:1px solid rgba(226,238,255,.09);border-right:1px solid rgba(226,238,255,.06);vertical-align:top}
+.obs-table tr:last-child td{border-bottom:0}.obs-table th:last-child,.obs-table td:last-child{border-right:0}
+.obs-table tbody tr:nth-child(even){background:rgba(255,255,255,.025)}
+.obs-list{padding-left:1.25rem;margin:14px 0}.obs-list li{margin:7px 0}.obs-task{display:flex;align-items:flex-start;gap:9px;list-style:none;margin-left:-1.2rem}.obs-task input{margin-top:.35em;accent-color:#2dd4bf}
+.obs-callout{margin:18px 0;border:1px solid rgba(226,238,255,.12);border-left:4px solid #60a5fa;border-radius:18px;background:rgba(96,165,250,.07);overflow:hidden;box-shadow:0 14px 32px rgba(0,0,0,.15)}
+.obs-callout-title{display:flex;align-items:center;gap:10px;padding:12px 14px;font-weight:950;color:#fff;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(226,238,255,.08)}
+.obs-callout-title span{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:#9bdcff;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.22);padding:5px 8px;border-radius:999px}
+.obs-callout-body{padding:13px 14px}.obs-callout-body p:first-child{margin-top:0}.obs-callout-body p:last-child{margin-bottom:0}
+.obs-callout-note,.obs-callout-info{border-left-color:#60a5fa;background:rgba(96,165,250,.07)}
+.obs-callout-tip,.obs-callout-success,.obs-callout-done{border-left-color:#2dd4bf;background:rgba(45,212,191,.07)}
+.obs-callout-warning,.obs-callout-attention{border-left-color:#f59e0b;background:rgba(245,158,11,.08)}
+.obs-callout-danger,.obs-callout-failure,.obs-callout-error,.obs-callout-bug{border-left-color:#ef4444;background:rgba(239,68,68,.08)}
+.obs-callout-question,.obs-callout-help{border-left-color:#a78bfa;background:rgba(167,139,250,.08)}
+.obs-media{margin:20px auto;border:1px solid rgba(226,238,255,.11);border-radius:20px;background:rgba(255,255,255,.035);padding:10px;max-width:100%;overflow:hidden;text-align:center}
+.obs-media img,.obs-media video{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:14px;background:#fff}.obs-media audio{width:100%}
+.obs-media figcaption{margin-top:8px;color:#91a0b5;font-size:12px;line-height:1.4;text-align:center;word-break:break-word}
+.obs-attachment{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:9px 12px;border-radius:12px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.18);color:#dffff8!important;text-decoration:none!important;font-weight:800}
+.obs-wikilink{display:inline-flex;align-items:center;padding:.08em .42em;border-radius:999px;background:rgba(96,165,250,.10);border:1px solid rgba(96,165,250,.18);color:#cde7ff;font-weight:750}
+.obsidian-doc blockquote{margin:18px 0;padding:13px 16px;border-left:4px solid rgba(45,212,191,.45);background:rgba(45,212,191,.055);border-radius:0 16px 16px 0;color:#cfe0f2}
+.obsidian-doc hr{border:0;height:1px;background:linear-gradient(90deg,transparent,rgba(226,238,255,.22),transparent);margin:26px 0}
+@media(max-width:900px){.obsidian-doc pre code{font-size:12px}.obs-table{min-width:620px}.obs-callout{border-radius:16px}.obs-media{border-radius:16px;padding:8px}.obs-table th,.obs-table td{padding:10px 11px}}

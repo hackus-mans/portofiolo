@@ -1009,6 +1009,70 @@ listen_endpoints = tcp:2223:interface=0.0.0.0
 Par défaut, Cowrie écoute sur le port `2222`. Le port `22` peut attirer plus de trafic réel, mais il est préférable de garder `2222` pendant les tests pour ne pas entrer en conflit avec le vrai service SSH de la machine. La documentation indique que l’utilisation du port 22 demande soit une redirection firewall, soit `authbind`, soit une capacité spéciale avec `setcap`  
 (Mais nous aborderons ces configuration ultérieurement)
 
+#### 9.4.6 Configuration des identifiants acceptés
+
+Cowrie utilise le fichier suivant pour définir les identifiants qui permettront à un attaquant d’entrer dans le faux système :
+
+```
+nano etc/userdb.txt
+```
+
+Exemple de configuration (a copié et collé dans userdb.txt) :
+
+```
+root:x:!root
+root:x:!123456
+root:x:*
+admin:x:admin
+ubuntu:x:ubuntu
+*:x:password
+```
+
+Explication :
+
+```
+root:x:!root
+```
+
+refuse la connexion avec l’utilisateur `root` et le mot de passe `root`.
+
+```
+root:x:*
+```
+
+accepte l’utilisateur `root` avec n’importe quel autre mot de passe.
+
+```
+admin:x:admin
+```
+
+accepte l’utilisateur `admin` avec le mot de passe `admin`.
+
+Dans `userdb.txt`, les champs sont séparés par `:`, le troisième champ contient le mot de passe, `*` signifie “n’importe quelle valeur”, et `!` au début d’un mot de passe signifie que ce mot de passe est refusé. Les règles sont traitées de haut en bas, donc l’ordre est important
+
+#### 9.4.7 Démarrage de Cowrie
+
+Après la configuration, Cowrie peut être démarré avec la commande suivante :
+
+```
+cowrie start
+```
+
+Pour vérifier son état, on peut utiliser :
+
+```
+cowrie status
+```
+
+![[Pasted image 20260530224419.png]]
+
+Les ports d’écoute peuvent être vérifiés avec :
+
+```
+ss -tulpen | grep 222
+```
+
+Si Cowrie fonctionne correctement, les ports `2222` et `2223` (si vous avez activé telnet) doivent apparaître dans la liste des ports en écoute.
 ### 9.5 Installation et configuration de Dionaea
 
 ### 9.6 Installation et configuration de Wazuh Agent

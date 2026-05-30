@@ -88,10 +88,20 @@
     html+='</'+tag+'>';
     return {html,next:i};
   }
+  function mermaidBlock(code){
+    const id='mermaid-'+Math.random().toString(36).slice(2,10);
+    return '<div class="obs-mermaid-wrap"><div class="obs-mermaid mermaid" id="'+id+'">'+esc(code)+'</div></div>';
+  }
   function renderBlocks(md){
     let text=String(md||'').replace(/\r\n/g,'\n');
     const codeBlocks=[];
-    text=text.replace(/```([\w-]*)\n([\s\S]*?)```/g,function(_,lang,code){const token='@@CODE'+codeBlocks.length+'@@';codeBlocks.push('<pre class="obs-code"><code class="language-'+esc(lang||'text')+'">'+esc(code)+'</code></pre>');return token});
+    text=text.replace(/```([\w-]*)\n([\s\S]*?)```/g,function(_,lang,code){
+      const token='@@CODE'+codeBlocks.length+'@@';
+      const l=String(lang||'').toLowerCase().trim();
+      if(['mermaid','flowchart','sequence','graph'].includes(l)||/^\s*(flowchart|graph|sequenceDiagram|classDiagram|stateDiagram|erDiagram|journey|gantt|pie|mindmap|timeline)\b/.test(code)) codeBlocks.push(mermaidBlock(code));
+      else codeBlocks.push('<pre class="obs-code"><code class="language-'+esc(lang||'text')+'">'+esc(code)+'</code></pre>');
+      return token;
+    });
     text=text.replace(/!\[\[([^\]]+)\]\]/g,function(_,ref){return '\n'+mediaHtml(ref,ref)+'\n'});
     text=text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,function(_,alt,url){return '\n'+mediaHtml(alt,url)+'\n'});
     const lines=text.split('\n');
@@ -115,5 +125,16 @@
     codeBlocks.forEach((block,idx)=>{html=html.replace('@@CODE'+idx+'@@',block)});
     return html;
   }
-  window.ObsidianRenderer={render:renderBlocks};
+  function ensureMermaid(){
+    if(window.mermaid)return Promise.resolve(window.mermaid);
+    if(window.__mermaidLoading)return window.__mermaidLoading;
+    window.__mermaidLoading=new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';s.onload=()=>resolve(window.mermaid);s.onerror=reject;document.head.appendChild(s)});
+    return window.__mermaidLoading;
+  }
+  function runMermaid(root){
+    const nodes=Array.from((root||document).querySelectorAll('.obs-mermaid:not([data-processed="true"])'));
+    if(!nodes.length)return;
+    ensureMermaid().then(m=>{try{m.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose',flowchart:{htmlLabels:true,curve:'basis'}});m.run({nodes})}catch(e){nodes.forEach(n=>n.classList.add('obs-mermaid-failed'))}}).catch(()=>nodes.forEach(n=>n.classList.add('obs-mermaid-failed')));
+  }
+  window.ObsidianRenderer={render:renderBlocks,runMermaid};
 })();

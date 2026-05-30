@@ -849,6 +849,166 @@ Cette configuration réseau constitue une base importante pour la suite du proje
 
 ### 9.4 Installation et configuration de Cowrie
 
+#### 9.4.1 Installation des dépendances
+Avant d’installer Cowrie, il est nécessaire de mettre à jour le système et d’installer les dépendances requises. Sur la machine HoneyShield, les commandes suivantes sont exécutées :
+
+* Pour mettre a jour le système
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+![[Pasted image 20260530205109.png]]
+
+![[Pasted image 20260530205317.png]]
+
+Dans mon cas tous es bon , mais il es important de mettre toujours et toujours son système a jour
+
+
+* Pour installé les dépendances
+
+```bash
+sudo apt install -y git python3-pip python3-venv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind
+```
+
+![[Pasted image 20260530205451.png]]
+
+Ces paquets permettent d’installer Cowrie à partir de son dépôt GitHub, de créer un environnement virtuel Python et de compiler certaines dépendances nécessaires à son fonctionnement.
+
+#### 9.4.2 Création d’un utilisateur dédié à Cowrie
+
+Il est recommandé de ne pas exécuter Cowrie avec le compte administrateur principal du système. Pour des raisons de sécurité, un utilisateur dédié est créé :
+
+```bash
+sudo adduser --disabled-password cowrie
+```
+
+![[Pasted image 20260530205718.png]]
+
+NB : Lors de la création de l'utilisateur , ont peut vous demandé de remplir certaines informations, vous pouvez ne pas les remplir (recommandé) et donc juste appuyé sur la touche ENTRER jusqu'à obtenir la question " Is the information correct? [Y/n] " où vous devrez répondre par "Y"
+
+Après la création du compte, il faut basculer vers cet utilisateur :
+
+```bash
+sudo su - cowrie
+```
+
+![[Pasted image 20260530210205.png]]
+
+À partir de cette étape, les commandes liées à Cowrie seront exécutées avec l’utilisateur `cowrie`.
+
+#### 9.4.3 Téléchargement de Cowrie par Git
+
+Le code source de Cowrie est téléchargeable depuis le dépôt officiel avec la commande suivante :
+
+```bash
+git clone https://github.com/cowrie/cowrie.git
+```
+
+![[Pasted image 20260530211124.png]]
+![[Pasted image 20260530211212.png]]
+
+Ensuite, il faut entrer dans le dossier du projet :
+
+```bash
+cd cowrie
+```
+
+Cette méthode permet d’obtenir une installation modifiable
+
+#### 9.4.4 Création de l’environnement virtuel Python
+
+Cowrie fonctionne avec un environnement Python. Il est donc nécessaire de créer un environnement virtuel afin d’isoler ses dépendances du reste du système :
+
+```bash
+python3 -m venv cowrie-env
+```
+
+L’environnement virtuel est ensuite activé avec la commande :
+
+```bash
+source cowrie-env/bin/activate
+```
+
+Après activation, le terminal doit indiquer que l’environnement virtuel est actif. 
+
+![[Capture d'écran 2026-05-30 211547.png]]
+
+Il faut ensuite mettre à jour `pip` :
+
+```bash
+python -m pip install --upgrade pip
+```
+
+![[Pasted image 20260530211733.png]]
+
+Puis installer Cowrie dans l’environnement virtuel :
+
+```bash
+python -m pip install -e .
+```
+
+![[Pasted image 20260530211838.png]]
+
+Cette commande installe Cowrie tout en conservant la possibilité de modifier sa configuration et ses fichiers.
+
+#### 9.4.5 Initialisation et configuration de Cowrie
+
+Après le clonage du dépôt GitHub, les fichiers de Cowrie sont disponibles dans le dossier `cowrie`. Cependant, la configuration locale du honeypot n’est pas encore prête à être utilisée. Dans les versions récentes de Cowrie, le dossier `etc` peut être vide au départ, ce qui est normal. Il faut donc initialiser l’environnement de configuration afin de générer les fichiers nécessaires au fonctionnement du service.
+
+Cette initialisation s’effectue avec la commande suivante :
+
+```bash
+cowrie init
+```
+
+La commande crée automatiquement les fichiers de configuration locaux, notamment le fichier principal :
+
+```
+etc/cowrie.cfg
+```
+
+![[Pasted image 20260530214541.png]]
+
+Une fois ce fichier généré, il peut être ouvert et modifié selon les besoins du laboratoire avec la commande :
+
+```
+nano etc/cowrie.cfg
+```
+
+Dans le cadre du projet HoneyShield, l’objectif est de permettre au honeypot de simuler des services SSH et Telnet afin d’attirer et d’enregistrer les tentatives de connexion malveillantes. Pour cela, Cowrie doit être configuré pour écouter les connexions entrantes sur des ports dédiés.
+
+Une configuration de base peut être définie comme suit :
+
+```
+[honeypot]
+hostname = ubuntu-server
+
+[ssh]
+enabled = true
+listen_endpoints = tcp:2222:interface=0.0.0.0
+
+[telnet]
+enabled = true
+listen_endpoints = tcp:2223:interface=0.0.0.0
+```
+
+![[Pasted image 20260530215205.png]]
+
+![[Pasted image 20260530215803.png]]
+
+![[Pasted image 20260530215829.png]]
+
+`hostname = ubuntu-server` permet de donner un nom réaliste au faux système.
+
+`listen_endpoints = tcp:2222:interface=0.0.0.0` indique que Cowrie écoutera les connexions SSH sur le port `2222`.
+
+`telnet = false` désactive Telnet, car ce protocole est ancien et moins sécurisé. Pour un projet de test, SSH suffit généralement.
+
+Par défaut, Cowrie écoute sur le port `2222`. Le port `22` peut attirer plus de trafic réel, mais il est préférable de garder `2222` pendant les tests pour ne pas entrer en conflit avec le vrai service SSH de la machine. La documentation indique que l’utilisation du port 22 demande soit une redirection firewall, soit `authbind`, soit une capacité spéciale avec `setcap`  
+(Mais nous aborderons ces configuration ultérieurement)
+
 ### 9.5 Installation et configuration de Dionaea
 
 ### 9.6 Installation et configuration de Wazuh Agent

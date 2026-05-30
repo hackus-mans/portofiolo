@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obsidian Lab | Hackus Mans</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=368">
+  <link rel="stylesheet" href="assets/css/styles.css?v=368">
+  <link rel="stylesheet" href="assets/css/realisations.css?v=368">
+  <link rel="stylesheet" href="assets/css/markdown-colors.css?v=368">
+  <link rel="stylesheet" href="assets/css/professional.css?v=368">
+  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=368">
+  <link rel="stylesheet" href="assets/css/reader-clean.css?v=368">
+  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=368">
+  <link rel="stylesheet" href="assets/css/obsidian-renderer.css?v=368">
+</head>
+<body>
+<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="realisations.html">Réalisations</a><a href="admin/">Admin</a></div></nav></header>
+<main class="page-shell">
+  <section class="page-hero">
+    <p class="eyebrow">Obsidian Lab</p>
+    <h1>Laboratoire de rendu Obsidian</h1>
+    <p class="section-text">Cette page sert à vérifier que les notes Obsidian restent fidèles sur le site.</p>
+  </section>
+  <section class="content-panel">
+    <article id="obsidian-lab-output" class="markdown-body obsidian-doc pro-doc"></article>
+  </section>
+</main>
+<script src="assets/js/app.js?v=368" defer></script>
+<script src="assets/js/obsidian-renderer.js?v=368" defer></script>
+<script>
+window.addEventListener('load',function(){
+  var sample = [
+    '# Titre principal Obsidian',
+    '',
+    'Texte normal avec **gras**, *italique*, `code inline`, ==surlignage== et <mark style="background:#7c3aed;color:white">couleur HTML</mark>.',
+    '',
+    '## Tableau',
+    '',
+    '| Élément | Statut | Note |',
+    '|---|:---:|---:|',
+    '| Cowrie | OK | 10 |',
+    '| Dionaea | Test | 8 |',
+    '',
+    '## Code Bash',
+    '',
+    '```bash',
+    'sudo apt update',
+    'sudo systemctl status cowrie',
+    '```',
+    '',
+    '## Code Python',
+    '',
+    '```python',
+    'def scan(host):',
+    '    return f"Scanning {host}"',
+    '```',
+    '',
+    '## JSON',
+    '',
+    '```json',
+    '{"service":"cowrie","port":22,"enabled":true}',
+    '```',
+    '',
+    '## Mermaid',
+    '',
+    '```mermaid',
+    'flowchart LR',
+    'A[Machine de test] --> B[Machine HoneyShield]',
+    'B --> C[Cowrie : SSH / Telnet]',
+    'B --> D[Dionaea : FTP / HTTP / SMB]',
+    '```',
+    '',
+    '> [!warning] Point de vigilance',
+    '> Ceci est un callout Obsidian.',
+    '> Il doit garder sa structure et son espacement.',
+    '',
+    '- [x] Tâche terminée',
+    '- [ ] Tâche à faire',
+    '',
+    'Lien interne : [[HoneyShield|Projet HoneyShield]]'
+  ].join('\n');
+  function renderWhenReady(){
+    if(window.ObsidianRenderer){
+      var out=document.getElementById('obsidian-lab-output');
+      out.innerHTML=window.ObsidianRenderer.render(sample);
+      if(window.ObsidianRenderer.enhance) window.ObsidianRenderer.enhance(out);
+    }else setTimeout(renderWhenReady,100);
+  }
+  renderWhenReady();
+});
+</script>
+</body>
+</html>

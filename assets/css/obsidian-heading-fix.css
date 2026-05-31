@@ -1,0 +1,35 @@
+/* Correctif test : titres colorés Editing Toolbar comme bannières lisibles */
+.obsidian-doc h1,.obsidian-doc h2,.obsidian-doc h3,.obsidian-doc h4,.obsidian-doc h5,.obsidian-doc h6{
+  display:block!important;
+  width:100%!important;
+  overflow:visible!important;
+  line-height:1.25!important;
+  padding-top:.08em!important;
+  padding-bottom:.22em!important;
+}
+.obsidian-doc h1 span[style],.obsidian-doc h2 span[style],.obsidian-doc h3 span[style],.obsidian-doc h4 span[style],.obsidian-doc h5 span[style],.obsidian-doc h6 span[style],
+.obsidian-doc h1 mark,.obsidian-doc h2 mark,.obsidian-doc h3 mark,.obsidian-doc h4 mark,.obsidian-doc h5 mark,.obsidian-doc h6 mark,
+.obsidian-doc h1 font,.obsidian-doc h2 font,.obsidian-doc h3 font,.obsidian-doc h4 font,.obsidian-doc h5 font,.obsidian-doc h6 font{
+  display:inline-block!important;
+  max-width:none!important;
+  line-height:1.15!important;
+  padding:.16em .34em .2em!important;
+  border-radius:.18em!important;
+  white-space:nowrap!important;
+  box-decoration-break:slice!important;
+  -webkit-box-decoration-break:slice!important;
+  vertical-align:baseline!important;
+}
+.obsidian-doc .obs-heading-nowrap{
+  white-space:nowrap!important;
+  text-wrap:nowrap!important;
+  overflow:visible!important;
+}
+.obsidian-doc .obs-heading-scroll{
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  padding-bottom:.34em!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.obsidian-doc .obs-heading-scroll::-webkit-scrollbar{height:6px}
+.obsidian-doc .obs-heading-scroll::-webkit-scrollbar-thumb{background:rgba(226,238,255,.18);border-radius:999px}

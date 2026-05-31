@@ -45,6 +45,21 @@
         "General Cyber",
         "Security analysis"
       ]
+    },
+    {
+      "type": "badge",
+      "title": "Networking Basics",
+      "issuer": "Cisco Academy",
+      "status": "Obtenue",
+      "date": "2025",
+      "image": "/assets/uploads/Capture d'écran 2026-05-31 143840.png",
+      "credentialUrl": "https://www.credly.com/badges/3c81858a-755e-4681-b381-e96d5eb42559",
+      "description": "Cet cours permet aux apprenant de connaître les types de réseaux, leur fonctionnement, la manière dont les appareils envoient et reçoivent des données, les types de câblage réseau, la manière dont les adresses IP trouvent des informations sur Internet, comment fonctionnent les transports et les applications.",
+      "skills": [
+        "NetWork Types",
+        "Network Media",
+        "Wireless Access"
+      ]
     }
   ]
 }

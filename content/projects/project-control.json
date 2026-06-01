@@ -11,8 +11,8 @@
       "tools": [],
       "skills": [],
       "publish": true,
-      "pdfEnabled": false,
-      "pdfAccess": "private",
+      "pdfEnabled": true,
+      "pdfAccess": "public",
       "pdfLabel": "Générer le PDF",
       "note": ""
     }

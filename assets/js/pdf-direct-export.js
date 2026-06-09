@@ -1,109 +1,48 @@
 (function(){
-  function clean(v){return String(v||'').replace(/\s+$/,'')}
-  function slugify(v){return String(v||'document').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'document'}
-  function loadScriptOnce(key,src){
-    if(window[key])return Promise.resolve(window[key]);
-    const loading='__'+key+'DirectLoading';
-    if(window[loading])return window[loading];
-    window[loading]=new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=()=>resolve(window[key]);s.onerror=reject;document.head.appendChild(s)});
-    return window[loading];
+  function esc(v){return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function printableHtml(title,articleHtml){
+    return '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>'+esc(title)+'</title><style>'+css()+'</style></head><body><main class="pdf-doc"><h1 class="pdf-title">'+esc(title)+'</h1><p class="pdf-meta">Document généré depuis le portfolio Hackus Mans</p><article>'+articleHtml+'</article></main><script>window.addEventListener("load",function(){setTimeout(function(){window.print()},450)})<\/script></body></html>';
   }
-  function collectBlocks(root){
-    const blocks=[];
-    function push(type,text,level){text=clean(text||'').trim();if(text)blocks.push({type,text,level:level||0})}
-    function walk(node){
-      if(!node)return;
-      if(node.nodeType===3)return;
-      if(node.nodeType!==1)return;
-      const tag=node.tagName.toLowerCase();
-      if(['script','style','button'].includes(tag))return;
-      if(/^h[1-6]$/.test(tag)){push('heading',node.innerText,Number(tag[1]));return}
-      if(tag==='pre'){push('code',node.innerText);return}
-      if(tag==='table'){
-        const rows=Array.from(node.querySelectorAll('tr')).map(tr=>Array.from(tr.children).map(td=>clean(td.innerText).trim()).filter(Boolean).join(' | ')).filter(Boolean);
-        if(rows.length)push('table',rows.join('\n'));
-        return;
-      }
-      if(tag==='figure'){
-        const cap=node.querySelector('figcaption');
-        const img=node.querySelector('img');
-        const label=cap?cap.innerText:(img?(img.alt||img.src.split('/').pop()):'Image');
-        push('image','[Image] '+label);
-        return;
-      }
-      if(['p','li','blockquote'].includes(tag)){push(tag==='li'?'list':'text',node.innerText);return}
-      Array.from(node.children).forEach(walk);
-    }
-    Array.from(root.children).forEach(walk);
-    if(!blocks.length&&root.innerText.trim())push('text',root.innerText.trim());
-    return blocks;
-  }
-  function addWrapped(pdf,text,x,y,maxWidth,lineHeight,opts){
-    const lines=pdf.splitTextToSize(text,maxWidth);
-    for(const line of lines){
-      if(y>280){pdf.addPage();y=18}
-      pdf.text(line,x,y);
-      y+=lineHeight;
-    }
-    return y;
-  }
-  async function directPdf(button){
+  function css(){return `
+    @page{size:A4;margin:16mm 14mm}
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;color:#111827;font-family:Arial,Helvetica,sans-serif;font-size:12.5px;line-height:1.55}
+    .pdf-doc{max-width:190mm;margin:0 auto;padding:0;background:#fff;color:#111827}
+    .pdf-title{font-size:24px;line-height:1.25;margin:0 0 8px;padding-bottom:10px;border-bottom:1px solid #d1d5db;color:#111827!important}
+    .pdf-meta{font-size:10px;color:#6b7280;margin:0 0 18px}
+    h1,h2,h3,h4,h5,h6{color:#111827!important;break-after:avoid;page-break-after:avoid;margin:18px 0 8px;line-height:1.25}
+    h1{font-size:22px}h2{font-size:19px}h3{font-size:16px}h4{font-size:14px}h5{font-size:13px}h6{font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+    p,li,blockquote{color:#111827!important;font-size:12.5px;line-height:1.55}
+    p{margin:0 0 9px}ul,ol{margin:8px 0 10px 20px;padding:0}li{margin:3px 0}
+    a{color:#0f4c81;text-decoration:none}
+    mark,span[style],font{color:inherit!important;background:transparent!important;padding:0!important;border-radius:0!important}
+    table{width:100%;border-collapse:collapse;margin:12px 0;page-break-inside:auto;font-size:10.5px}
+    th,td{border:1px solid #d1d5db;padding:6px;vertical-align:top;color:#111827!important}
+    th{background:#f3f4f6;font-weight:bold}
+    pre{white-space:pre-wrap;word-break:break-word;background:#0f172a!important;color:#e5e7eb!important;border-radius:8px;padding:10px;margin:12px 0;font-family:Consolas,Monaco,'Courier New',monospace;font-size:9.5px;line-height:1.45;page-break-inside:avoid}
+    code{font-family:Consolas,Monaco,'Courier New',monospace;background:#f3f4f6;color:#111827;padding:1px 3px;border-radius:3px}
+    pre code{background:transparent!important;color:#e5e7eb!important;padding:0}
+    blockquote{border-left:4px solid #94a3b8;background:#f8fafc;margin:12px 0;padding:8px 10px}
+    figure{margin:12px 0;text-align:center;page-break-inside:avoid}
+    img,video{max-width:100%;height:auto;border:1px solid #e5e7eb;border-radius:6px}
+    figcaption{font-size:10px;color:#6b7280;margin-top:4px}
+    .real-reader-sidebar,.real-reader-header,.real-reader-top-actions,.obs-code-lang,.obs-copy-code,button{display:none!important}
+    .obs-callout{border:1px solid #cbd5e1;border-left:4px solid #64748b;background:#f8fafc;border-radius:6px;margin:10px 0;padding:8px}
+    .obs-callout-title{font-weight:bold;margin-bottom:4px;color:#111827!important}.obs-callout-title span{display:none}
+    @media print{body{print-color-adjust:exact;-webkit-print-color-adjust:exact}.pdf-doc{max-width:none}}
+  `}
+  function openPrint(button){
     const modal=button.closest('.realisation-reader');
     const article=modal&&modal.querySelector('.obsidian-doc');
-    if(!modal||!article)return;
-    const old=button.textContent;
-    button.disabled=true;
-    button.textContent='Préparation...';
-    try{
-      await loadScriptOnce('jspdf','https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
-      const jsPDF=(window.jspdf&&window.jspdf.jsPDF)||window.jsPDF;
-      const pdf=new jsPDF({unit:'mm',format:'a4',orientation:'portrait'});
-      const title=(modal.querySelector('.real-reader-header h2')||{}).innerText||'Document';
-      const blocks=collectBlocks(article);
-      let y=18;
-      const left=15,max=180;
-      pdf.setFont('helvetica','bold');pdf.setFontSize(15);
-      y=addWrapped(pdf,title,left,y,max,7);
-      pdf.setFont('helvetica','normal');pdf.setFontSize(9);pdf.setTextColor(90);
-      y+=2;pdf.text('Document généré depuis le portfolio Hackus Mans',left,y);y+=9;
-      pdf.setTextColor(25);
-      for(const b of blocks){
-        if(y>276){pdf.addPage();y=18}
-        if(b.type==='heading'){
-          y+=b.level<=2?4:2;
-          pdf.setFont('helvetica','bold');
-          pdf.setFontSize(b.level===1?14:b.level===2?13:b.level===3?12:11);
-          y=addWrapped(pdf,b.text,left,y,max,6.5);
-          y+=2;
-        }else if(b.type==='code'){
-          pdf.setFont('courier','normal');pdf.setFontSize(8.5);
-          y=addWrapped(pdf,b.text,left,y,max,4.4);
-          y+=3;
-        }else if(b.type==='table'){
-          pdf.setFont('courier','normal');pdf.setFontSize(8);
-          y=addWrapped(pdf,b.text,left,y,max,4.2);
-          y+=3;
-        }else if(b.type==='image'){
-          pdf.setFont('helvetica','italic');pdf.setFontSize(9);pdf.setTextColor(95);
-          y=addWrapped(pdf,b.text,left,y,max,5);
-          pdf.setTextColor(25);y+=2;
-        }else{
-          pdf.setFont('helvetica','normal');pdf.setFontSize(10);
-          const prefix=b.type==='list'?'• ':'';
-          y=addWrapped(pdf,prefix+b.text,left,y,max,5.3);
-          y+=2;
-        }
-      }
-      const count=pdf.internal.getNumberOfPages();
-      for(let i=1;i<=count;i++){pdf.setPage(i);pdf.setFont('helvetica','normal');pdf.setFontSize(8);pdf.setTextColor(120);pdf.text(String(i)+' / '+String(count),190,290,{align:'right'});}
-      pdf.save(slugify(title)+'.pdf');
-      button.textContent='PDF généré';
-    }catch(e){
-      console.error('PDF direct export failed',e);
-      button.textContent='Erreur PDF';
-    }finally{
-      setTimeout(()=>{button.disabled=false;button.textContent=old},1600);
-    }
+    const title=(modal&&modal.querySelector('.real-reader-header h2')?modal.querySelector('.real-reader-header h2').innerText:'Document');
+    if(!article)return;
+    const clone=article.cloneNode(true);
+    clone.querySelectorAll('script,style,button,.obs-code-lang,.obs-copy-code').forEach(n=>n.remove());
+    const win=window.open('','_blank');
+    if(!win){alert('Autorise les popups pour générer le PDF.');return;}
+    win.document.open();
+    win.document.write(printableHtml(title,clone.innerHTML));
+    win.document.close();
   }
   document.addEventListener('click',function(e){
     const btn=e.target&&e.target.closest&&e.target.closest('[data-pdf-download]');
@@ -111,6 +50,6 @@
     e.preventDefault();
     e.stopPropagation();
     if(e.stopImmediatePropagation)e.stopImmediatePropagation();
-    directPdf(btn);
+    openPrint(btn);
   },true);
 })();

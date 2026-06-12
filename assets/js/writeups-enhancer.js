@@ -24,21 +24,14 @@
 
   const byId = id => document.getElementById(id);
   const clean = value => String(value || '').trim();
-  const esc = value => clean(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  const esc = value => clean(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   function normalize(value) {
     return clean(value).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
   function slugify(value) {
-    return normalize(value)
-      .replace(/\.[a-z0-9]+$/i, '')
-      .replace(/[^a-z0-9._-]+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'item';
+    return normalize(value).replace(/\.[a-z0-9]+$/i, '').replace(/[^a-z0-9._-]+/g, '-').replace(/^-+|-+$/g, '') || 'item';
   }
 
   function assetPath(path) {
@@ -120,10 +113,7 @@
     if (!text.startsWith('---')) return { meta: {}, body: text };
     const end = text.indexOf('\n---', 3);
     if (end === -1) return { meta: {}, body: text };
-    return {
-      meta: parseYaml(text.slice(3, end).trim()),
-      body: text.slice(end + 4).trim()
-    };
+    return { meta: parseYaml(text.slice(3, end).trim()), body: text.slice(end + 4).trim() };
   }
 
   function firstParagraph(body) {
@@ -308,14 +298,6 @@
     return currentPage() + (q.toString() ? '?' + q.toString() : '');
   }
 
-  function absolute(url) {
-    return new URL(url, location.href).href;
-  }
-
-  function itemUrl(item) {
-    return queryURL({ type: item.type, item: item.slug });
-  }
-
   function updateUrl(params, replace) {
     const url = queryURL(params);
     if (replace) history.replaceState(null, '', url);
@@ -340,37 +322,12 @@
   }
 
   function itemText(item) {
-    return normalize([
-      item.title,
-      item.description,
-      item.category,
-      item.platform,
-      item.sectionLabel,
-      item.status,
-      item.difficulty,
-      ...asList(item.skills),
-      ...asList(item.tags),
-      ...asList(item.stack)
-    ].join(' '));
+    return normalize([item.title, item.description, item.category, item.platform, item.sectionLabel, item.status, item.difficulty, ...asList(item.skills), ...asList(item.tags), ...asList(item.stack)].join(' '));
   }
 
   function matchSearch(item) {
     const query = normalize(state.search);
     return !query || itemText(item).includes(query);
-  }
-
-  async function copyToClipboard(url, button) {
-    const text = absolute(url);
-    try {
-      await navigator.clipboard.writeText(text);
-      if (button) {
-        const old = button.textContent;
-        button.textContent = 'Lien copié';
-        setTimeout(() => { button.textContent = old; }, 1200);
-      }
-    } catch (error) {
-      prompt('Copie ce lien :', text);
-    }
   }
 
   function closeReader() {
@@ -393,7 +350,6 @@
 
     const skills = asList(item.skills).map(skill => `<span class="tag">${esc(skill)}</span>`).join('');
     const tags = asList(item.tags || item.stack).map(tag => `<span class="tag">${esc(tag)}</span>`).join('');
-    const link = itemUrl(item);
     const pdfButton = canExportPdf(item) ? `<button class="real-reader-pdf" type="button" data-pdf-download>${esc(item.pdfLabel || 'Générer le PDF')}</button>` : '';
 
     const modal = document.createElement('div');
@@ -409,8 +365,6 @@
             <p>${esc(item.description)}</p>
           </div>
           <div class="real-reader-top-actions">
-            <a class="real-reader-pdf" href="${esc(link)}">Lien direct</a>
-            <button class="real-reader-pdf" type="button" data-copy-link="${esc(link)}">Copier</button>
             ${pdfButton}
             <button class="real-reader-close" type="button" data-close-reader="true">Fermer</button>
           </div>
@@ -433,7 +387,6 @@
     document.body.appendChild(modal);
     document.body.classList.add('modal-open');
     modal.querySelectorAll('[data-close-reader="true"]').forEach(button => button.addEventListener('click', closeReader));
-    modal.querySelectorAll('[data-copy-link]').forEach(button => button.addEventListener('click', () => copyToClipboard(button.dataset.copyLink, button)));
     setTimeout(() => {
       document.dispatchEvent(new Event('DOMContentLoaded'));
       if (window.ObsidianFidelity && window.ObsidianFidelity.enhance) window.ObsidianFidelity.enhance(modal);
@@ -444,21 +397,14 @@
     const skills = asList(item.skills).map(skill => `<span class="tag">${esc(skill)}</span>`).join('');
     const tags = asList(item.stack || item.tags).map(tag => `<span class="tag">${esc(tag)}</span>`).join('');
     const status = item.type === 'writeup' ? clean(item.difficulty || item.status || 'Publié') : clean(item.status || 'Publié');
-    const kicker = item.type === 'writeup'
-      ? `${esc(item.sectionLabel || 'Writeup')} • ${esc(item.platform || '')} • ${esc(item.category || '')}`
-      : `Projet • ${esc(item.category || 'Projet')}`;
-    const link = itemUrl(item);
+    const kicker = item.type === 'writeup' ? `${esc(item.sectionLabel || 'Writeup')} • ${esc(item.platform || '')} • ${esc(item.category || '')}` : `Projet • ${esc(item.category || 'Projet')}`;
     return `<article class="real-card" data-index="${index}">
       <div class="real-card-head"><span class="card-kicker">${kicker}</span><div class="real-meta"><span>${esc(status)}</span></div></div>
       <h3>${esc(item.title)}</h3>
       <p>${esc(item.description)}</p>
       ${skills ? `<div class="tags">${skills}</div>` : ''}
       ${tags ? `<div class="tags">${tags}</div>` : ''}
-      <div class="real-actions">
-        <button class="btn primary real-open" type="button">${item.type === 'writeup' ? 'Lire le writeup' : 'Lire le projet'}</button>
-        <a class="btn ghost real-link" href="${esc(link)}">Lien direct</a>
-        <button class="btn secondary real-copy" type="button" data-copy-link="${esc(link)}">Copier</button>
-      </div>
+      <div class="real-actions"><button class="btn primary real-open" type="button">${item.type === 'writeup' ? 'Lire le writeup' : 'Lire le projet'}</button></div>
     </article>`;
   }
 
@@ -470,9 +416,8 @@
     return Array.from(set);
   }
 
-  function branch(label, active, params) {
-    const href = queryURL(params);
-    return `<a class="branch-card ${active ? 'active' : ''}" href="${esc(href)}" data-branch="${esc(JSON.stringify(params))}"><span>${esc(label)}</span></a>`;
+  function branch(label, active, level) {
+    return `<button class="branch-card ${active ? 'active' : ''}" type="button" data-level="${level}" data-value="${esc(label)}"><span>${esc(label)}</span></button>`;
   }
 
   function refreshControls() {
@@ -481,46 +426,35 @@
     controls.hidden = state.mode !== 'writeup' || !!state.search;
     if (controls.hidden) return;
 
-    const catalog = state.catalog.length ? state.catalog : state.writeups.map(item => ({
-      sectionLabel: item.sectionLabel,
-      platform: item.platform,
-      category: item.category
-    }));
+    const catalog = state.catalog.length ? state.catalog : state.writeups.map(item => ({ sectionLabel: item.sectionLabel, platform: item.platform, category: item.category }));
     const sections = aggregate(catalog, 'sectionLabel');
     const platforms = state.section ? aggregate(catalog, 'platform', item => item.sectionLabel === state.section) : [];
     const categories = state.platform ? aggregate(catalog, 'category', item => item.sectionLabel === state.section && item.platform === state.platform) : [];
-    const currentLink = queryURL({ type: 'writeup', section: state.section, platform: state.platform, category: state.category });
 
     controls.innerHTML = `
-      <div class="writeup-browser-head">
-        <div>
-          <p class="eyebrow">Navigation Writeups</p>
-          <h2>Menu partageable</h2>
-          <p>Chaque bouton est un vrai lien direct vers une section, une plateforme ou une catégorie.</p>
-        </div>
-        <div class="real-share-bar">
-          <a class="btn ghost" href="${esc(currentLink)}">Lien sélection</a>
-          <button class="btn secondary" type="button" data-copy-link="${esc(currentLink)}">Copier</button>
-        </div>
-      </div>
+      <div class="writeup-browser-head"><div><p class="eyebrow">Navigation Writeups</p><h2>Choisis progressivement</h2></div></div>
       <div class="writeup-step-stack">
-        <section class="browser-level"><div class="level-title"><span>01</span><h3>Type</h3></div><div class="branch-list">${sections.map(section => branch(section, section === state.section, { type: 'writeup', section })).join('') || '<p class="level-empty">Aucune section disponible.</p>'}</div></section>
-        ${state.section ? `<section class="browser-level"><div class="level-title"><span>02</span><h3>Plateforme</h3></div><div class="branch-list">${platforms.map(platform => branch(platform, platform === state.platform, { type: 'writeup', section: state.section, platform })).join('')}</div></section>` : ''}
-        ${state.platform ? `<section class="browser-level"><div class="level-title"><span>03</span><h3>Catégorie</h3></div><div class="branch-list">${categories.map(category => branch(category, category === state.category, { type: 'writeup', section: state.section, platform: state.platform, category })).join('')}</div></section>` : ''}
+        <section class="browser-level browser-level-wide"><div class="level-title"><span>01</span><h3>Type</h3></div><div class="branch-list branch-list-large">${sections.map(section => branch(section, section === state.section, 'section')).join('') || '<p class="level-empty">Aucune section disponible.</p>'}</div></section>
+        ${state.section ? `<section class="browser-level browser-level-wide"><div class="level-title"><span>02</span><h3>Plateforme</h3></div><div class="branch-list branch-list-large">${platforms.map(platform => branch(platform, platform === state.platform, 'platform')).join('')}</div></section>` : ''}
+        ${state.platform ? `<section class="browser-level browser-level-wide"><div class="level-title"><span>03</span><h3>Catégorie</h3></div><div class="branch-list branch-list-large">${categories.map(category => branch(category, category === state.category, 'category')).join('')}</div></section>` : ''}
       </div>`;
 
-    controls.querySelectorAll('[data-branch]').forEach(link => link.addEventListener('click', event => {
-      event.preventDefault();
-      const params = JSON.parse(link.dataset.branch || '{}');
-      state.mode = 'writeup';
-      state.section = params.section || '';
-      state.platform = params.platform || '';
-      state.category = params.category || '';
-      state.search = '';
-      updateUrl(params, false);
+    controls.querySelectorAll('.branch-card').forEach(button => button.addEventListener('click', () => {
+      const level = button.dataset.level;
+      const value = button.dataset.value;
+      if (level === 'section') {
+        state.section = value;
+        state.platform = '';
+        state.category = '';
+      }
+      if (level === 'platform') {
+        state.platform = value;
+        state.category = '';
+      }
+      if (level === 'category') state.category = value;
+      updateUrl({ type: 'writeup', section: state.section, platform: state.platform, category: state.category }, false);
       renderList();
     }));
-    controls.querySelectorAll('[data-copy-link]').forEach(button => button.addEventListener('click', () => copyToClipboard(button.dataset.copyLink, button)));
   }
 
   function currentItems() {
@@ -532,9 +466,9 @@
 
   function stepMessage() {
     if (state.search) return 'Aucun résultat trouvé pour cette recherche.';
-    if (!state.section) return 'Choisis un type de writeup.';
-    if (!state.platform) return 'Choisis une plateforme.';
-    if (!state.category) return 'Choisis une catégorie.';
+    if (!state.section) return 'Choisis d’abord Challenges ou Machine/Lab, ou utilise la barre de recherche.';
+    if (!state.platform) return 'Choisis maintenant une plateforme.';
+    if (!state.category) return 'Choisis maintenant une catégorie.';
     return 'Aucun contenu disponible pour cette sélection.';
   }
 
@@ -566,7 +500,6 @@
     }
     box.innerHTML = (state.search ? `<div class="real-search-result">${data.length} résultat(s) trouvé(s)</div>` : '') + data.map((item, index) => card(item, index)).join('');
     box.querySelectorAll('.real-open').forEach(button => button.addEventListener('click', () => openItem(data[Number(button.closest('.real-card').dataset.index)])));
-    box.querySelectorAll('[data-copy-link]').forEach(button => button.addEventListener('click', () => copyToClipboard(button.dataset.copyLink, button)));
     tryOpenPending();
   }
 

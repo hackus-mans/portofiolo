@@ -5,19 +5,16 @@
   "category": "Cybersécurité défensive",
   "status": "Projet publié",
   "tools": [
-    "Honeypot",
-    "Détection d’attaques",
-    "Analyse de logs",
-    "Supervision sécurité"
+    "Cowrie",
+    "Wazuh"
   ],
   "skills": [
     "Déploiement d’environnement piégé",
     "Collecte et analyse d’événements",
-    "Documentation technique",
     "Défense proactive"
   ],
   "publish": true,
-  "pdfEnabled": true,
+  "pdfEnabled": false,
   "pdfAccess": "public",
   "pdfLabel": "Générer le PDF",
   "note": "",

@@ -1,16 +1,26 @@
 {
   "title": "Mise en place d’un honeypot",
-  "publicTitle": "HoneyShield : Conception et déploiement d’un environnement honeypot pour la détection et l’analyse des cyberattaques",
+  "publicTitle": "HoneyShield : Environnement honeypot pour la détection et l’analyse des cyberattaques",
   "obsidianPath": "Mise en place d’un honeypot.md",
-  "category": "Projet",
-  "status": "À documenter",
-  "tools": [],
-  "skills": [],
-  "publish": false,
+  "category": "Cybersécurité défensive",
+  "status": "Projet publié",
+  "tools": [
+    "Honeypot",
+    "Détection d’attaques",
+    "Analyse de logs",
+    "Supervision sécurité"
+  ],
+  "skills": [
+    "Déploiement d’environnement piégé",
+    "Collecte et analyse d’événements",
+    "Documentation technique",
+    "Défense proactive"
+  ],
+  "publish": true,
   "pdfEnabled": true,
   "pdfAccess": "public",
   "pdfLabel": "Générer le PDF",
   "note": "",
-  "description": "HoneyShield est un projet de cybersécurité qui consiste à concevoir et déployer un environnement honeypot destiné à la détection et à l’analyse des activités malveillantes. Un honeypot est un système volontairement exposé ou simulé afin d’attirer les attaquants dans un cadre contrôlé.",
+  "description": "HoneyShield est un projet de cybersécurité défensive visant à concevoir un environnement honeypot pour observer, collecter et analyser des comportements malveillants dans un cadre contrôlé.",
   "path": "content/projects/Mise en place d’un honeypot.md"
 }

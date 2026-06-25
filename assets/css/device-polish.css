@@ -1,0 +1,114 @@
+/* Final responsive polish — ciblé, sans changer l'identité visuelle */
+html,body{min-width:0;max-width:100%;overflow-x:hidden}
+img,video,canvas,svg,iframe{max-width:100%;height:auto}
+.page-shell,.home-shell,.navbar{min-width:0}
+.card,.project-card,.quick-card,.content-panel,.cert-card,.real-card,.feature-card,.auto-skill-card,.mission-card,.route-card{min-width:0}
+h1,h2,h3,p,a,span,button{overflow-wrap:break-word}
+pre,code{max-width:100%}
+
+/* Grands écrans : éviter que le site paraisse trop petit ou trop étiré */
+@media(min-width:1440px){
+  .navbar,.page-shell,.home-shell{max-width:1260px}
+  .hero-clean{gap:52px}
+  .grid,.quick-grid,.focus-grid{gap:24px}
+  .realisation-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .cert-grid{gap:26px}
+}
+@media(min-width:1800px){
+  .navbar,.page-shell,.home-shell{max-width:1380px}
+  body{font-size:17px}
+  .hero-clean h1,h1{font-size:clamp(54px,4.4vw,86px)}
+  .hero-text,.section-text{font-size:19px}
+  .realisation-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* Laptop/tablette paysage */
+@media(min-width:901px) and (max-width:1180px){
+  .navbar,.page-shell,.home-shell{max-width:100%;padding-left:28px!important;padding-right:28px!important}
+  .hero-clean{grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:28px}
+  .grid,.quick-grid,.focus-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .home-metrics,.signal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cert-card{grid-template-columns:230px minmax(0,1fr)}
+  .cert-image{min-height:170px}
+  .realisation-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* Tablette portrait */
+@media(min-width:761px) and (max-width:900px){
+  .navbar{display:grid!important;grid-template-columns:1fr auto!important;align-items:center!important;padding:13px 22px!important}
+  .nav-links{grid-column:1/-1!important;width:100%!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:8px!important;margin-top:8px!important}
+  .nav-links a{justify-content:center!important;text-align:center!important;white-space:nowrap!important}
+  .page-shell,.home-shell{padding-left:22px!important;padding-right:22px!important}
+  .hero-clean{grid-template-columns:1fr!important;gap:26px!important;min-height:auto!important}
+  .profile-showcase{max-width:420px!important;margin:auto!important}
+  .grid,.quick-grid,.focus-grid,.home-metrics,.signal-grid,.realisation-grid,.auto-skill-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .feature-board{display:grid!important;grid-template-columns:1fr 1fr!important;gap:18px!important}
+  .feature-card-large{grid-column:1/-1!important}
+  .cert-card{grid-template-columns:1fr!important}
+  .cert-image{max-height:310px!important}
+  .writeup-step-stack{grid-template-columns:1fr!important}
+}
+
+/* Téléphones */
+@media(max-width:760px){
+  .navbar{padding-left:14px!important;padding-right:14px!important}
+  .brand{max-width:calc(100vw - 86px)!important}
+  .nav-links a{min-width:0!important}
+  .page-shell,.home-shell{padding-left:14px!important;padding-right:14px!important}
+  .page-hero,.hero-clean{padding-top:18px!important}
+  .page-hero h1,.hero-clean h1,h1{max-width:100%;hyphens:none!important}
+  .hero-actions .btn,.btn{max-width:100%}
+  .profile-showcase{max-width:360px!important}
+  .profile-photo-stage img{object-fit:contain!important;background:transparent!important}
+  .signature-strip{align-items:stretch!important}
+  .realisation-tabs{position:relative!important;z-index:1!important}
+  .real-tab,.tab-btn{display:flex!important;align-items:center!important;justify-content:center!important;line-height:1.15!important}
+  .real-search-panel{position:relative!important;z-index:1!important}
+  .real-search-panel input{min-width:0!important}
+  .real-card,.cert-card,.auto-skill-card{box-shadow:0 14px 45px rgba(0,0,0,.22)!important}
+  .cert-image img{object-fit:contain!important;background:#fff!important}
+  .cert-modal{padding:10px!important}
+  .cert-modal-box{width:100%!important;max-height:94dvh!important;padding:14px!important;border-radius:18px!important}
+  .cert-modal-box img{max-height:72dvh!important;object-fit:contain!important}
+  .cert-modal-fixed-close{width:44px!important;height:44px!important;font-size:28px!important;right:10px!important;top:10px!important}
+}
+
+/* Très petits écrans */
+@media(max-width:390px){
+  .page-shell,.home-shell{padding-left:10px!important;padding-right:10px!important}
+  .navbar{padding-left:10px!important;padding-right:10px!important}
+  .brand{font-size:18px!important}
+  .nav-links{grid-template-columns:1fr!important}
+  .nav-links a{font-size:12px!important;min-height:38px!important}
+  .page-hero h1,.hero-clean h1,h1{font-size:29px!important;line-height:1.08!important}
+  .hero-clean h2,.section-heading h2,h2{font-size:21px!important}
+  .feature-card,.card,.project-card,.quick-card,.content-panel,.cert-card,.real-card,.auto-skill-card{padding:13px!important}
+  .realisation-tabs{grid-template-columns:1fr!important}
+  .profile-showcase{max-width:310px!important}
+}
+
+/* Téléphone paysage : réduire les hauteurs et éviter les zones coupées */
+@media(max-height:560px) and (orientation:landscape){
+  .site-header{position:relative!important}
+  .page-shell,.home-shell{padding-top:14px!important;padding-bottom:42px!important}
+  .hero-clean{min-height:auto!important;grid-template-columns:1fr!important}
+  .profile-showcase{display:none!important}
+  .page-hero{padding-top:10px!important;padding-bottom:12px!important}
+  .page-hero h1,.hero-clean h1,h1{font-size:32px!important}
+}
+
+/* Lecteur Réalisations : stable sur tous écrans */
+.realisation-reader{max-width:100vw!important;max-height:100dvh!important}
+.real-reader-panel{min-width:0!important}
+.real-reader-document{min-width:0!important}
+.real-reader-document img,.obsidian-doc img,.markdown-body img{max-width:100%!important;height:auto!important;object-fit:contain!important}
+.real-reader-document table,.obsidian-doc table,.markdown-body table{max-width:100%!important;overflow-x:auto!important;display:block!important}
+@media(min-width:901px){
+  .real-reader-panel{width:min(1320px,calc(100vw - 42px))!important}
+  .real-reader-layout{grid-template-columns:280px minmax(0,1fr)!important}
+  .real-reader-document{max-height:calc(100dvh - 165px)!important;overflow:auto!important}
+}
+@media(max-width:900px){
+  .real-reader-document{padding-bottom:88px!important}
+  .real-reader-header{word-break:normal!important}
+}

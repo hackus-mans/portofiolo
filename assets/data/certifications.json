@@ -8,11 +8,12 @@
       "date": "2026",
       "image": "/portofiolo/assets/uploads/Capture d'écran 2026-05-17 100028.png",
       "credentialUrl": "https://courses.redteamleaders.com/completion/0031e37f73782002",
-      "description": "L’objectif ultime du laboratoire est de compléter la chaîne d’attaque et de récupérer avec succès les identifiants sensibles du système, démontrant comment une seule vulnérabilité SQL Injection peut entraîner une compromission complète de l’application. À la fin du défi, les étudiants comprendront comment les contournements d’authentification, le contrôle d’accès inapproprié et la logique serveur non sécurisée peuvent être enchaînés dans un scénario d’exploitation réaliste.",
+      "description": "Ce laboratoire met en pratique une chaîne d’exploitation web autour d’une faille SQL Injection. Il illustre comment un contournement d’authentification, une mauvaise gestion des accès et une logique serveur fragile peuvent conduire à une compromission dans un environnement contrôlé.",
       "skills": [
-        "SQL Injection",
-        "File Upload Vulnerability",
-        "Reverse Shell"
+        "Injection SQL",
+        "Exploitation web",
+        "Contournement d’authentification",
+        "Analyse de vulnérabilités"
       ]
     },
     {
@@ -23,13 +24,13 @@
       "date": "July 23, 2025",
       "image": "/portofiolo/assets/uploads/pasted-image-1779015967567.png",
       "credentialUrl": "",
-      "description": "Le badge d’examen Opérateur FortiGate 7.6 reconnaît l’expertise dans les fonctionnalités communes de la mise en œuvre et de l’utilisation d’un appareil FortiGate",
+      "description": "Ce badge valide la compréhension des fonctionnalités courantes d’un pare-feu FortiGate, notamment l’exploitation de base, les politiques de sécurité, les profils de protection et les services réseau associés.",
       "skills": [
-        "Antivirus",
-        "Filtrage Web",
-        "SSL Inspection",
+        "Pare-feu FortiGate",
+        "Politiques de sécurité",
+        "Filtrage web",
         "VPN",
-        "Portail Captif"
+        "Sécurité réseau"
       ]
     },
     {
@@ -40,10 +41,12 @@
       "date": "2026",
       "image": "/assets/uploads/pasted-image-1779484246307.png",
       "credentialUrl": "https://tryhackme.com/certificate/THM-13KIK7HMPS",
-      "description": "Ce parcours apprend comment la technologie fonctionne de A à Z, sans avoir besoin d’expérience préalable. Des bases de l’informatique et vos premières lignes de code au réseau, au web, en passant par les cyberattaques et défenses, c’est ici que commence un parcours en cybersécurité.",
+      "description": "Ce parcours pose les bases de l’informatique, du réseau, du web et de la cybersécurité. Il constitue une introduction progressive aux notions techniques nécessaires pour comprendre les attaques et les mécanismes de défense.",
       "skills": [
-        "General Cyber",
-        "Security analysis"
+        "Fondamentaux cybersécurité",
+        "Bases réseau",
+        "Sécurité web",
+        "Analyse de sécurité"
       ]
     },
     {
@@ -54,11 +57,12 @@
       "date": "2025",
       "image": "/assets/uploads/Capture d'écran 2026-05-31 143840.png",
       "credentialUrl": "https://www.credly.com/badges/3c81858a-755e-4681-b381-e96d5eb42559",
-      "description": "Cet cours permet aux apprenant de connaître les types de réseaux, leur fonctionnement, la manière dont les appareils envoient et reçoivent des données, les types de câblage réseau, la manière dont les adresses IP trouvent des informations sur Internet, comment fonctionnent les transports et les applications.",
+      "description": "Ce cours présente les bases des réseaux : types de réseaux, transmission des données, supports de communication, adressage IP, fonctionnement des protocoles de transport et rôle des applications réseau.",
       "skills": [
-        "NetWork Types",
-        "Network Media",
-        "Wireless Access"
+        "Fondamentaux réseau",
+        "Adressage IP",
+        "Supports réseau",
+        "Réseaux sans fil"
       ]
     }
   ]

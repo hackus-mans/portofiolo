@@ -1,23 +1,24 @@
 {
-  "type": "writeup",
-  "section": "challenge",
+  "title": "Hash DCC",
+  "publicTitle": "",
+  "slug": "",
+  "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC.md",
   "sectionLabel": "Challenges",
   "platform": "Root me",
   "category": "Cryptographie",
-  "title": "Hash DCC",
-  "publicTitle": "",
-  "status": "Publié",
-  "difficulty": "À définir",
   "skills": [
     "Password Cracking"
   ],
-  "tags": [],
+  "publish": true,
+  "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site.",
   "description": "publish: true",
-  "obsidianPath": "Challenges/Root me/Cryptographie/Hash DCC.md",
+  "difficulty": "À définir",
+  "status": "Publié",
+  "type": "writeup",
+  "section": "challenge",
+  "tags": [],
   "path": "/portofiolo/content/writeups/challenges/root-me/cryptographie/hash-dcc.md",
-  "publish": false,
   "pdfEnabled": false,
   "pdfAccess": "private",
-  "pdfLabel": "Générer le PDF",
-  "note": "Exemple : ce chemin vient du dossier Pratique dans Obsidian. Décoche publish pour le retirer du site."
+  "pdfLabel": "Générer le PDF"
 }

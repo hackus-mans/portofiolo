@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07090d">
   <title>Réalisations | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=405">
+  <meta name="description" content="Projets, labs et writeups documentés par Hackus Mans en cybersécurité, réseaux et systèmes.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=500">
   <link rel="stylesheet" href="assets/css/styles.css?v=405">
   <link rel="stylesheet" href="assets/css/realisations.css?v=405">
   <link rel="stylesheet" href="assets/css/markdown-colors.css?v=405">
@@ -20,17 +22,71 @@
   <link rel="stylesheet" href="assets/css/obsidian-fidelity.css?v=405">
   <link rel="stylesheet" href="assets/css/obsidian-heading-fix.css?v=405">
   <link rel="stylesheet" href="assets/css/obsidian-code-fix.css?v=405">
+  <link rel="stylesheet" href="assets/css/redesign-v3.css?v=500">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a class="active" href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell">
-  <section class="page-hero"><p class="eyebrow">Réalisations</p><h1>Projets et writeups</h1><p class="section-text">Cette page regroupe les preuves concrètes : ce que je construis, les challenges que je résous et les machines/labs que je documente.</p></section>
-  <section class="realisation-tabs"><button class="real-tab active" data-filter="project">Projets</button><button class="real-tab" data-filter="writeup">Writeups</button></section>
-  <section class="real-search-panel"><label for="realisation-search">Rechercher</label><input id="realisation-search" type="search" placeholder="Rechercher un projet, challenge, plateforme, catégorie, compétence..."><button id="realisation-search-clear" type="button">Effacer</button></section>
-  <section id="writeup-controls" class="writeup-controls" hidden></section>
-  <section><div id="realisations-list" class="realisation-grid"></div></section>
-  <section id="realisation-detail" class="realisation-detail" hidden></section>
-</main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-<script src="assets/js/live-content.js?v=408"></script><script src="assets/js/sveltia-control-priority.js?v=405"></script><script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script><script src="assets/js/obsidian-fidelity-renderer.js?v=405" defer></script><script src="assets/js/app.js?v=405" defer></script><script src="assets/js/writeups-enhancer.js?v=405" defer></script><script src="assets/js/markdown-colors.js?v=405" defer></script><script src="assets/js/path-fix.js?v=405" defer></script><script src="assets/js/writeup-media-fix.js?v=405" defer></script><script src="assets/js/reader-clean.js?v=405" defer></script><script src="assets/js/site-polish.js?v=405" defer></script>
-</body></html>
+<body class="site-v3">
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navigation principale">
+      <a href="index.html" class="brand" aria-label="Hackus Mans — Accueil">Hackus <span>Mans</span></a>
+      <div class="nav-cluster">
+        <div class="nav-links">
+          <a href="index.html">Accueil</a>
+          <a href="apropos.html">À propos</a>
+          <a href="competences.html">Compétences</a>
+          <a class="active" aria-current="page" href="realisations.html">Réalisations</a>
+          <a href="certifications.html">Certifications</a>
+          <a class="admin-link" href="admin/">Admin</a>
+        </div>
+        <a class="nav-cta" href="contact.html">Me contacter</a>
+        <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="page-shell">
+    <section class="page-hero">
+      <div class="page-intro-grid">
+        <div>
+          <p class="eyebrow">Réalisations</p>
+          <h1>Projets, labs et writeups.</h1>
+          <p class="section-text">Des preuves concrètes de pratique : ce que je construis, les problèmes que je résous et les démarches techniques que je documente.</p>
+        </div>
+        <aside class="page-stat-card">
+          <strong>Contenu alimenté par Obsidian</strong>
+          <span>Les nouvelles notes publiées sont transformées et ajoutées automatiquement à cette bibliothèque.</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="realisation-tabs" aria-label="Type de réalisation">
+      <button class="real-tab active" type="button" data-filter="project">Projets</button>
+      <button class="real-tab" type="button" data-filter="writeup">Writeups</button>
+    </section>
+
+    <section class="real-search-panel" aria-label="Recherche dans les réalisations">
+      <label for="realisation-search">Rechercher</label>
+      <input id="realisation-search" type="search" autocomplete="off" placeholder="Titre, plateforme, catégorie, outil ou compétence…">
+      <button id="realisation-search-clear" type="button">Effacer</button>
+    </section>
+
+    <section id="writeup-controls" class="writeup-controls" hidden></section>
+    <section aria-label="Liste des réalisations"><div id="realisations-list" class="realisation-grid" aria-live="polite"></div></section>
+    <section id="realisation-detail" class="realisation-detail" hidden></section>
+  </main>
+
+  <footer><p>© <span id="year"></span> Hackus Mans.</p></footer>
+  <script src="assets/js/live-content.js?v=408"></script>
+  <script src="assets/js/sveltia-control-priority.js?v=405"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script>
+  <script src="assets/js/obsidian-fidelity-renderer.js?v=405" defer></script>
+  <script src="assets/js/app.js?v=406" defer></script>
+  <script src="assets/js/writeups-enhancer.js?v=405" defer></script>
+  <script src="assets/js/markdown-colors.js?v=405" defer></script>
+  <script src="assets/js/path-fix.js?v=405" defer></script>
+  <script src="assets/js/writeup-media-fix.js?v=405" defer></script>
+  <script src="assets/js/reader-clean.js?v=405" defer></script>
+  <script src="assets/js/site-polish.js?v=405" defer></script>
+  <script src="assets/js/redesign-v3.js?v=500" defer></script>
+</body>
+</html>

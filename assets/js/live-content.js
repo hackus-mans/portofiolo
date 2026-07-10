@@ -8,6 +8,16 @@
   const rawBase='https://raw.githubusercontent.com/'+owner+'/'+repo+'/'+branch+'/';
   const originalFetch=window.fetch.bind(window);
   function clean(v){return String(v||'').trim()}
+  function normalizeContentPath(path){
+    let p=clean(path).replace(/\\/g,'/');
+    if(!p)return'';
+    let previous='';
+    while(previous!==p){
+      previous=p;
+      p=p.replace(/^content\/(writeups|projects)\/(?:portofiolo\/)?content\/\1\//i,'content/$1/');
+    }
+    return p;
+  }
   function stripBase(path){
     let p=clean(path);
     if(!p)return'';
@@ -23,7 +33,7 @@
     if(siteBase&&p.startsWith(siteBase+'/'))p=p.slice(siteBase.length+1);
     else if(p.startsWith(legacyBase+'/'))p=p.slice(legacyBase.length+1);
     else if(p.startsWith('/'))p=p.slice(1);
-    return p;
+    return normalizeContentPath(p);
   }
   function isLivePath(path){
     const p=stripBase(path);

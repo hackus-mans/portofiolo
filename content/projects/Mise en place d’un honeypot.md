@@ -242,15 +242,15 @@ Les honeypots peuvent être classés selon leur <font color="#4f6128">niveau d�
 
 <font color="#e36c09">Un honeypot à faible interaction</font> est adapté lorsqu’on souhaite détecter des scans, des connexions suspectes ou des tentatives simples. Il est plus facile à mettre en place et limite les risques, mais il fournit moins de détails sur les actions de l’attaquant.
 
-![[Pasted image 20260529000306.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260529000306.png]]
 
 <font color="#974806">Un honeypot à moyenne interaction</font> offre davantage de réalisme sans donner accès à un système complet. Il permet de collecter des traces plus riches tout en conservant un meilleur contrôle sur l’environnement.
 
-![[Pasted image 20260529000801.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260529000801.png]]
 
 <font color="#ff0000">Un honeypot à forte interaction</font> fournit un environnement très proche d’un vrai système. Il permet une observation plus détaillée, mais il exige une isolation stricte, car l’attaquant peut tenter d’utiliser l’environnement compromis comme point de rebond.
 
-![[Pasted image 20260529001101.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260529001101.png]]
 
 Dans le cadre de HoneyShield, le modèle retenu correspond à un honeypot à faible interaction enrichi par certains mécanismes de moyenne interaction. Il ne fournit pas un véritable système complet à l’attaquant, mais il simule plusieurs services réseau afin de collecter des informations sur les tentatives de connexion, les identifiants testés, les commandes saisies et les interactions avec les services exposés.
 
@@ -721,7 +721,7 @@ network:
 
 Dans cette configuration, `ADRESSE_DE_LA_PASSERELLE_NAT` doit être remplacée par l’adresse réelle de la passerelle affichée par la commande `ip route`.
 
-![[Pasted image 20260530155932.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png]]
 
 Après modification du fichier, la configuration est appliquée avec la commande suivante :
 
@@ -859,9 +859,9 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-![[Pasted image 20260530205109.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530205109.png]]
 
-![[Pasted image 20260530205317.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530205317.png]]
 
 Dans mon cas tous es bon , mais il es important de mettre toujours et toujours son système a jour
 
@@ -872,7 +872,7 @@ Dans mon cas tous es bon , mais il es important de mettre toujours et toujours s
 sudo apt install -y git python3-pip python3-venv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind
 ```
 
-![[Pasted image 20260530205451.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530205451.png]]
 
 Ces paquets permettent d’installer Cowrie à partir de son dépôt GitHub, de créer un environnement virtuel Python et de compiler certaines dépendances nécessaires à son fonctionnement.
 
@@ -884,7 +884,7 @@ Il est recommandé de ne pas exécuter Cowrie avec le compte administrateur prin
 sudo adduser --disabled-password cowrie
 ```
 
-![[Pasted image 20260530205718.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530205718.png]]
 
 NB : Lors de la création de l'utilisateur , ont peut vous demandé de remplir certaines informations, vous pouvez ne pas les remplir (recommandé) et donc juste appuyé sur la touche ENTRER jusqu'à obtenir la question " Is the information correct? [Y/n] " où vous devrez répondre par "Y"
 
@@ -894,7 +894,7 @@ Après la création du compte, il faut basculer vers cet utilisateur :
 sudo su - cowrie
 ```
 
-![[Pasted image 20260530210205.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530210205.png]]
 
 À partir de cette étape, les commandes liées à Cowrie seront exécutées avec l’utilisateur `cowrie`.
 
@@ -906,8 +906,8 @@ Le code source de Cowrie est téléchargeable depuis le dépôt officiel avec la
 git clone https://github.com/cowrie/cowrie.git
 ```
 
-![[Pasted image 20260530211124.png]]
-![[Pasted image 20260530211212.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530211124.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530211212.png]]
 
 Ensuite, il faut entrer dans le dossier du projet :
 
@@ -933,7 +933,7 @@ source cowrie-env/bin/activate
 
 Après activation, le terminal doit indiquer que l’environnement virtuel est actif. 
 
-![[Capture d'écran 2026-05-30 211547.png]]
+![[content/writeups/media/projet-piece-jointe-capture-d-ecran-2026-05-30-211547.png]]
 
 Il faut ensuite mettre à jour `pip` :
 
@@ -941,7 +941,7 @@ Il faut ensuite mettre à jour `pip` :
 python -m pip install --upgrade pip
 ```
 
-![[Pasted image 20260530211733.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530211733.png]]
 
 Puis installer Cowrie dans l’environnement virtuel :
 
@@ -949,7 +949,7 @@ Puis installer Cowrie dans l’environnement virtuel :
 python -m pip install -e .
 ```
 
-![[Pasted image 20260530211838.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530211838.png]]
 
 Cette commande installe Cowrie tout en conservant la possibilité de modifier sa configuration et ses fichiers.
 
@@ -969,7 +969,7 @@ La commande crée automatiquement les fichiers de configuration locaux, notammen
 etc/cowrie.cfg
 ```
 
-![[Pasted image 20260530214541.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530214541.png]]
 
 Une fois ce fichier généré, il peut être ouvert et modifié selon les besoins du laboratoire avec la commande :
 
@@ -994,11 +994,11 @@ enabled = true
 listen_endpoints = tcp:2223:interface=0.0.0.0
 ```
 
-![[Pasted image 20260530215205.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530215205.png]]
 
-![[Pasted image 20260530215803.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530215803.png]]
 
-![[Pasted image 20260530215829.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530215829.png]]
 
 `hostname = ubuntu-server` permet de donner un nom réaliste au faux système.
 
@@ -1064,7 +1064,7 @@ Pour vérifier son état, on peut utiliser :
 cowrie status
 ```
 
-![[Pasted image 20260530224419.png]]
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260530224419.png]]
 
 Les ports d’écoute peuvent être vérifiés avec :
 
@@ -1073,6 +1073,8 @@ ss -tulpen | grep 222
 ```
 
 Si Cowrie fonctionne correctement, les ports `2222` et `2223` (si vous avez activé telnet) doivent apparaître dans la liste des ports en écoute.
+![[content/writeups/media/projet-piece-jointe-pasted-image-20260604022438.png]]
+
 ### 9.5 Installation et configuration de Dionaea
 
 ### 9.6 Installation et configuration de Wazuh Agent

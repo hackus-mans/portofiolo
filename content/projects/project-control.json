@@ -19,7 +19,10 @@
         "Défense proactive"
       ],
       "publish": true,
-      "note": ""
+      "note": "",
+      "pdfEnabled": false,
+      "pdfAccess": "private",
+      "pdfLabel": "Générer le PDF"
     }
   ]
 }

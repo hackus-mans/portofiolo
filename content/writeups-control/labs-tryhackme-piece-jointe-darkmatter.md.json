@@ -12,10 +12,11 @@
   "tags": [],
   "description": "Dans ce challenge on nous donne la valeur de :",
   "obsidianPath": "LABs/Tryhackme/Pièce jointe/Darkmatter.md",
-  "path": "/portofiolo/content/writeups/machines-labs/tryhackme/piece-jointe/darkmatter.md",
+  "path": "content/writeups/machines-labs/tryhackme/piece-jointe/darkmatter.md",
   "publish": false,
   "pdfEnabled": false,
   "pdfAccess": "private",
   "pdfLabel": "Générer le PDF",
-  "note": ""
+  "note": "",
+  "slug": ""
 }

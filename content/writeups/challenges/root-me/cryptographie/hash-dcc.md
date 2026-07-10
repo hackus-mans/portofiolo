@@ -113,7 +113,7 @@ Administrator:15a57c279ebdfea574ad1ff91eb6ef0c
 ```
 
 c'est a dis le nom de l'utilisateur (qui est Administrateur)  suivit du hash ( qui est ici 15a57c279ebdfea574ad1ff91eb6ef0c )
-![[Pasted image 20260220143928.png]]
+![[content/writeups/media/pratique-challenges-root-me-cryptographie-piece-jointe-pasted-image-20260220143928.png]]
 
 
 * Ensuite essayé de determiné le type de hash que vous avez en face de vous avec la commande :
@@ -121,7 +121,7 @@ c'est a dis le nom de l'utilisateur (qui est Administrateur)  suivit du hash ( q
 nth --file [le nom du fichier qui contient votre hash]
 ```
 
-![[Pasted image 20260220144220.png]]
+![[content/writeups/media/pratique-challenges-root-me-cryptographie-piece-jointe-pasted-image-20260220144220.png]]
 
 
 * Ensuite faire le craquage tous en utilisant le format que notre commande précendente nous a fournit :

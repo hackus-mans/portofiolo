@@ -12,10 +12,11 @@
   "tags": [],
   "description": "vous pouvez trouvé cet lab. [ici](https://tryhackme.com/room/sqlilab)",
   "obsidianPath": "LABs/Tryhackme/SQL Injection Lab.md",
-  "path": "/portofiolo/content/writeups/machines-labs/tryhackme/sql-injection-lab.md/sql-injection-lab.md",
+  "path": "content/writeups/machines-labs/tryhackme/general/sql-injection-lab.md",
   "publish": false,
   "pdfEnabled": false,
   "pdfAccess": "private",
   "pdfLabel": "Générer le PDF",
-  "note": ""
+  "note": "",
+  "slug": ""
 }

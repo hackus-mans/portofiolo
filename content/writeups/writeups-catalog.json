@@ -2,11 +2,6 @@
   "items": [
     {
       "sectionLabel": "Challenges",
-      "platform": "Pico Ctf",
-      "category": "Cryptographie"
-    },
-    {
-      "sectionLabel": "Challenges",
       "platform": "Root me",
       "category": "Cryptographie"
     },
@@ -18,6 +13,11 @@
     {
       "sectionLabel": "Machine/Lab",
       "platform": "Autres",
+      "category": "Général"
+    },
+    {
+      "sectionLabel": "Machine/Lab",
+      "platform": "HackTheBox",
       "category": "Général"
     },
     {

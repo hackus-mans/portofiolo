@@ -116,7 +116,7 @@ Donc pour mettre le hash dans un format acceptable il faut juste mettre dans un 
 
 c'est a dis le nom de l'utilisateur (qui est Administrateur)  suivit du hash ( qui est ici $DCC2$10240#Administrator#23d97555681813db79b2ade4b4a6ff25 )
 
-![[Pasted image 20260220145530.png]]
+![[content/writeups/media/pratique-challenges-root-me-cryptographie-piece-jointe-pasted-image-20260220145530.png]]
 
 
 
@@ -125,7 +125,7 @@ c'est a dis le nom de l'utilisateur (qui est Administrateur)  suivit du hash ( q
 nth --file [le nom du fichier qui contient votre hash]
 ```
 
-![[Pasted image 20260220145622.png]]
+![[content/writeups/media/pratique-challenges-root-me-cryptographie-piece-jointe-pasted-image-20260220145622.png]]
 
 
 * Ensuite faire le craquage tous en utilisant le format que notre commande précédente nous a fournit :

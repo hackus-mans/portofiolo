@@ -9,6 +9,24 @@
     const nav=document.querySelector('.navbar');
     const links=document.querySelector('.nav-links');
     const toggle=document.querySelector('.mobile-menu-toggle');
+    const navCta=document.querySelector('.nav-cta');
+
+    let mobileContact=null;
+    if(links&&navCta&&!links.querySelector('.mobile-contact')){
+      mobileContact=navCta.cloneNode(true);
+      mobileContact.classList.remove('nav-cta');
+      mobileContact.classList.add('mobile-contact');
+      links.appendChild(mobileContact);
+    }else if(links){
+      mobileContact=links.querySelector('.mobile-contact');
+    }
+
+    function updateMobileContact(){
+      if(!mobileContact)return;
+      mobileContact.style.setProperty('display',window.innerWidth<=920?'flex':'none','important');
+    }
+    updateMobileContact();
+    window.addEventListener('resize',updateMobileContact,{passive:true});
 
     let progress=document.querySelector('.scroll-progress');
     if(!progress){

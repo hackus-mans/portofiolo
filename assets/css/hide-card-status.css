@@ -1,0 +1,8 @@
+/* Masque uniquement les badges d'état situés en haut à droite des cartes. */
+.realisation-grid .real-card-head > .real-meta{
+  display:none!important;
+}
+
+.realisation-grid .real-card-head{
+  justify-content:flex-start!important;
+}

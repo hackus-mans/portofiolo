@@ -1,6 +1,14 @@
 (function(){
   const body=document.body;
   if(!body||!body.classList.contains('site-refresh'))return;
+
+  if(!document.querySelector('link[href*="heading-toc-fix.css"]')){
+    const typography=document.createElement('link');
+    typography.rel='stylesheet';
+    typography.href='assets/css/heading-toc-fix.css?v=1';
+    document.head.appendChild(typography);
+  }
+
   const navbar=document.querySelector('.navbar');
   const links=document.querySelector('.nav-links');
   const brand=document.querySelector('.brand');

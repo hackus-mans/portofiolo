@@ -39,46 +39,112 @@
     setTimeout(() => target.classList.remove('toc-focus'), 1200);
   }
 
+  function directSidebarTitle(sidebar){
+    return Array.from(sidebar.children).find(child => child.classList && child.classList.contains('sidebar-title')) || null;
+  }
+
+  function collectHeadings(doc){
+    return Array.from(doc.querySelectorAll('h1,h2,h3,h4'))
+      .filter(heading => heading.textContent.trim() && !heading.closest('.reader-toc-section'));
+  }
+
+  function headingSignature(headings){
+    return headings.map(heading => heading.tagName + ':' + heading.textContent.trim()).join('|') || 'empty';
+  }
+
+  function updateActiveToc(panel){
+    const doc = panel.querySelector('.real-reader-document');
+    const toc = panel.querySelector('.reader-toc');
+    if(!doc || !toc) return;
+
+    const headings = collectHeadings(doc);
+    if(!headings.length) return;
+
+    const docTop = doc.getBoundingClientRect().top;
+    let current = headings[0];
+    headings.forEach(heading => {
+      if(heading.getBoundingClientRect().top - docTop <= 72) current = heading;
+    });
+
+    toc.querySelectorAll('.toc-link').forEach(link => {
+      const active = link.dataset.target === current.id;
+      link.classList.toggle('active', active);
+      if(active) link.scrollIntoView({block:'nearest'});
+    });
+  }
+
+  function ensureScrollTracking(panel, doc){
+    if(doc.dataset.tocScrollReady === 'yes') return;
+    doc.dataset.tocScrollReady = 'yes';
+    let ticking = false;
+    doc.addEventListener('scroll', () => {
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateActiveToc(panel);
+        ticking = false;
+      });
+    }, {passive:true});
+  }
+
   function buildReaderToc(panel){
-    if(!panel || panel.dataset.tocReady === 'yes') return;
+    if(!panel) return;
     const doc = panel.querySelector('.real-reader-document');
     const sidebar = panel.querySelector('.real-reader-sidebar');
     if(!doc || !sidebar) return;
 
     cleanObsidianTocBlocks(doc);
+    const headings = collectHeadings(doc);
+    const signature = headingSignature(headings);
+    const existing = sidebar.querySelector('.reader-toc-section');
+    if(existing && panel.dataset.tocSignature === signature){
+      updateActiveToc(panel);
+      return;
+    }
 
-    const headings = Array.from(doc.querySelectorAll('h2,h3,h4')).filter(h => h.textContent.trim());
+    if(existing) existing.remove();
+    const infoTitle = directSidebarTitle(sidebar);
+    if(infoTitle) infoTitle.textContent = 'Informations';
+
+    const section = document.createElement('section');
+    section.className = 'reader-toc-section';
+
     if(!headings.length){
-      sidebar.innerHTML = '<p class="sidebar-title">Table des matières</p><p class="toc-empty">Aucune section détectée.</p>';
-      panel.dataset.tocReady = 'yes';
+      section.innerHTML = '<p class="reader-toc-heading">Sommaire <span>0 section</span></p><p class="toc-empty">Le sommaire apparaîtra dès que les titres du document seront chargés.</p>';
+      sidebar.insertBefore(section, sidebar.firstChild);
+      panel.dataset.tocSignature = signature;
       return;
     }
 
     const used = new Map();
-    const links = headings.map((heading) => {
+    const links = headings.map(heading => {
       const level = Number(heading.tagName.replace('H',''));
       const base = slugify(heading.textContent);
       const count = used.get(base) || 0;
       used.set(base, count + 1);
       const id = count ? base + '-' + count : base;
-      heading.id = heading.id || id;
-      heading.dataset.tocId = heading.id;
+      heading.id = id;
+      heading.dataset.tocId = id;
       heading.classList.add('toc-target');
-      return '<button class="toc-link toc-l' + level + '" type="button" data-target="' + heading.id + '">' + heading.textContent.trim() + '</button>';
+      return '<button class="toc-link toc-l' + level + '" type="button" data-target="' + id + '">' + heading.textContent.trim() + '</button>';
     }).join('');
 
-    sidebar.innerHTML = '<p class="sidebar-title">Table des matières</p><nav class="reader-toc">' + links + '</nav>';
-    sidebar.querySelectorAll('.toc-link').forEach(link => {
+    section.innerHTML = '<p class="reader-toc-heading">Sommaire <span>' + headings.length + ' section' + (headings.length > 1 ? 's' : '') + '</span></p><nav class="reader-toc" aria-label="Sommaire du document">' + links + '</nav>';
+    sidebar.insertBefore(section, sidebar.firstChild);
+
+    section.querySelectorAll('.toc-link').forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
-        const id = link.dataset.target;
-        const target = headings.find(h => h.dataset.tocId === id || h.id === id);
-        sidebar.querySelectorAll('.toc-link').forEach(a => a.classList.remove('active'));
+        const target = headings.find(heading => heading.id === link.dataset.target);
+        section.querySelectorAll('.toc-link').forEach(item => item.classList.remove('active'));
         link.classList.add('active');
         scrollInsideDocument(doc, target);
       });
     });
-    panel.dataset.tocReady = 'yes';
+
+    panel.dataset.tocSignature = signature;
+    ensureScrollTracking(panel, doc);
+    updateActiveToc(panel);
   }
 
   function apply(){
@@ -88,6 +154,6 @@
 
   document.addEventListener('DOMContentLoaded', apply);
   window.addEventListener('load', () => setTimeout(apply, 500));
-  const observer = new MutationObserver(() => setTimeout(apply, 80));
+  const observer = new MutationObserver(() => setTimeout(apply, 90));
   observer.observe(document.documentElement, {childList:true, subtree:true});
 })();

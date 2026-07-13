@@ -4,91 +4,133 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hackus Mans | Portfolio Cybersécurité</title>
-  <meta name="description" content="Portfolio professionnel de Hackus Mans : cybersécurité, réseaux, systèmes, réalisations et certifications.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=410">
+  <meta name="description" content="Portfolio professionnel de NAKORE Yendoubouame Joseph : pentest, SOC, sécurité réseau, projets documentés, writeups et certifications.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=500">
+  <link rel="stylesheet" href="assets/css/proof-portfolio-home.css?v=1">
 </head>
-<body class="premium-home">
-  <header class="site-header">
-    <nav class="navbar">
-      <a href="index.html" class="brand">Hackus<span>Mans</span></a>
+<body class="proof-portfolio">
+  <header class="proof-header">
+    <nav class="navbar" aria-label="Navigation principale">
+      <a class="proof-brand" href="index.html">
+        <span class="proof-brand-mark">HM</span>
+        <span class="proof-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span>
+      </a>
       <div class="nav-links">
         <a class="active" href="index.html">Accueil</a>
         <a href="apropos.html">À propos</a>
         <a href="competences.html">Compétences</a>
         <a href="realisations.html">Réalisations</a>
         <a href="certifications.html">Certifications</a>
-        <a href="contact.html">Contact</a>
+        <a class="contact-nav" href="contact.html">Contact</a>
         <a class="admin-link" href="admin/">Admin</a>
       </div>
     </nav>
   </header>
 
-  <main class="home-shell premium-layout">
-    <section class="hero-clean hero-profile-layout editorial-hero">
-      <div class="hero-left editorial-copy">
-        <span class="hero-line"></span>
-        <p class="eyebrow">Portfolio cybersécurité</p>
-        <h1><span id="profile-name">NAKORE Yendoubouame Joseph</span></h1>
+  <main class="proof-main">
+    <section class="proof-hero" aria-labelledby="profile-name">
+      <div class="proof-hero-copy">
+        <p class="proof-label"><span class="status-dot"></span>Disponible pour opportunités et collaborations</p>
+        <h1 id="profile-name">NAKORE Yendoubouame Joseph</h1>
         <h2 id="profile-title">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</h2>
         <p id="profile-bio" class="hero-text">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="realisations.html">Voir mes réalisations</a>
-          <a class="btn secondary" href="competences.html">Consulter mes compétences</a>
-          <a class="btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
+        <div class="proof-actions">
+          <a class="proof-btn primary" href="realisations.html">Voir mes réalisations</a>
+          <a class="proof-btn" href="competences.html">Explorer mes compétences</a>
+          <a class="proof-btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
+        </div>
+        <div class="proof-roles" aria-label="Domaines de spécialisation">
+          <span>Penetration Testing</span>
+          <span>SOC Analysis</span>
+          <span>Network Security</span>
+          <span>Technical Writing</span>
         </div>
       </div>
-      <aside class="profile-showcase visual-profile-card editorial-photo" aria-label="Photo professionnelle Hackus Mans">
-        <div class="profile-photo-stage">
-          <img id="profile-photo" src="" alt="Photo professionnelle Hackus Mans" hidden>
-          <div id="profile-photo-placeholder" class="photo-placeholder">
-            <span>// HACKUS-MANS</span>
-            <strong>PHOTO PROFIL</strong>
-            <small>Ajoute ta photo depuis Sveltia</small>
+
+      <aside class="proof-portrait" aria-label="Profil professionnel">
+        <div class="proof-photo-frame">
+          <div class="profile-photo-stage">
+            <img id="profile-photo" src="" alt="Portrait professionnel de NAKORE Yendoubouame Joseph" hidden>
+            <div id="profile-photo-placeholder" class="photo-placeholder">
+              <span>// HACKUS-MANS</span>
+              <strong>PORTRAIT PROFESSIONNEL</strong>
+              <small>Ajoute ta photo depuis Sveltia</small>
+            </div>
           </div>
+        </div>
+        <div class="proof-mini-stats" aria-label="Indicateurs principaux">
+          <div class="proof-mini-stat"><strong id="hero-projects">—</strong><span>Projets</span></div>
+          <div class="proof-mini-stat"><strong id="hero-writeups">—</strong><span>Writeups</span></div>
+          <div class="proof-mini-stat"><strong id="hero-certs">—</strong><span>Certifications</span></div>
         </div>
       </aside>
     </section>
 
-    <section class="signature-strip" aria-label="Domaines du portfolio">
-      <span>Network Security</span>
-      <span>System Administration</span>
-      <span>CTF Writeups</span>
-      <span>Labs</span>
+    <section class="proof-capabilities" aria-label="Axes du portfolio">
+      <div class="proof-capability"><strong>Sécurité offensive</strong><span>Reconnaissance, exploitation et validation</span></div>
+      <div class="proof-capability"><strong>Détection &amp; SOC</strong><span>Analyse d’alertes et réponse aux incidents</span></div>
+      <div class="proof-capability"><strong>Réseaux &amp; systèmes</strong><span>Durcissement, supervision et administration</span></div>
+      <div class="proof-capability"><strong>Documentation</strong><span>Writeups, procédures et rapports techniques</span></div>
     </section>
 
-    <section class="home-section feature-board">
-      <article class="feature-card feature-card-large">
-        <span>01</span>
-        <h3>Réalisations documentées</h3>
-        <p>Projets, machines, challenges et démarches techniques présentés avec contexte, méthode et résultat.</p>
-        <a href="realisations.html">Voir les réalisations</a>
-      </article>
-      <article class="feature-card">
-        <span>02</span>
-        <h3>Compétences</h3>
-        <p>Domaines maîtrisés ou en progression, reliés à des preuves concrètes.</p>
-        <a href="competences.html">Consulter</a>
-      </article>
-      <article class="feature-card muted-feature">
-        <span>03</span>
-        <h3>Certifications</h3>
-        <p>Badges, attestations et parcours de formation.</p>
-        <a href="certifications.html">Afficher</a>
-      </article>
+    <section class="proof-section" aria-labelledby="selected-work-title">
+      <div class="proof-heading">
+        <div>
+          <p class="proof-label">Travaux sélectionnés</p>
+          <h2 id="selected-work-title">Des preuves, pas seulement des compétences déclarées.</h2>
+        </div>
+        <p>Les éléments ci-dessous sont chargés directement depuis mes projets et writeups publiés. Chaque dossier présente le contexte, la démarche et les résultats obtenus.</p>
+      </div>
+      <div id="featured-work" class="featured-work" aria-live="polite"></div>
+    </section>
+
+    <section class="proof-section" aria-labelledby="method-title">
+      <div class="proof-heading">
+        <div>
+          <p class="proof-label">Méthode de travail</p>
+          <h2 id="method-title">Observer, tester, documenter.</h2>
+        </div>
+        <p>Une approche simple et reproductible pour transformer chaque exercice en preuve technique exploitable.</p>
+      </div>
+      <div class="proof-method">
+        <article class="method-card"><span>01</span><h3>Comprendre le contexte</h3><p>Identifier l’objectif, la surface d’attaque, les contraintes et les hypothèses avant de lancer les tests.</p></article>
+        <article class="method-card"><span>02</span><h3>Expérimenter proprement</h3><p>Tester les hypothèses, conserver les commandes utiles et valider chaque résultat avec des preuves vérifiables.</p></article>
+        <article class="method-card"><span>03</span><h3>Documenter la valeur</h3><p>Présenter la démarche, les enseignements et les mesures correctives dans un format clair et professionnel.</p></article>
+      </div>
+    </section>
+
+    <section class="proof-band" aria-label="Crédibilité du portfolio">
+      <div class="proof-band-copy">
+        <p class="proof-label">Portfolio vivant</p>
+        <h2>Chaque nouvelle note enrichit automatiquement mes preuves publiques.</h2>
+        <p>Les projets et writeups publiés depuis Obsidian alimentent le site sans ressaisie manuelle. Le portfolio évolue donc au même rythme que ma pratique.</p>
+        <a href="realisations.html">Consulter toutes les réalisations</a>
+      </div>
+      <div class="proof-band-stats">
+        <div class="proof-stat"><strong id="metric-projects">—</strong><span>Projets publiés</span></div>
+        <div class="proof-stat"><strong id="metric-writeups">—</strong><span>Writeups techniques</span></div>
+        <div class="proof-stat"><strong id="metric-certifications">—</strong><span>Certifications et badges</span></div>
+        <div class="proof-stat"><strong id="metric-skills">—</strong><span>Domaines de compétences</span></div>
+      </div>
+    </section>
+
+    <section class="proof-cta" aria-labelledby="contact-title">
+      <p class="proof-label">Prendre contact</p>
+      <h2 id="contact-title">Un projet, une opportunité ou un sujet cybersécurité à discuter&nbsp;?</h2>
+      <p>Je suis disponible pour échanger sur les projets techniques, les stages, les collaborations et les opportunités professionnelles.</p>
+      <a class="proof-btn primary" href="contact.html">Ouvrir une conversation</a>
     </section>
   </main>
 
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-  <script src="assets/js/live-content.js?v=406"></script>
-  <script src="assets/js/app.js?v=406" defer></script>
-  <script src="assets/js/profile-showcase.js?v=406" defer></script>
-  <script src="assets/js/path-fix.js?v=406" defer></script>
+  <footer class="proof-footer">
+    <span>© <span id="year"></span> Hackus Mans</span>
+    <span>Conçu autour de preuves techniques réelles.</span>
+  </footer>
+
+  <script src="assets/js/live-content.js?v=408"></script>
+  <script src="assets/js/app.js?v=408" defer></script>
+  <script src="assets/js/profile-showcase.js?v=408" defer></script>
+  <script src="assets/js/path-fix.js?v=408" defer></script>
+  <script src="assets/js/proof-portfolio-home.js?v=1" defer></script>
 </body>
 </html>

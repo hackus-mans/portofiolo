@@ -4,91 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hackus Mans | Portfolio Cybersécurité</title>
-  <meta name="description" content="Portfolio professionnel de Hackus Mans : cybersécurité, réseaux, systèmes, réalisations et certifications.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=410">
+  <meta name="description" content="Portfolio de NAKORE Yendoubouame Joseph : pentest, SOC, sécurité réseau, projets, writeups et certifications.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=700">
+  <link rel="stylesheet" href="assets/css/proof-atlas.css?v=1">
 </head>
-<body class="premium-home">
-  <header class="site-header">
-    <nav class="navbar">
-      <a href="index.html" class="brand">Hackus<span>Mans</span></a>
-      <div class="nav-links">
-        <a class="active" href="index.html">Accueil</a>
-        <a href="apropos.html">À propos</a>
-        <a href="competences.html">Compétences</a>
-        <a href="realisations.html">Réalisations</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="contact.html">Contact</a>
-        <a class="admin-link" href="admin/">Admin</a>
-      </div>
+<body class="proof-atlas" data-page="home">
+  <div class="atlas-progress" aria-hidden="true"></div>
+  <header class="atlas-header">
+    <nav class="atlas-nav" aria-label="Navigation principale">
+      <a class="atlas-brand" href="index.html"><span class="atlas-brand-mark">HM</span><span class="atlas-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
+      <div class="atlas-links"><a class="active" href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div>
     </nav>
   </header>
 
-  <main class="home-shell premium-layout">
-    <section class="hero-clean hero-profile-layout editorial-hero">
-      <div class="hero-left editorial-copy">
-        <span class="hero-line"></span>
-        <p class="eyebrow">Portfolio cybersécurité</p>
-        <h1><span id="profile-name">NAKORE Yendoubouame Joseph</span></h1>
-        <h2 id="profile-title">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</h2>
-        <p id="profile-bio" class="hero-text">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="realisations.html">Voir mes réalisations</a>
-          <a class="btn secondary" href="competences.html">Consulter mes compétences</a>
-          <a class="btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
-        </div>
+  <main class="atlas-main">
+    <section class="atlas-home-hero" aria-labelledby="profile-name">
+      <div class="atlas-home-copy">
+        <p class="atlas-kicker">Cybersécurité offensive &amp; défensive</p>
+        <h1><span id="profile-name">NAKORE Yendoubouame Joseph</span><br><em>Je transforme les tests en preuves.</em></h1>
+        <h2 id="profile-title" class="atlas-home-subtitle">Pentest, SOC et sécurité des systèmes.</h2>
+        <p id="profile-bio" class="atlas-home-bio">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
+        <div class="atlas-actions"><a class="atlas-btn primary" href="realisations.html">Explorer les réalisations</a><a class="atlas-btn light" id="cv-link" href="assets/cv/cv.pdf">Télécharger le CV</a></div>
+        <div class="atlas-home-metrics" aria-label="Indicateurs du portfolio"><article><strong id="metric-projects">—</strong><span>Projets</span></article><article><strong id="metric-writeups">—</strong><span>Writeups</span></article><article><strong id="metric-certifications">—</strong><span>Certifications</span></article><article><strong id="metric-skills">—</strong><span>Compétences</span></article></div>
       </div>
-      <aside class="profile-showcase visual-profile-card editorial-photo" aria-label="Photo professionnelle Hackus Mans">
-        <div class="profile-photo-stage">
-          <img id="profile-photo" src="" alt="Photo professionnelle Hackus Mans" hidden>
-          <div id="profile-photo-placeholder" class="photo-placeholder">
-            <span>// HACKUS-MANS</span>
-            <strong>PHOTO PROFIL</strong>
-            <small>Ajoute ta photo depuis Sveltia</small>
-          </div>
-        </div>
+      <aside class="atlas-portrait" aria-label="Portrait professionnel">
+        <img id="profile-photo" src="" alt="Portrait professionnel de NAKORE Yendoubouame Joseph" hidden>
+        <div id="profile-photo-placeholder" class="atlas-photo-placeholder"><strong>Portrait professionnel</strong></div>
+        <div class="atlas-portrait-card"><span>Positionnement</span><strong>Comprendre l’attaque. Renforcer la défense. Documenter chaque étape.</strong></div>
       </aside>
     </section>
 
-    <section class="signature-strip" aria-label="Domaines du portfolio">
-      <span>Network Security</span>
-      <span>System Administration</span>
-      <span>CTF Writeups</span>
-      <span>Labs</span>
+    <section class="atlas-section">
+      <article class="atlas-featured-case">
+        <div class="atlas-case-media"><img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png" alt="Capture du laboratoire HoneyShield" loading="lazy"></div>
+        <div class="atlas-case-copy"><p class="atlas-kicker">Projet vedette / HoneyShield</p><h2>Observer l’attaque dans un environnement contrôlé.</h2><p>Un laboratoire honeypot isolé associant Cowrie et Wazuh pour collecter, centraliser et analyser les interactions suspectes dirigées contre des services exposés.</p><div class="atlas-case-tags"><span>Cowrie</span><span>Wazuh</span><span>Linux</span><span>Détection</span></div><a class="atlas-btn primary" href="realisations.html?type=project&amp;item=honeyshield">Lire l’étude de cas</a></div>
+      </article>
     </section>
 
-    <section class="home-section feature-board">
-      <article class="feature-card feature-card-large">
-        <span>01</span>
-        <h3>Réalisations documentées</h3>
-        <p>Projets, machines, challenges et démarches techniques présentés avec contexte, méthode et résultat.</p>
-        <a href="realisations.html">Voir les réalisations</a>
-      </article>
-      <article class="feature-card">
-        <span>02</span>
-        <h3>Compétences</h3>
-        <p>Domaines maîtrisés ou en progression, reliés à des preuves concrètes.</p>
-        <a href="competences.html">Consulter</a>
-      </article>
-      <article class="feature-card muted-feature">
-        <span>03</span>
-        <h3>Certifications</h3>
-        <p>Badges, attestations et parcours de formation.</p>
-        <a href="certifications.html">Afficher</a>
-      </article>
+    <section class="atlas-section" aria-labelledby="evidence-title">
+      <div class="atlas-section-head"><div><p class="atlas-kicker">Sélection</p><h2 id="evidence-title">Des travaux qui montrent le raisonnement.</h2></div><p>Les dossiers sont chargés depuis les projets et writeups publiés. Ils présentent le contexte, les tests effectués, les preuves collectées et les enseignements.</p></div>
+      <div id="home-evidence" class="atlas-evidence-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="atlas-section">
+      <div class="atlas-section-head"><div><p class="atlas-kicker">Architecture du portfolio</p><h2>Un seul profil, quatre angles de lecture.</h2></div><p>Chaque onglet répond à une question différente : qui je suis, ce que je sais faire, ce que j’ai réalisé et comment vérifier ma progression.</p></div>
+      <div class="atlas-evidence-grid"><article class="atlas-evidence-card"><span class="index">01 / Profil</span><h3>À propos</h3><p>Positionnement, méthode, trajectoire et objectifs professionnels.</p><a href="apropos.html">Découvrir le profil</a></article><article class="atlas-evidence-card"><span class="index">02 / Expertise</span><h3>Compétences</h3><p>Domaines techniques reliés aux projets et certifications.</p><a href="competences.html">Voir la cartographie</a></article><article class="atlas-evidence-card"><span class="index">03 / Preuves</span><h3>Certifications</h3><p>Badges, attestations et preuves de formation vérifiables.</p><a href="certifications.html">Ouvrir l’archive</a></article></div>
     </section>
   </main>
 
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-  <script src="assets/js/live-content.js?v=406"></script>
-  <script src="assets/js/app.js?v=406" defer></script>
-  <script src="assets/js/profile-showcase.js?v=406" defer></script>
-  <script src="assets/js/path-fix.js?v=406" defer></script>
+  <footer class="atlas-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Portfolio construit autour de preuves techniques réelles.</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/profile-showcase.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/proof-atlas.js?v=1" defer></script>
 </body>
 </html>

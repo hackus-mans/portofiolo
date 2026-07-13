@@ -4,16 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certifications | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <meta name="description" content="Certifications, badges et preuves de formation de Hackus Mans.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=500">
+  <link rel="stylesheet" href="assets/css/research-lab.css?v=1">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a class="active" href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell"><section class="page-hero"><p class="eyebrow">Certifications</p><h1>Badges & certifications</h1><p class="section-text">Mes preuves de formation, badges numériques et certifications obtenues ou en progression.</p></section><section class="cert-tabs"><button class="tab-btn active" data-filter="all">Tous</button><button class="tab-btn" data-filter="certification">Certifications</button><button class="tab-btn" data-filter="badge">Badges</button></section><section><div id="certifications-list" class="cert-grid"></div></section></main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/path-fix.js?v=406" defer></script>
-</body></html>
+<body class="lab-site page-certifications">
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+  <header class="lab-mobile-bar"><strong>Hackus<span>Mans</span></strong><button class="lab-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"></button></header>
+  <aside class="lab-rail" aria-label="Navigation principale">
+    <a class="lab-brand" href="index.html"><span class="lab-monogram">HM</span><span class="lab-brand-copy"><strong>Hackus Mans</strong><span>Cyber Research Lab</span></span></a>
+    <nav class="lab-nav"><a href="index.html"><span>01</span><span>Accueil</span></a><a href="apropos.html"><span>02</span><span>À propos</span></a><a href="competences.html"><span>03</span><span>Compétences</span></a><a href="realisations.html"><span>04</span><span>Réalisations</span></a><a href="certifications.html"><span>05</span><span>Certifications</span></a><a href="contact.html"><span>06</span><span>Contact</span></a></nav>
+    <div class="lab-rail-bottom"><p class="lab-status"><i></i>Portfolio technique actif</p><a class="lab-contact-cta" href="contact.html">Ouvrir un échange</a><a class="lab-admin" href="admin/">Administration</a></div>
+  </aside>
+  <div class="lab-menu-backdrop" aria-hidden="true"></div>
+
+  <div class="lab-frame">
+    <main id="main-content" class="lab-main">
+      <header class="lab-page-head">
+        <div><p class="lab-kicker">Archive / Preuves / Formation</p><h1>Certifications et badges, présentés comme des pièces vérifiables.</h1><p class="lab-lede">Une archive des parcours suivis, des compétences associées et des justificatifs consultables.</p></div>
+        <aside class="lab-page-note">Sélectionne une preuve pour l’agrandir ou utilise le lien de vérification lorsqu’il est publié.</aside>
+      </header>
+
+      <section class="cert-tabs" aria-label="Filtrer les preuves">
+        <button class="tab-btn active" data-filter="all" type="button" aria-pressed="true">Toutes</button>
+        <button class="tab-btn" data-filter="certification" type="button" aria-pressed="false">Certifications</button>
+        <button class="tab-btn" data-filter="badge" type="button" aria-pressed="false">Badges</button>
+      </section>
+      <section><div id="certifications-list" class="cert-grid"></div></section>
+    </main>
+  </div>
+  <footer class="lab-footer">© <span id="year"></span> Hackus Mans — Cyber Research Lab</footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/research-lab.js?v=1" defer></script>
+</body>
+</html>

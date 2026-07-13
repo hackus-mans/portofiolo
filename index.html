@@ -3,92 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hackus Mans | Portfolio Cybersécurité</title>
-  <meta name="description" content="Portfolio professionnel de Hackus Mans : cybersécurité, réseaux, systèmes, réalisations et certifications.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=410">
+  <title>Hackus Mans | Cybersécurité & preuves techniques</title>
+  <meta name="description" content="Portfolio de NAKORE Yendoubouame Joseph : pentest, SOC, sécurité réseau, projets, writeups et certifications.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=600">
+  <link rel="stylesheet" href="assets/css/editorial-visual-home.css?v=1">
 </head>
-<body class="premium-home">
-  <header class="site-header">
-    <nav class="navbar">
-      <a href="index.html" class="brand">Hackus<span>Mans</span></a>
-      <div class="nav-links">
+<body class="atelier-home">
+  <header class="atelier-header">
+    <nav class="atelier-nav" aria-label="Navigation principale">
+      <a class="atelier-brand" href="index.html">
+        <span class="atelier-brand-mark">HM</span>
+        <span class="atelier-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span>
+      </a>
+      <button class="atelier-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false">Menu</button>
+      <div class="atelier-links">
         <a class="active" href="index.html">Accueil</a>
         <a href="apropos.html">À propos</a>
         <a href="competences.html">Compétences</a>
         <a href="realisations.html">Réalisations</a>
         <a href="certifications.html">Certifications</a>
-        <a href="contact.html">Contact</a>
+        <a class="contact-link" href="contact.html">Contact</a>
         <a class="admin-link" href="admin/">Admin</a>
       </div>
     </nav>
   </header>
 
-  <main class="home-shell premium-layout">
-    <section class="hero-clean hero-profile-layout editorial-hero">
-      <div class="hero-left editorial-copy">
-        <span class="hero-line"></span>
-        <p class="eyebrow">Portfolio cybersécurité</p>
-        <h1><span id="profile-name">NAKORE Yendoubouame Joseph</span></h1>
-        <h2 id="profile-title">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</h2>
-        <p id="profile-bio" class="hero-text">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
+  <main class="atelier-main">
+    <section class="atelier-hero" aria-labelledby="profile-name">
+      <div class="hero-copy">
+        <p class="kicker">Portfolio cybersécurité · Lomé, Togo</p>
+        <h1>Je transforme la pratique en <em>preuves techniques.</em></h1>
+        <p id="profile-name" class="hero-role">NAKORE Yendoubouame Joseph</p>
+        <p id="profile-title" class="hero-role">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</p>
+        <p id="profile-bio" class="hero-bio">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="realisations.html">Voir mes réalisations</a>
-          <a class="btn secondary" href="competences.html">Consulter mes compétences</a>
-          <a class="btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
+          <a class="atelier-btn primary" href="realisations.html">Voir mes projets</a>
+          <a class="atelier-btn secondary" href="realisations.html?type=writeup">Lire mes writeups</a>
+          <a class="atelier-btn text" id="cv-link" href="assets/cv/cv.pdf">Télécharger le CV</a>
+        </div>
+        <div class="hero-meta" aria-label="Indicateurs du portfolio">
+          <div><strong id="count-projects">—</strong><span>Projets publiés</span></div>
+          <div><strong id="count-writeups">—</strong><span>Writeups techniques</span></div>
+          <div><strong id="count-certs">—</strong><span>Certifications et badges</span></div>
         </div>
       </div>
-      <aside class="profile-showcase visual-profile-card editorial-photo" aria-label="Photo professionnelle Hackus Mans">
-        <div class="profile-photo-stage">
-          <img id="profile-photo" src="" alt="Photo professionnelle Hackus Mans" hidden>
-          <div id="profile-photo-placeholder" class="photo-placeholder">
-            <span>// HACKUS-MANS</span>
-            <strong>PHOTO PROFIL</strong>
-            <small>Ajoute ta photo depuis Sveltia</small>
-          </div>
+
+      <aside class="hero-collage" aria-label="Portrait et extraits de projets">
+        <div class="portrait-card">
+          <img id="profile-photo" src="assets/uploads/pasted-image-1779159296200.png" alt="Portrait professionnel de NAKORE Yendoubouame Joseph">
+          <div id="profile-photo-placeholder" class="portrait-placeholder" hidden>Portrait professionnel</div>
         </div>
+        <span class="portrait-label">Cybersecurity · Research · Practice</span>
+        <figure class="screen-card two">
+          <img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530205109.png" alt="Mise à jour du serveur HoneyShield">
+          <figcaption class="screen-tag">Linux hardening</figcaption>
+        </figure>
+        <figure class="screen-card one">
+          <img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530211212.png" alt="Installation de Cowrie pour le projet HoneyShield">
+          <figcaption class="screen-tag">HoneyShield / Cowrie</figcaption>
+        </figure>
+        <div class="hero-orbit">Offensive<br>&amp;<br>Defensive</div>
       </aside>
     </section>
 
-    <section class="signature-strip" aria-label="Domaines du portfolio">
-      <span>Network Security</span>
-      <span>System Administration</span>
-      <span>CTF Writeups</span>
-      <span>Labs</span>
+    <div class="expertise-line" aria-label="Domaines de spécialisation">
+      <div class="expertise-track">
+        <span>Penetration Testing</span><i></i><span>SOC Analysis</span><i></i><span>Network Security</span><i></i><span>Incident Response</span><i></i><span>Technical Writing</span><i></i>
+        <span>Penetration Testing</span><i></i><span>SOC Analysis</span><i></i><span>Network Security</span><i></i><span>Incident Response</span><i></i><span>Technical Writing</span><i></i>
+      </div>
+    </div>
+
+    <section class="case-section" aria-labelledby="case-title">
+      <div class="section-head">
+        <div><span class="section-index">01 · Projet sélectionné</span><h2 id="case-title">HoneyShield, du laboratoire isolé à <em>l’analyse d’attaque.</em></h2></div>
+        <p>Une étude de cas réelle issue du portfolio : architecture, installation, collecte de journaux et validation des événements dans un environnement honeypot contrôlé.</p>
+      </div>
+
+      <div class="case-layout">
+        <figure class="case-visual" aria-live="polite">
+          <span class="case-badge">Projet publié</span>
+          <img class="active" src="content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png" alt="Configuration réseau du laboratoire HoneyShield">
+          <img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530205451.png" alt="Installation des dépendances Cowrie">
+          <img src="content/writeups/media/projet-piece-jointe-capture-d-ecran-2026-05-30-211547.png" alt="Environnement virtuel Cowrie actif">
+          <img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530214541.png" alt="Initialisation de la configuration Cowrie">
+          <figcaption class="case-caption"><strong>HoneyShield</strong><span id="case-caption-text">Architecture et réseau du laboratoire</span></figcaption>
+        </figure>
+
+        <div class="case-steps">
+          <article class="case-step active" data-caption="Architecture et réseau du laboratoire">
+            <span class="case-number">01</span><div><h3>Isoler l’environnement</h3><p>Trois machines, un plan d’adressage maîtrisé et une séparation claire entre le honeypot, la supervision Wazuh et la machine de test.</p></div>
+          </article>
+          <article class="case-step" data-caption="Préparation du serveur et des dépendances">
+            <span class="case-number">02</span><div><h3>Préparer le système</h3><p>Mise à jour du serveur Linux, installation des dépendances et création d’un compte dédié pour réduire les risques d’exécution.</p></div>
+          </article>
+          <article class="case-step" data-caption="Déploiement de Cowrie dans un environnement Python isolé">
+            <span class="case-number">03</span><div><h3>Déployer Cowrie</h3><p>Clonage du projet, création de l’environnement virtuel Python et installation reproductible des composants du honeypot.</p></div>
+          </article>
+          <article class="case-step" data-caption="Configuration des services leurres et collecte des traces">
+            <span class="case-number">04</span><div><h3>Observer et documenter</h3><p>Configuration des services simulés, collecte des interactions et transformation des journaux en éléments exploitables pour l’analyse.</p></div>
+          </article>
+          <a class="case-open" href="realisations.html?type=project&amp;item=honeyshield">Ouvrir l’étude de cas complète</a>
+        </div>
+      </div>
     </section>
 
-    <section class="home-section feature-board">
-      <article class="feature-card feature-card-large">
-        <span>01</span>
-        <h3>Réalisations documentées</h3>
-        <p>Projets, machines, challenges et démarches techniques présentés avec contexte, méthode et résultat.</p>
-        <a href="realisations.html">Voir les réalisations</a>
-      </article>
-      <article class="feature-card">
-        <span>02</span>
-        <h3>Compétences</h3>
-        <p>Domaines maîtrisés ou en progression, reliés à des preuves concrètes.</p>
-        <a href="competences.html">Consulter</a>
-      </article>
-      <article class="feature-card muted-feature">
-        <span>03</span>
-        <h3>Certifications</h3>
-        <p>Badges, attestations et parcours de formation.</p>
-        <a href="certifications.html">Afficher</a>
-      </article>
+    <section class="archive-section" aria-labelledby="archive-title">
+      <div class="archive-grid">
+        <div class="archive-intro">
+          <p class="kicker">Archive vivante</p>
+          <h2 id="archive-title">Tout le travail, sans le bruit.</h2>
+          <p>Le portfolio est alimenté par les projets et notes publiés depuis Obsidian. Chaque rubrique donne accès aux preuves, pas seulement à une liste de compétences déclarées.</p>
+        </div>
+        <div class="archive-list">
+          <a class="archive-link" href="realisations.html"><span class="count" id="archive-projects">—</span><div><h3>Projets</h3><p>Architectures, déploiements et expérimentations documentées.</p></div><b>↗</b></a>
+          <a class="archive-link" href="realisations.html?type=writeup"><span class="count" id="archive-writeups">—</span><div><h3>Writeups</h3><p>Challenges, machines et démarches techniques détaillées.</p></div><b>↗</b></a>
+          <a class="archive-link" href="certifications.html"><span class="count" id="archive-certs">—</span><div><h3>Certifications</h3><p>Badges, attestations et parcours de formation vérifiables.</p></div><b>↗</b></a>
+          <a class="archive-link" href="competences.html"><span class="count" id="archive-skills">—</span><div><h3>Compétences</h3><p>Domaines techniques reliés aux réalisations concrètes.</p></div><b>↗</b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div><p class="kicker">Disponible pour échanger</p><h2 id="closing-title">Un projet ou une opportunité en cybersécurité&nbsp;?</h2></div>
+      <a class="atelier-btn" href="contact.html">Me contacter</a>
     </section>
   </main>
 
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-  <script src="assets/js/live-content.js?v=406"></script>
-  <script src="assets/js/app.js?v=406" defer></script>
-  <script src="assets/js/profile-showcase.js?v=406" defer></script>
-  <script src="assets/js/path-fix.js?v=406" defer></script>
+  <footer class="atelier-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Conçu autour de projets et preuves réels.</span></footer>
+
+  <script src="assets/js/live-content.js?v=408"></script>
+  <script src="assets/js/profile-showcase.js?v=408" defer></script>
+  <script src="assets/js/path-fix.js?v=408" defer></script>
+  <script src="assets/js/editorial-visual-home.js?v=1" defer></script>
 </body>
 </html>

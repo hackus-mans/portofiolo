@@ -56,13 +56,13 @@
   function reveal(){
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     const nodes=document.querySelectorAll('.atlas-section,.atlas-story-main,.atlas-story-side,.atlas-timeline article,.card.cyber-card,.auto-skill-card,.real-card,.cert-card,.atlas-contact-card,.atlas-evidence-card');
-    if(!('IntersectionObserver'in window)){nodes.forEach(n=>n.classList.remove('atlas-reveal'));return}
+    if(!('IntersectionObserver'in window))return;
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
       if(!entry.isIntersecting)return;
       entry.target.animate([{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],{duration:520,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'});
       observer.unobserve(entry.target);
     }),{threshold:.06});
-    nodes.forEach(node=>observer.observe(node));
+    nodes.forEach(node=>{if(!node.dataset.atlasReveal){node.dataset.atlasReveal='yes';observer.observe(node)}});
   }
 
   function normalizeWork(item,type){
@@ -96,9 +96,9 @@
       const writeups=items(writeupsData).filter(published).map(item=>normalizeWork(item,'writeup'));
       const certs=items(certificationsData);
       const skills=items(skillsData);
-      ['metric-projects','page-projects','skill-projects'].forEach(id=>setText(id,projects.length));
-      ['metric-writeups','page-writeups','skill-writeups'].forEach(id=>setText(id,writeups.length));
-      ['metric-certifications','page-certifications','cert-total','skill-certs'].forEach(id=>setText(id,certs.length));
+      ['metric-projects','page-projects','skill-projects','skill-projects-band'].forEach(id=>setText(id,projects.length));
+      ['metric-writeups','page-writeups','skill-writeups','skill-writeups-band'].forEach(id=>setText(id,writeups.length));
+      ['metric-certifications','page-certifications','cert-total','skill-certs','skill-certs-band'].forEach(id=>setText(id,certs.length));
       ['metric-skills','page-skills','skill-total'].forEach(id=>setText(id,skills.length));
 
       const portrait=document.getElementById('profile-photo');
@@ -125,10 +125,6 @@
 
   function enhanceDynamic(){
     resultCount();
-    document.querySelectorAll('.real-card,.cert-card,.card.cyber-card,.auto-skill-card').forEach(node=>{
-      if(node.dataset.atlasReady)return;
-      node.dataset.atlasReady='yes';
-    });
     reveal();
   }
 

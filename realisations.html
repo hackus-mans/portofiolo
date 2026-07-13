@@ -4,19 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Réalisations | Hackus Mans</title>
-  <meta name="description" content="Projets, labs et writeups techniques documentés en cybersécurité.">
+  <meta name="description" content="Projets et writeups techniques de Hackus Mans : pentest, SOC, réseaux, systèmes et documentation.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=500">
   <link rel="stylesheet" href="assets/css/proof-portfolio-home.css?v=2">
-  <link rel="stylesheet" href="assets/css/realisations.css?v=405">
-  <link rel="stylesheet" href="assets/css/markdown-colors.css?v=405">
-  <link rel="stylesheet" href="assets/css/reader-clean.css?v=405">
+  <link rel="stylesheet" href="assets/css/proof-portfolio-site.css?v=2">
   <link rel="stylesheet" href="assets/css/obsidian-fidelity.css?v=405">
-  <link rel="stylesheet" href="assets/css/obsidian-heading-fix.css?v=405">
   <link rel="stylesheet" href="assets/css/obsidian-code-fix.css?v=405">
-  <link rel="stylesheet" href="assets/css/hide-card-status.css?v=410">
-  <link rel="stylesheet" href="assets/css/proof-portfolio-site.css?v=1">
 </head>
-<body class="proof-portfolio proof-page page-realisations">
+<body class="proof-page">
   <header class="proof-header">
     <nav class="navbar" aria-label="Navigation principale">
       <a class="proof-brand" href="index.html"><span class="proof-brand-mark">HM</span><span class="proof-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span></a>
@@ -25,36 +20,38 @@
   </header>
 
   <main class="proof-page-main">
-    <section class="proof-page-hero">
-      <div>
-        <p class="proof-label"><span class="status-dot"></span>Réalisations / Bibliothèque</p>
-        <h1>Projets, labs et writeups présentés comme de vrais dossiers.</h1>
-        <p class="page-lede">Chaque réalisation rassemble le contexte, la démarche, les commandes utiles, les preuves obtenues et les enseignements de sécurité.</p>
+    <section class="cinematic-page-hero">
+      <div class="page-hero-index"><strong>03</strong><span>Cases / Writeups</span></div>
+      <div class="page-hero-copy">
+        <p class="proof-label">Réalisations</p>
+        <h1>Le laboratoire public où chaque test devient un <em>dossier.</em></h1>
+        <p class="page-lede">Projets, machines, challenges et analyses techniques présentés avec contexte, méthode, commandes, preuves et enseignements.</p>
       </div>
-      <aside class="proof-hero-panel">
-        <span class="panel-code">EVIDENCE LIBRARY / 03</span>
-        <strong>Explorer les travaux par type, plateforme et catégorie.</strong>
-        <div class="proof-panel-metrics"><div class="proof-panel-metric"><strong id="page-projects">—</strong><span>Projets</span></div><div class="proof-panel-metric"><strong id="page-writeups">—</strong><span>Writeups</span></div><div class="proof-panel-metric"><strong id="page-skills">—</strong><span>Domaines</span></div></div>
+      <aside class="page-hero-note">
+        <span class="note-code">Public evidence</span>
+        <strong>Des résultats vérifiables, organisés pour être parcourus.</strong>
+        <p>Utilise les filtres pour naviguer entre projets et writeups, puis ouvre un dossier complet.</p>
+        <div class="page-note-metrics"><div><b id="page-projects">—</b><small>Projets</small></div><div><b id="page-writeups">—</b><small>Writeups</small></div><div><b id="page-skills">—</b><small>Domaines</small></div></div>
       </aside>
     </section>
 
-    <section class="proof-realisations-shell" aria-label="Explorateur de réalisations">
-      <aside class="proof-filter-panel">
+    <section class="realisations-stage">
+      <aside class="library-panel">
         <p class="filter-title">Explorer la bibliothèque</p>
-        <div class="realisation-tabs" role="tablist" aria-label="Type de réalisation"><button class="real-tab active" type="button" data-filter="project">Projets</button><button class="real-tab" type="button" data-filter="writeup">Writeups</button></div>
-        <div class="real-search-panel"><label for="realisation-search">Recherche globale</label><input id="realisation-search" type="search" placeholder="Titre, plateforme, outil…"><button id="realisation-search-clear" type="button">Effacer la recherche</button></div>
+        <section class="realisation-tabs"><button class="real-tab active" data-filter="project" type="button">Projets</button><button class="real-tab" data-filter="writeup" type="button">Writeups</button></section>
+        <section class="real-search-panel"><label for="realisation-search">Recherche globale</label><input id="realisation-search" type="search" placeholder="Titre, plateforme, catégorie, compétence…"><button id="realisation-search-clear" type="button">Effacer la recherche</button></section>
+        <span id="results-count" class="results-count">00 résultat</span>
       </aside>
 
-      <div class="proof-results-column">
+      <div>
         <section id="writeup-controls" class="writeup-controls" hidden></section>
-        <div class="proof-results-head"><p>Les dossiers publiés depuis Obsidian apparaissent automatiquement ici.</p><span id="results-count" class="proof-results-count">00 résultat</span></div>
-        <section><div id="realisations-list" class="realisation-grid" aria-live="polite"></div></section>
+        <section><div id="realisations-list" class="realisation-grid"></div></section>
         <section id="realisation-detail" class="realisation-detail" hidden></section>
       </div>
     </section>
   </main>
 
-  <footer class="proof-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Bibliothèque de preuves techniques.</span></footer>
-  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/sveltia-control-priority.js?v=405"></script><script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script><script src="assets/js/obsidian-fidelity-renderer.js?v=405" defer></script><script src="assets/js/app.js?v=405" defer></script><script src="assets/js/writeups-enhancer.js?v=405" defer></script><script src="assets/js/markdown-colors.js?v=405" defer></script><script src="assets/js/path-fix.js?v=405" defer></script><script src="assets/js/writeup-media-fix.js?v=405" defer></script><script src="assets/js/reader-clean.js?v=405" defer></script><script src="assets/js/proof-portfolio-site.js?v=1" defer></script>
+  <footer class="proof-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Projets, writeups et preuves techniques.</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/sveltia-control-priority.js?v=405"></script><script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script><script src="assets/js/obsidian-fidelity-renderer.js?v=405" defer></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/writeups-enhancer.js?v=405" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/writeup-media-fix.js?v=405" defer></script><script src="assets/js/proof-portfolio-site.js?v=2" defer></script>
 </body>
 </html>

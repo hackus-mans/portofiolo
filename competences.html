@@ -4,41 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compétences | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
+  <meta name="description" content="Cartographie des compétences techniques en cybersécurité, réseaux, systèmes et documentation.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=700">
   <link rel="stylesheet" href="assets/css/auto-skills.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <link rel="stylesheet" href="assets/css/proof-atlas.css?v=1">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a class="active" href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell">
-  <section class="page-hero">
-    <p class="eyebrow">Compétences</p>
-    <h1>Domaines techniques</h1>
-    <p class="section-text">Une synthèse claire des compétences développées à travers mes projets, certifications, labs et writeups.</p>
-  </section>
+<body class="proof-atlas" data-page="skills">
+  <div class="atlas-progress" aria-hidden="true"></div>
+  <header class="atlas-header"><nav class="atlas-nav" aria-label="Navigation principale"><a class="atlas-brand" href="index.html"><span class="atlas-brand-mark">HM</span><span class="atlas-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span></a><button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button><div class="atlas-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a class="active" href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
 
-  <section>
-    <div class="section-heading">
-      <p class="eyebrow">Expertise</p>
-      <h2>Compétences principales</h2>
-      <p>Mes domaines de travail et de progression en réseaux, systèmes, sécurité et documentation technique.</p>
-    </div>
-    <div id="skills-list" class="grid cards"></div>
-  </section>
+  <main class="atlas-main">
+    <section class="atlas-page-hero">
+      <div><p class="atlas-kicker">Cartographie technique</p><h1>Des compétences reliées à des <em>preuves concrètes.</em></h1><p class="atlas-lede">Cette page distingue les domaines travaillés, les connaissances validées par la formation et les capacités démontrées dans les projets, labs et writeups.</p><div class="atlas-actions"><a class="atlas-btn primary" href="realisations.html">Voir les réalisations</a><a class="atlas-btn light" href="certifications.html">Voir les certifications</a></div></div>
+      <aside class="atlas-hero-note"><span>Lecture rapide</span><strong>Compétence déclarée → expérimentation → preuve → amélioration.</strong><div class="atlas-note-metrics"><div><b id="skill-total">—</b><small>Domaines</small></div><div><b id="skill-projects">—</b><small>Projets</small></div><div><b id="skill-writeups">—</b><small>Writeups</small></div></div></aside>
+    </section>
 
-  <section class="home-section">
-    <div class="section-heading">
-      <p class="eyebrow">Preuves pratiques</p>
-      <h2>Compétences démontrées</h2>
-      <p>Compétences associées à mes réalisations, labs, writeups et certifications.</p>
-    </div>
-    <div id="cert-skills-list" class="auto-skill-grid"></div>
-  </section>
-</main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/auto-skills-plus.js?v=406" defer></script>
-</body></html>
+    <section class="atlas-section atlas-skills-layout">
+      <aside class="atlas-skill-aside"><p class="atlas-kicker">Légende</p><h3>Une lecture par niveau de preuve.</h3><p>Les cartes principales présentent les domaines de travail. Les cartes complémentaires relient ces domaines aux certifications, projets et writeups.</p><div class="atlas-skill-key"><div><i></i><span>Compétence pratiquée</span></div><div><i></i><span>Compétence documentée</span></div><div><i></i><span>Compétence certifiée</span></div></div></aside>
+      <div><div class="atlas-section-head"><div><p class="atlas-kicker">Domaines</p><h2>Compétences principales</h2></div><p>Réseaux, systèmes, sécurité offensive, sécurité défensive et documentation technique.</p></div><div id="skills-list" class="grid cards"></div></div>
+    </section>
+
+    <section class="atlas-section">
+      <div class="atlas-section-head"><div><p class="atlas-kicker">Preuves pratiques</p><h2>Compétences démontrées</h2></div><p>Éléments associés automatiquement aux projets, labs, writeups et certifications publiés.</p></div>
+      <div id="cert-skills-list" class="auto-skill-grid"></div>
+    </section>
+
+    <section class="atlas-section">
+      <div class="atlas-proof-band"><article><strong id="skill-projects">—</strong><span>Projets documentés</span></article><article><strong id="skill-writeups">—</strong><span>Writeups publiés</span></article><article><strong id="skill-certs">—</strong><span>Certifications et badges</span></article></div>
+    </section>
+  </main>
+
+  <footer class="atlas-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Cartographie des compétences et des preuves.</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/auto-skills-plus.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/proof-atlas.js?v=1" defer></script>
+</body>
+</html>

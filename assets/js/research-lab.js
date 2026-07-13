@@ -34,36 +34,31 @@
     return response.json();
   }
 
-  function countItems(value){return Array.isArray(value)?value.length:(value&&Array.isArray(value.items)?value.items.length:0)}
+  function itemList(value){return Array.isArray(value)?value:(value&&Array.isArray(value.items)?value.items:[])}
+  function countVisible(value,key){
+    const rows=itemList(value);
+    if(key==='projects')return rows.filter(item=>item.publish===true||String(item.publish).toLowerCase()==='true').length;
+    if(key==='writeups')return rows.filter(item=>item.publish!==false&&String(item.publish).toLowerCase()!=='false').length;
+    return rows.length;
+  }
   async function hydrateMetrics(){
     const targets={projects:'metric-projects',writeups:'metric-writeups',certifications:'metric-certifications',skills:'metric-skills'};
     if(!Object.values(targets).some(id=>document.getElementById(id)))return;
-    const jobs=[
-      ['projects','content/projects/project-control.json'],
-      ['writeups','content/writeups/writeups.json'],
-      ['certifications','assets/data/certifications.json'],
-      ['skills','assets/data/skills.json']
-    ];
+    const jobs=[['projects','content/projects/project-control.json'],['writeups','content/writeups/writeups.json'],['certifications','assets/data/certifications.json'],['skills','assets/data/skills.json']];
     await Promise.all(jobs.map(async([key,path])=>{
       const node=document.getElementById(targets[key]);
       if(!node)return;
-      try{node.textContent=String(countItems(await loadJSON(path))).padStart(2,'0')}catch(e){node.textContent='—'}
+      try{node.textContent=String(countVisible(await loadJSON(path),key)).padStart(2,'0')}catch(e){node.textContent='—'}
     }));
   }
 
-  function slugify(text){
-    return String(text||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'section';
-  }
-
+  function slugify(text){return String(text||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'section'}
   function scrollInside(doc,target){
     if(!doc||!target)return;
     const top=target.getBoundingClientRect().top-doc.getBoundingClientRect().top+doc.scrollTop-24;
     doc.scrollTo({top:Math.max(0,top),behavior:'smooth'});
   }
-
-  function readerHeadings(doc){
-    return Array.from(doc.querySelectorAll('h1,h2,h3,h4')).filter(node=>node.textContent.trim()&&!node.closest('.reader-toc-section'));
-  }
+  function readerHeadings(doc){return Array.from(doc.querySelectorAll('h1,h2,h3,h4')).filter(node=>node.textContent.trim()&&!node.closest('.reader-toc-section'))}
 
   function updateTocActive(panel){
     const doc=panel.querySelector('.real-reader-document');
@@ -81,9 +76,12 @@
     const doc=panel.querySelector('.real-reader-document');
     const sidebar=panel.querySelector('.real-reader-sidebar');
     if(!doc||!sidebar)return;
+    const directTitle=Array.from(sidebar.children).find(node=>node.classList&&node.classList.contains('sidebar-title'));
+    if(directTitle)directTitle.textContent='Informations';
+
     const headings=readerHeadings(doc);
     const signature=headings.map(node=>node.tagName+':'+node.textContent.trim()).join('|');
-    if(panel.dataset.labTocSignature===signature&&sidebar.querySelector('.reader-toc-section'))return;
+    if(panel.dataset.labTocSignature===signature&&sidebar.querySelector('.reader-toc-section')){updateTocActive(panel);return}
 
     sidebar.querySelector('.reader-toc-section')?.remove();
     const section=document.createElement('section');
@@ -135,29 +133,23 @@
       const sidebar=panel.querySelector('.real-reader-sidebar');
       if(!sidebar)return;
       const button=document.createElement('button');
-      button.type='button';
-      button.className='toc-mobile-toggle';
-      button.textContent='Sommaire';
-      button.setAttribute('aria-expanded','false');
-      button.addEventListener('click',()=>{
-        const open=panel.classList.toggle('toc-open');
-        button.setAttribute('aria-expanded',String(open));
-      });
+      button.type='button';button.className='toc-mobile-toggle';button.textContent='Sommaire';button.setAttribute('aria-expanded','false');
+      button.addEventListener('click',()=>{const open=panel.classList.toggle('toc-open');button.setAttribute('aria-expanded',String(open))});
       sidebar.addEventListener('click',event=>{if(event.target.closest('.toc-link')){panel.classList.remove('toc-open');button.setAttribute('aria-expanded','false')}});
       panel.appendChild(button);
     });
   }
 
-  function reveal(){
-    const nodes=document.querySelectorAll('.lab-module,.card,.auto-skill-card,.real-card,.cert-card,.content-panel');
+  function reveal(root=document){
+    const nodes=root.querySelectorAll('.lab-module,.card,.auto-skill-card,.real-card,.cert-card,.content-panel');
     if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
       if(entry.isIntersecting){entry.target.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,easing:'ease-out',fill:'both'});observer.unobserve(entry.target)}
     }),{threshold:.08});
-    nodes.forEach(node=>observer.observe(node));
+    nodes.forEach(node=>{if(node.dataset.labReveal!=='yes'){node.dataset.labReveal='yes';observer.observe(node)}});
   }
 
   document.addEventListener('DOMContentLoaded',()=>{hydrateMetrics();reveal();enhanceReader()});
-  window.addEventListener('load',()=>setTimeout(enhanceReader,350));
-  new MutationObserver(()=>setTimeout(enhanceReader,70)).observe(document.documentElement,{childList:true,subtree:true});
+  window.addEventListener('load',()=>setTimeout(()=>{reveal();enhanceReader()},350));
+  new MutationObserver(()=>setTimeout(()=>{reveal();enhanceReader()},70)).observe(document.documentElement,{childList:true,subtree:true});
 })();

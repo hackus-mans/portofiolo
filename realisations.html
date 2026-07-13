@@ -4,34 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Réalisations | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=405">
-  <link rel="stylesheet" href="assets/css/styles.css?v=405">
+  <meta name="description" content="Projets, laboratoires et comptes rendus techniques de Hackus Mans.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=700">
   <link rel="stylesheet" href="assets/css/realisations.css?v=405">
   <link rel="stylesheet" href="assets/css/markdown-colors.css?v=405">
-  <link rel="stylesheet" href="assets/css/professional.css?v=405">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=405">
-  <link rel="stylesheet" href="assets/css/realisations-scroll-tabs.css?v=405">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=405">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=405">
-  <link rel="stylesheet" href="assets/css/site-polish.css?v=405">
-  <link rel="stylesheet" href="assets/css/mobile-tabs-fix.css?v=405">
   <link rel="stylesheet" href="assets/css/reader-clean.css?v=405">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=405">
   <link rel="stylesheet" href="assets/css/obsidian-fidelity.css?v=405">
   <link rel="stylesheet" href="assets/css/obsidian-heading-fix.css?v=405">
   <link rel="stylesheet" href="assets/css/obsidian-code-fix.css?v=405">
   <link rel="stylesheet" href="assets/css/hide-card-status.css?v=410">
+  <link rel="stylesheet" href="assets/css/proof-atlas.css?v=1">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a class="active" href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell">
-  <section class="page-hero"><p class="eyebrow">Réalisations</p><h1>Projets et writeups</h1><p class="section-text">Cette page regroupe les preuves concrètes : ce que je construis, les challenges que je résous et les machines/labs que je documente.</p></section>
-  <section class="realisation-tabs"><button class="real-tab active" data-filter="project">Projets</button><button class="real-tab" data-filter="writeup">Writeups</button></section>
-  <section class="real-search-panel"><label for="realisation-search">Rechercher</label><input id="realisation-search" type="search" placeholder="Rechercher un projet, challenge, plateforme, catégorie, compétence..."><button id="realisation-search-clear" type="button">Effacer</button></section>
-  <section id="writeup-controls" class="writeup-controls" hidden></section>
-  <section><div id="realisations-list" class="realisation-grid"></div></section>
-  <section id="realisation-detail" class="realisation-detail" hidden></section>
-</main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-<script src="assets/js/live-content.js?v=408"></script><script src="assets/js/sveltia-control-priority.js?v=405"></script><script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script><script src="assets/js/obsidian-fidelity-renderer.js?v=405" defer></script><script src="assets/js/app.js?v=405" defer></script><script src="assets/js/writeups-enhancer.js?v=405" defer></script><script src="assets/js/markdown-colors.js?v=405" defer></script><script src="assets/js/path-fix.js?v=405" defer></script><script src="assets/js/writeup-media-fix.js?v=405" defer></script><script src="assets/js/reader-clean.js?v=405" defer></script><script src="assets/js/site-polish.js?v=405" defer></script>
-</body></html>
+<body class="proof-atlas" data-page="work">
+  <div class="atlas-progress" aria-hidden="true"></div>
+  <header class="atlas-header">
+    <nav class="atlas-nav" aria-label="Navigation principale">
+      <a class="atlas-brand" href="index.html"><span class="atlas-brand-mark">HM</span><span class="atlas-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
+      <div class="atlas-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a class="active" href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div>
+    </nav>
+  </header>
+
+  <main class="atlas-main">
+    <section class="atlas-page-hero">
+      <div><p class="atlas-kicker">Bibliothèque technique</p><h1>Projets, labs et <em>writeups.</em></h1><p class="atlas-lede">Des dossiers structurés pour présenter le contexte, la démarche, les résultats et les enseignements de chaque réalisation.</p></div>
+      <aside class="atlas-hero-note"><span>Contenu vivant</span><strong>Chaque note publiée depuis Obsidian enrichit automatiquement cette bibliothèque.</strong><div class="atlas-note-metrics"><div><b id="page-projects">—</b><small>Projets</small></div><div><b id="page-writeups">—</b><small>Writeups</small></div><div><b id="page-skills">—</b><small>Compétences</small></div></div></aside>
+    </section>
+
+    <section class="atlas-section atlas-real-shell">
+      <aside class="atlas-real-filter">
+        <p class="atlas-kicker">Explorer</p><h2>Filtrer les dossiers</h2>
+        <div class="realisation-tabs"><button class="real-tab active" data-filter="project">Projets</button><button class="real-tab" data-filter="writeup">Writeups</button></div>
+        <div class="real-search-panel"><label for="realisation-search">Recherche globale</label><input id="realisation-search" type="search" placeholder="Projet, plateforme, outil, compétence"><button id="realisation-search-clear" type="button">Effacer la recherche</button></div>
+        <p id="results-count" class="atlas-result-count">00 résultat</p>
+      </aside>
+      <div><section id="writeup-controls" class="writeup-controls" hidden></section><section><div id="realisations-list" class="realisation-grid"></div></section></div>
+    </section>
+    <section id="realisation-detail" class="realisation-detail" hidden></section>
+  </main>
+
+  <footer class="atlas-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Dossiers techniques, projets et writeups.</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script>
+  <script src="assets/js/sveltia-control-priority.js?v=405"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js" defer></script>
+  <script src="assets/js/obsidian-fidelity-renderer.js?v=405" defer></script>
+  <script src="assets/js/app.js?v=408" defer></script>
+  <script src="assets/js/writeups-enhancer.js?v=405" defer></script>
+  <script src="assets/js/markdown-colors.js?v=405" defer></script>
+  <script src="assets/js/path-fix.js?v=405" defer></script>
+  <script src="assets/js/writeup-media-fix.js?v=405" defer></script>
+  <script src="assets/js/reader-clean.js?v=405" defer></script>
+  <script src="assets/js/site-polish.js?v=405" defer></script>
+  <script src="assets/js/proof-atlas.js?v=1" defer></script>
+</body>
+</html>

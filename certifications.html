@@ -4,16 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Certifications | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <meta name="description" content="Archive des certifications, badges et preuves de formation de Hackus Mans.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=700">
+  <link rel="stylesheet" href="assets/css/proof-atlas.css?v=1">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a class="active" href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell"><section class="page-hero"><p class="eyebrow">Certifications</p><h1>Badges & certifications</h1><p class="section-text">Mes preuves de formation, badges numériques et certifications obtenues ou en progression.</p></section><section class="cert-tabs"><button class="tab-btn active" data-filter="all">Tous</button><button class="tab-btn" data-filter="certification">Certifications</button><button class="tab-btn" data-filter="badge">Badges</button></section><section><div id="certifications-list" class="cert-grid"></div></section></main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/path-fix.js?v=406" defer></script>
-</body></html>
+<body class="proof-atlas" data-page="certifications">
+  <div class="atlas-progress" aria-hidden="true"></div>
+  <header class="atlas-header">
+    <nav class="atlas-nav" aria-label="Navigation principale">
+      <a class="atlas-brand" href="index.html"><span class="atlas-brand-mark">HM</span><span class="atlas-brand-copy"><strong>Hackus Mans</strong><span>Cybersecurity Portfolio</span></span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
+      <div class="atlas-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a class="active" href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div>
+    </nav>
+  </header>
+
+  <main class="atlas-main">
+    <section class="atlas-page-hero">
+      <div><p class="atlas-kicker">Archive vérifiable</p><h1>Certifications, badges et <em>preuves de formation.</em></h1><p class="atlas-lede">Une archive visuelle qui complète les projets et writeups. Chaque élément permet de vérifier un parcours de formation, un badge ou une compétence reconnue.</p></div>
+      <aside class="atlas-hero-note"><span>Progression</span><strong>La formation structure les connaissances. La pratique démontre leur utilisation.</strong><div class="atlas-note-metrics"><div><b id="cert-total">—</b><small>Total</small></div><div><b id="page-projects">—</b><small>Projets</small></div><div><b id="page-writeups">—</b><small>Writeups</small></div></div></aside>
+    </section>
+
+    <section class="atlas-section">
+      <div class="atlas-section-head"><div><p class="atlas-kicker">Filtrer l’archive</p><h2>Parcourir les preuves.</h2></div><p>Utilise les filtres pour afficher l’ensemble des éléments, uniquement les certifications ou uniquement les badges.</p></div>
+      <div class="cert-tabs"><button class="tab-btn active" data-filter="all">Tous</button><button class="tab-btn" data-filter="certification">Certifications</button><button class="tab-btn" data-filter="badge">Badges</button></div>
+      <div id="certifications-list" class="cert-grid"></div>
+    </section>
+
+    <section class="atlas-section">
+      <div class="atlas-featured-case">
+        <div class="atlas-case-media"><img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530214541.png" alt="Exemple de preuve technique issue du laboratoire" loading="lazy"></div>
+        <div class="atlas-case-copy"><p class="atlas-kicker">Formation + pratique</p><h2>Une certification devient plus forte lorsqu’elle mène à une réalisation.</h2><p>Les badges et attestations sont reliés aux domaines de compétences, puis confrontés à des environnements réels ou simulés dans les projets du portfolio.</p><a class="atlas-btn primary" href="competences.html">Voir la cartographie</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="atlas-footer"><span>© <span id="year"></span> Hackus Mans</span><span>Certifications, badges et preuves vérifiables.</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/proof-atlas.js?v=1" defer></script>
+</body>
+</html>

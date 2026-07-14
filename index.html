@@ -4,20 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hackus Mans | Portfolio Cybersécurité</title>
-  <meta name="description" content="Portfolio professionnel de Hackus Mans : cybersécurité, réseaux, systèmes, réalisations et certifications.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=410">
+  <meta name="description" content="Portfolio de NAKORE Yendoubouame Joseph : cybersécurité, pentest web, détection, réseaux et documentation technique.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=800">
+  <link rel="stylesheet" href="assets/css/minimal-responsive-site.css?v=1">
 </head>
-<body class="premium-home">
+<body class="minimal-site">
   <header class="site-header">
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Navigation principale">
       <a href="index.html" class="brand">Hackus<span>Mans</span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
       <div class="nav-links">
         <a class="active" href="index.html">Accueil</a>
         <a href="apropos.html">À propos</a>
@@ -30,65 +25,83 @@
     </nav>
   </header>
 
-  <main class="home-shell premium-layout">
-    <section class="hero-clean hero-profile-layout editorial-hero">
-      <div class="hero-left editorial-copy">
-        <span class="hero-line"></span>
+  <main class="site-main">
+    <section class="home-hero">
+      <div class="home-copy">
         <p class="eyebrow">Portfolio cybersécurité</p>
         <h1><span id="profile-name">NAKORE Yendoubouame Joseph</span></h1>
-        <h2 id="profile-title">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</h2>
-        <p id="profile-bio" class="hero-text">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
-        <div class="hero-actions">
+        <p class="home-role">J’analyse les attaques pour mieux renforcer la défense.</p>
+        <p id="profile-title" class="home-role">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</p>
+        <p id="profile-bio" class="home-bio">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
+        <div class="actions">
           <a class="btn primary" href="realisations.html">Voir mes réalisations</a>
-          <a class="btn secondary" href="competences.html">Consulter mes compétences</a>
-          <a class="btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
+          <a class="btn secondary" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
         </div>
       </div>
-      <aside class="profile-showcase visual-profile-card editorial-photo" aria-label="Photo professionnelle Hackus Mans">
-        <div class="profile-photo-stage">
-          <img id="profile-photo" src="" alt="Photo professionnelle Hackus Mans" hidden>
-          <div id="profile-photo-placeholder" class="photo-placeholder">
-            <span>// HACKUS-MANS</span>
-            <strong>PHOTO PROFIL</strong>
-            <small>Ajoute ta photo depuis Sveltia</small>
-          </div>
-        </div>
+
+      <aside class="profile-frame" aria-label="Portrait professionnel">
+        <img id="profile-photo" src="" alt="Portrait professionnel de NAKORE Yendoubouame Joseph" hidden>
+        <div id="profile-photo-placeholder" class="photo-placeholder">Portrait professionnel</div>
+        <div class="profile-label">Lomé, Togo · Cybersécurité</div>
       </aside>
     </section>
 
-    <section class="signature-strip" aria-label="Domaines du portfolio">
-      <span>Network Security</span>
-      <span>System Administration</span>
-      <span>CTF Writeups</span>
-      <span>Labs</span>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Projet principal</p>
+          <h2>HoneyShield</h2>
+        </div>
+        <a class="section-link" href="realisations.html?type=project&amp;item=honeyshield">Voir le projet</a>
+      </div>
+
+      <article class="featured-project">
+        <div class="featured-media">
+          <img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png" alt="Architecture du laboratoire HoneyShield" loading="lazy">
+        </div>
+        <div class="featured-copy">
+          <h3>Un laboratoire honeypot pour observer et analyser des activités suspectes.</h3>
+          <p>Déploiement d’un environnement isolé avec Cowrie, Wazuh et Kali Linux afin de générer des scénarios contrôlés, centraliser les journaux et étudier les traces laissées par les attaques.</p>
+          <ul class="fact-list">
+            <li><strong>Objectif</strong><span>Observer les scans et tentatives de connexion sur des services leurres.</span></li>
+            <li><strong>Outils</strong><span>Cowrie, Wazuh, Kali Linux et Ubuntu Server.</span></li>
+            <li><strong>Résultat</strong><span>Des événements centralisés et exploitables pour l’analyse.</span></li>
+          </ul>
+          <div class="actions"><a class="btn primary" href="realisations.html?type=project&amp;item=honeyshield">Lire l’étude de cas</a></div>
+        </div>
+      </article>
     </section>
 
-    <section class="home-section feature-board">
-      <article class="feature-card feature-card-large">
-        <span>01</span>
-        <h3>Réalisations documentées</h3>
-        <p>Projets, machines, challenges et démarches techniques présentés avec contexte, méthode et résultat.</p>
-        <a href="realisations.html">Voir les réalisations</a>
-      </article>
-      <article class="feature-card">
-        <span>02</span>
-        <h3>Compétences</h3>
-        <p>Domaines maîtrisés ou en progression, reliés à des preuves concrètes.</p>
-        <a href="competences.html">Consulter</a>
-      </article>
-      <article class="feature-card muted-feature">
-        <span>03</span>
-        <h3>Certifications</h3>
-        <p>Badges, attestations et parcours de formation.</p>
-        <a href="certifications.html">Afficher</a>
-      </article>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Travaux sélectionnés</p>
+          <h2>Deux démarches, expliquées clairement.</h2>
+        </div>
+        <a class="section-link" href="realisations.html">Tout afficher</a>
+      </div>
+      <div id="selected-work" class="selected-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="section">
+      <div class="simple-cta">
+        <div>
+          <h3>Un projet, une opportunité ou un échange technique ?</h3>
+          <p>Retrouve mes coordonnées professionnelles et les liens utiles sur la page Contact.</p>
+        </div>
+        <a class="btn primary" href="contact.html">Me contacter</a>
+      </div>
     </section>
   </main>
 
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-  <script src="assets/js/live-content.js?v=406"></script>
-  <script src="assets/js/app.js?v=406" defer></script>
-  <script src="assets/js/profile-showcase.js?v=406" defer></script>
-  <script src="assets/js/path-fix.js?v=406" defer></script>
+  <footer class="site-footer">
+    <div class="site-footer-inner"><span>© <span data-current-year></span> Hackus Mans</span><span>Portfolio personnel de cybersécurité.</span></div>
+  </footer>
+
+  <script src="assets/js/live-content.js?v=408"></script>
+  <script src="assets/js/app.js?v=408" defer></script>
+  <script src="assets/js/profile-showcase.js?v=408" defer></script>
+  <script src="assets/js/path-fix.js?v=408" defer></script>
+  <script src="assets/js/minimal-responsive-site.js?v=1" defer></script>
 </body>
 </html>

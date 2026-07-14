@@ -4,17 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>À propos | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <meta name="description" content="Profil, approche et objectifs professionnels de NAKORE Yendoubouame Joseph en cybersécurité.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=800">
+  <link rel="stylesheet" href="assets/css/minimal-responsive-site.css?v=1">
 </head>
-<body>
-  <header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a class="active" href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-  <main class="page-shell"><section class="page-hero"><p class="eyebrow">À propos</p><h1>Profil & vision</h1><p id="about-text" class="section-text">Ce portfolio présente mes réalisations, mes notes techniques et les compétences que je développe.</p></section><section class="content-panel"><h2>Positionnement</h2><p>Je construis progressivement un profil orienté pratique, documentation, analyse technique et amélioration continue. L'objectif est de montrer des preuves concrètes de progression à travers des projets et des réalisations vérifiables.</p><div class="signal-grid"><div><strong>Approche</strong><span>Apprendre, pratiquer, documenter</span></div><div><strong>Domaine</strong><span>Réseaux, systèmes, sécurité</span></div><div><strong>Objectif</strong><span>Construire un profil crédible et visible</span></div></div></section></main>
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/path-fix.js?v=406" defer></script>
+<body class="minimal-site">
+  <header class="site-header">
+    <nav class="navbar" aria-label="Navigation principale">
+      <a href="index.html" class="brand">Hackus<span>Mans</span></a>
+      <button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span></button>
+      <div class="nav-links">
+        <a href="index.html">Accueil</a><a class="active" href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <section class="page-hero">
+      <p class="eyebrow">À propos</p>
+      <h1>Comprendre avant d’agir. Documenter pour progresser.</h1>
+      <p class="page-intro">Je développe un profil orienté pratique, analyse technique et amélioration continue en cybersécurité.</p>
+    </section>
+
+    <section class="about-grid">
+      <div class="about-copy">
+        <p id="about-text">Ce portfolio rassemble mes projets, writeups, certifications et compétences démontrées dans des environnements contrôlés.</p>
+        <p>Mon travail se concentre sur l’observation des attaques, l’analyse des journaux, la sécurité des services exposés et les tests de vulnérabilités web autorisés.</p>
+        <p>Chaque réalisation est documentée avec le contexte, les outils utilisés, les étapes suivies et les principaux enseignements.</p>
+      </div>
+
+      <aside class="focus-card">
+        <h3>Mon orientation actuelle</h3>
+        <ul class="focus-list">
+          <li><strong>Détection et SOC</strong><span>Collecte de logs, analyse d’événements et compréhension des alertes.</span></li>
+          <li><strong>Pentest web</strong><span>SQL Injection, LFI, reconnaissance et exploitation contrôlée.</span></li>
+          <li><strong>Réseaux et systèmes</strong><span>Linux, services réseau, segmentation et diagnostic.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><p class="eyebrow">Ma méthode</p><h2>Pratiquer, vérifier, expliquer.</h2></div>
+      </div>
+      <div class="selected-grid">
+        <article class="info-card"><h3>Travail en laboratoire</h3><p>Je réalise mes tests dans des environnements isolés afin d’apprendre sans exposer de systèmes réels.</p></article>
+        <article class="info-card"><h3>Documentation utile</h3><p>Je transforme les commandes, captures et observations en procédures et writeups faciles à relire.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="simple-cta">
+        <div><h3>Voir ce que cette approche produit concrètement.</h3><p>Les projets et writeups présentent les outils, les étapes et les résultats.</p></div>
+        <a class="btn primary" href="realisations.html">Explorer les réalisations</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="site-footer-inner"><span>© <span data-current-year></span> Hackus Mans</span><span>Profil et démarche professionnelle.</span></div></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/minimal-responsive-site.js?v=1" defer></script>
 </body>
 </html>

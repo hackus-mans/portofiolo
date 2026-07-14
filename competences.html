@@ -4,41 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compétences | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/auto-skills.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <meta name="description" content="Compétences techniques en pentest web, SOC, réseaux, Linux et documentation.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=900">
+  <link rel="stylesheet" href="assets/css/auto-skills.css?v=408">
+  <link rel="stylesheet" href="assets/css/project-first.css?v=1">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a class="active" href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell">
-  <section class="page-hero">
-    <p class="eyebrow">Compétences</p>
-    <h1>Domaines techniques</h1>
-    <p class="section-text">Une synthèse claire des compétences développées à travers mes projets, certifications, labs et writeups.</p>
-  </section>
+<body class="project-first">
+  <header class="pf-header">
+    <nav class="pf-nav" aria-label="Navigation principale">
+      <a class="pf-brand" href="index.html"><span class="pf-brand-mark">HM</span><span>Hackus Mans</span></a>
+      <button class="pf-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false"></button>
+      <div class="pf-links">
+        <a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a class="active" href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a>
+      </div>
+    </nav>
+  </header>
 
-  <section>
-    <div class="section-heading">
-      <p class="eyebrow">Expertise</p>
-      <h2>Compétences principales</h2>
-      <p>Mes domaines de travail et de progression en réseaux, systèmes, sécurité et documentation technique.</p>
-    </div>
-    <div id="skills-list" class="grid cards"></div>
-  </section>
+  <main class="pf-main">
+    <section class="pf-page-hero">
+      <div><p class="pf-kicker">Compétences</p><h1 class="pf-title">Savoir faire.<br><em>Pouvoir le démontrer.</em></h1></div>
+      <aside class="pf-page-side"><strong>Lecture</strong>Chaque domaine est relié à des projets, des writeups, des labs ou des certifications publiés dans le portfolio.</aside>
+    </section>
 
-  <section class="home-section">
-    <div class="section-heading">
-      <p class="eyebrow">Preuves pratiques</p>
-      <h2>Compétences démontrées</h2>
-      <p>Compétences associées à mes réalisations, labs, writeups et certifications.</p>
-    </div>
-    <div id="cert-skills-list" class="auto-skill-grid"></div>
-  </section>
-</main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/auto-skills-plus.js?v=406" defer></script>
-</body></html>
+    <section class="pf-section">
+      <div class="pf-section-head">
+        <div><p class="pf-kicker">Domaines techniques</p><h2>Les compétences principales.</h2></div>
+        <p>Pentest web, analyse de sécurité, réseaux, Linux, labs et documentation technique.</p>
+      </div>
+      <div id="skills-list" class="pf-skills grid cards"></div>
+    </section>
+
+    <section class="pf-section">
+      <div class="pf-section-head">
+        <div><p class="pf-kicker">Preuves associées</p><h2>Ce qui valide la progression.</h2></div>
+        <p>Les compétences complémentaires sont extraites des certifications et des contenus publiés.</p>
+      </div>
+      <div id="cert-skills-list" class="auto-skill-grid"></div>
+    </section>
+
+    <section class="pf-section">
+      <div class="pf-actions"><a class="pf-btn primary" href="realisations.html">Voir les réalisations</a><a class="pf-btn ghost" href="certifications.html">Voir les certifications</a></div>
+    </section>
+  </main>
+
+  <footer class="pf-footer"><span>© <span data-year></span> Hackus Mans</span><span>Compétences · Pratique et preuves</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/auto-skills-plus.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/project-first.js?v=1" defer></script>
+</body>
+</html>

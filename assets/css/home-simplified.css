@@ -1,0 +1,40 @@
+/* Accueil simplifié — uniquement les ajustements de la page d'accueil */
+.home-simplified .pf-home-hero{
+  min-height:auto;
+  grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);
+  padding:clamp(56px,8vw,110px) 0 clamp(70px,9vw,120px);
+}
+.home-simplified .pf-home-role{max-width:34ch}
+.home-simplified .pf-portrait{min-height:clamp(420px,58vh,620px)}
+.home-simplified .pf-portrait::after{display:none}
+.home-simplified .pf-home-project{
+  padding-top:0;
+  padding-bottom:clamp(70px,9vw,120px);
+  border-top:0;
+}
+.home-simplified .pf-feature{min-height:560px}
+.home-simplified .pf-feature-copy h2{
+  margin:0;
+  font-size:clamp(2.5rem,4.5vw,5rem);
+  line-height:.94;
+  letter-spacing:-.055em;
+}
+.home-simplified .pf-feature-copy>div:first-child>p:last-child{max-width:38ch}
+.home-simplified .pf-footer{justify-content:flex-start}
+
+@media(max-width:1100px){
+  .home-simplified .pf-home-hero{grid-template-columns:1fr}
+  .home-simplified .pf-portrait{min-height:560px}
+}
+
+@media(max-width:640px){
+  .home-simplified .pf-home-hero{padding:52px 0 64px;gap:30px}
+  .home-simplified .pf-portrait{min-height:420px}
+  .home-simplified .pf-home-project{padding-bottom:72px}
+  .home-simplified .pf-feature{min-height:0}
+  .home-simplified .pf-feature-media{min-height:260px}
+  .home-simplified .pf-feature-copy{padding:26px}
+  .home-simplified .pf-feature-copy h2{font-size:clamp(2.4rem,14vw,4rem)}
+  .home-simplified .pf-actions{align-items:stretch}
+  .home-simplified .pf-btn{width:100%}
+}

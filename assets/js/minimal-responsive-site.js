@@ -22,7 +22,6 @@
 
   function setText(id,value){const node=document.getElementById(id);if(node&&clean(value))node.textContent=clean(value)}
   function setHref(id,value){const node=document.getElementById(id);if(node&&clean(value))node.href=localPath(value)}
-
   function setupYear(){document.querySelectorAll('[data-current-year]').forEach(node=>node.textContent=new Date().getFullYear())}
 
   function setupNavigation(){
@@ -70,7 +69,7 @@
 
   function workCard(item,type){
     const title=clean(item.publicTitle||item.title||'Réalisation');
-    const meta=[clean(item.platform),clean(item.category)].filter(Boolean).join(' · ')|| (type==='project'?'Projet':'Writeup');
+    const meta=[clean(item.platform),clean(item.category)].filter(Boolean).join(' · ')||(type==='project'?'Projet':'Writeup');
     const href=`realisations.html?type=${encodeURIComponent(type)}&item=${encodeURIComponent(slugOf(item))}`;
     return `<article class="work-card"><span class="meta">${esc(meta)}</span><h3>${esc(title)}</h3><p>${esc(usefulDescription(item))}</p><a href="${href}">Voir le dossier</a></article>`;
   }
@@ -79,19 +78,24 @@
     try{
       const profile=await loadJSON('assets/data/profile.json');
       setText('profile-name',profile.name);
-      setText('profile-title',profile.title);
       setText('profile-bio',profile.bio);
       setText('about-text',profile.about||profile.bio);
       setHref('cv-link',profile.cv);
-
       const image=document.getElementById('profile-photo');
       const placeholder=document.getElementById('profile-photo-placeholder');
-      if(image&&profile.image){
-        image.src=localPath(profile.image);
-        image.hidden=false;
-        if(placeholder)placeholder.hidden=true;
-      }
+      if(image&&profile.image){image.src=localPath(profile.image);image.hidden=false;if(placeholder)placeholder.hidden=true}
     }catch(error){console.error(error)}
+  }
+
+  function selectWriteups(writeups){
+    const preferred=['breaking rsa','local file inclusion','directory transversal','html - code source','hash dcc'];
+    const selected=[];
+    preferred.forEach(name=>{
+      const match=writeups.find(item=>clean(item.title).toLowerCase()===name&&!selected.includes(item));
+      if(match&&selected.length<2)selected.push(match);
+    });
+    writeups.forEach(item=>{if(selected.length<2&&!selected.includes(item))selected.push(item)});
+    return selected;
   }
 
   async function hydrateSelectedWork(){
@@ -104,9 +108,7 @@
       ]);
       const projects=items(projectsData).filter(published);
       const writeups=items(writeupsData).filter(published);
-      const selected=[];
-      if(writeups[0])selected.push({item:writeups[0],type:'writeup'});
-      if(writeups[1])selected.push({item:writeups[1],type:'writeup'});
+      const selected=selectWriteups(writeups).map(item=>({item,type:'writeup'}));
       if(selected.length<2&&projects[0])selected.push({item:projects[0],type:'project'});
       container.innerHTML=selected.slice(0,2).map(entry=>workCard(entry.item,entry.type)).join('')||'<p class="content-error">Les réalisations sont momentanément indisponibles.</p>';
     }catch(error){
@@ -128,13 +130,6 @@
     update();
   }
 
-  function init(){
-    setupYear();
-    setupNavigation();
-    hydrateProfile();
-    hydrateSelectedWork();
-    watchResults();
-  }
-
+  function init(){setupYear();setupNavigation();hydrateProfile();hydrateSelectedWork();watchResults()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

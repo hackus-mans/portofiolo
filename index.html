@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hackus Mans | Portfolio Cybersécurité</title>
   <meta name="description" content="Portfolio de NAKORE Yendoubouame Joseph : pentest web, détection SOC, sécurité réseau, projets et writeups.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=900">
-  <link rel="stylesheet" href="assets/css/project-first.css?v=1">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=901">
+  <link rel="stylesheet" href="assets/css/project-first.css?v=2">
 </head>
-<body class="project-first">
+<body class="project-first home-simplified">
   <header class="pf-header">
     <nav class="pf-nav" aria-label="Navigation principale">
       <a class="pf-brand" href="index.html"><span class="pf-brand-mark">HM</span><span>Hackus Mans</span></a>
@@ -30,8 +30,7 @@
       <div class="pf-home-copy">
         <p class="pf-kicker"><span id="profile-name">NAKORE Yendoubouame Joseph</span> · Lomé</p>
         <h1 class="pf-display">Comprendre l’attaque.<br><em>Renforcer la défense.</em></h1>
-        <p id="profile-title" class="pf-home-role">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</p>
-        <p id="profile-bio" class="pf-home-bio">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
+        <p id="profile-title" class="pf-home-role">Pentest web · Détection SOC · Sécurité réseau</p>
         <div class="pf-actions">
           <a class="pf-btn primary" href="realisations.html">Voir les réalisations</a>
           <a class="pf-btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger le CV</a>
@@ -41,49 +40,30 @@
       <aside class="pf-portrait" aria-label="Portrait professionnel">
         <img id="profile-photo" src="" alt="Portrait professionnel de NAKORE Yendoubouame Joseph" hidden>
         <div id="profile-photo-placeholder" class="pf-photo-placeholder">Portrait professionnel</div>
-        <div class="pf-portrait-caption"><strong>Pentest web, détection SOC et sécurité réseau.</strong><span>Portfolio 2026</span></div>
       </aside>
     </section>
 
-    <section class="pf-section">
-      <div class="pf-section-head">
-        <div><p class="pf-kicker">Projet principal</p><h2>HoneyShield</h2></div>
-        <p>Un laboratoire isolé conçu pour observer des scans, des tentatives de connexion et les traces générées par des services leurres.</p>
-      </div>
-
+    <section class="pf-section pf-home-project" aria-labelledby="honeyshield-title">
       <article class="pf-feature">
-        <div class="pf-feature-media"><img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png" alt="Architecture du laboratoire HoneyShield" loading="lazy"></div>
+        <div class="pf-feature-media">
+          <img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png" alt="Architecture du laboratoire HoneyShield" loading="lazy">
+        </div>
         <div class="pf-feature-copy">
           <div>
-            <p class="pf-kicker">Honeypot · Détection · Analyse</p>
-            <h3>Observer des activités suspectes avec Cowrie et Wazuh.</h3>
-            <p>Déploiement de Kali Linux, d’un honeypot Ubuntu et d’un serveur Wazuh pour simuler des scénarios contrôlés, centraliser les journaux et analyser les événements.</p>
+            <p class="pf-kicker">Projet principal</p>
+            <h2 id="honeyshield-title">HoneyShield</h2>
+            <p>Un laboratoire isolé avec Cowrie, Wazuh et Kali Linux pour observer, centraliser et analyser des activités suspectes.</p>
           </div>
           <div>
-            <div class="pf-meta"><span>Cowrie</span><span>Wazuh</span><span>Kali Linux</span><span>Ubuntu Server</span></div>
+            <div class="pf-meta"><span>Cowrie</span><span>Wazuh</span><span>Kali Linux</span></div>
             <p><a class="pf-feature-link" href="realisations.html?type=project&amp;item=honeyshield">Ouvrir l’étude de cas</a></p>
           </div>
         </div>
       </article>
     </section>
-
-    <section class="pf-section">
-      <div class="pf-section-head">
-        <div><p class="pf-kicker">Writeups récents</p><h2>Le raisonnement, étape par étape.</h2></div>
-        <a class="pf-text-link" href="realisations.html">Voir tous les travaux</a>
-      </div>
-      <div id="home-work-list" class="pf-work-list" aria-live="polite"></div>
-    </section>
-
-    <section class="pf-section">
-      <div class="pf-section-head">
-        <div><p class="pf-kicker">Contact</p><h2>Construisons quelque chose de concret.</h2></div>
-        <a class="pf-btn primary" href="contact.html">Me contacter</a>
-      </div>
-    </section>
   </main>
 
-  <footer class="pf-footer"><span>© <span data-year></span> Hackus Mans</span><span>Portfolio cybersécurité · Lomé, Togo</span></footer>
+  <footer class="pf-footer"><span>© <span data-year></span> Hackus Mans</span></footer>
   <script src="assets/js/live-content.js?v=408"></script>
   <script src="assets/js/app.js?v=408" defer></script>
   <script src="assets/js/profile-showcase.js?v=408" defer></script>

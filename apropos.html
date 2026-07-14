@@ -4,17 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>À propos | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <meta name="description" content="Parcours, méthode de travail et objectifs professionnels de NAKORE Yendoubouame Joseph en cybersécurité.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1000">
+  <link rel="stylesheet" href="assets/css/recruiter-first.css?v=1">
 </head>
-<body>
-  <header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a class="active" href="apropos.html">À propos</a><a href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-  <main class="page-shell"><section class="page-hero"><p class="eyebrow">À propos</p><h1>Profil & vision</h1><p id="about-text" class="section-text">Ce portfolio présente mes réalisations, mes notes techniques et les compétences que je développe.</p></section><section class="content-panel"><h2>Positionnement</h2><p>Je construis progressivement un profil orienté pratique, documentation, analyse technique et amélioration continue. L'objectif est de montrer des preuves concrètes de progression à travers des projets et des réalisations vérifiables.</p><div class="signal-grid"><div><strong>Approche</strong><span>Apprendre, pratiquer, documenter</span></div><div><strong>Domaine</strong><span>Réseaux, systèmes, sécurité</span></div><div><strong>Objectif</strong><span>Construire un profil crédible et visible</span></div></div></section></main>
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/path-fix.js?v=406" defer></script>
+<body class="recruiter-site">
+  <header class="rf-header"><nav class="rf-nav" aria-label="Navigation principale"><a class="rf-brand" href="index.html"><span class="rf-brand-mark">HM</span><span class="rf-brand-copy"><strong>Hackus Mans</strong><small>Cybersecurity Portfolio</small></span></a><button class="rf-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false"></button><div class="rf-links"><a href="index.html">Accueil</a><a href="realisations.html">Réalisations</a><a href="competences.html">Compétences</a><a href="certifications.html">Certifications</a><a class="active" href="apropos.html">À propos</a><a href="contact.html">Contact</a></div></nav></header>
+
+  <main class="rf-main">
+    <section class="rf-page-hero">
+      <div><p class="rf-eyebrow">À propos</p><h1 class="rf-title">Un profil construit par la pratique.</h1><p class="rf-lede">Je développe mes compétences en reproduisant des scénarios réalistes, en analysant les traces obtenues et en documentant chaque décision technique.</p></div>
+      <aside class="rf-page-aside"><strong>Objectif professionnel</strong>Évoluer vers un poste junior en SOC, sécurité réseau ou sécurité des applications web.</aside>
+    </section>
+
+    <section class="rf-section">
+      <div class="rf-profile-grid">
+        <div class="rf-profile-photo"><img data-profile-photo src="" alt="Portrait professionnel de NAKORE Yendoubouame Joseph" hidden><div data-photo-placeholder class="rf-photo-placeholder">Portrait professionnel</div></div>
+        <div class="rf-profile-copy">
+          <p>Je suis NAKORE Yendoubouame Joseph, basé à Lomé. Mon travail se concentre sur trois axes : comprendre le fonctionnement d’une attaque, observer les événements qu’elle génère et proposer une amélioration défensive adaptée.</p>
+          <p class="small">Mes projets actuels couvrent le déploiement de honeypots, la supervision Wazuh, l’administration Linux, la sécurité réseau avec FortiGate et l’exploitation contrôlée de vulnérabilités web comme SQL Injection, LFI et Directory Traversal.</p>
+          <div class="rf-actions"><a class="rf-btn primary" href="realisations.html">Examiner mes projets</a><a class="rf-btn" id="cv-link" href="assets/cv/cv.pdf">Consulter mon CV</a></div>
+        </div>
+      </div>
+
+      <div class="rf-method">
+        <article><span>01</span><h3>Comprendre</h3><p>Identifier l’objectif, l’architecture, les risques et les hypothèses avant de commencer les tests.</p></article>
+        <article><span>02</span><h3>Tester</h3><p>Reproduire le scénario dans un environnement autorisé et collecter des preuves exploitables.</p></article>
+        <article><span>03</span><h3>Documenter</h3><p>Présenter les commandes, résultats, limites et recommandations de manière claire.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rf-footer"><span>© <span data-year></span> Hackus Mans</span><span>Cybersécurité · Lomé, Togo</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/recruiter-first.js?v=1" defer></script>
 </body>
 </html>

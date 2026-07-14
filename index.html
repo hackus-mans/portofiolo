@@ -3,92 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hackus Mans | Portfolio Cybersécurité</title>
-  <meta name="description" content="Portfolio professionnel de Hackus Mans : cybersécurité, réseaux, systèmes, réalisations et certifications.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=410">
+  <title>NAKORE Joseph | Ingénieur cybersécurité junior</title>
+  <meta name="description" content="Portfolio cybersécurité de NAKORE Yendoubouame Joseph : SOC, sécurité réseau, pentest web, HoneyShield, writeups et certifications.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1000">
+  <link rel="stylesheet" href="assets/css/recruiter-first.css?v=1">
 </head>
-<body class="premium-home">
-  <header class="site-header">
-    <nav class="navbar">
-      <a href="index.html" class="brand">Hackus<span>Mans</span></a>
-      <div class="nav-links">
-        <a class="active" href="index.html">Accueil</a>
-        <a href="apropos.html">À propos</a>
-        <a href="competences.html">Compétences</a>
-        <a href="realisations.html">Réalisations</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="contact.html">Contact</a>
-        <a class="admin-link" href="admin/">Admin</a>
-      </div>
+<body class="recruiter-site">
+  <header class="rf-header">
+    <nav class="rf-nav" aria-label="Navigation principale">
+      <a class="rf-brand" href="index.html"><span class="rf-brand-mark">HM</span><span class="rf-brand-copy"><strong>Hackus Mans</strong><small>Cybersecurity Portfolio</small></span></a>
+      <button class="rf-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false"></button>
+      <div class="rf-links"><a class="active" href="index.html">Accueil</a><a href="realisations.html">Réalisations</a><a href="competences.html">Compétences</a><a href="certifications.html">Certifications</a><a href="apropos.html">À propos</a><a href="contact.html">Contact</a></div>
     </nav>
   </header>
 
-  <main class="home-shell premium-layout">
-    <section class="hero-clean hero-profile-layout editorial-hero">
-      <div class="hero-left editorial-copy">
-        <span class="hero-line"></span>
-        <p class="eyebrow">Portfolio cybersécurité</p>
-        <h1><span id="profile-name">NAKORE Yendoubouame Joseph</span></h1>
-        <h2 id="profile-title">Cybersécurité offensive &amp; défensive — Pentest, SOC et sécurité des systèmes</h2>
-        <p id="profile-bio" class="hero-text">Je conçois et documente des labs, writeups et projets de détection afin de développer des compétences opérationnelles en analyse d’attaques, sécurité réseau et réponse aux incidents.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="realisations.html">Voir mes réalisations</a>
-          <a class="btn secondary" href="competences.html">Consulter mes compétences</a>
-          <a class="btn ghost" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a>
-        </div>
+  <main class="rf-main">
+    <section class="rf-home-hero">
+      <div>
+        <div class="rf-status">Disponible pour un stage ou un poste junior</div>
+        <p class="rf-eyebrow">Lomé, Togo · Cybersécurité</p>
+        <h1 class="rf-display"><span id="profile-name">NAKORE Yendoubouame Joseph</span></h1>
+        <p class="rf-role">Ingénieur cybersécurité junior — SOC, sécurité réseau et pentest web.</p>
+        <p class="rf-home-note">Je transforme des attaques simulées en détections, rapports techniques et mesures de protection concrètes.</p>
+        <div class="rf-actions"><a class="rf-btn primary" href="realisations.html">Voir mes preuves techniques</a><a class="rf-btn" id="cv-link" href="assets/cv/cv.pdf">Télécharger mon CV</a></div>
       </div>
-      <aside class="profile-showcase visual-profile-card editorial-photo" aria-label="Photo professionnelle Hackus Mans">
-        <div class="profile-photo-stage">
-          <img id="profile-photo" src="" alt="Photo professionnelle Hackus Mans" hidden>
-          <div id="profile-photo-placeholder" class="photo-placeholder">
-            <span>// HACKUS-MANS</span>
-            <strong>PHOTO PROFIL</strong>
-            <small>Ajoute ta photo depuis Sveltia</small>
-          </div>
-        </div>
+
+      <aside class="rf-portrait" aria-label="Portrait professionnel">
+        <img data-profile-photo src="" alt="Portrait professionnel de NAKORE Yendoubouame Joseph" hidden>
+        <div data-photo-placeholder class="rf-photo-placeholder">Portrait professionnel</div>
+        <div class="rf-portrait-badge"><span>Projet phare</span><strong>HoneyShield — honeypot Cowrie supervisé avec Wazuh.</strong></div>
       </aside>
     </section>
 
-    <section class="signature-strip" aria-label="Domaines du portfolio">
-      <span>Network Security</span>
-      <span>System Administration</span>
-      <span>CTF Writeups</span>
-      <span>Labs</span>
+    <div class="rf-signal-strip" aria-label="Outils et domaines principaux"><span>Wazuh</span><span>Cowrie</span><span>Linux</span><span>FortiGate</span><span>Web Security</span></div>
+
+    <section class="rf-section">
+      <div class="rf-section-head"><div><p class="rf-eyebrow">Étude de cas principale</p><h2>HoneyShield</h2></div><p>Un projet complet qui montre ma capacité à déployer, tester, observer et documenter un environnement de sécurité.</p></div>
+      <article class="rf-feature">
+        <div class="rf-feature-media"><img src="content/writeups/media/projet-piece-jointe-pasted-image-20260530155932.png" alt="Architecture du laboratoire HoneyShield" loading="lazy"></div>
+        <div class="rf-feature-copy">
+          <div>
+            <p class="rf-eyebrow">Cybersécurité défensive</p>
+            <h3>Observer les attaques dans un laboratoire contrôlé.</h3>
+            <p>Déploiement d’un honeypot Cowrie, centralisation des événements avec Wazuh et génération de scénarios depuis Kali Linux.</p>
+            <div class="rf-case-facts"><div><strong>Objectif</strong><span>Collecter les traces de scans et de connexions SSH suspectes.</span></div><div><strong>Mon rôle</strong><span>Architecture, déploiement, tests, analyse et documentation.</span></div><div><strong>Résultat</strong><span>Des événements centralisés et exploitables pour l’investigation.</span></div></div>
+          </div>
+          <div><div class="rf-tags"><span>Cowrie</span><span>Wazuh</span><span>Kali Linux</span><span>Ubuntu Server</span></div><p><a class="rf-case-link" href="realisations.html?type=project&amp;item=honeyshield">Lire l’étude de cas</a></p></div>
+        </div>
+      </article>
     </section>
 
-    <section class="home-section feature-board">
-      <article class="feature-card feature-card-large">
-        <span>01</span>
-        <h3>Réalisations documentées</h3>
-        <p>Projets, machines, challenges et démarches techniques présentés avec contexte, méthode et résultat.</p>
-        <a href="realisations.html">Voir les réalisations</a>
-      </article>
-      <article class="feature-card">
-        <span>02</span>
-        <h3>Compétences</h3>
-        <p>Domaines maîtrisés ou en progression, reliés à des preuves concrètes.</p>
-        <a href="competences.html">Consulter</a>
-      </article>
-      <article class="feature-card muted-feature">
-        <span>03</span>
-        <h3>Certifications</h3>
-        <p>Badges, attestations et parcours de formation.</p>
-        <a href="certifications.html">Afficher</a>
-      </article>
+    <section class="rf-section">
+      <div class="rf-section-head"><div><p class="rf-eyebrow">Autres preuves</p><h2>Deux analyses techniques.</h2></div><a class="rf-text-link" href="realisations.html">Voir toutes les réalisations →</a></div>
+      <div id="selected-work" class="rf-work-grid" aria-live="polite"></div>
     </section>
   </main>
 
-  <footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer>
-  <script src="assets/js/live-content.js?v=406"></script>
-  <script src="assets/js/app.js?v=406" defer></script>
-  <script src="assets/js/profile-showcase.js?v=406" defer></script>
-  <script src="assets/js/path-fix.js?v=406" defer></script>
+  <footer class="rf-footer"><span>© <span data-year></span> Hackus Mans</span><span>Lomé, Togo · GitHub et email disponibles dans Contact</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/recruiter-first.js?v=1" defer></script>
 </body>
 </html>

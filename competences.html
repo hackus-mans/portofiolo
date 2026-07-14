@@ -4,41 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Compétences | Hackus Mans</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=406">
-  <link rel="stylesheet" href="assets/css/styles.css?v=406">
+  <meta name="description" content="Compétences opérationnelles en SOC, sécurité réseau, pentest web, Linux et documentation technique.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1000">
   <link rel="stylesheet" href="assets/css/auto-skills.css?v=406">
-  <link rel="stylesheet" href="assets/css/professional.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-fix.css?v=406">
-  <link rel="stylesheet" href="assets/css/interface-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/final-wow.css?v=406">
-  <link rel="stylesheet" href="assets/css/mobile-experience.css?v=406">
+  <link rel="stylesheet" href="assets/css/recruiter-first.css?v=1">
 </head>
-<body>
-<header class="site-header"><nav class="navbar"><a href="index.html" class="brand">Hackus<span>Mans</span></a><div class="nav-links"><a href="index.html">Accueil</a><a href="apropos.html">À propos</a><a class="active" href="competences.html">Compétences</a><a href="realisations.html">Réalisations</a><a href="certifications.html">Certifications</a><a href="contact.html">Contact</a><a class="admin-link" href="admin/">Admin</a></div></nav></header>
-<main class="page-shell">
-  <section class="page-hero">
-    <p class="eyebrow">Compétences</p>
-    <h1>Domaines techniques</h1>
-    <p class="section-text">Une synthèse claire des compétences développées à travers mes projets, certifications, labs et writeups.</p>
-  </section>
+<body class="recruiter-site">
+  <header class="rf-header"><nav class="rf-nav" aria-label="Navigation principale"><a class="rf-brand" href="index.html"><span class="rf-brand-mark">HM</span><span class="rf-brand-copy"><strong>Hackus Mans</strong><small>Cybersecurity Portfolio</small></span></a><button class="rf-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false"></button><div class="rf-links"><a href="index.html">Accueil</a><a href="realisations.html">Réalisations</a><a class="active" href="competences.html">Compétences</a><a href="certifications.html">Certifications</a><a href="apropos.html">À propos</a><a href="contact.html">Contact</a></div></nav></header>
 
-  <section>
-    <div class="section-heading">
-      <p class="eyebrow">Expertise</p>
-      <h2>Compétences principales</h2>
-      <p>Mes domaines de travail et de progression en réseaux, systèmes, sécurité et documentation technique.</p>
-    </div>
-    <div id="skills-list" class="grid cards"></div>
-  </section>
+  <main class="rf-main">
+    <section class="rf-page-hero">
+      <div><p class="rf-eyebrow">Compétences</p><h1 class="rf-title">Ce que je peux faire, et comment je le prouve.</h1><p class="rf-lede">Pas de jauges ni de pourcentages arbitraires : chaque domaine est relié à des outils, des actions réalisées et des preuves consultables.</p></div>
+      <aside class="rf-page-aside"><strong>Lecture recruteur</strong>Les compétences ci-dessous correspondent aux tâches déjà pratiquées dans des labs, projets, challenges ou formations vérifiables.</aside>
+    </section>
 
-  <section class="home-section">
-    <div class="section-heading">
-      <p class="eyebrow">Preuves pratiques</p>
-      <h2>Compétences démontrées</h2>
-      <p>Compétences associées à mes réalisations, labs, writeups et certifications.</p>
-    </div>
-    <div id="cert-skills-list" class="auto-skill-grid"></div>
-  </section>
-</main>
-<footer><p>© <span id="year"></span> Hackus Mans. Portfolio personnel.</p></footer><script src="assets/js/live-content.js?v=406"></script><script src="assets/js/app.js?v=406" defer></script><script src="assets/js/auto-skills-plus.js?v=406" defer></script>
-</body></html>
+    <section class="rf-section">
+      <div class="rf-skills-list">
+        <article class="card cyber-card"><h3>SOC & détection</h3><p>Déployer Wazuh, collecter des événements Linux, observer les journaux Cowrie, identifier des comportements suspects et préparer une investigation.</p></article>
+        <article class="card cyber-card"><h3>Sécurité réseau</h3><p>Analyser les services exposés, utiliser Nmap, comprendre TCP/IP, segmenter un laboratoire et configurer des politiques de sécurité FortiGate.</p></article>
+        <article class="card cyber-card"><h3>Sécurité web</h3><p>Tester en environnement autorisé des vulnérabilités comme SQL Injection, LFI, Directory Traversal, exposition du code source et contournement d’authentification.</p></article>
+        <article class="card cyber-card"><h3>Linux & documentation</h3><p>Administrer des services Linux, gérer les permissions, diagnostiquer un environnement et rédiger des procédures, rapports et writeups reproductibles.</p></article>
+      </div>
+    </section>
+
+    <section class="rf-section">
+      <div class="rf-section-head"><div><p class="rf-eyebrow">Preuves associées</p><h2>Projets, writeups et certifications.</h2></div><p>Les éléments ci-dessous sont construits automatiquement depuis les contenus publiés dans le portfolio.</p></div>
+      <div id="cert-skills-list" class="rf-proof-grid auto-skill-grid"></div>
+    </section>
+  </main>
+
+  <footer class="rf-footer"><span>© <span data-year></span> Hackus Mans</span><span>Compétences reliées à des preuves techniques.</span></footer>
+  <script src="assets/js/live-content.js?v=408"></script><script src="assets/js/app.js?v=408" defer></script><script src="assets/js/auto-skills-plus.js?v=408" defer></script><script src="assets/js/path-fix.js?v=408" defer></script><script src="assets/js/recruiter-first.js?v=1" defer></script>
+</body>
+</html>
